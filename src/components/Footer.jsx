@@ -14,13 +14,13 @@ const Footer = () => {
     },
     {
       icon: Linkedin,
-      href: '#',
+      href: 'https://www.linkedin.com/in/mohammed-azab/',
       label: 'LinkedIn',
       color: 'hover:text-blue-400'
     },
     {
       icon: Mail,
-      href: 'mailto:mohammed.azab@engineer.com',
+      href: 'mailto:Mohammed@azab.io',
       label: 'Email',
       color: 'hover:text-electric-blue'
     }
@@ -115,8 +115,8 @@ const Footer = () => {
             >
               <h4 className="text-lg font-semibold text-white mb-4">Get in Touch</h4>
               <div className="space-y-2 text-gray-400">
-                <p>📧 mohammed.azab@engineer.com</p>
-                <p>📍 Germany</p>
+                <p>📧 Mohammed@azab.io</p>
+                <p>📍 Berlin, Germany</p>
                 <p>🚀 Available for Projects</p>
               </div>
             </motion.div>

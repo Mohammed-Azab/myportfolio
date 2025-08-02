@@ -43,8 +43,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "mohammed.azab@engineer.com",
-      href: "mailto:mohammed.azab@engineer.com",
+      value: "Mohammed@azab.io",
+      href: "mailto:Mohammed@azab.io",
       description: "Drop me a line anytime",
       color: "from-electric-blue to-cyan-500"
     },
@@ -60,14 +60,14 @@ const Contact = () => {
       icon: Linkedin,
       title: "LinkedIn",
       value: "Mohammed Azab",
-      href: "#",
+      href: "https://www.linkedin.com/in/mohammed-azab/",
       description: "Let's connect professionally",
       color: "from-blue-600 to-blue-800"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Germany",
+      value: "Berlin,Germany",
       href: null,
       description: "Currently based in",
       color: "from-neon-green to-emerald-600"
@@ -342,7 +342,7 @@ const Contact = () => {
               or want to collaborate on innovative solutions, I'm excited to hear from you.
             </p>
             <motion.a
-              href="mailto:mohammed.azab@engineer.com"
+              href="mailto:Mohammed@azab.io"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg font-semibold hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -74,47 +74,7 @@ export const skillsData = {
   ]
 };
 
-// Education Timeline
-export const educationData = [
-  {
-    id: 1,
-    institution: "University of Technology",
-    degree: "Bachelor of Engineering in Mechatronics",
-    period: "2021 - 2025 (Expected)",
-    gpa: "3.8/4.0",
-    location: "Your City, Country",
-    description: "Comprehensive program covering mechanical engineering, electronics, control systems, and robotics with hands-on laboratory experience.",
-    courses: [
-      "Advanced Control Systems",
-      "Robotics and Automation",
-      "Digital Signal Processing",
-      "Machine Learning for Engineers",
-      "Industrial Automation",
-      "Embedded Systems Design"
-    ],
-    achievements: [
-      "Dean's List (6 semesters)",
-      "Outstanding Student in Robotics",
-      "Research Assistant in AI Lab"
-    ]
-  },
-  {
-    id: 2,
-    institution: "Technical High School",
-    degree: "High School Diploma - STEM Track",
-    period: "2017 - 2021",
-    gpa: "96%",
-    location: "Your City, Country",
-    description: "Specialized in Science, Technology, Engineering, and Mathematics with focus on engineering fundamentals.",
-    achievements: [
-      "Valedictorian",
-      "National Science Olympiad Winner",
-      "First Place in Regional Robotics Competition"
-    ]
-  }
-];
-
-// Work Experience
+// Work Experience Timeline
 export const experienceData = [
   {
     id: 1,
@@ -243,7 +203,6 @@ export const achievementsData = [
 
 export default {
   skills: skillsData,
-  education: educationData,
   experience: experienceData,
   certifications: certificationsData,
   achievements: achievementsData

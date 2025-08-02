@@ -19,13 +19,15 @@ const Navbar = () => {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Timeline', href: '#timeline' },
+    { name: 'Education', href: '#education' },
+    { name: 'Courses', href: '#courses' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ]
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Mohammed-Azab', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/mohammed-azab/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:contact@mohammed-azab.com', label: 'Email' },
   ]
 

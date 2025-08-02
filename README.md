@@ -240,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Mohammed Azab**
 - Portfolio: [https://mohammed-azab.github.io/myportfolio](https://mohammed-azab.github.io/myportfolio)
 - LinkedIn: [https://linkedin.com/in/mohammed-azab](https://linkedin.com/in/mohammed-azab)
-- Email: mohammed.azab@example.com
+- Email: Mohammed@azab.io
 - GitHub: [@Mohammed-Azab](https://github.com/Mohammed-Azab)
 
 ## 🙏 Acknowledgments
@@ -368,7 +368,7 @@ To fetch projects dynamically from GitHub:
 
 ## 📧 Contact
 
-- **Email**: mohammed.azab@engineer.com
+- **Email**: Mohammed@azab.io
 - **GitHub**: [Mohammed-Azab](https://github.com/Mohammed-Azab)
 - **Location**: Germany
 

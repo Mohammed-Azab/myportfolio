@@ -5,15 +5,15 @@ export const portfolioConfig = {
   // Personal Information
   personal: {
     name: "Mohammed Azab",
-    title: "Mechatronics Engineer",
-    subtitle: "Robotics & Control Systems Specialist",
-    email: "mohammed.azab@example.com",
-    phone: "+1 (555) 123-4567",
-    location: "Your City, Country",
+    title: "Mechatronics Engineering Student",
+    subtitle: "Robotics & Control systems",
+    email: "Mohammed@azab.io",
+    phone: "+49 1523 8600805",
+    location: "Berlin, Germany",
     
     // Bio/Description
-    bio: "Passionate Mechatronics Engineer with expertise in robotics, automation, and control systems. Currently pursuing advanced studies in autonomous systems and AI integration in mechanical engineering.",
-    
+    bio: "Passionate Mechatronics Engineering Student with expertise in robotics, automation, and control systems. Currently pursuing advanced studies in autonomous systems and AI integration in mechanical engineering.",
+
     // Profile Image
     profileImage: "/src/assets/images/profile.jpg", // Add your profile image here
     
@@ -58,8 +58,8 @@ export const portfolioConfig = {
 
   // SEO Configuration
   seo: {
-    title: "Mohammed Azab - Mechatronics Engineer",
-    description: "Portfolio of Mohammed Azab, a Mechatronics Engineer specializing in robotics, automation, and control systems.",
+    title: "Mohammed Azab - Mechatronics Engineering Student",
+    description: "Portfolio of Mohammed Azab, a Mechatronics Engineering Student specializing in robotics, automation, Robotics and control systems.",
     keywords: ["Mechatronics", "Engineer", "Robotics", "Automation", "Control Systems", "AI", "IoT"],
     author: "Mohammed Azab",
     image: "/src/assets/images/og-image.jpg", // Open Graph image
@@ -68,9 +68,9 @@ export const portfolioConfig = {
 
   // Contact Form Configuration
   contact: {
-    emailJsServiceId: "your_emailjs_service_id",
-    emailJsTemplateId: "your_emailjs_template_id",
-    emailJsUserId: "your_emailjs_user_id"
+    emailJsServiceId: "Mohammed@azab.io",
+    emailJsTemplateId: "Mohammed@azab.io",
+    emailJsUserId: "Mohammed@azab.io"
   },
 
   // Google Analytics (optional)
@@ -87,7 +87,10 @@ export const portfolioConfig = {
     preloader: true,
     contactForm: true,
     blogSection: false, // Enable if you want to add a blog
-    testimonials: false // Enable if you want to add testimonials
+    testimonials: false, // Enable if you want to add testimonials
+    educationSection: true, // Dedicated education section
+    coursesSection: true, // Professional development courses
+    experienceTimeline: true // Work experience timeline
   }
 };
 
