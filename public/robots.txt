@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mohammed-azab.github.io/myportfolio/sitemap.xml
+
+# Disallow crawling of development files
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /vite.config.js
+Disallow: /tailwind.config.js
+Disallow: /postcss.config.js

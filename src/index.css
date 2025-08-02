@@ -1,0 +1,344 @@
+/* Portfolio Styles - Enhanced TailwindCSS Configuration */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+@layer base {
+  /* CSS Variables for consistent theming */
+  :root {
+    --primary-color: #00D4FF;
+    --secondary-color: #39FF14;
+    --accent-color: #FF6B35;
+    --background-color: #0A0A0A;
+    --surface-color: #1A1A1A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--surface-color);
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Selection styles */
+  ::selection {
+    background: var(--primary-color);
+    color: var(--background-color);
+  }
+
+  ::-moz-selection {
+    background: var(--primary-color);
+    color: var(--background-color);
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--surface-color);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+  }
+}
+
+@layer components {
+  /* Enhanced Button Styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-400 to-purple-500 text-white font-medium py-3 px-8 rounded-xl;
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-green-400 text-green-400 font-medium py-3 px-8 rounded-xl;
+    @apply transform transition-all duration-300 hover:bg-green-400 hover:text-gray-900 hover:scale-105;
+    @apply focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  .btn-ghost {
+    @apply text-white font-medium py-3 px-8 rounded-xl border border-gray-700;
+    @apply transform transition-all duration-300 hover:border-blue-400 hover:text-blue-400 hover:scale-105;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+  
+  /* Card Styles */
+  .card {
+    @apply bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6;
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    @apply hover:border-blue-400/50;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer hover:bg-gray-800/50;
+  }
+
+  .card-glow {
+    @apply card;
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-400/20;
+  }
+  
+  /* Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+
+  .heading-primary {
+    @apply text-4xl md:text-6xl font-bold text-gradient;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .heading-secondary {
+    @apply text-2xl md:text-4xl font-bold text-gradient;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .heading-tertiary {
+    @apply text-xl md:text-2xl font-semibold text-white;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  /* Input Styles */
+  .input-field {
+    @apply w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3;
+    @apply text-white placeholder-gray-400 backdrop-blur-sm;
+    @apply transition-all duration-300 focus:outline-none focus:border-blue-400 focus:shadow-lg;
+    @apply focus:shadow-blue-400/20;
+  }
+
+  .textarea-field {
+    @apply input-field resize-none min-h-[120px];
+  }
+
+  /* Navigation Styles */
+  .nav-link {
+    @apply text-gray-300 hover:text-blue-400 transition-colors duration-300 relative py-2 px-4 rounded-lg;
+  }
+
+  .nav-link.active {
+    @apply text-blue-400;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-400;
+    @apply transition-all duration-300 transform -translate-x-1/2;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-blue-400/10 text-blue-400 border border-blue-400/20;
+  }
+
+  .badge-success {
+    @apply bg-green-400/10 text-green-400 border-green-400/20;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-400/10 text-yellow-400 border-yellow-400/20;
+  }
+
+  .badge-error {
+    @apply bg-red-400/10 text-red-400 border-red-400/20;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    @apply w-full bg-gray-700 rounded-full h-2 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full;
+    @apply transition-all duration-700 ease-out;
+  }
+
+  /* Utility Classes */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hover-lift {
+    @apply transform transition-transform duration-300 hover:-translate-y-2;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  }
+
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-12;
+  }
+
+  .container-width {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .border-gradient {
+    @apply border-2 border-transparent bg-gradient-to-r from-blue-400 to-green-400 bg-clip-border;
+  }
+}
+
+@layer utilities {
+  /* Animation Delays */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  /* Custom Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-rotate-slow {
+    animation: rotateSlow 20s linear infinite;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .heading-primary {
+    @apply text-3xl;
+  }
+  
+  .heading-secondary {
+    @apply text-xl;
+  }
+  
+  .section-padding {
+    @apply py-12 px-4;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
