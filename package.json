@@ -1,7 +1,7 @@
 {
   "name": "myportfolio",
   "version": "1.0.0",
-  "description": "Mohammed Azab's Personal Portfolio - Mechatronics Engineer & Robotics Enthusiast",
+  "description": "Mohammed Azab's Personal Portfolio - Mechatronics Engineering Student & Controller Systems Enthusiast",
   "type": "module",
   "scripts": {
     "dev": "vite",

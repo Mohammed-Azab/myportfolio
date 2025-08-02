@@ -8,10 +8,10 @@ const Hero = () => {
   const [isDeleting, setIsDeleting] = useState(false)
   
   const phrases = [
-    "Mechatronics Engineer",
+    "Mechatronics Engineering Student",
     "Robotics Enthusiast", 
     "Control Systems Developer",
-    "Innovation Creator"
+    "Software Engineering Enthusiast",
   ]
 
   useEffect(() => {
