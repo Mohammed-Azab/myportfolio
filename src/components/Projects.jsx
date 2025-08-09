@@ -1,14 +1,50 @@
 import React, { useState, useEffect } from 'react'
+import ProjectModal from './ProjectModal';
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Github, ExternalLink, Star, GitFork, Calendar } from 'lucide-react'
+import AnimatedLottie from './AnimatedLottie';
+import fireAnim from '../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json';
+import droneAnim from '../animation/drone/animations/6cb975bb-c16c-4507-81b2-8d2d7a61d935.json';
 
 const Projects = () => {
+  useEffect(() => {
+    // Simulate API call delay
+    const timer = setTimeout(() => {
+      setGithubProjects(featuredProjects);
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [githubProjects, setGithubProjects] = useState([])
   const [loading, setLoading] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   // Featured projects data (fallback if GitHub API fails)
   const featuredProjects = [
@@ -84,49 +120,7 @@ const Projects = () => {
       language: "Python",
       updated: "2024-02-28"
     }
-  ]
-
-  useEffect(() => {
-    // Simulate GitHub API call - replace with actual API call
-    const fetchGithubProjects = async () => {
-      try {
-        // Simulated delay
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        setGithubProjects(featuredProjects)
-      } catch (error) {
-        console.error('Error fetching GitHub projects:', error)
-        setGithubProjects(featuredProjects)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGithubProjects()
-  }, [])
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  }
-
+  ];
   const getLanguageColor = (language) => {
     const colors = {
       'C++': '#f34b7d',
@@ -135,12 +129,14 @@ const Projects = () => {
       'MATLAB': '#e16737',
       'C': '#555555',
       'TypeScript': '#2b7489'
-    }
-    return colors[language] || '#8b5cf6'
-  }
+    };
+    return colors[language] || '#8b5cf6';
+  };
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
+      {/* Project Modal */}
+      <ProjectModal open={modalOpen} onClose={() => setModalOpen(false)} project={selectedProject} />
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-surface via-dark-bg to-dark-surface opacity-50"></div>
       
@@ -213,7 +209,19 @@ const Projects = () => {
                 className="bg-dark-surface border border-dark-border rounded-lg overflow-hidden card-hover group"
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
+                <div className="relative p-6">
+                  {/* Project Animation - minimized and in outer frame */}
+                  {(project.name === "TriFlameX Rocket" || project.name === "SkyMindOS") && (
+                    <div className="absolute top-4 right-4 flex items-center justify-center z-10">
+                      {project.name === "TriFlameX Rocket" && (
+                        <AnimatedLottie animationData={fireAnim} className="w-10 h-10" />
+                      )}
+                      {project.name === "SkyMindOS" && (
+                        <AnimatedLottie animationData={droneAnim} className="w-8 h-8" />
+                      )}
+                    </div>
+                  )}
+
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-electric-blue transition-colors">
@@ -295,6 +303,13 @@ const Projects = () => {
                       </motion.a>
                     )}
                   </div>
+                  {/* Show Details Button */}
+                  <button
+                    className="mt-4 w-full py-2 px-4 bg-electric-blue text-dark-bg rounded-lg font-semibold hover:bg-neon-green transition-colors"
+                    onClick={() => { setSelectedProject(project); setModalOpen(true); }}
+                  >
+                    Show Details
+                  </button>
                 </div>
               </motion.div>
             ))}

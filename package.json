@@ -10,10 +10,11 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "framer-motion": "^10.16.0",
-    "lucide-react": "^0.294.0"
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -29,7 +30,13 @@
     "type": "git",
     "url": "git+https://github.com/Mohammed-Azab/myportfolio.git"
   },
-  "keywords": ["portfolio", "mechatronics", "robotics", "react", "tailwindcss"],
+  "keywords": [
+    "portfolio",
+    "mechatronics",
+    "robotics",
+    "react",
+    "tailwindcss"
+  ],
   "author": "Mohammed Azab",
   "license": "MIT",
   "bugs": {
