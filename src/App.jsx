@@ -31,13 +31,13 @@ function App() {
       <main className="relative z-10">
         <Hero />
         <About />
-        <Projects />
-        <Skills />
+        <Timeline />
         <Education />
+        <Projects />
+        <Courses />
+        <Skills />
         <Volunteering />
         <Awards />
-        <Courses />
-        <Timeline />
         <Contact />
       </main>
       

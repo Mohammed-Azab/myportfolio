@@ -17,13 +17,13 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Education', href: '#education' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Courses', href: '#courses' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Volunteering', href: '#volunteering' },
     { name: 'Awards', href: '#awards' },
-    { name: 'Courses', href: '#courses' },
-    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ]
 
