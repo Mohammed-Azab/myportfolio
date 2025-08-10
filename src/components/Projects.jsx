@@ -44,8 +44,21 @@ const Projects = () => {
   const [githubProjects, setGithubProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [expandedId, setExpandedId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
   const expandedProject = expandedId ? githubProjects.find(p => p.id === expandedId) : null;
-  const otherProjects = expandedId ? githubProjects.filter(p => p.id !== expandedId) : githubProjects;
+
+  // Filter projects by category
+  const filteredProjects = selectedCategory === 'All'
+    ? githubProjects
+    : githubProjects.filter(project => project.category === selectedCategory);
+
+  const otherProjects = expandedId
+    ? filteredProjects.filter(p => p.id !== expandedId)
+    : filteredProjects;
+
+  // Get unique categories for filter buttons
+  const categories = ['All', ...new Set(githubProjects.map(project => project.category))];
 
 
   // Featured projects data (fallback if GitHub API fails)
@@ -55,6 +68,7 @@ const Projects = () => {
       name: "TriFlameX Rocket",
       description: "Advanced rocket control system with real-time telemetry and autonomous flight capabilities. Features custom PCB design and embedded software for flight control.",
       technologies: ["C++", "STM32", "PCB Design", "Telemetry", "Control Systems"],
+      category: "Control Systems",
       github: "https://github.com/Mohammed-Azab/TriFlameX",
       demo: null,
       stars: 15,
@@ -67,6 +81,7 @@ const Projects = () => {
       name: "SkyMindOS",
       description: "Intelligent drone operating system with autonomous navigation, obstacle avoidance, and mission planning capabilities using computer vision and machine learning.",
       technologies: ["Python", "ROS2", "Computer Vision", "Machine Learning", "Autonomous Systems"],
+      category: "Software",
       github: "https://github.com/Mohammed-Azab/SkyMindOS",
       demo: "https://skymindos-demo.vercel.app",
       stars: 28,
@@ -79,6 +94,7 @@ const Projects = () => {
       name: "Robotic Arm Controller",
       description: "6-DOF robotic arm with inverse kinematics, path planning, and precise positioning control. Includes simulation environment and real-time control interface.",
       technologies: ["MATLAB", "Simulink", "Kinematics", "Control Theory", "Simulation"],
+      category: "Mechatronics",
       github: "https://github.com/Mohammed-Azab/RoboArm-Controller",
       demo: null,
       stars: 12,
@@ -91,6 +107,7 @@ const Projects = () => {
       name: "Smart Greenhouse IoT",
       description: "IoT-based greenhouse monitoring and control system with environmental sensors, automated irrigation, and remote monitoring capabilities.",
       technologies: ["Arduino", "IoT", "Sensors", "Node.js", "React", "MongoDB"],
+      category: "Embedded Systems",
       github: "https://github.com/Mohammed-Azab/Smart-Greenhouse",
       demo: "https://greenhouse-monitor.vercel.app",
       stars: 20,
@@ -103,6 +120,7 @@ const Projects = () => {
       name: "PID Controller Library",
       description: "High-performance PID controller implementation with auto-tuning capabilities, designed for embedded systems and real-time applications.",
       technologies: ["C", "Embedded Systems", "Control Theory", "Real-time"],
+      category: "Control Systems",
       github: "https://github.com/Mohammed-Azab/PID-Controller-Lib",
       demo: null,
       stars: 35,
@@ -115,6 +133,7 @@ const Projects = () => {
       name: "Mechatronics Toolkit",
       description: "Comprehensive toolkit for mechatronics engineers with simulation tools, control system design utilities, and embedded system templates.",
       technologies: ["Python", "MATLAB", "C++", "Simulation", "Tools"],
+      category: "Mechatronics",
       github: "https://github.com/Mohammed-Azab/Mechatronics-Toolkit",
       demo: "https://mechatronics-toolkit.github.io",
       stars: 42,
@@ -170,6 +189,55 @@ const Projects = () => {
             in my journey of innovation and technical excellence.
           </motion.p>
         </motion.div>
+
+        {/* Category Filter Buttons */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="flex flex-wrap justify-center gap-3 mb-12"
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              variants={itemVariants}
+              onClick={() => {
+                setSelectedCategory(category);
+                setExpandedId(null); // Reset expanded state when filtering
+              }}
+              className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 ${
+                selectedCategory === category
+                  ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg'
+                  : 'bg-dark-surface border border-dark-border text-gray-300 hover:border-electric-blue hover:text-electric-blue'
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>{category}</span>
+              <span className={`text-xs px-2 py-1 rounded-full ${
+                selectedCategory === category
+                  ? 'bg-dark-bg/20 text-dark-bg'
+                  : 'bg-electric-blue/20 text-electric-blue'
+              }`}>
+                {category === 'All' ? githubProjects.length : githubProjects.filter(p => p.category === category).length}
+              </span>
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Filter Status */}
+        {selectedCategory !== 'All' && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-8"
+          >
+            <span className="text-gray-400 text-sm">
+              Showing {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} in{' '}
+              <span className="text-electric-blue font-medium">{selectedCategory}</span>
+            </span>
+          </motion.div>
+        )}
 
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -332,7 +400,7 @@ const Projects = () => {
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {otherProjects.map((project) => (
+              {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   variants={itemVariants}
@@ -453,7 +521,7 @@ const Projects = () => {
                 animate={isInView ? "visible" : "hidden"}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                {githubProjects.filter(p => p.id !== expandedId).map((project) => (
+                {filteredProjects.filter(p => p.id !== expandedId).map((project) => (
                   <motion.div
                     key={project.id}
                     variants={itemVariants}
