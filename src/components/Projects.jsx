@@ -4,15 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Github, ExternalLink, Star, GitFork, Calendar } from 'lucide-react'
+import { projectsData, projectCategories } from '../data/projects'
 import AnimatedLottie from './AnimatedLottie';
 import fireAnim from '../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json';
 import droneAnim from '../animation/drone/animations/6cb975bb-c16c-4507-81b2-8d2d7a61d935.json';
 
 const Projects = () => {
   useEffect(() => {
-    // Simulate API call delay
+    // Simulate loading delay for better UX
     const timer = setTimeout(() => {
-      setGithubProjects(featuredProjects);
       setLoading(false);
     }, 800);
     return () => clearTimeout(timer);
@@ -41,10 +41,27 @@ const Projects = () => {
   };
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [githubProjects, setGithubProjects] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false) // Set to false since we're using static data
   const [expandedId, setExpandedId] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  // Transform projects data to match the expected format
+  const githubProjects = projectsData.map(project => ({
+    id: project.id,
+    name: project.title,
+    description: project.description,
+    technologies: project.technologies,
+    category: project.category,
+    github: project.github,
+    demo: project.demo,
+    stars: Math.floor(Math.random() * 50) + 5, // Random stars for demo
+    forks: Math.floor(Math.random() * 20) + 1, // Random forks for demo
+    language: project.technologies[0], // Use first technology as primary language
+    updated: project.timeline.includes('Present') ? '2024-12-01' : '2024-06-01'
+  }));
+
+  // Use imported categories instead of generating them
+  const categories = projectCategories;
 
   const expandedProject = expandedId ? githubProjects.find(p => p.id === expandedId) : null;
 
@@ -53,95 +70,12 @@ const Projects = () => {
     ? githubProjects
     : githubProjects.filter(project => project.category === selectedCategory);
 
-  const otherProjects = expandedId
-    ? filteredProjects.filter(p => p.id !== expandedId)
-    : filteredProjects;
-
-  // Get unique categories for filter buttons
-  const categories = ['All', ...new Set(githubProjects.map(project => project.category))];
 
 
-  // Featured projects data (fallback if GitHub API fails)
-  const featuredProjects = [
-    {
-      id: 1,
-      name: "TriFlameX Rocket",
-      description: "Advanced rocket control system with real-time telemetry and autonomous flight capabilities. Features custom PCB design and embedded software for flight control.",
-      technologies: ["C++", "STM32", "PCB Design", "Telemetry", "Control Systems"],
-      category: "Control Systems",
-      github: "https://github.com/Mohammed-Azab/TriFlameX",
-      demo: null,
-      stars: 15,
-      forks: 3,
-      language: "C++",
-      updated: "2024-01-15"
-    },
-    {
-      id: 2,
-      name: "SkyMindOS",
-      description: "Intelligent drone operating system with autonomous navigation, obstacle avoidance, and mission planning capabilities using computer vision and machine learning.",
-      technologies: ["Python", "ROS2", "Computer Vision", "Machine Learning", "Autonomous Systems"],
-      category: "Software",
-      github: "https://github.com/Mohammed-Azab/SkyMindOS",
-      demo: "https://skymindos-demo.vercel.app",
-      stars: 28,
-      forks: 7,
-      language: "Python",
-      updated: "2024-02-20"
-    },
-    {
-      id: 3,
-      name: "Robotic Arm Controller",
-      description: "6-DOF robotic arm with inverse kinematics, path planning, and precise positioning control. Includes simulation environment and real-time control interface.",
-      technologies: ["MATLAB", "Simulink", "Kinematics", "Control Theory", "Simulation"],
-      category: "Mechatronics",
-      github: "https://github.com/Mohammed-Azab/RoboArm-Controller",
-      demo: null,
-      stars: 12,
-      forks: 4,
-      language: "MATLAB",
-      updated: "2023-12-10"
-    },
-    {
-      id: 4,
-      name: "Smart Greenhouse IoT",
-      description: "IoT-based greenhouse monitoring and control system with environmental sensors, automated irrigation, and remote monitoring capabilities.",
-      technologies: ["Arduino", "IoT", "Sensors", "Node.js", "React", "MongoDB"],
-      category: "Embedded Systems",
-      github: "https://github.com/Mohammed-Azab/Smart-Greenhouse",
-      demo: "https://greenhouse-monitor.vercel.app",
-      stars: 20,
-      forks: 8,
-      language: "JavaScript",
-      updated: "2024-01-05"
-    },
-    {
-      id: 5,
-      name: "PID Controller Library",
-      description: "High-performance PID controller implementation with auto-tuning capabilities, designed for embedded systems and real-time applications.",
-      technologies: ["C", "Embedded Systems", "Control Theory", "Real-time"],
-      category: "Control Systems",
-      github: "https://github.com/Mohammed-Azab/PID-Controller-Lib",
-      demo: null,
-      stars: 35,
-      forks: 12,
-      language: "C",
-      updated: "2024-03-01"
-    },
-    {
-      id: 6,
-      name: "Mechatronics Toolkit",
-      description: "Comprehensive toolkit for mechatronics engineers with simulation tools, control system design utilities, and embedded system templates.",
-      technologies: ["Python", "MATLAB", "C++", "Simulation", "Tools"],
-      category: "Mechatronics",
-      github: "https://github.com/Mohammed-Azab/Mechatronics-Toolkit",
-      demo: "https://mechatronics-toolkit.github.io",
-      stars: 42,
-      forks: 15,
-      language: "Python",
-      updated: "2024-02-28"
-    }
-  ];
+
+
+
+
   const getLanguageColor = (language) => {
     const colors = {
       'C++': '#f34b7d',

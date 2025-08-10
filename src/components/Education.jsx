@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, Microscope, ChevronDown, ChevronUp } from 'lucide-react';
+import { GraduationCap, Calendar, MapPin, Award, BookOpen, Microscope, ChevronDown, ChevronUp, ExternalLink, Heart, Trophy } from 'lucide-react';
 import { educationData, educationStats, educationHighlights } from '../data/education';
 
 const Education = () => {
@@ -97,10 +97,23 @@ const Education = () => {
                   {/* Main Education Card */}
                   <div className="p-8">
                     <div className="flex items-start gap-6">
-                      {/* Timeline Dot */}
+                      {/* Timeline Dot / Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                          <GraduationCap className="w-8 h-8 text-white" />
+                        <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center overflow-hidden">
+                          {education.logo ? (
+                            <img
+                              src={education.logo}
+                              alt={`${education.institution} logo`}
+                              className="w-12 h-12 object-contain rounded-full"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'block';
+                              }}
+                            />
+                          ) : null}
+                          <GraduationCap
+                            className={`w-8 h-8 text-white ${education.logo ? 'hidden' : 'block'}`}
+                          />
                         </div>
                       </div>
 
@@ -109,7 +122,20 @@ const Education = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                           <div>
                             <h3 className="text-2xl font-bold text-white mb-2">{education.degree}</h3>
-                            <h4 className="text-xl text-blue-400 mb-2">{education.institution}</h4>
+                            <div className="flex items-center gap-2 mb-2">
+                              <h4 className="text-xl text-blue-400">{education.institution}</h4>
+                              {education.website && (
+                                <a
+                                  href={education.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                                  title="Visit university website"
+                                >
+                                  <ExternalLink className="w-5 h-5" />
+                                </a>
+                              )}
+                            </div>
                           </div>
                           <div className="flex flex-col md:items-end">
                             <div className="flex items-center text-gray-300 mb-1">
@@ -185,7 +211,7 @@ const Education = () => {
                             {education.researchProjects && (
                               <div>
                                 <div className="flex items-center mb-4">
-                                  <Research className="w-5 h-5 text-purple-400 mr-2" />
+                                  <Microscope className="w-5 h-5 text-purple-400 mr-2" />
                                   <h5 className="text-lg font-semibold text-white">Research Projects</h5>
                                 </div>
                                 <div className="space-y-4">
@@ -202,6 +228,30 @@ const Education = () => {
                             )}
                           </div>
 
+                          {/* Coursework by Semester */}
+                          {education.courseworkBySemester && (
+                            <div className="mt-8">
+                              <div className="flex items-center mb-4">
+                                <GraduationCap className="w-5 h-5 text-blue-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">Coursework by Semester</h5>
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {Object.entries(education.courseworkBySemester).map(([semester, courses]) => (
+                                  <div key={semester} className="bg-gray-700 rounded-lg p-4">
+                                    <h6 className="font-semibold text-blue-400 mb-3 text-center">{semester}</h6>
+                                    <div className="space-y-2">
+                                      {courses.map((course, idx) => (
+                                        <div key={idx} className="text-gray-300 text-sm bg-gray-600 rounded px-2 py-1">
+                                          {course}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
                           {/* Achievements */}
                           <div className="mt-8">
                             <div className="flex items-center mb-4">
@@ -217,6 +267,55 @@ const Education = () => {
                               ))}
                             </div>
                           </div>
+
+                          {/* Honors and Awards */}
+                          {education.honorsAndAwards && (
+                            <div className="mt-8">
+                              <div className="flex items-center mb-4">
+                                <Trophy className="w-5 h-5 text-yellow-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">Honors & Awards</h5>
+                              </div>
+                              <div className="space-y-4">
+                                {education.honorsAndAwards.map((award, idx) => (
+                                  <div key={idx} className="bg-gray-700 rounded-lg p-4 border-l-4 border-yellow-400">
+                                    <div className="flex justify-between items-start mb-2">
+                                      <h6 className="font-semibold text-white">{award.title}</h6>
+                                      <span className="text-yellow-400 text-sm font-medium">{award.date}</span>
+                                    </div>
+                                    <p className="text-blue-400 text-sm mb-2">{award.organization}</p>
+                                    <p className="text-gray-300 text-sm">{award.description}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Volunteering Experience */}
+                          {education.volunteering && (
+                            <div className="mt-8">
+                              <div className="flex items-center mb-4">
+                                <Heart className="w-5 h-5 text-red-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">Volunteering Experience</h5>
+                              </div>
+                              <div className="space-y-4">
+                                {education.volunteering.map((volunteer, idx) => (
+                                  <div key={idx} className="bg-gray-700 rounded-lg p-4 border-l-4 border-red-400">
+                                    <div className="flex justify-between items-start mb-2">
+                                      <h6 className="font-semibold text-white">{volunteer.role}</h6>
+                                      <span className="text-red-400 text-sm font-medium">{volunteer.duration}</span>
+                                    </div>
+                                    <p className="text-blue-400 text-sm mb-2">{volunteer.organization}</p>
+                                    <p className="text-gray-300 text-sm mb-2">{volunteer.description}</p>
+                                    {volunteer.impact && (
+                                      <div className="bg-gray-600 rounded px-3 py-2 mt-2">
+                                        <p className="text-green-400 text-sm font-medium">Impact: {volunteer.impact}</p>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>

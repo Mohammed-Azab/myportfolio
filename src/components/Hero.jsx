@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, Download, ExternalLink } from 'lucide-react'
 import AnimatedLottie from './AnimatedLottie';
-import blackRobotAnim from './animations/BlackMovingRobot';
+import whiteRobotAnim from './animations/WhiteRobot';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('')
@@ -184,10 +184,10 @@ const Hero = () => {
           className="relative flex justify-center lg:justify-end"
         >
           <div className="relative">
-            {/* Black Robot Lottie Animation */}
-            <AnimatedLottie 
-              animationData={blackRobotAnim} 
-              className="w-80 h-80 md:w-96 md:h-96 mx-auto" 
+            {/* Custom Robot Lottie Animation */}
+            <AnimatedLottie
+              animationData={whiteRobotAnim}
+              className="w-80 h-80 md:w-96 md:h-96 mx-auto"
               style={{ background: 'transparent' }}
             />
           </div>

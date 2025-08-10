@@ -6,6 +6,8 @@ import About from './components/About'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Education from './components/Education'
+import Volunteering from './components/Volunteering'
+import Awards from './components/Awards'
 import Courses from './components/Courses'
 import Timeline from './components/Timeline'
 import Contact from './components/Contact'
@@ -32,6 +34,8 @@ function App() {
         <Projects />
         <Skills />
         <Education />
+        <Volunteering />
+        <Awards />
         <Courses />
         <Timeline />
         <Contact />
