@@ -30,7 +30,7 @@ const Navbar = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Mohammed-Azab', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/mohammed-azab/', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:contact@mohammed-azab.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:mohammed@azab.io', label: 'Email' },
   ]
 
   return (

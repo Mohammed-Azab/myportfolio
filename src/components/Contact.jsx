@@ -232,7 +232,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all"
-                      placeholder="John Doe"
+                      placeholder="Janis Doe"
                     />
                   </motion.div>
 
@@ -248,7 +248,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all"
-                      placeholder="john@example.com"
+                      placeholder="Janis@example.com"
                     />
                   </motion.div>
                 </div>
