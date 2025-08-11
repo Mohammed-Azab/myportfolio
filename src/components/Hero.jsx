@@ -69,20 +69,9 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/5 via-purple-500/5 to-neon-green/5"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
-            linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(57, 255, 20, 0.05) 75%, rgba(57, 255, 20, 0.05) 76%, transparent 77%, transparent),
-            linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(57, 255, 20, 0.05) 75%, rgba(57, 255, 20, 0.05) 76%, transparent 77%, transparent)
-          `,
-          backgroundSize: '50px 50px, 50px 50px, 50px 50px, 50px 50px'
-        }}></div>
-      </div>
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-surface via-dark-bg to-dark-surface opacity-50"></div>
       
       {/* Floating background elements */}
       <div className="absolute inset-0">
@@ -211,6 +200,9 @@ const Hero = () => {
           <ChevronDown size={24} />
         </motion.div>
       </motion.div>
+
+      {/* Section Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
     </section>
   )
 }

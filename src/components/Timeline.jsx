@@ -54,8 +54,11 @@ const Timeline = () => {
   }
 
   return (
-    <section id="experience" className="py-20 bg-gray-950">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-20 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-surface via-dark-bg to-dark-surface opacity-50"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
@@ -209,6 +212,9 @@ const Timeline = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Section Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
     </section>
   )
 }

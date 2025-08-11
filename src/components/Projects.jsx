@@ -540,6 +540,9 @@ const Projects = () => {
             </motion.a>
           </motion.div>
         </div>
+
+        {/* Section Divider */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
       </section>
     )
   }
