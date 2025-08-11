@@ -11,7 +11,7 @@ const Hero = () => {
   
   const phrases = [
     "Mechatronics Engineering Student",
-    "Test & Measurement Engineer at CARIAD",
+    "Working Student - Test & Measurement Engineer at CARIAD SE",
     "Autonomous Systems Developer",
     "Robotics & AI Researcher",
     "F1TENTH Racing Champion",
@@ -122,12 +122,14 @@ const Hero = () => {
           
           <motion.div
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-8 h-16 flex items-center justify-center lg:justify-start"
+            className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 min-h-16 max-h-24 flex items-center justify-center lg:justify-start w-full"
           >
-            <span className="font-mono">
-              {displayText}
-              <span className="animate-blink border-r-2 border-electric-blue ml-1"></span>
-            </span>
+            <div className="font-mono w-full max-w-full text-center lg:text-left typewriter-text">
+              <span className="inline-block">
+                {displayText}
+                <span className="animate-blink border-r-2 border-electric-blue ml-1"></span>
+              </span>
+            </div>
           </motion.div>
           
           <motion.p
