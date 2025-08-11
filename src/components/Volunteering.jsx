@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Calendar, MapPin, Users, ExternalLink, ChevronDown, ChevronUp, Clock, Target } from 'lucide-react';
+import { Heart, Calendar, MapPin, Users, ExternalLink, ChevronDown, ChevronUp, Clock, Target, Camera, Image } from 'lucide-react';
 import { volunteeringData, volunteeringStats, volunteeringCategories } from '../data/volunteering';
 
 const Volunteering = () => {
@@ -220,6 +220,41 @@ const Volunteering = () => {
                               ))}
                             </div>
                           </div>
+
+                          {/* Photos Section */}
+                          {volunteer.photos && volunteer.photos.length > 0 && (
+                            <div className="mt-8">
+                              <div className="flex items-center mb-4">
+                                <Camera className="w-5 h-5 text-purple-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">Photos</h5>
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {volunteer.photos.map((photo, idx) => (
+                                  <div key={idx} className="group relative overflow-hidden rounded-lg bg-gray-600">
+                                    <img
+                                      src={photo.url}
+                                      alt={photo.caption || `${volunteer.role} photo ${idx + 1}`}
+                                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                                      onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                      }}
+                                    />
+                                    {/* Fallback placeholder */}
+                                    <div className="hidden w-full h-48 bg-gray-600 items-center justify-center">
+                                      <Image className="w-12 h-12 text-gray-400" />
+                                    </div>
+                                    {/* Photo overlay with caption */}
+                                    {photo.caption && (
+                                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                        <p className="text-white text-sm">{photo.caption}</p>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>

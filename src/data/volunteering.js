@@ -22,7 +22,25 @@ export const volunteeringData = [
     impact: "Contributed to peatland restoration efforts supporting both biodiversity and climate action goals",
     skills: ["Environmental Conservation", "Teamwork", "Ecosystem Restoration", "International Collaboration", "Sustainability"],
     website: "https://www.esc4y.eu",
-    image: "/images/volunteering/esc4y-volunteer.jpg"
+    image: "/images/volunteering/esc4y-volunteer.jpg",
+    photos: [
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Peatland restoration work in Hunsrück-Hochwald National Park"
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "International volunteer team working on biodiversity conservation"
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Ecosystem restoration activities supporting UN SDG 15"
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Conservation tools and equipment used in restoration work"
+      }
+    ]
   },
   {
     id: 2,
@@ -44,7 +62,8 @@ export const volunteeringData = [
     impact: "Helped 20+ students achieve 90%+ scores in entrance examinations, 85% university acceptance rate",
     skills: ["Mathematics", "Physics", "Tutoring", "Curriculum Development", "Cross-cultural Communication"],
     website: null,
-    image: "/images/volunteering/math-tutor.jpg"
+    image: null,
+    photos: null
   },
   
 ];

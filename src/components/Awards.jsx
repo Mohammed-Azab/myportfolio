@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Calendar, Award, Star, Download, ExternalLink, ChevronDown, ChevronUp, Medal, Crown } from 'lucide-react';
+import { Trophy, Calendar, Award, Star, Download, ExternalLink, ChevronDown, ChevronUp, Medal, Crown, FileText, User } from 'lucide-react';
 import { awardsData, awardsStats, awardCategories, awardLevels } from '../data/awards';
 
 const Awards = () => {
@@ -160,48 +160,63 @@ const Awards = () => {
             </div>
           </motion.div>
 
-          {/* Awards Grid */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredAwards.map((award) => (
-              <div key={award.id} className={`bg-gray-800 rounded-2xl border-2 ${getLevelColor(award.level)} hover:shadow-lg transition-all duration-300 overflow-hidden`}>
+          {/* Awards Timeline */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            {filteredAwards.map((award, index) => (
+              <div key={award.id} className="relative">
+                {/* Timeline Line */}
+                {index !== filteredAwards.length - 1 && (
+                  <div className="absolute left-8 top-20 w-0.5 h-32 bg-gradient-to-b from-yellow-400 to-orange-500"></div>
+                )}
+
+                <div className={`bg-gray-800 rounded-2xl border-2 ${getLevelColor(award.level)} hover:shadow-lg transition-all duration-300 overflow-hidden`}>
                 {/* Award Card */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      {getLevelIcon(award.level)}
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-1">{award.title}</h3>
-                        <p className="text-gray-400 text-sm">{award.organization}</p>
+                <div className="p-8">
+                  <div className="flex items-start gap-6">
+                    {/* Timeline Dot */}
+                    <div className="flex-shrink-0">
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg`}>
+                        {getLevelIcon(award.level)}
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-yellow-400 font-semibold">{award.date}</div>
-                      <div className="text-xs text-gray-400">{award.level}</div>
+
+                    {/* Award Content */}
+                    <div className="flex-grow">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-2">{award.title}</h3>
+                          <p className="text-yellow-400 text-lg font-medium mb-1">{award.organization}</p>
+                        </div>
+                        <div className="flex flex-col md:items-end">
+                          <div className="text-yellow-400 font-semibold text-lg">{award.date}</div>
+                          <div className="text-gray-400 text-sm">{award.level}</div>
+                        </div>
+                      </div>
+
+                      <div className="mb-4">
+                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">
+                          {award.category}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-300 mb-6">{award.description}</p>
+
+                      {/* Expand/Collapse Button */}
+                      <button
+                        onClick={() => toggleAward(award.id)}
+                        className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
+                      >
+                        <span className="mr-2">
+                          {expandedAward === award.id ? 'Show Less' : 'Show More Details'}
+                        </span>
+                        {expandedAward === award.id ? (
+                          <ChevronUp className="w-4 h-4" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4" />
+                        )}
+                      </button>
                     </div>
                   </div>
-
-                  <div className="mb-4">
-                    <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">
-                      {award.category}
-                    </span>
-                  </div>
-
-                  <p className="text-gray-300 mb-6">{award.description}</p>
-
-                  {/* Expand/Collapse Button */}
-                  <button
-                    onClick={() => toggleAward(award.id)}
-                    className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors w-full justify-center"
-                  >
-                    <span className="mr-2">
-                      {expandedAward === award.id ? 'Show Less' : 'Show More Details'}
-                    </span>
-                    {expandedAward === award.id ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </button>
 
                   {/* Expanded Content */}
                   <AnimatePresence>
@@ -211,9 +226,10 @@ const Awards = () => {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-6 pt-6 border-t border-gray-700"
+                        className="mt-8 pt-8 border-t border-gray-700"
                       >
-                        <div className="space-y-4">
+                        <div className="ml-22"> {/* Align with content, not timeline dot */}
+                          <div className="space-y-4">
                           <div>
                             <h5 className="text-lg font-semibold text-white mb-2">Selection Criteria</h5>
                             <p className="text-gray-300 text-sm">{award.criteria}</p>
@@ -235,10 +251,55 @@ const Awards = () => {
                               </a>
                             </div>
                           )}
+
+                          {/* Recommendation Letters */}
+                          {award.recommendationLetters && award.recommendationLetters.length > 0 && (
+                            <div className="mt-6 pt-6 border-t border-gray-700">
+                              <div className="flex items-center mb-4">
+                                <FileText className="w-5 h-5 text-green-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">Recommendation Letters</h5>
+                              </div>
+                              <div className="space-y-4">
+                                {award.recommendationLetters.map((letter, idx) => (
+                                  <div key={idx} className="bg-gray-700 rounded-lg p-4 border-l-4 border-green-400">
+                                    <div className="flex items-start justify-between mb-3">
+                                      <div className="flex items-center gap-3">
+                                        <User className="w-5 h-5 text-green-400" />
+                                        <div>
+                                          <h6 className="font-semibold text-white">{letter.author}</h6>
+                                          <p className="text-green-400 text-sm">{letter.position}</p>
+                                          <p className="text-gray-400 text-sm">{letter.organization}</p>
+                                        </div>
+                                      </div>
+                                      <div className="text-right">
+                                        <p className="text-gray-400 text-sm">{letter.date}</p>
+                                      </div>
+                                    </div>
+                                    <blockquote className="text-gray-300 text-sm italic mb-3 border-l-2 border-green-400 pl-4">
+                                      "{letter.excerpt}"
+                                    </blockquote>
+                                    {letter.url && (
+                                      <a
+                                        href={letter.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-3 py-2 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm"
+                                      >
+                                        <Download className="w-4 h-4" />
+                                        <span>View Full Letter</span>
+                                      </a>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          </div>
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
+                </div>
                 </div>
               </div>
             ))}
