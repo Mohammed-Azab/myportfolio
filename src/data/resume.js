@@ -7,12 +7,13 @@ export const skillsData = {
     {
       category: "Programming Languages",
       skills: [
-        { name: "Python", level: 90, icon: "🐍" },
-        { name: "C/C++", level: 85, icon: "⚡" },
-        { name: "MATLAB", level: 80, icon: "📊" },
-        { name: "JavaScript", level: 75, icon: "🌐" },
-        { name: "Java", level: 70, icon: "☕" },
-        { name: "Assembly", level: 65, icon: "🔧" }
+        { name: "Embedded C", level: 92, icon: "⚡" },
+        { name: "C++", level: 88, icon: "⚡" },
+        { name: "Python", level: 85, icon: "🐍" },
+        { name: "Java", level: 80, icon: "☕" },
+        { name: "VHDL", level: 75, icon: "🔧" },
+        { name: "Assembly", level: 70, icon: "🔧" },
+        { name: "CSS", level: 65, icon: "🎨" }
       ]
     },
     {
@@ -27,36 +28,35 @@ export const skillsData = {
       ]
     },
     {
-      category: "Hardware & Electronics",
+      category: "Hardware Platforms",
       skills: [
-        { name: "Arduino/ESP32", level: 92, icon: "🔌" },
-        { name: "Raspberry Pi", level: 88, icon: "🥧" },
-        { name: "PCB Design", level: 75, icon: "🔲" },
-        { name: "3D Printing", level: 85, icon: "🖨️" },
-        { name: "Sensors & Actuators", level: 90, icon: "📡" },
-        { name: "Power Electronics", level: 70, icon: "⚡" }
+        { name: "STM32", level: 90, icon: "🔌" },
+        { name: "ESP32", level: 88, icon: "🔌" },
+        { name: "NVIDIA Jetson", level: 85, icon: "🤖" },
+        { name: "Raspberry Pi", level: 85, icon: "🥧" },
+        { name: "Arduino", level: 82, icon: "🔌" },
+        { name: "FPGA", level: 75, icon: "🔲" }
       ]
     },
     {
       category: "Software & Tools",
       skills: [
-        { name: "SolidWorks", level: 88, icon: "🔧" },
-        { name: "AutoCAD", level: 80, icon: "📐" },
-        { name: "Simulink", level: 85, icon: "📊" },
-        { name: "Git/GitHub", level: 90, icon: "📚" },
-        { name: "Docker", level: 75, icon: "🐳" },
-        { name: "Linux", level: 82, icon: "🐧" }
+        { name: "ROS2", level: 90, icon: "🤖" },
+        { name: "MATLAB/Simulink", level: 88, icon: "📊" },
+        { name: "Git", level: 85, icon: "📚" },
+        { name: "Gazebo", level: 80, icon: "🌐" },
+        { name: "Quartus", level: 75, icon: "🔧" },
+        { name: "Bash", level: 82, icon: "💻" },
+        { name: "PowerShell", level: 70, icon: "💻" }
       ]
     },
     {
-      category: "AI & Machine Learning",
+      category: "Operating Systems",
       skills: [
-        { name: "TensorFlow", level: 78, icon: "🧠" },
-        { name: "OpenCV", level: 85, icon: "👁️" },
-        { name: "PyTorch", level: 72, icon: "🔥" },
-        { name: "Scikit-learn", level: 80, icon: "📈" },
-        { name: "Deep Learning", level: 75, icon: "🤖" },
-        { name: "Computer Vision", level: 82, icon: "📷" }
+        { name: "Ubuntu", level: 90, icon: "🐧" },
+        { name: "Arch Linux", level: 85, icon: "🐧" },
+        { name: "Windows", level: 80, icon: "🪟" },
+        { name: "FreeRTOS", level: 75, icon: "⚡" }
       ]
     }
   ],
@@ -78,65 +78,44 @@ export const skillsData = {
 export const experienceData = [
   {
     id: 1,
-    company: "TechRobotics Inc.",
-    position: "Robotics Engineering Intern",
-    period: "Jun 2024 - Aug 2024",
-    location: "Tech City, Country",
-    type: "Internship",
-    description: "Worked on developing autonomous navigation systems for industrial robots and contributed to computer vision algorithms for quality inspection.",
+    company: "CARIAD SE – A Volkswagen Group Company",
+    position: "Working Student – Test & Measurement Engineer (ADAS/AD)",
+    period: "May 2025 - Present",
+    location: "Berlin, Germany",
+    type: "Working Student",
+    description: "Operating advanced test bench environments to measure and validate sensor data for Automated Driving Systems, developing test tools, and working with CI pipelines.",
     responsibilities: [
-      "Developed ROS-based navigation stack for mobile robots",
-      "Implemented computer vision algorithms for defect detection",
-      "Collaborated with senior engineers on system integration",
-      "Participated in agile development processes"
+      "Operate advanced test bench environments to measure and validate sensor data (LiDAR, radar, camera)",
+      "Develop, debug, and optimize test and measurement tools using C++ and Python on Ubuntu",
+      "Work with CI pipelines, CMake, and Conan for scalable build automation and dependency management",
+      "Author comprehensive technical documentation, ensuring clarity and traceability of test procedures"
     ],
-    technologies: ["ROS", "Python", "OpenCV", "Linux", "Git"],
+    technologies: ["C++", "Python", "Ubuntu", "LiDAR", "Radar", "Camera", "CI/CD", "CMake", "Conan"],
     achievements: [
-      "Improved navigation accuracy by 15%",
-      "Reduced false positive rate in inspection by 20%",
-      "Received 'Outstanding Intern' recognition"
+      "Improved test automation efficiency",
+      "Enhanced sensor validation accuracy",
+      "Contributed to ADAS/AD system reliability"
     ]
   },
   {
     id: 2,
-    company: "Innovation Lab - University",
-    position: "Research Assistant",
-    period: "Jan 2024 - Present",
-    location: "University Campus",
-    type: "Part-time",
-    description: "Conducting research on AI-powered prosthetic devices under Dr. Smith's supervision, focusing on EMG signal processing and machine learning.",
+    company: "Multi-Robot Systems (MRS) Research Group",
+    position: "Research Intern",
+    period: "Aug 2024 - Oct 2024",
+    location: "New Cairo, Egypt",
+    type: "Internship",
+    description: "Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability with PID controller implementation.",
     responsibilities: [
-      "Design and conduct experiments with EMG sensors",
-      "Develop machine learning models for gesture recognition",
-      "Analyze signal processing algorithms",
-      "Present research findings at conferences"
+      "Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability",
+      "Designed and implemented a PID controller in MATLAB/Simulink for precise stabilization",
+      "Reduced drone weight by 23% using SolidWorks, increasing flight time by 15%",
+      "Conducted flight tests and performance optimization"
     ],
-    technologies: ["Python", "TensorFlow", "Signal Processing", "EMG Sensors"],
+    technologies: ["Embedded C", "MATLAB/Simulink", "SolidWorks", "PID Control", "Drone Systems"],
     achievements: [
-      "Published 2 research papers",
-      "Presented at International Robotics Conference",
-      "Awarded Research Excellence Grant"
-    ]
-  },
-  {
-    id: 3,
-    company: "Local Automation Solutions",
-    position: "Junior Automation Engineer",
-    period: "Jul 2023 - Dec 2023",
-    location: "Your City, Country",
-    type: "Part-time",
-    description: "Assisted in designing and implementing automation solutions for small to medium manufacturing companies.",
-    responsibilities: [
-      "Programmed PLCs for conveyor systems",
-      "Designed HMI interfaces for operators",
-      "Troubleshot existing automation systems",
-      "Created technical documentation"
-    ],
-    technologies: ["Siemens PLC", "HMI Design", "SCADA", "Industrial Networks"],
-    achievements: [
-      "Successfully completed 5 automation projects",
-      "Reduced system downtime by 30%",
-      "Received positive client feedback"
+      "Reduced drone weight by 23%",
+      "Increased flight time by 15%",
+      "Successfully implemented stable flight control"
     ]
   }
 ];

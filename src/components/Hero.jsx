@@ -11,9 +11,10 @@ const Hero = () => {
   
   const phrases = [
     "Mechatronics Engineering Student",
-    "Robotics Enthusiast", 
-    "Control Systems Developer",
-    "Software Engineering Enthusiast",
+    "Test & Measurement Engineer at CARIAD",
+    "Autonomous Systems Developer",
+    "Robotics & AI Researcher",
+    "F1TENTH Racing Champion",
   ]
 
   useEffect(() => {
@@ -127,7 +128,7 @@ const Hero = () => {
           >
             <span className="text-white">Mohammed</span>
             <br />
-            <span className="text-gradient">Azab</span>
+            <span className="text-gradient">Abdelazim</span>
           </motion.h1>
           
           <motion.div
@@ -164,8 +165,8 @@ const Hero = () => {
             </motion.a>
             
             <motion.a
-              href="/resume.pdf"
-              download
+              href="/CV.pdf"
+              download="Mohammed_Abdelazim_CV.pdf"
               className="btn-secondary inline-flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

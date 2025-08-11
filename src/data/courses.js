@@ -4,48 +4,140 @@
 export const coursesData = [
   {
     id: 1,
-    title: "Advanced Robotics and Control Systems",
-    provider: "MIT OpenCourseWare",
+    title: "Robotics & Automation: ROS 2 Humble",
+    provider: "The Construct",
     category: "Robotics",
     level: "Advanced",
-    duration: "12 weeks",
-    period: "Jan 2024 - Mar 2024",
+    duration: "8 weeks",
+    period: "2024",
     status: "Completed",
-    grade: "A+",
-    description: "Comprehensive course covering advanced topics in robotics including kinematics, dynamics, path planning, and control theory.",
-    skills: ["ROS2", "Path Planning", "Control Theory", "SLAM", "Kinematics"],
+    grade: "Certified",
+    description: "Comprehensive course covering ROS 2 Humble framework for robotics development including navigation, SLAM, and robot control.",
+    skills: ["ROS2", "Navigation", "SLAM", "Robot Control", "Gazebo"],
     certificate: {
       issued: true,
-      url: "https://certificates.mit.edu/...",
-      credentialId: "MIT-ARC-2024-001"
+      url: "https://certificates.theconstructsim.com/...",
+      credentialId: "ROS2-HUMBLE-2024"
     },
     projects: [
-      "Autonomous Mobile Robot Navigation",
-      "Robotic Arm Trajectory Planning",
-      "SLAM Implementation"
+      "Mobile Robot Navigation",
+      "SLAM Implementation",
+      "Robot Simulation in Gazebo"
     ]
   },
   {
     id: 2,
-    title: "Machine Learning for Engineers",
-    provider: "Stanford Online",
+    title: "Machine Learning Specialization",
+    provider: "DeepLearning.AI",
     category: "AI/ML",
     level: "Intermediate",
-    duration: "10 weeks",
-    period: "Sep 2023 - Nov 2023",
+    duration: "12 weeks",
+    period: "2024",
     status: "Completed",
-    grade: "A",
-    description: "Applied machine learning course focused on engineering applications including supervised learning, neural networks, and computer vision.",
-    skills: ["Python", "TensorFlow", "Neural Networks", "Computer Vision", "Data Analysis"],
+    grade: "Certified",
+    description: "Comprehensive machine learning specialization covering supervised & unsupervised learning, recommenders, reinforcement learning, and advanced algorithms.",
+    skills: ["Python", "Machine Learning", "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning"],
     certificate: {
       issued: true,
-      url: "https://stanford.edu/certificates/...",
-      credentialId: "STAN-ML4E-2023-456"
+      url: "https://coursera.org/verify/...",
+      credentialId: "DEEPLEARNING-ML-2024"
     },
     projects: [
-      "Image Classification for Quality Control",
-      "Predictive Maintenance Model",
-      "Sensor Data Analysis"
+      "Supervised Learning Models",
+      "Recommender Systems",
+      "Reinforcement Learning Algorithms"
+    ]
+  },
+  {
+    id: 3,
+    title: "Digitalization in the Aerospace Industry",
+    provider: "Technische Universität München",
+    category: "Engineering",
+    level: "Advanced",
+    duration: "6 weeks",
+    period: "2024",
+    status: "Completed",
+    grade: "Certified",
+    description: "Advanced course covering digital transformation in aerospace industry including Industry 4.0 concepts and digital manufacturing.",
+    skills: ["Digital Manufacturing", "Industry 4.0", "Aerospace Engineering", "Digital Transformation"],
+    certificate: {
+      issued: true,
+      url: "https://tum.de/certificates/...",
+      credentialId: "TUM-AERO-2024"
+    },
+    projects: [
+      "Digital Manufacturing Case Study",
+      "Industry 4.0 Implementation",
+      "Aerospace Digital Transformation"
+    ]
+  },
+  {
+    id: 4,
+    title: "Mechanical Design Suite",
+    provider: "Multiple Providers",
+    category: "Design",
+    level: "Advanced",
+    duration: "Ongoing",
+    period: "2023-2024",
+    status: "Completed",
+    grade: "Certified",
+    description: "Comprehensive mechanical design training covering multiple CAD platforms and design methodologies.",
+    skills: ["Siemens NX", "Fusion 360", "SolidWorks", "AutoCAD", "Mechanical Design"],
+    certificate: {
+      issued: true,
+      url: "https://certificates.design/...",
+      credentialId: "MECH-DESIGN-2024"
+    },
+    projects: [
+      "3D Mechanical Assemblies",
+      "Product Design Projects",
+      "Engineering Drawings"
+    ]
+  },
+  {
+    id: 5,
+    title: "Programming & Operation of 5-Axis CNC Machines",
+    provider: "Industrial Training Center",
+    category: "Manufacturing",
+    level: "Advanced",
+    duration: "4 weeks",
+    period: "2024",
+    status: "Completed",
+    grade: "Certified",
+    description: "Hands-on training in programming and operating 5-axis CNC machines for complex manufacturing operations.",
+    skills: ["CNC Programming", "5-Axis Machining", "Manufacturing", "G-Code", "CAM"],
+    certificate: {
+      issued: true,
+      url: "https://manufacturing.cert/...",
+      credentialId: "CNC-5AXIS-2024"
+    },
+    projects: [
+      "Complex Part Machining",
+      "5-Axis Programming",
+      "Manufacturing Optimization"
+    ]
+  },
+  {
+    id: 6,
+    title: "Goethe-Zertifikat B2 (German)",
+    provider: "Goethe Institut",
+    category: "Language",
+    level: "Intermediate",
+    duration: "6 months",
+    period: "2024",
+    status: "Completed",
+    grade: "B2 Certified",
+    description: "Official German language certification demonstrating upper-intermediate proficiency in German language skills.",
+    skills: ["German Language", "Communication", "Technical German", "Business German"],
+    certificate: {
+      issued: true,
+      url: "https://goethe.de/certificates/...",
+      credentialId: "GOETHE-B2-2024"
+    },
+    projects: [
+      "Technical Documentation in German",
+      "Business Communication",
+      "Academic Writing"
     ]
   },
   {

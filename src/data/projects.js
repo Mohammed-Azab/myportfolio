@@ -4,139 +4,104 @@
 export const projectsData = [
   {
     id: 1,
-    title: "Autonomous Robotic Arm",
-    description: "Design and implementation of a 6-DOF robotic arm with computer vision for autonomous object manipulation and sorting.",
-    longDescription: "Developed a comprehensive robotic system integrating mechanical design, control algorithms, and computer vision. The system can identify, pick, and sort objects with 95% accuracy using deep learning models.",
-    image: "/src/assets/images/projects/robotic-arm.jpg",
-    technologies: ["ROS", "Python", "OpenCV", "TensorFlow", "Arduino", "SolidWorks"],
-    category: "Robotics",
+    title: "F1TENTH Autonomous Racing Car",
+    description: "Built a 1/10th scale autonomous race car on the F1TENTH platform, running ROS2 on NVIDIA Jetson with advanced SLAM and path planning.",
+    longDescription: "Developed a comprehensive autonomous racing system with real-time mapping, localization, and trajectory planning. Achieved 3rd place in the 25th RoboRacer Autonomous Racing Competition in Romania.",
+    image: "/src/assets/images/projects/f1tenth-car.jpg",
+    technologies: ["ROS2", "NVIDIA Jetson", "SLAM", "Python", "C++", "Extended Kalman Filter"],
+    category: "Autonomous Systems",
     status: "Completed",
-    github: "https://github.com/Mohammed-Azab/autonomous-robotic-arm",
-    demo: "https://youtube.com/watch?v=demo-link",
+    github: "https://github.com/Mohammed-Azab/f1tenth-racing",
+    demo: "https://youtube.com/watch?v=f1tenth-demo",
     features: [
-      "6-DOF mechanical design",
-      "Real-time object detection",
-      "Path planning algorithms",
-      "Safety monitoring system"
+      "Real-time SLAM mapping and localization",
+      "Bezier spline-based path optimizer",
+      "Hybrid MPC–LQR controller for trajectory planning",
+      "Dual Extended Kalman Filter for state estimation",
+      "IMU and odometry data fusion"
     ],
     timeline: "Jan 2024 - Jun 2024",
-    teamSize: "Solo Project"
+    teamSize: "Team Project",
+    achievement: "3rd place in 25th RoboRacer Autonomous Racing Competition, Romania"
   },
   {
     id: 2,
-    title: "Smart IoT Home Automation",
-    description: "IoT-based home automation system with voice control, mobile app interface, and energy monitoring capabilities.",
-    longDescription: "Comprehensive smart home solution featuring sensor networks, actuator control, and intelligent energy management with machine learning optimization.",
-    image: "/src/assets/images/projects/iot-home.jpg",
-    technologies: ["ESP32", "React Native", "Firebase", "MQTT", "TensorFlow Lite", "Node.js"],
-    category: "IoT",
+    title: "TriFlameX: Swarm of Fire-Fighting Robots",
+    description: "Developed 3 autonomous robots with multi-layer architecture for coordinated detection and suppression of fires using custom communication protocols.",
+    longDescription: "Advanced swarm robotics system with custom thermal LiDAR, interrupt-driven communication protocol, and multi-layer architecture for coordinated fire detection and suppression.",
+    image: "/src/assets/images/projects/triflamex.jpg",
+    technologies: ["ESP32", "STM32", "FreeRTOS", "ROS2", "MQTT", "UART", "Thermal LiDAR"],
+    category: "Robotics",
     status: "Completed",
-    github: "https://github.com/Mohammed-Azab/smart-home-iot",
-    demo: "https://smart-home-demo.netlify.app",
+    github: "https://github.com/Mohammed-Azab/TriFlameX",
+    demo: "https://youtube.com/watch?v=triflamex-demo",
     features: [
-      "Voice-controlled devices",
-      "Energy consumption optimization",
-      "Mobile app integration",
-      "Predictive maintenance alerts"
+      "Multi-layer architecture (Laptop–ESP32–STM32)",
+      "Interrupt-driven Azab Protocol for binary communication",
+      "Custom thermal LiDAR system for fire localization",
+      "ROS2, MQTT, and UART integration",
+      "Coordinated swarm behavior"
     ],
-    timeline: "Aug 2023 - Dec 2023",
+    timeline: "Sep 2023 - Feb 2024",
     teamSize: "Team of 3"
   },
   {
     id: 3,
-    title: "Quadcopter Drone Control System",
-    description: "Custom flight control system for quadcopter with autonomous navigation and obstacle avoidance using sensor fusion.",
-    longDescription: "Designed and implemented a complete flight control system from ground up, including hardware design, firmware development, and autonomous navigation algorithms.",
-    image: "/src/assets/images/projects/drone-control.jpg",
-    technologies: ["C++", "MATLAB/Simulink", "PID Control", "Kalman Filter", "STM32", "ROS"],
-    category: "Control Systems",
-    status: "In Progress",
-    github: "https://github.com/Mohammed-Azab/drone-control-system",
-    demo: null,
+    title: "Dice Realms: Quest for the Elemental Crests",
+    description: "Developed a 2D board game in Java with object-oriented programming architecture and AI players using Monte Carlo methods.",
+    longDescription: "Comprehensive 2D board game with finite state machine for game flow, AI players with multiple difficulty levels, and modern UI design using JavaFX.",
+    image: "/src/assets/images/projects/dice-realms.jpg",
+    technologies: ["Java", "JavaFX", "CSS", "Git", "GitHub", "Monte Carlo Methods"],
+    category: "Software Development",
+    status: "Completed",
+    github: "https://github.com/Mohammed-Azab/dice-realms",
+    demo: "https://youtube.com/watch?v=dice-realms-demo",
     features: [
-      "Custom flight controller",
-      "Sensor fusion algorithms",
-      "Autonomous waypoint navigation",
-      "Real-time telemetry"
+      "Object-oriented programming (OOP) architecture",
+      "Finite state machine (FSM) for game flow",
+      "AI players using Monte Carlo decision-making",
+      "Multiple difficulty levels",
+      "Human vs AI and AI vs AI gameplay",
+      "Modern UI in JavaFX and CSS"
     ],
-    timeline: "Jan 2025 - Present",
+    timeline: "Mar 2023 - Jul 2023",
     teamSize: "Solo Project"
   },
   {
     id: 4,
-    title: "Industrial Conveyor Belt Automation",
-    description: "PLC-based automation system for industrial conveyor belt with quality inspection and sorting mechanisms.",
-    longDescription: "Complete automation solution for manufacturing environment including PLC programming, HMI development, and integration with existing factory systems.",
-    image: "/src/assets/images/projects/conveyor-automation.jpg",
-    technologies: ["Siemens PLC", "HMI", "SCADA", "Industrial Sensors", "Pneumatics", "VFD"],
-    category: "Industrial Automation",
+    title: "FPGA Edge Detection",
+    description: "Designed a real-time edge detection algorithm using VHDL on FPGA with Prewitt filter method and adaptive thresholds.",
+    longDescription: "High-performance real-time edge detection system implemented on FPGA using advanced matrix theory for adaptive thresholds and validated with comprehensive testbenches.",
+    image: "/src/assets/images/projects/fpga-edge.jpg",
+    technologies: ["VHDL", "FPGA", "Altera Quartus", "Matrix Theory", "Digital Signal Processing"],
+    category: "Digital Systems",
     status: "Completed",
-    github: "https://github.com/Mohammed-Azab/conveyor-automation",
-    demo: "https://youtube.com/watch?v=conveyor-demo",
-    features: [
-      "Real-time quality inspection",
-      "Automated sorting system",
-      "SCADA monitoring",
-      "Predictive maintenance"
-    ],
-    timeline: "Mar 2024 - Aug 2024",
-    teamSize: "Team of 4"
-  },
-  {
-    id: 5,
-    title: "AI-Powered Prosthetic Hand",
-    description: "EMG-controlled prosthetic hand with machine learning for gesture recognition and adaptive grip control.",
-    longDescription: "Revolutionary prosthetic device using EMG signals and machine learning to provide intuitive control and adaptive functionality for amputees.",
-    image: "/src/assets/images/projects/prosthetic-hand.jpg",
-    technologies: ["EMG Sensors", "Machine Learning", "3D Printing", "Arduino", "TensorFlow", "Signal Processing"],
-    category: "Biomedical Engineering",
-    status: "Research Phase",
-    github: "https://github.com/Mohammed-Azab/ai-prosthetic-hand",
+    github: "https://github.com/Mohammed-Azab/fpga-edge-detection",
     demo: null,
     features: [
-      "EMG signal processing",
-      "Gesture recognition AI",
-      "Adaptive grip strength",
-      "Haptic feedback system"
+      "Real-time edge detection using Prewitt filter",
+      "Adaptive threshold algorithms",
+      "Matrix theory implementation",
+      "Custom testbench validation",
+      "Optimized FPGA resource utilization"
     ],
-    timeline: "Sep 2024 - Present",
-    teamSize: "Research Team of 6"
+    timeline: "Oct 2023 - Dec 2023",
+    teamSize: "Solo Project"
   },
-  {
-    id: 6,
-    title: "Autonomous Agricultural Robot",
-    description: "Solar-powered autonomous robot for precision agriculture with crop monitoring and selective harvesting capabilities.",
-    longDescription: "Sustainable agricultural solution combining robotics, computer vision, and precision farming techniques to optimize crop yields and reduce environmental impact.",
-    image: "/src/assets/images/projects/agri-robot.jpg",
-    technologies: ["Computer Vision", "GPS Navigation", "Solar Power", "ROS", "Machine Learning", "Sensors"],
-    category: "Agricultural Technology",
-    status: "Prototype",
-    github: "https://github.com/Mohammed-Azab/agri-robot",
-    demo: "https://youtube.com/watch?v=agri-robot-demo",
-    features: [
-      "Autonomous navigation",
-      "Crop health monitoring",
-      "Selective harvesting",
-      "Solar power management"
-    ],
-    timeline: "May 2024 - Present",
-    teamSize: "Collaborative Project"
-  }
+
 ];
 
 // Project categories for filtering
 export const projectCategories = [
   "All",
+  "Autonomous Systems",
   "Robotics",
-  "IoT",
-  "Control Systems",
-  "Industrial Automation",
-  "Biomedical Engineering",
-  "Agricultural Technology"
+  "Software Development",
+  "Digital Systems"
 ];
 
 // Featured projects (subset for homepage)
-export const featuredProjects = projectsData.filter(project => 
+export const featuredProjects = projectsData.filter(project =>
   [1, 2, 3, 4].includes(project.id)
 );
 

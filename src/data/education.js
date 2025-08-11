@@ -5,30 +5,30 @@ export const educationData = [
   {
     id: 1,
     institution: "German International University of Berlin",
-    degree: "Bachelor of Engineering in Mechatronics",
+    degree: "B.Sc. in Mechatronics Engineering",
     field: "Mechatronics Engineering",
-    period: "2021 - 2025 (Expected)",
-    startDate: "2021-09",
-    endDate: "2025-07",
-    gpa: "0.82",
+    period: "Oct 2023 - Present",
+    startDate: "2023-10",
+    endDate: "Present",
+    gpa: "0.81 (A+)",
     location: "Berlin, Germany",
     status: "In Progress",
-    description: "Comprehensive program covering mechanical engineering, electronics, control systems, and robotics with hands-on laboratory experience and research opportunities.",
+    description: "Comprehensive program covering autonomous systems, control systems engineering, power electronics, embedded systems, and robotics with hands-on laboratory experience and research opportunities.",
     website: "https://www.giu-berlin.de",
     logo: "/images/education/placeholder.svg", // Temporary placeholder
     
     // Core Curriculum
     coreCourses: [
-      "Advanced Control Systems",
-      "Robotics and Automation", 
-      "Digital Signal Processing",
-      "Machine Learning for Engineers",
-      "Industrial Automation",
-      "Embedded Systems Design",
-      "Mechanical Design",
+      "Autonomous Systems",
+      "Control Systems Engineering",
       "Power Electronics",
-      "Sensor Technology",
-      "Manufacturing Processes"
+      "Embedded Systems",
+      "Numerical Analysis",
+      "Thermodynamics",
+      "Fluid Mechanics",
+      "Software Engineering",
+      "Robotics and Automation",
+      "Digital Signal Processing"
     ],
     
     // Specializations
@@ -143,31 +143,31 @@ export const educationData = [
   },
   {
     id: 2,
-    institution: "German University in Cairo",
-    degree: "Bsc. of General Engineering",
-    field: "Science, Technology, Engineering & Mathematics",
-    period: "October 2023 - 2021",
-    startDate: "2017-08",
-    endDate: "2021-06",
-    gpa: "1.2 (German Scale) / 96%",
-    location: "Berlin, Germany",
+    institution: "The German University in Cairo",
+    degree: "B.Sc. in General Engineering",
+    field: "General Engineering",
+    period: "Sep 2022 - Aug 2023",
+    startDate: "2022-09",
+    endDate: "2023-08",
+    gpa: "0.79 (A+)",
+    location: "New Cairo, Egypt",
     status: "Completed",
-    description: "Specialized secondary education with intensive focus on STEM subjects, advanced mathematics, physics, and engineering fundamentals.",
+    description: "Comprehensive engineering foundation program covering advanced mathematics, computer science, digital logic design, and physics with focus on engineering fundamentals.",
     logo: "/images/education/placeholder.svg", // Temporary placeholder
     website: "https://www.guc.edu.eg",
     
     // Advanced Courses
     coreCourses: [
-      "Advanced Mathematics (Leistungskurs)",
-      "Physics (Leistungskurs)",
-      "Chemistry",
+      "Advanced Calculus",
       "Computer Science",
-      "Engineering Fundamentals",
+      "Digital Logic Design",
+      "Physics III",
+      "Engineering Mathematics",
+      "Programming Fundamentals",
       "Technical Drawing",
       "Electronics Basics",
-      "German Literature",
-      "English",
-      "History"
+      "Engineering Mechanics",
+      "Materials Science"
     ],
     
     // Specializations

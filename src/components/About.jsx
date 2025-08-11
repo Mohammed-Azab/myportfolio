@@ -94,15 +94,15 @@ const About = () => {
             >
               <h3 className="text-2xl font-bold text-electric-blue mb-4">Mission Statement</h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                I'm a <span className="text-neon-green font-semibold">Mechatronics Engineering student</span> with 
-                an unwavering passion for robotics and control systems. My mission is to bridge the gap between 
-                theoretical knowledge and practical innovation, creating intelligent systems that enhance our world.
+                I'm a <span className="text-neon-green font-semibold">Mechatronics Engineering student</span> at GIU Berlin and
+                <span className="text-electric-blue font-semibold"> Working Student – Test & Measurement Engineer</span> at CARIAD SE.
+                My passion lies in autonomous systems, robotics, and cutting-edge control technologies.
               </p>
-              
+
               <p className="text-gray-300 text-lg leading-relaxed">
-                From developing embedded software for <span className="text-electric-blue font-semibold">STM32 microcontrollers</span> to 
-                implementing advanced control algorithms, I thrive on challenges that push the boundaries of what's possible 
-                in automation and robotics.
+                From developing <span className="text-electric-blue font-semibold">F1TENTH autonomous racing cars</span> to
+                working with advanced sensor validation at CARIAD, I specialize in bridging theoretical knowledge with
+                real-world applications in autonomous driving and robotics.
               </p>
             </motion.div>
 
@@ -114,19 +114,19 @@ const About = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Building autonomous robotic systems with ROS2
+                  ADAS/AD sensor validation and test automation at CARIAD
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Developing advanced control algorithms (PID, Kalman Filters)
+                  F1TENTH autonomous racing and SLAM algorithms
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Embedded programming with C/C++ for real-time systems
+                  Embedded C/C++ development for STM32 and ESP32
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Machine learning applications in robotics
+                  Multi-robot swarm systems and communication protocols
                 </li>
               </ul>
             </motion.div>

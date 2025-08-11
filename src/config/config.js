@@ -18,7 +18,7 @@ export const portfolioConfig = {
     profileImage: "/src/assets/images/profile.jpg", // Add your profile image here
     
     // Resume
-    resumeUrl: "/src/assets/documents/Mohammed_Azab_Resume.pdf"
+    resumeUrl: "/CV.pdf"
   },
 
   // Social Media Links
