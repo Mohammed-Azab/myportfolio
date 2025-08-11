@@ -30,7 +30,7 @@ Custom SVG icons and vector graphics:
 
 ### `/documents/`
 PDF files and other documents:
-- **Resume**: `Mohammed_Azab_Resume.pdf`
+- **Resume**: `Mohammed_Abdelazim_Resume.pdf`
 - **Certificates**: `certificates/`
 - **Portfolio documents**: `portfolio/`
 
@@ -60,7 +60,7 @@ PDF files and other documents:
 
 1. **Profile Photo**: Add a professional headshot as `images/profile.jpg`
 2. **Project Screenshots**: Add images for each project in `images/projects/`
-3. **Resume**: Upload your latest resume as `documents/Mohammed_Azab_Resume.pdf`
+3. **Resume**: Upload your latest resume as `documents/Mohammed_Abdelazim_Resume.pdf`
 4. **Certificates**: Add any relevant certificates in `documents/certificates/`
 5. **Company Logos**: Add logos of companies you've worked with in `icons/`
 

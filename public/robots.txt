@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://mohammed-azab.github.io/myportfolio/sitemap.xml
+Sitemap: https://mohammedazab.com/myportfolio/sitemap.xml
 
 # Disallow crawling of development files
 Disallow: /node_modules/

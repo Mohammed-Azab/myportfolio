@@ -1,7 +1,7 @@
 {
   "name": "myportfolio",
   "version": "1.0.0",
-  "description": "Mohammed Azab's Personal Portfolio - Mechatronics Engineering Student & Controller Systems Enthusiast",
+  "description": "Mohammed Abdelazim's Personal Portfolio - Mechatronics Engineering Student & Controller Systems Enthusiast",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mohammed-Azab/myportfolio.git"
+    "url": "git+https://github.com/Mohammed-Abdelazim/myportfolio.git"
   },
   "keywords": [
     "portfolio",
@@ -37,10 +37,10 @@
     "react",
     "tailwindcss"
   ],
-  "author": "Mohammed Azab",
+  "author": "Mohammed Abdelazim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mohammed-Azab/myportfolio/issues"
+    "url": "https://github.com/Mohammed-Abdelazim/myportfolio/issues"
   },
-  "homepage": "https://github.com/Mohammed-Azab/myportfolio#readme"
+  "homepage": "https://github.com/Mohammed-Abdelazim/myportfolio#readme"
 }

@@ -55,7 +55,7 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-futuristic font-bold text-gradient mb-4">
-                Mohammed Azab
+                Mohammed Abdelazim
               </h3>
               <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
                 Mechatronics Engineering student passionate about robotics, control systems, 
@@ -133,7 +133,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center gap-2 text-gray-400 text-sm"
             >
-              <span>© {currentYear} Mohammed Azab. Made with</span>
+              <span>© {currentYear} Mohammed Abdelazim. Made with</span>
               <Heart size={16} className="text-red-500 animate-pulse" />
               <span>and lots of ☕</span>
             </motion.div>

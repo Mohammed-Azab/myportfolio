@@ -1,10 +1,10 @@
-# 🚀 Mohammed Azab - Portfolio Website
+# 🚀 Mohammed Abdelazim - Portfolio Website
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/12345678-1234-1234-1234-123456789012/deploy-status)](https://app.netlify.com/sites/your-site/deploys)
-[![GitHub License](https://img.shields.io/github/license/Mohammed-Azab/myportfolio)](LICENSE)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fmohammed-azab.github.io%2Fmyportfolio)](https://mohammed-azab.github.io/myportfolio)
+[![GitHub License](https://img.shields.io/github/license/Mohammed-Abdelazim/myportfolio)](LICENSE)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fmohammed-Abdelazim.github.io%2Fmyportfolio)](https://mohammedazab.com/myportfolio)
 
-> **A stunning, futuristic portfolio website for Mohammed Azab - Mechatronics Engineer specializing in robotics, automation, and AI-powered systems.**
+> **A stunning, futuristic portfolio website for Mohammed Abdelazim - Mechatronics Engineer specializing in robotics, automation, and AI-powered systems.**
 
 ## ✨ Features
 
@@ -237,11 +237,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Mohammed Azab**
-- Portfolio: [https://mohammed-azab.github.io/myportfolio](https://mohammed-azab.github.io/myportfolio)
+**Mohammed Abdelazim**
+- Portfolio: [https://mohammedazab.com/myportfolio](https://mohammed-Abdelazim.github.io/myportfolio)
 - LinkedIn: [https://linkedin.com/in/mohammed-azab](https://linkedin.com/in/mohammed-azab)
-- Email: Mohammed@azab.io
-- GitHub: [@Mohammed-Azab](https://github.com/Mohammed-Azab)
+- Email: Mohammed@Azab.io
+- GitHub: [@Mohammed-Azab](https://github.com/Mohammed-azab)
 
 ## 🙏 Acknowledgments
 
@@ -385,4 +385,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ and lots of ☕ by Mohammed Azab**
+**Built with ❤️ and lots of ☕ by Mohammed Abdelazim**

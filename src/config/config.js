@@ -4,7 +4,7 @@
 export const portfolioConfig = {
   // Personal Information
   personal: {
-    name: "Mohammed Azab",
+    name: "Mohammed Abdelazim",
     title: "Mechatronics Engineering Student",
     subtitle: "Robotics & Control systems",
     email: "Mohammed@azab.io",
@@ -28,7 +28,7 @@ export const portfolioConfig = {
     twitter: "https://twitter.com/mohammed_azab",
     instagram: "https://instagram.com/mohammed_azab",
     youtube: "https://youtube.com/@mohammed_azab",
-    portfolio: "https://mohammed-azab.github.io/myportfolio"
+    portfolio: "https://mohammedazab.com/myportfolio"
   },
 
   // Theme Configuration
@@ -58,12 +58,12 @@ export const portfolioConfig = {
 
   // SEO Configuration
   seo: {
-    title: "Mohammed Azab - Mechatronics Engineering Student",
-    description: "Portfolio of Mohammed Azab, a Mechatronics Engineering Student specializing in robotics, automation, Robotics and control systems.",
+    title: "Mohammed Abdelazim - Mechatronics Engineering Student",
+    description: "Portfolio of Mohammed Abdelazim, a Mechatronics Engineering Student specializing in robotics, automation, Robotics and control systems.",
     keywords: ["Mechatronics", "Engineer", "Robotics", "Automation", "Control Systems", "AI", "IoT"],
-    author: "Mohammed Azab",
+    author: "Mohammed Abdelazim",
     image: "/src/assets/images/og-image.jpg", // Open Graph image
-    url: "https://mohammed-azab.github.io/myportfolio"
+    url: "https://mohammedazab.com/myportfolio"
   },
 
   // Contact Form Configuration
