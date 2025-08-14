@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, Download, ExternalLink } from 'lucide-react'
+import { ChevronDown, ExternalLink } from 'lucide-react'
 import AnimatedLottie from './AnimatedLottie';
 import whiteRobotAnim from './animations/WhiteRobot';
+import CVDownload from './CVDownload';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('')
@@ -155,16 +156,7 @@ const Hero = () => {
               Explore My Work
             </motion.a>
             
-            <motion.a
-              href="/CV.pdf"
-              download="Mohammed_Abdelazim_CV.pdf"
-              className="btn-secondary inline-flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download size={20} />
-              Download CV
-            </motion.a>
+            <CVDownload />
           </motion.div>
         </motion.div>
         
