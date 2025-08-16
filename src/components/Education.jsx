@@ -136,31 +136,31 @@ const Education = () => {
                   {/* Main Education Card */}
                   <div className="p-8">
                     <div className="flex items-start gap-6">
-                      {/* Timeline Dot / Logo */}
-                      <div className="flex-shrink-0">
-                        {education.logo ? (
-                          <div className={`w-16 h-16 flex items-center justify-center border-2 border-gray-400 rounded-lg p-2 ${
-                            education.institution.includes('Berlin') ? 'bg-white' : 'bg-transparent'
-                          }`}>
-                            <img
-                              src={education.logo}
-                              alt={`${education.institution} logo`}
-                              className="w-full h-full object-contain"
-                              onError={(e) => {
-                                e.target.style.display = "none";
-                                e.target.nextSibling.style.display = "block";
-                              }}
-                            />
-                            <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center hidden">
+                                              {/* Timeline Dot / Logo */}
+                        <div className="flex-shrink-0">
+                          {education.logo ? (
+                            <div className={`w-16 h-16 flex items-center justify-center border-2 border-gray-400 rounded-lg p-2 ${
+                              education.institution.includes('Berlin') ? 'bg-white' : 'bg-transparent'
+                            }`}>
+                              <img
+                                src={education.logo}
+                                alt={`${education.institution} logo`}
+                                className="w-full h-full object-contain"
+                                onError={(e) => {
+                                  e.target.style.display = "none";
+                                  e.target.nextSibling.style.display = "block";
+                                }}
+                              />
+                              <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center hidden">
+                                <GraduationCap className="w-8 h-8 text-white" />
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
                               <GraduationCap className="w-8 h-8 text-white" />
                             </div>
-                          </div>
-                        ) : (
-                          <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                            <GraduationCap className="w-8 h-8 text-white" />
-                          </div>
-                        )}
-                      </div>
+                          )}
+                        </div>
 
                       {/* Education Content */}
                       <div className="flex-grow">
