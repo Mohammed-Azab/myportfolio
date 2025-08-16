@@ -15,7 +15,7 @@ export const educationData = [
     status: "In Progress",
     description: "Comprehensive program covering autonomous systems, control systems engineering, power electronics, embedded systems, and robotics with hands-on laboratory experience and research opportunities.",
     website: "https://www.giu-berlin.de",
-    logo: "/images/education/placeholder.svg", // Temporary placeholder
+    logo: "/images/education/giu_logo.png",
     
     // Core Curriculum
     coreCourses: [
@@ -153,7 +153,7 @@ export const educationData = [
     location: "New Cairo, Egypt",
     status: "Completed",
     description: "Comprehensive engineering foundation program covering advanced mathematics, computer science, digital logic design, and physics with focus on engineering fundamentals.",
-    logo: "/images/education/placeholder.svg", // Temporary placeholder
+    logo: "/images/education/guc_Logo.jpg",
     website: "https://www.guc.edu.eg",
     
     // Advanced Courses
@@ -275,11 +275,6 @@ export const educationHighlights = [
     title: "Research Experience",
     description: "Active participation in AI and robotics research with published findings",
     icon: "🔬"
-  },
-  {
-    title: "Practical Application",
-    description: "Hands-on laboratory experience and real-world project implementations",
-    icon: "⚡"
   },
   {
     title: "Leadership",
