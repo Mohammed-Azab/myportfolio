@@ -71,7 +71,7 @@ export const projectsData = [
     id: 3,
     title: "Dice Realms: Quest for the Elemental Crests",
     description:
-      "Two‑player strategy board game built in Java with OOP architecture, AI opponents, and a JavaFX UI.",
+      "Two player strategy board game built in Java with OOP architecture, AI opponents, and a JavaFX UI.",
     longDescription:
       "Overview\nDice Realms is a competitive board game where two players act as wizards battling across the realms of Eldoria. Players roll and allocate magical dice to cast spells and defeat elemental creatures to earn points. The goal is to collect Elemental Crests and outsmart the opponent.\n\nCore mechanics\n- Forgotten Realm: unchosen dice become opportunities for the opponent on the next turn\n- Special abilities: Time Warp and Arcane Boost shift the course of battle\n- Scoring: defeat elemental creatures and secure Crests to win\n\nArchitecture and technology\n- Java OOP for the core game model (boards, realms, creatures, spells)\n- Finite‑state machine to manage phases, turns, actions, and validations\n- JavaFX UI with CSS styling for a responsive desktop experience\n- AI module (ACE) that supports multiple difficulty levels using a Monte Carlo style decision policy\n- Team workflow with Git and GitHub to coordinate development and reviews",
     image: "/images/projects/project-placeholder.svg",
@@ -93,7 +93,7 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: "FPGA Edge Detection",
+    title: "FPGA-Based Edge Detection",
     description:
       "Designed a real-time edge detection algorithm using VHDL on FPGA with Prewitt filter method and adaptive thresholds.",
     longDescription:
@@ -151,24 +151,47 @@ export const projectsData = [
   },
   {
     id: 6,
-    title: "Intel 8086 AES Implementation",
+    title: "Intel 8086 AES-128 Cryptographic Engine",
     description:
-      "AES‑128 encryption implemented in 8086 assembly with Python tooling for build integration.",
+      "Low-level AES-128 encryption engine implemented in pure 8086 assembly language with sophisticated Python build automation and modular architecture.",
     longDescription:
-      "Implemented AES‑128 on an Intel 8086 microprocessor: SubBytes, ShiftRows, MixColumns, AddRoundKey, and full key schedule across 10 rounds. The program reads 128‑bit input and key, outputs the encrypted block; Python scripts assist with assembling/including macro files.",
+      "Developed a complete AES-128 encryption implementation on Intel 8086 microprocessor architecture, featuring all four core transformations (SubBytes, ShiftRows, MixColumns, AddRoundKey) and full 10-round key expansion. The system handles 128-bit plaintext input and encryption keys through DOS interrupts, processes data through authentic AES algorithm rounds, and outputs ciphertext. Engineered Python automation tools for seamless assembly file integration, macro preprocessing, and build management to streamline development workflow.",
     image: "/images/projects/project-placeholder.svg",
-    technologies: ["x86 Assembly", "AES‑128", "Python"],
+    technologies: [
+      "x86 Assembly",
+      "AES Cryptography",
+      "Python Automation",
+      "DOS Interrupts",
+      "8086 Architecture",
+      "Build Systems",
+      "Cryptographic Algorithms",
+      "Low-Level Programming",
+      "Teamwork"
+    ],
     category: "Digital Systems",
     status: "Completed",
     github: "https://github.com/FamALouiz/AFA86x",
     demo: null,
+    achievement: null,
     features: [
-      "Macro‑based core AES transformations",
-      "Key schedule generation",
-      "Interactive I/O via interrupts",
+      "Complete AES-128 algorithm implementation in pure assembly",
+      "Optimized S-Box and inverse S-Box lookup tables",
+      "Efficient 128-bit data manipulation on 16-bit architecture",
+      "Round-based encryption with proper key scheduling",
+      "Galois Field multiplication for MixColumns transformation",
+      "DOS interrupt-driven I/O for user interaction",
+      "Python build automation and file integration tools",
+      "Modular macro-based architecture for maintainability",
+      "Memory-efficient register usage and stack management",
+      "Comprehensive testing suite with known test vectors"
     ],
     timeline: "May 2024",
-    teamSize: "Team Project",
+    teamSize: "Team Project (3 members)",
+    images: [
+      "/images/projects/project-placeholder.svg",
+      "/images/projects/project-placeholder.svg",
+      "/images/projects/project-placeholder.svg"
+    ],
   },
 ];
 
