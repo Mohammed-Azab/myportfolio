@@ -10,26 +10,19 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: "Technical",
-      Icon: Wrench,
-      skills: [
-        "System Optimization",
-        "Hardware-Software Integration",
-        "API Documentation",
-      ],
-    },
-    {
       title: "Programming",
       Icon: Code2,
-      skills: [
-        "Embedded C",
-        "C++",
-        "Java",
-        "Python",
-        "VHDL",
-        "Assembly",
-        "CSS",
-      ],
+      skills: ["C++", "Embedded C", "Python", "Java", "VHDL", "Assembly", "CSS"],
+    },
+    {
+      title: "Tools",
+      Icon: Wrench,
+      skills: ["ROS2", "Git", "MATLAB", "Simulink", "Gazebo", "Quartus", "Bash", "PowerShell"],
+    },
+    {
+      title: "Hardware Platforms",
+      Icon: Cpu,
+      skills: ["NVIDIA Jetson", "Raspberry Pi", "STM32", "ESP32", "FPGA", "Arduino"],
     },
     {
       title: "Operating Systems",
@@ -37,29 +30,9 @@ const Skills = () => {
       skills: ["Ubuntu", "Arch Linux", "Windows"],
     },
     {
-      title: "Tools",
+      title: "Technical",
       Icon: Wrench,
-      skills: [
-        "ROS2",
-        "Git",
-        "MATLAB/Simulink",
-        "Quartus",
-        "Gazebo",
-        "Bash",
-        "PowerShell",
-      ],
-    },
-    {
-      title: "Hardware Platforms",
-      Icon: Cpu,
-      skills: [
-        "Raspberry Pi",
-        "NVIDIA Jetson",
-        "STM32",
-        "ESP32",
-        "Arduino",
-        "FPGA",
-      ],
+      skills: ["System Optimization", "Hardware-Software Integration", "API Documentation"],
     },
     {
       title: "Languages",
@@ -69,12 +42,7 @@ const Skills = () => {
     {
       title: "Interpersonal",
       Icon: Users,
-      skills: [
-        "Public Speaking",
-        "Leadership",
-        "Communication",
-        "Time Management",
-      ],
+      skills: ["Leadership", "Communication", "Public Speaking", "Time Management"],
     },
   ];
 
@@ -175,7 +143,9 @@ const Skills = () => {
                     transition={{ delay: categoryIndex * 0.05 + idx * 0.02 }}
                     className="inline-flex items-center bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
                   >
-                    <span className="text-gray-200 text-sm">{typeof skill === "string" ? skill : skill.name}</span>
+                    <span className="text-gray-200 text-sm">
+                      {typeof skill === "string" ? skill : skill.name}
+                    </span>
                   </motion.span>
                 ))}
               </div>
