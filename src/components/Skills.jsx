@@ -55,7 +55,7 @@ const Skills = () => {
         },
       ],
     },
-    
+
     // Robotics & Automation (Core Expertise)
     {
       title: "Robotics & Automation",
@@ -197,39 +197,48 @@ const Skills = () => {
       skills: [
         {
           name: "MPC",
-          badge: "https://img.shields.io/badge/MPC-blueviolet?style=for-the-badge&logo=chartdotjs&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/MPC-blueviolet?style=for-the-badge&logo=chartdotjs&logoColor=white",
         },
         {
           name: "PID",
-          badge: "https://img.shields.io/badge/PID-orange?style=for-the-badge&logo=controliq&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/PID-orange?style=for-the-badge&logo=controliq&logoColor=white",
         },
         {
           name: "LQR",
-          badge: "https://img.shields.io/badge/LQR-darkblue?style=for-the-badge&logo=matrix&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/LQR-darkblue?style=for-the-badge&logo=matrix&logoColor=white",
         },
         {
           name: "LQG",
-          badge: "https://img.shields.io/badge/LQG-navy?style=for-the-badge&logo=matrix&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/LQG-navy?style=for-the-badge&logo=matrix&logoColor=white",
         },
         {
           name: "Lead-Lag",
-          badge: "https://img.shields.io/badge/Lead--Lag-forestgreen?style=for-the-badge&logo=circuitverse&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Lead--Lag-forestgreen?style=for-the-badge&logo=circuitverse&logoColor=white",
         },
         {
           name: "Pure Pursuit",
-          badge: "https://img.shields.io/badge/Pure_Pursuit-crimson?style=for-the-badge&logo=route&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Pure_Pursuit-crimson?style=for-the-badge&logo=route&logoColor=white",
         },
         {
           name: "Stanley",
-          badge: "https://img.shields.io/badge/Stanley-darkred?style=for-the-badge&logo=steeringandsuspension&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Stanley-darkred?style=for-the-badge&logo=steeringandsuspension&logoColor=white",
         },
         {
           name: "MATLAB",
-          badge: "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
         },
         {
           name: "Simulink",
-          badge: "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
         },
       ],
     },
