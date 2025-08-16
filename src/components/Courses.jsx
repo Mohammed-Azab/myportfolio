@@ -37,8 +37,6 @@ const Courses = () => {
     },
   };
 
-
-
   return (
     <section id="courses" className="py-20 relative overflow-hidden">
       {/* Background Elements */}
@@ -80,7 +78,9 @@ const Courses = () => {
               <div className="text-3xl font-bold text-green-400 mb-2">
                 {learningStats.certificatesEarned}
               </div>
-              <div className="text-gray-300 font-medium">Certificates Earned</div>
+              <div className="text-gray-300 font-medium">
+                Certificates Earned
+              </div>
             </div>
             <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-400 transition-colors">
               <div className="text-3xl font-bold text-purple-400 mb-2">
