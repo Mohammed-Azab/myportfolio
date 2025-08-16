@@ -102,22 +102,26 @@ const Education = () => {
                     <div className="flex items-start gap-6">
                       {/* Timeline Dot / Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center overflow-hidden">
-                          {education.logo ? (
+                        {education.logo ? (
+                          <div className="w-16 h-16 flex items-center justify-center">
                             <img
                               src={education.logo}
                               alt={`${education.institution} logo`}
-                              className="w-12 h-12 object-contain rounded-full"
+                              className="w-16 h-16 object-contain"
                               onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.nextSibling.style.display = 'block';
                               }}
                             />
-                          ) : null}
-                          <GraduationCap
-                            className={`w-8 h-8 text-white ${education.logo ? 'hidden' : 'block'}`}
-                          />
-                        </div>
+                            <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center hidden">
+                              <GraduationCap className="w-8 h-8 text-white" />
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                            <GraduationCap className="w-8 h-8 text-white" />
+                          </div>
+                        )}
                       </div>
 
                       {/* Education Content */}
