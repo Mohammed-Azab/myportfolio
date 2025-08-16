@@ -375,14 +375,9 @@ const Projects = () => {
                           </div>
                         )}
 
-
                         <div className="flex items-center gap-1">
                           <Calendar size={16} />
-                          <span>
-                            {new Date(
-                              expandedProject.updated
-                            ).toLocaleDateString()}
-                          </span>
+                          <span>{expandedProject.timeline}</span>
                         </div>
                       </div>
                     </div>
