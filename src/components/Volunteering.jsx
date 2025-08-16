@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
@@ -16,6 +16,9 @@ import {
   BookOpen,
   GraduationCap,
   Sparkles,
+  X,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import {
   volunteeringData,
@@ -26,10 +29,32 @@ import {
 const Volunteering = () => {
   const [expandedVolunteering, setExpandedVolunteering] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [lightbox, setLightbox] = useState({
+    open: false,
+    src: null,
+    alt: null,
+    scale: 1,
+  });
 
   const toggleVolunteering = (id) => {
     setExpandedVolunteering(expandedVolunteering === id ? null : id);
   };
+
+  // Lightbox keyboard controls (Esc to close, +/- to zoom)
+  useEffect(() => {
+    if (!lightbox.open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setLightbox({ open: false, src: null, alt: null, scale: 1 });
+      } else if (e.key === "+") {
+        setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
+      } else if (e.key === "-") {
+        setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }));
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox.open]);
 
   const filteredVolunteering =
     selectedCategory === "All"
@@ -216,22 +241,46 @@ const Volunteering = () => {
                   {/* Main Volunteering Card */}
                   <div className="p-8">
                     <div className="flex items-start gap-6">
-                      {/* Timeline Dot */}
+                      {/* Timeline Dot / Organization Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-r from-electric-blue to-neon-green rounded-full flex items-center justify-center ring-2 ring-white/10">
-                          {(() => {
-                            const { Icon } = getCategoryMeta(
-                              volunteer.type
-                            );
-                            const IconComp = Icon;
-                            return (
-                              <IconComp
-                                className="w-8 h-8 text-white drop-shadow-md"
-                                strokeWidth={2.8}
-                              />
-                            );
-                          })()}
-                        </div>
+                        {volunteer.image ? (
+                          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center ring-2 ring-white/10 p-2">
+                            <img
+                              src={volunteer.image}
+                              alt={`${volunteer.organization} logo`}
+                              className="w-full h-full object-contain rounded-full"
+                              onError={(e) => {
+                                e.target.style.display = "none";
+                                e.target.nextSibling.style.display = "flex";
+                              }}
+                            />
+                            <div className="hidden w-16 h-16 bg-gradient-to-r from-electric-blue to-neon-green rounded-full items-center justify-center ring-2 ring-white/10">
+                              {(() => {
+                                const { Icon } = getCategoryMeta(volunteer.type);
+                                const IconComp = Icon;
+                                return (
+                                  <IconComp
+                                    className="w-8 h-8 text-white drop-shadow-md"
+                                    strokeWidth={2.8}
+                                  />
+                                );
+                              })()}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="w-16 h-16 bg-gradient-to-r from-electric-blue to-neon-green rounded-full flex items-center justify-center ring-2 ring-white/10">
+                            {(() => {
+                              const { Icon } = getCategoryMeta(volunteer.type);
+                              const IconComp = Icon;
+                              return (
+                                <IconComp
+                                  className="w-8 h-8 text-white drop-shadow-md"
+                                  strokeWidth={2.8}
+                                />
+                              );
+                            })()}
+                          </div>
+                        )}
                       </div>
 
                       {/* Volunteering Content */}
@@ -383,7 +432,15 @@ const Volunteering = () => {
                                 {volunteer.photos.map((photo, idx) => (
                                   <div
                                     key={idx}
-                                    className="group relative overflow-hidden rounded-lg bg-gray-600"
+                                    onClick={() =>
+                                      setLightbox({
+                                        open: true,
+                                        src: photo.url,
+                                        alt: photo.caption || `${volunteer.role} photo ${idx + 1}`,
+                                        scale: 1,
+                                      })
+                                    }
+                                    className="group relative overflow-hidden rounded-lg bg-gray-600 cursor-pointer hover:ring-2 hover:ring-electric-blue transition-all duration-300"
                                   >
                                     <img
                                       src={photo.url}
@@ -410,6 +467,12 @@ const Volunteering = () => {
                                         </p>
                                       </div>
                                     )}
+                                    {/* Hover overlay with zoom indicator */}
+                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                      <div className="bg-white/90 rounded-full p-2">
+                                        <ZoomIn className="w-6 h-6 text-gray-800" />
+                                      </div>
+                                    </div>
                                   </div>
                                 ))}
                               </div>
@@ -425,6 +488,86 @@ const Volunteering = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Lightbox for photos */}
+      <AnimatePresence>
+        {lightbox.open && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget)
+                setLightbox({ open: false, src: null, alt: null, scale: 1 });
+            }}
+          >
+            {/* Control buttons */}
+            <div className="absolute top-4 right-4 flex gap-2 z-10">
+              <button
+                onClick={() =>
+                  setLightbox((s) => ({
+                    ...s,
+                    scale: Math.min(4, s.scale + 0.2),
+                  }))
+                }
+                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                title="Zoom In (+)"
+              >
+                <ZoomIn className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() =>
+                  setLightbox((s) => ({
+                    ...s,
+                    scale: Math.max(1, s.scale - 0.2),
+                  }))
+                }
+                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                title="Zoom Out (-)"
+              >
+                <ZoomOut className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() =>
+                  setLightbox({ open: false, src: null, alt: null, scale: 1 })
+                }
+                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                title="Close (Esc)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <motion.img
+              key={lightbox.src}
+              src={lightbox.src}
+              alt={lightbox.alt}
+              style={{ transform: `scale(${lightbox.scale})` }}
+              className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: lightbox.scale, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onWheel={(e) => {
+                setLightbox((s) => ({
+                  ...s,
+                  scale: Math.max(
+                    1,
+                    Math.min(4, s.scale + (e.deltaY > 0 ? -0.1 : 0.1))
+                  ),
+                }));
+              }}
+            />
+            {/* Caption */}
+            {lightbox.alt && (
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <div className="bg-black/80 rounded-lg px-4 py-2 inline-block">
+                  <p className="text-white text-sm">{lightbox.alt}</p>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Section Divider */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
