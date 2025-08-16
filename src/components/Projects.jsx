@@ -119,34 +119,55 @@ const Projects = () => {
     return colors[language] || "#8b5cf6";
   };
 
-  const languageIconData = (tech) => {
-    // Map common technologies to simple-icons slugs (logo-only)
-    const slugMap = {
-      "C++": "cplusplus",
-      C: "c",
-      Python: "python",
-      JavaScript: "javascript",
-      TypeScript: "typescript",
-      Java: "openjdk",
-      CSS: "css3",
-      MATLAB: "mathworks",
-      VHDL: null,
+  const getTechBadge = (tech) => {
+    const techBadges = {
+      // Languages
+      "Python": "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54",
+      "Java": "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white",
+      "JavaScript": "https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E",
+      "CSS": "https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white",
+      "C++": "https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white",
+      "C": "https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white",
+      "VHDL": "https://img.shields.io/badge/VHDL-%23A5915F.svg?style=for-the-badge&logo=verilog&logoColor=white",
+      "x86 Assembly": "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
+      
+      // Frameworks & Tools
+      "ROS2": "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+      "JavaFX": "https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white",
+      "FreeRTOS": "https://img.shields.io/badge/freertos-%23000000.svg?style=for-the-badge&logo=freertos&logoColor=white",
+      
+      // Hardware
+      "NVIDIA Jetson": "https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white",
+      "ESP32": "https://img.shields.io/badge/ESP32-%23000000.svg?style=for-the-badge&logo=espressif&logoColor=white",
+      "STM32": "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white",
+      "FPGA": "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+      "Arduino": "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
+      
+      // Software & Tools
+      "MATLAB": "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge",
+      "Simulink": "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge",
+      "Git": "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white",
+      "GitHub": "https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white",
+      "Altera Quartus": "https://img.shields.io/badge/Quartus-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+      
+      // Control Systems
+      "PID": "https://img.shields.io/badge/PID-orange?style=for-the-badge",
+      "Lead–Lag": "https://img.shields.io/badge/Lead--Lag-green?style=for-the-badge",
+      "MPC": "https://img.shields.io/badge/MPC-violet?style=for-the-badge",
+      
+      // AI/ML
+      "AI": "https://img.shields.io/badge/AI-%23FF6F00.svg?style=for-the-badge&logo=tensorflow&logoColor=white",
+      "OpenCV": "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white",
+      
+      // Specialized
+      "SLAM": "https://img.shields.io/badge/SLAM-blue?style=for-the-badge",
+      "AES‑128": "https://img.shields.io/badge/AES--128-red?style=for-the-badge",
+      "NLP": "https://img.shields.io/badge/NLP-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white",
+      "RViz": "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+      "Gazebo": "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
     };
-    const colorMap = {
-      cplusplus: "f34b7d",
-      c: "555555",
-      python: "3572A5",
-      javascript: "f1e05a",
-      typescript: "2b7489",
-      openjdk: "b07219",
-      css3: "1572B6",
-      mathworks: "e16737",
-    };
-    const slug = slugMap[tech] || null;
-    if (!slug) return null;
-    const color = colorMap[slug] || "8b5cf6";
-    const url = `https://cdn.simpleicons.org/${slug}/${color}`;
-    return { url };
+
+    return techBadges[tech] || null;
   };
 
   return (
@@ -352,15 +373,26 @@ const Projects = () => {
                           <h4 className="text-neon-green font-semibold mb-2">
                             Technologies
                           </h4>
-                          <div className="flex flex-wrap gap-2">
-                            {expandedProject.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                              >
-                                {tech}
-                              </span>
-                            ))}
+                          <div className="flex flex-wrap gap-3">
+                            {expandedProject.technologies.map((tech) => {
+                              const badgeUrl = getTechBadge(tech);
+                              return (
+                                <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                                  {badgeUrl ? (
+                                    <img
+                                      src={badgeUrl}
+                                      alt={tech}
+                                      className="h-7 object-contain hover:shadow-lg transition-shadow duration-200"
+                                      loading="lazy"
+                                    />
+                                  ) : (
+                                    <span className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono">
+                                      {tech}
+                                    </span>
+                                  )}
+                                </div>
+                              );
+                            })}
                           </div>
                         </section>
 
@@ -595,24 +627,22 @@ const Projects = () => {
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {project.technologies.slice(0, 4).map((tech) => {
-                          const icon = languageIconData(tech);
+                          const badgeUrl = getTechBadge(tech);
                           return (
-                            <span
-                              key={tech}
-                              className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                            >
-                              {icon ? (
+                            <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                              {badgeUrl ? (
                                 <img
-                                  src={icon.url}
-                                  alt={tech + " logo"}
-                                  className="h-4"
+                                  src={badgeUrl}
+                                  alt={tech}
+                                  className="h-6 object-contain hover:shadow-lg transition-shadow duration-200"
+                                  loading="lazy"
                                 />
                               ) : (
-                                <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
-                                  {tech.slice(0, 3)}
+                                <span className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono">
+                                  {tech}
                                 </span>
                               )}
-                            </span>
+                            </div>
                           );
                         })}
                         {project.technologies.length > 4 && (
@@ -720,24 +750,22 @@ const Projects = () => {
                         </p>
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.technologies.slice(0, 4).map((tech) => {
-                            const icon = languageIconData(tech);
+                            const badgeUrl = getTechBadge(tech);
                             return (
-                              <span
-                                key={tech}
-                                className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                              >
-                                {icon ? (
+                              <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                                {badgeUrl ? (
                                   <img
-                                    src={icon.url}
-                                    alt={tech + " logo"}
-                                    className="h-4"
+                                    src={badgeUrl}
+                                    alt={tech}
+                                    className="h-6 object-contain hover:shadow-lg transition-shadow duration-200"
+                                    loading="lazy"
                                   />
                                 ) : (
-                                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
-                                    {tech.slice(0, 3)}
+                                  <span className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono">
+                                    {tech}
                                   </span>
                                 )}
-                              </span>
+                              </div>
                             );
                           })}
                         </div>
