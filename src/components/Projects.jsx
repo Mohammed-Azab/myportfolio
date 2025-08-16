@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Github, ExternalLink, Star, GitFork, Calendar } from "lucide-react";
+import { Github, ExternalLink, Star, GitFork, Calendar, Crown } from "lucide-react";
 import { projectsData, projectCategories } from "../data/projects";
 import AnimatedLottie from "./AnimatedLottie";
 import fireAnim from "../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json";
@@ -76,6 +76,7 @@ const Projects = () => {
     category: project.category,
     github: project.github,
     demo: project.demo,
+    achievement: project.achievement,
     features: project.features || [],
     images: project.images || [],
     stars: Math.floor(Math.random() * 50) + 5, // Random stars for demo
@@ -109,6 +110,20 @@ const Projects = () => {
       TypeScript: "#2b7489",
     };
     return colors[language] || "#8b5cf6";
+  };
+
+  const languageIconData = (tech) => {
+    const map = {
+      'C++': { abbr: 'C++', color: '#f34b7d' },
+      'C': { abbr: 'C', color: '#555555' },
+      'Python': { abbr: 'Py', color: '#3572A5' },
+      'JavaScript': { abbr: 'JS', color: '#f1e05a', text: '#111' },
+      'TypeScript': { abbr: 'TS', color: '#2b7489' },
+      'MATLAB': { abbr: 'M', color: '#e16737' },
+      'Java': { abbr: 'J', color: '#b07219' },
+      'VHDL': { abbr: 'V', color: '#a074c4' },
+    };
+    return map[tech] || null;
   };
 
   return (
@@ -265,6 +280,12 @@ const Projects = () => {
                               }}
                             ></span>
                             <span>{expandedProject.language}</span>
+                          </div>
+                        )}
+                        {expandedProject.achievement && expandedProject.achievement.toLowerCase().includes('3rd place') && (
+                          <div className="flex items-center gap-1 text-yellow-300">
+                            <Crown size={16} />
+                            <span className="whitespace-nowrap">{expandedProject.achievement}</span>
                           </div>
                         )}
                         <div className="flex items-center gap-1">
@@ -545,14 +566,26 @@ const Projects = () => {
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {project.technologies.slice(0, 4).map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                        {project.technologies.slice(0, 4).map((tech) => {
+                          const icon = languageIconData(tech);
+                          return (
+                            <span
+                              key={tech}
+                              className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
+                            >
+                              {icon ? (
+                                <span
+                                  className="inline-flex items-center justify-center w-5 h-5 rounded-sm text-[10px] font-bold"
+                                  style={{ backgroundColor: icon.color, color: icon.text || '#0a0a0a' }}
+                                  aria-hidden
+                                >
+                                  {icon.abbr}
+                                </span>
+                              ) : null}
+                              {tech}
+                            </span>
+                          );
+                        })}
                         {project.technologies.length > 4 && (
                           <span className="px-3 py-1 bg-dark-bg border border-gray-600 rounded-full text-xs text-gray-400 font-mono">
                             +{project.technologies.length - 4}

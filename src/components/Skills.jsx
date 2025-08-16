@@ -28,13 +28,13 @@ const Skills = () => {
       skills: [
         "ROS2",
         "RViz",
+        "Gazebo",
         "CMake",
         "Conan",
         "Docker",
         "Git",
         "MATLAB",
         "Simulink",
-        "Gazebo",
         "Quartus",
         "Bash",
         "PowerShell",
@@ -178,8 +178,9 @@ const Skills = () => {
                       isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }
                     }
                     transition={{ delay: categoryIndex * 0.05 + idx * 0.02 }}
-                    className="inline-flex items-center bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
+                    className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
                   >
+                    <span className="inline-block w-2 h-2 rounded-full bg-electric-blue" aria-hidden></span>
                     <span className="text-gray-200 text-sm">
                       {typeof skill === "string" ? skill : skill.name}
                     </span>
