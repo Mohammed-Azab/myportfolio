@@ -485,11 +485,13 @@ const Projects = () => {
                               <button
                                 key={idx}
                                 onClick={() =>
-                                  setLightbox({ 
-                                    open: true, 
-                                    src, 
-                                    alt: `${expandedProject.name} photo ${idx + 1}`,
-                                    scale: 1 
+                                  setLightbox({
+                                    open: true,
+                                    src,
+                                    alt: `${expandedProject.name} photo ${
+                                      idx + 1
+                                    }`,
+                                    scale: 1,
                                   })
                                 }
                                 className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-transparent hover:ring-2 hover:ring-electric-blue transition-all duration-300"
@@ -560,7 +562,12 @@ const Projects = () => {
                   exit={{ opacity: 0 }}
                   onClick={(e) => {
                     if (e.target === e.currentTarget)
-                      setLightbox({ open: false, src: null, alt: null, scale: 1 });
+                      setLightbox({
+                        open: false,
+                        src: null,
+                        alt: null,
+                        scale: 1,
+                      });
                   }}
                 >
                   {/* Control buttons */}
@@ -591,7 +598,12 @@ const Projects = () => {
                     </button>
                     <button
                       onClick={() =>
-                        setLightbox({ open: false, src: null, alt: null, scale: 1 })
+                        setLightbox({
+                          open: false,
+                          src: null,
+                          alt: null,
+                          scale: 1,
+                        })
                       }
                       className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                       title="Close (Esc)"
