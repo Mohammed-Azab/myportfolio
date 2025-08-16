@@ -122,31 +122,42 @@ const Projects = () => {
   const languageIconData = (tech) => {
     // Map common technologies to simple-icons slugs
     const slugMap = {
-      'C++': 'cplusplus',
-      'C': 'c',
-      'Python': 'python',
-      'JavaScript': 'javascript',
-      'TypeScript': 'typescript',
-      'Java': 'java',
-      'CSS': 'css3',
-      'MATLAB': 'mathworks', // closest available
-      'VHDL': null,
+      "C++": "cplusplus",
+      C: "c",
+      Python: "python",
+      JavaScript: "javascript",
+      TypeScript: "typescript",
+      Java: "java",
+      CSS: "css3",
+      MATLAB: "mathworks", // closest available
+      VHDL: null,
+    };
+    const abbrMap = {
+      "C++": "C++",
+      C: "C",
+      Python: "Py",
+      JavaScript: "JS",
+      TypeScript: "TS",
+      Java: "Java",
+      CSS: "CSS",
+      MATLAB: "MAT",
+      VHDL: "VHDL",
     };
     const colorMap = {
-      'cplusplus': 'f34b7d',
-      'c': '555555',
-      'python': '3572A5',
-      'javascript': 'f1e05a',
-      'typescript': '2b7489',
-      'java': 'b07219',
-      'css3': '1572B6',
-      'mathworks': 'e16737',
+      cplusplus: "f34b7d",
+      c: "555555",
+      python: "3572A5",
+      javascript: "f1e05a",
+      typescript: "2b7489",
+      java: "b07219",
+      css3: "1572B6",
+      mathworks: "e16737",
     };
     const slug = slugMap[tech] || null;
     if (!slug) return null;
-    const color = colorMap[slug] || '8b5cf6';
+    const color = colorMap[slug] || "8b5cf6";
     const url = `https://cdn.simpleicons.org/${slug}/${color}`;
-    return { url };
+    return { url, abbr: abbrMap[tech] || tech.slice(0, 3) };
   };
 
   return (
@@ -602,8 +613,12 @@ const Projects = () => {
                               className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                             >
                               {icon ? (
-                                <img src={icon.url} alt="" className="w-4 h-4" aria-hidden />
-                              ) : null}
+                                <img src={icon.url} alt={tech + ' logo'} className="w-4 h-4" />
+                              ) : (
+                                <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
+                                  {tech.slice(0,3)}
+                                </span>
+                              )}
                               {tech}
                             </span>
                           );
@@ -720,8 +735,12 @@ const Projects = () => {
                                 className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                               >
                                 {icon ? (
-                                  <img src={icon.url} alt="" className="w-4 h-4" aria-hidden />
-                                ) : null}
+                                  <img src={icon.url} alt={tech + ' logo'} className="w-4 h-4" />
+                                ) : (
+                                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
+                                    {tech.slice(0,3)}
+                                  </span>
+                                )}
                                 {tech}
                               </span>
                             );
