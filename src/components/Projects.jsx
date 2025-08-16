@@ -10,6 +10,9 @@ import {
   GitFork,
   Calendar,
   Crown,
+  X,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import { projectsData, projectCategories } from "../data/projects";
 import AnimatedLottie from "./AnimatedLottie";
@@ -53,6 +56,7 @@ const Projects = () => {
   const [lightbox, setLightbox] = useState({
     open: false,
     src: null,
+    alt: null,
     scale: 1,
   });
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -62,7 +66,7 @@ const Projects = () => {
     if (!lightbox.open) return;
     const onKey = (e) => {
       if (e.key === "Escape") {
-        setLightbox({ open: false, src: null, scale: 1 });
+        setLightbox({ open: false, src: null, alt: null, scale: 1 });
       } else if (e.key === "+") {
         setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
       } else if (e.key === "-") {
@@ -481,9 +485,14 @@ const Projects = () => {
                               <button
                                 key={idx}
                                 onClick={() =>
-                                  setLightbox({ open: true, src, scale: 1 })
+                                  setLightbox({ 
+                                    open: true, 
+                                    src, 
+                                    alt: `${expandedProject.name} photo ${idx + 1}`,
+                                    scale: 1 
+                                  })
                                 }
-                                className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-transparent"
+                                className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-transparent hover:ring-2 hover:ring-electric-blue transition-all duration-300"
                                 aria-label="Open photo"
                               >
                                 <img
@@ -491,6 +500,12 @@ const Projects = () => {
                                   alt={`Project photo ${idx + 1}`}
                                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 bg-transparent"
                                 />
+                                {/* Hover overlay with zoom indicator */}
+                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                  <div className="bg-white/90 rounded-full p-2">
+                                    <ZoomIn className="w-6 h-6 text-gray-800" />
+                                  </div>
+                                </div>
                               </button>
                             ))}
                           </div>
@@ -545,10 +560,11 @@ const Projects = () => {
                   exit={{ opacity: 0 }}
                   onClick={(e) => {
                     if (e.target === e.currentTarget)
-                      setLightbox({ open: false, src: null, scale: 1 });
+                      setLightbox({ open: false, src: null, alt: null, scale: 1 });
                   }}
                 >
-                  <div className="absolute top-4 right-4 flex gap-2">
+                  {/* Control buttons */}
+                  <div className="absolute top-4 right-4 flex gap-2 z-10">
                     <button
                       onClick={() =>
                         setLightbox((s) => ({
@@ -556,9 +572,10 @@ const Projects = () => {
                           scale: Math.min(4, s.scale + 0.2),
                         }))
                       }
-                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                      title="Zoom In (+)"
                     >
-                      +
+                      <ZoomIn className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() =>
@@ -567,23 +584,25 @@ const Projects = () => {
                           scale: Math.max(1, s.scale - 0.2),
                         }))
                       }
-                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                      title="Zoom Out (-)"
                     >
-                      -
+                      <ZoomOut className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() =>
-                        setLightbox({ open: false, src: null, scale: 1 })
+                        setLightbox({ open: false, src: null, alt: null, scale: 1 })
                       }
-                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                      title="Close (Esc)"
                     >
-                      Close
+                      <X className="w-5 h-5" />
                     </button>
                   </div>
                   <motion.img
                     key={lightbox.src}
                     src={lightbox.src}
-                    alt="Project"
+                    alt={lightbox.alt || "Project photo"}
                     style={{ transform: `scale(${lightbox.scale})` }}
                     className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
                     onWheel={(e) => {
@@ -599,6 +618,14 @@ const Projects = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
                   />
+                  {/* Caption */}
+                  {lightbox.alt && (
+                    <div className="absolute bottom-4 left-4 right-4 text-center">
+                      <div className="bg-black/80 rounded-lg px-4 py-2 inline-block">
+                        <p className="text-white text-sm">{lightbox.alt}</p>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
