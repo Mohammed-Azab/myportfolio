@@ -36,7 +36,7 @@ export const projectsData = [
   },
   {
     id: 2,
-    title: "TriFlameX – Autonomous Cooperative Fire-Fighting Robots",
+    title: "TriFlameX: Autonomous Cooperative Fire-Fighting Robots",
     description:
       "Swarm of three autonomous robots that cooperatively detect, localize, and suppress small fires.",
     longDescription:
