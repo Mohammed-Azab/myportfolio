@@ -12,17 +12,45 @@ const Skills = () => {
     {
       title: "Programming",
       Icon: Code2,
-      skills: ["C++", "Embedded C", "Python", "Java", "VHDL", "Assembly", "CSS"],
+      skills: [
+        "C++",
+        "Embedded C",
+        "Python",
+        "Java",
+        "VHDL",
+        "Assembly",
+        "CSS",
+      ],
     },
     {
-      title: "Tools",
+      title: "Tools & Frameworks",
       Icon: Wrench,
-      skills: ["ROS2", "Git", "MATLAB", "Simulink", "Gazebo", "Quartus", "Bash", "PowerShell"],
+      skills: [
+        "ROS2",
+        "RViz",
+        "CMake",
+        "Conan",
+        "Docker",
+        "Git",
+        "MATLAB",
+        "Simulink",
+        "Gazebo",
+        "Quartus",
+        "Bash",
+        "PowerShell",
+      ],
     },
     {
       title: "Hardware Platforms",
       Icon: Cpu,
-      skills: ["NVIDIA Jetson", "Raspberry Pi", "STM32", "ESP32", "FPGA", "Arduino"],
+      skills: [
+        "NVIDIA Jetson",
+        "Raspberry Pi",
+        "STM32",
+        "ESP32",
+        "FPGA",
+        "Arduino",
+      ],
     },
     {
       title: "Operating Systems",
@@ -32,7 +60,11 @@ const Skills = () => {
     {
       title: "Technical",
       Icon: Wrench,
-      skills: ["System Optimization", "Hardware-Software Integration", "API Documentation"],
+      skills: [
+        "System Optimization",
+        "Hardware-Software Integration",
+        "API Documentation",
+      ],
     },
     {
       title: "Languages",
@@ -42,7 +74,12 @@ const Skills = () => {
     {
       title: "Interpersonal",
       Icon: Users,
-      skills: ["Leadership", "Communication", "Public Speaking", "Time Management"],
+      skills: [
+        "Leadership",
+        "Communication",
+        "Public Speaking",
+        "Time Management",
+      ],
     },
   ];
 
