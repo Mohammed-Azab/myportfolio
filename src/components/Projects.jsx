@@ -54,16 +54,16 @@ const Projects = () => {
   useEffect(() => {
     if (!lightbox.open) return;
     const onKey = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setLightbox({ open: false, src: null, scale: 1 });
-      } else if (e.key === '+') {
+      } else if (e.key === "+") {
         setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
-      } else if (e.key === '-') {
+      } else if (e.key === "-") {
         setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }));
       }
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [lightbox.open]);
 
   // Transform projects data to match the expected format
@@ -353,13 +353,13 @@ const Projects = () => {
                                 onClick={() =>
                                   setLightbox({ open: true, src, scale: 1 })
                                 }
-                                className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-gray-800/60"
+                                className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-transparent"
                                 aria-label="Open photo"
                               >
                                 <img
                                   src={src}
                                   alt={`Project photo ${idx + 1}`}
-                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 bg-transparent"
                                 />
                               </button>
                             ))}
@@ -413,7 +413,10 @@ const Projects = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  onClick={(e) => { if (e.target === e.currentTarget) setLightbox({ open:false, src:null, scale:1 }); }}
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget)
+                      setLightbox({ open: false, src: null, scale: 1 });
+                  }}
                 >
                   <div className="absolute top-4 right-4 flex gap-2">
                     <button
@@ -456,7 +459,10 @@ const Projects = () => {
                     onWheel={(e) => {
                       setLightbox((s) => ({
                         ...s,
-                        scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1)))
+                        scale: Math.max(
+                          1,
+                          Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))
+                        ),
                       }));
                     }}
                     initial={{ scale: 0.9, opacity: 0 }}
