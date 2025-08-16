@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Cpu, Wrench, Bot, CircuitBoard } from "lucide-react";
+import { Code2, Cpu, Wrench, Monitor, Globe2, Users } from "lucide-react";
 
 const Skills = () => {
   const ref = useRef(null);
@@ -10,50 +10,70 @@ const Skills = () => {
 
   const skillCategories = [
     {
+      title: "Technical",
+      Icon: Wrench,
+      skills: [
+        "System Optimization",
+        "Hardware-Software Integration",
+        "API Documentation",
+      ],
+    },
+    {
       title: "Programming",
       Icon: Code2,
       skills: [
-        { name: "C/C++", level: "Advanced" },
-        { name: "Python", level: "Advanced" },
-        { name: "JavaScript", level: "Intermediate" },
-        { name: "MATLAB", level: "Advanced" },
-        { name: "Assembly", level: "Intermediate" },
+        "Embedded C",
+        "C++",
+        "Java",
+        "Python",
+        "VHDL",
+        "Assembly",
+        "CSS",
       ],
     },
     {
-      title: "Robotics & Embedded",
-      Icon: Bot,
-      skills: [
-        { name: "ROS2", level: "Advanced" },
-        { name: "Embedded C/C++", level: "Advanced" },
-        { name: "STM32 / ESP32", level: "Advanced" },
-        { name: "FreeRTOS", level: "Intermediate" },
-        { name: "Sensor Integration", level: "Advanced" },
-        { name: "Motor Control", level: "Advanced" },
-        { name: "Kalman Filtering", level: "Intermediate" },
-      ],
+      title: "Operating Systems",
+      Icon: Monitor,
+      skills: ["Ubuntu", "Arch Linux", "Windows"],
     },
     {
-      title: "Tools & Platforms",
+      title: "Tools",
       Icon: Wrench,
       skills: [
-        { name: "Git / GitHub", level: "Advanced" },
-        { name: "Linux", level: "Advanced" },
-        { name: "Docker", level: "Intermediate" },
-        { name: "CMake / Conan", level: "Intermediate" },
-        { name: "MATLAB / Simulink", level: "Advanced" },
-        { name: "React", level: "Intermediate" },
+        "ROS2",
+        "Git",
+        "MATLAB/Simulink",
+        "Quartus",
+        "Gazebo",
+        "Bash",
+        "PowerShell",
       ],
     },
     {
-      title: "Hardware & Design",
-      Icon: CircuitBoard,
+      title: "Hardware Platforms",
+      Icon: Cpu,
       skills: [
-        { name: "PCB Design", level: "Intermediate" },
-        { name: "FPGA (VHDL/Verilog)", level: "Intermediate" },
-        { name: "SolidWorks (CAD)", level: "Advanced" },
-        { name: "Circuit Analysis", level: "Advanced" },
-        { name: "3D Printing", level: "Intermediate" },
+        "Raspberry Pi",
+        "NVIDIA Jetson",
+        "STM32",
+        "ESP32",
+        "Arduino",
+        "FPGA",
+      ],
+    },
+    {
+      title: "Languages",
+      Icon: Globe2,
+      skills: ["English (C1)", "German (B2)", "Arabic (Native)"],
+    },
+    {
+      title: "Interpersonal",
+      Icon: Users,
+      skills: [
+        "Public Speaking",
+        "Leadership",
+        "Communication",
+        "Time Management",
       ],
     },
   ];
@@ -147,18 +167,15 @@ const Skills = () => {
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, idx) => (
                   <motion.span
-                    key={skill.name}
+                    key={typeof skill === "string" ? skill : skill.name}
                     initial={{ opacity: 0, y: 6 }}
                     animate={
                       isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }
                     }
-                    transition={{ delay: categoryIndex * 0.1 + idx * 0.03 }}
-                    className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
+                    transition={{ delay: categoryIndex * 0.05 + idx * 0.02 }}
+                    className="inline-flex items-center bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
                   >
-                    <span className="text-gray-200 text-sm">{skill.name}</span>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-electric-blue/15 text-electric-blue border border-electric-blue/30">
-                      {skill.level}
-                    </span>
+                    <span className="text-gray-200 text-sm">{typeof skill === "string" ? skill : skill.name}</span>
                   </motion.span>
                 ))}
               </div>
