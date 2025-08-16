@@ -9,6 +9,7 @@ const Skills = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const skillCategories = [
+    // Core Programming
     {
       title: "Programming Languages",
       skills: [
@@ -23,24 +24,24 @@ const Skills = () => {
             "https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white",
         },
         {
-          name: "Java",
-          badge:
-            "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white",
-        },
-        {
           name: "Python",
           badge:
             "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54",
         },
         {
-          name: "Assembly",
+          name: "Java",
           badge:
-            "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
+            "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white",
         },
         {
           name: "VHDL",
           badge:
             "https://img.shields.io/badge/VHDL-%23A5915F.svg?style=for-the-badge&logo=verilog&logoColor=white",
+        },
+        {
+          name: "Assembly",
+          badge:
+            "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
         },
         {
           name: "JavaScript",
@@ -54,56 +55,70 @@ const Skills = () => {
         },
       ],
     },
+    
+    // Robotics & Automation (Core Expertise)
     {
-      title: "Tools & Frameworks",
+      title: "Robotics & Automation",
       skills: [
         {
           name: "ROS2",
-          badge: "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
         },
         {
           name: "RViz",
-          badge: "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
         },
         {
           name: "Gazebo",
-          badge: "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
-        },
-        {
-          name: "CMake",
-          badge: "https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white",
-        },
-        {
-          name: "Conan",
-          badge: "https://img.shields.io/badge/Conan-blue?style=for-the-badge&logo=conan&logoColor=white",
-        },
-        {
-          name: "Docker",
-          badge: "https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white",
-        },
-        {
-          name: "Git",
-          badge: "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
         },
         {
           name: "MATLAB",
-          badge: "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge",
+          badge:
+            "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
         },
         {
           name: "Simulink",
-          badge: "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge",
+          badge:
+            "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
+        },
+      ],
+    },
+    {
+      title: "Hardware Platforms",
+      skills: [
+        {
+          name: "STM32",
+          badge:
+            "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white",
         },
         {
-          name: "Quartus",
-          badge: "https://img.shields.io/badge/Quartus-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+          name: "Arduino",
+          badge:
+            "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
         },
         {
-          name: "Bash",
-          badge: "https://img.shields.io/badge/bash-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white",
+          name: "Raspberry Pi",
+          badge:
+            "https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi",
         },
         {
-          name: "PowerShell",
-          badge: "https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white",
+          name: "NVIDIA Jetson",
+          badge:
+            "https://img.shields.io/badge/nVIDIA_Jetson-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white",
+        },
+        {
+          name: "FPGA",
+          badge:
+            "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+        },
+        {
+          name: "ESP32",
+          badge:
+            "https://img.shields.io/badge/ESP32-%23000000.svg?style=for-the-badge&logo=espressif&logoColor=white",
         },
       ],
     },
@@ -128,42 +143,32 @@ const Skills = () => {
       ],
     },
     {
-      title: "Embedded Systems",
+      title: "Development Tools",
       skills: [
-        {
-          name: "ROS2",
-          badge:
-            "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
-        },
-        {
-          name: "Raspberry Pi",
-          badge:
-            "https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi",
-        },
-        {
-          name: "NVIDIA",
-          badge:
-            "https://img.shields.io/badge/nVIDIA_Jetson-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white",
-        },
-        {
-          name: "STM32",
-          badge:
-            "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white",
-        },
-        {
-          name: "Arduino",
-          badge:
-            "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
-        },
-        {
-          name: "FPGA",
-          badge:
-            "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
-        },
         {
           name: "CMake",
           badge:
             "https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white",
+        },
+        {
+          name: "Conan",
+          badge:
+            "https://img.shields.io/badge/Conan-blue?style=for-the-badge&logo=conan&logoColor=white",
+        },
+        {
+          name: "Quartus",
+          badge:
+            "https://img.shields.io/badge/Quartus-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+        },
+        {
+          name: "Bash",
+          badge:
+            "https://img.shields.io/badge/bash-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white",
+        },
+        {
+          name: "PowerShell",
+          badge:
+            "https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white",
         },
       ],
     },
@@ -188,30 +193,43 @@ const Skills = () => {
       ],
     },
     {
-      title: "Control Systems",
+      title: "Control Systems & Algorithms",
       skills: [
         {
           name: "MPC",
-          badge: "https://img.shields.io/badge/MPC-violet?style=for-the-badge",
+          badge: "https://img.shields.io/badge/MPC-blueviolet?style=for-the-badge&logo=chartdotjs&logoColor=white",
         },
         {
           name: "PID",
-          badge: "https://img.shields.io/badge/PID-orange?style=for-the-badge",
+          badge: "https://img.shields.io/badge/PID-orange?style=for-the-badge&logo=controliq&logoColor=white",
+        },
+        {
+          name: "LQR",
+          badge: "https://img.shields.io/badge/LQR-darkblue?style=for-the-badge&logo=matrix&logoColor=white",
+        },
+        {
+          name: "LQG",
+          badge: "https://img.shields.io/badge/LQG-navy?style=for-the-badge&logo=matrix&logoColor=white",
         },
         {
           name: "Lead-Lag",
-          badge:
-            "https://img.shields.io/badge/Lead--Lag-green?style=for-the-badge",
+          badge: "https://img.shields.io/badge/Lead--Lag-forestgreen?style=for-the-badge&logo=circuitverse&logoColor=white",
+        },
+        {
+          name: "Pure Pursuit",
+          badge: "https://img.shields.io/badge/Pure_Pursuit-crimson?style=for-the-badge&logo=route&logoColor=white",
+        },
+        {
+          name: "Stanley",
+          badge: "https://img.shields.io/badge/Stanley-darkred?style=for-the-badge&logo=steeringandsuspension&logoColor=white",
         },
         {
           name: "MATLAB",
-          badge:
-            "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge",
+          badge: "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
         },
         {
           name: "Simulink",
-          badge:
-            "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge",
+          badge: "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge&logo=mathworks&logoColor=white",
         },
       ],
     },
@@ -235,15 +253,18 @@ const Skills = () => {
       skills: [
         {
           name: "System Optimization",
-          badge: "https://img.shields.io/badge/System_Optimization-purple?style=for-the-badge&logo=speedtest&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/System_Optimization-purple?style=for-the-badge&logo=speedtest&logoColor=white",
         },
         {
           name: "Hardware-Software Integration",
-          badge: "https://img.shields.io/badge/HW--SW_Integration-orange?style=for-the-badge&logo=microchip&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/HW--SW_Integration-orange?style=for-the-badge&logo=microchip&logoColor=white",
         },
         {
           name: "API Documentation",
-          badge: "https://img.shields.io/badge/API_Documentation-darkblue?style=for-the-badge&logo=swagger&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/API_Documentation-darkblue?style=for-the-badge&logo=swagger&logoColor=white",
         },
       ],
     },
@@ -277,15 +298,18 @@ const Skills = () => {
       skills: [
         {
           name: "English (C1)",
-          badge: "https://img.shields.io/badge/English-C1-blue?style=for-the-badge&logo=googletranslate&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/English-C1-blue?style=for-the-badge&logo=googletranslate&logoColor=white",
         },
         {
           name: "German (B2)",
-          badge: "https://img.shields.io/badge/German-B2-red?style=for-the-badge&logo=googletranslate&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/German-B2-red?style=for-the-badge&logo=googletranslate&logoColor=white",
         },
         {
           name: "Arabic (Native)",
-          badge: "https://img.shields.io/badge/Arabic-Native-green?style=for-the-badge&logo=googletranslate&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Arabic-Native-green?style=for-the-badge&logo=googletranslate&logoColor=white",
         },
       ],
     },
@@ -309,19 +333,23 @@ const Skills = () => {
       skills: [
         {
           name: "Leadership",
-          badge: "https://img.shields.io/badge/Leadership-gold?style=for-the-badge&logo=crown&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Leadership-gold?style=for-the-badge&logo=crown&logoColor=white",
         },
         {
           name: "Communication",
-          badge: "https://img.shields.io/badge/Communication-lightblue?style=for-the-badge&logo=telegram&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Communication-lightblue?style=for-the-badge&logo=telegram&logoColor=white",
         },
         {
           name: "Public Speaking",
-          badge: "https://img.shields.io/badge/Public_Speaking-indigo?style=for-the-badge&logo=microphone&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Public_Speaking-indigo?style=for-the-badge&logo=microphone&logoColor=white",
         },
         {
           name: "Time Management",
-          badge: "https://img.shields.io/badge/Time_Management-darkgreen?style=for-the-badge&logo=clockify&logoColor=white",
+          badge:
+            "https://img.shields.io/badge/Time_Management-darkgreen?style=for-the-badge&logo=clockify&logoColor=white",
         },
       ],
     },
