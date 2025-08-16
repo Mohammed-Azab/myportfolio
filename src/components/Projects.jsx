@@ -120,44 +120,35 @@ const Projects = () => {
   };
 
   const languageIconData = (tech) => {
-    // Map common technologies to simple-icons slugs
-    const slugMap = {
-      "C++": "cplusplus",
-      C: "c",
-      Python: "python",
-      JavaScript: "javascript",
-      TypeScript: "typescript",
-      Java: "openjdk",
-      CSS: "css3",
-      MATLAB: "mathworks", // closest available
-      VHDL: null,
-    };
-    const abbrMap = {
-      "C++": "C++",
-      C: "C",
-      Python: "Py",
-      JavaScript: "JS",
-      TypeScript: "TS",
-      Java: "Java",
-      CSS: "CSS",
-      MATLAB: "MAT",
-      VHDL: "VHDL",
+    // Map common technologies to shields.io params (logo slug + color)
+    const logoMap = {
+      'C++': 'cplusplus',
+      'C': 'c',
+      'Python': 'python',
+      'JavaScript': 'javascript',
+      'TypeScript': 'typescript',
+      'Java': 'openjdk',
+      'CSS': 'css3',
+      'MATLAB': 'mathworks', // close enough
+      'VHDL': 'verilog', // approximate
     };
     const colorMap = {
-      cplusplus: "f34b7d",
-      c: "555555",
-      python: "3572A5",
-      javascript: "f1e05a",
-      typescript: "2b7489",
-      openjdk: "b07219",
-      css3: "1572B6",
-      mathworks: "e16737",
+      cplusplus: '00599C',
+      c: '00599C',
+      python: '3670A0',
+      javascript: '323330',
+      typescript: '2B7489',
+      openjdk: 'ED8B00',
+      css3: '1572B6',
+      mathworks: '0076A8',
+      verilog: 'A5915F',
     };
-    const slug = slugMap[tech] || null;
-    if (!slug) return null;
-    const color = colorMap[slug] || "8b5cf6";
-    const url = `https://cdn.simpleicons.org/${slug}/${color}`;
-    return { url, abbr: abbrMap[tech] || tech.slice(0, 3) };
+    const logo = logoMap[tech];
+    if (!logo) return null;
+    const color = colorMap[logo] || '444444';
+    const label = encodeURIComponent(tech);
+    const url = `https://img.shields.io/badge/${label}-${color}.svg?style=flat&logo=${logo}&logoColor=white`;
+    return { url };
   };
 
   return (
@@ -616,7 +607,7 @@ const Projects = () => {
                                 <img
                                   src={icon.url}
                                   alt={tech + " logo"}
-                                  className="w-4 h-4"
+                                  className="h-4"
                                 />
                               ) : (
                                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
