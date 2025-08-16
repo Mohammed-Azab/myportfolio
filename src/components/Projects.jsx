@@ -70,7 +70,8 @@ const Projects = () => {
   const githubProjects = projectsData.map((project) => ({
     id: project.id,
     name: project.title,
-    description: project.longDescription || project.description,
+    description: project.description,
+    longDescription: project.longDescription || project.description,
     technologies: project.technologies,
     category: project.category,
     github: project.github,
@@ -293,8 +294,8 @@ const Projects = () => {
                           <h4 className="text-neon-green font-semibold mb-2">
                             Overview
                           </h4>
-                          <p className="text-gray-300 leading-relaxed">
-                            {expandedProject.description}
+                          <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                            {expandedProject.longDescription}
                           </p>
                         </section>
 
@@ -319,12 +320,13 @@ const Projects = () => {
                             Highlights
                           </h4>
                           <ul className="list-disc list-inside text-gray-300 space-y-1">
-                            {(expandedProject.features && expandedProject.features.length > 0
+                            {(expandedProject.features &&
+                            expandedProject.features.length > 0
                               ? expandedProject.features
                               : [
-                                  'Clear objectives and measurable outcomes',
-                                  'Robust architecture and reliability',
-                                  'Demonstrated end-to-end validation',
+                                  "Clear objectives and measurable outcomes",
+                                  "Robust architecture and reliability",
+                                  "Demonstrated end-to-end validation",
                                 ]
                             ).map((f, i) => (
                               <li key={i}>{f}</li>
