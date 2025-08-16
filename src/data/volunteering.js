@@ -2,7 +2,7 @@
 // This file contains all volunteering experience information
 
 export const volunteeringData = [
-    {
+  {
     id: 1,
     role: "Biodiversity and Climate Action Volunteer",
     organization: "European Solidarity Corps for Youth (ESC4Y)",
@@ -11,36 +11,45 @@ export const volunteeringData = [
     startDate: "2024-09",
     endDate: "2024-10",
     type: "Environmental Conservation",
-    description: "Collaborated with IBG and the Foundation for Nature and Environment to support biodiversity (UN SDG 15) and climate action (UN SDG 13).",
+    description:
+      "Collaborated with IBG and the Foundation for Nature and Environment to support biodiversity (UN SDG 15) and climate action (UN SDG 13).",
     responsibilities: [
       "Assisted park rangers in restoring peatlands in Hunsrück-Hochwald National Park",
       "Supported biodiversity conservation efforts aligned with UN SDG 15",
       "Contributed to climate action initiatives aligned with UN SDG 13",
       "Collaborated with international volunteers on environmental projects",
-      "Participated in hands-on conservation work and ecosystem restoration"
+      "Participated in hands-on conservation work and ecosystem restoration",
     ],
-    impact: "Contributed to peatland restoration efforts supporting both biodiversity and climate action goals",
-    skills: ["Environmental Conservation", "Teamwork", "Ecosystem Restoration", "International Collaboration", "Sustainability"],
-    website: "https://www.esc4y.eu",
-    image: "/images/volunteering/esc4y-volunteer.jpg",
+    impact:
+      "Contributed to peatland restoration efforts supporting both biodiversity and climate action goals",
+    skills: [
+      "Environmental Conservation",
+      "Teamwork",
+      "Ecosystem Restoration",
+      "International Collaboration",
+      "Sustainability",
+    ],
+    website: "https://youth.europa.eu/solidarity_en",
+    image: "/images/volunteering/eucs.png",
     photos: [
       {
         url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Peatland restoration work in Hunsrück-Hochwald National Park"
+        caption: "Peatland restoration work in Hunsrück-Hochwald National Park",
       },
       {
         url: "/images/volunteering/placeholder-photo.svg",
-        caption: "International volunteer team working on biodiversity conservation"
+        caption:
+          "International volunteer team working on biodiversity conservation",
       },
       {
         url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Ecosystem restoration activities supporting UN SDG 15"
+        caption: "Ecosystem restoration activities supporting UN SDG 15",
       },
       {
         url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Conservation tools and equipment used in restoration work"
-      }
-    ]
+        caption: "Conservation tools and equipment used in restoration work",
+      },
+    ],
   },
   {
     id: 2,
@@ -51,21 +60,28 @@ export const volunteeringData = [
     startDate: "2020-01",
     endDate: "2021-06",
     type: "Education & Community Service",
-    description: "Tutored underprivileged students in mathematics and physics preparation for university entrance examinations.",
+    description:
+      "Tutored underprivileged students in mathematics and physics preparation for university entrance examinations.",
     responsibilities: [
       "Provide individual and group tutoring sessions",
       "Develop customized study plans for each student",
       "Create practice tests and study materials",
       "Track student progress and communicate with parents",
-      "Organize study groups and peer learning sessions"
+      "Organize study groups and peer learning sessions",
     ],
-    impact: "Helped 20+ students achieve 90%+ scores in entrance examinations, 85% university acceptance rate",
-    skills: ["Mathematics", "Physics", "Tutoring", "Curriculum Development", "Cross-cultural Communication"],
+    impact:
+      "Helped 20+ students achieve 90%+ scores in entrance examinations, 85% university acceptance rate",
+    skills: [
+      "Mathematics",
+      "Physics",
+      "Tutoring",
+      "Curriculum Development",
+      "Cross-cultural Communication",
+    ],
     website: null,
     image: null,
-    photos: null
+    photos: null,
   },
-  
 ];
 
 // Volunteering Statistics
@@ -74,7 +90,7 @@ export const volunteeringStats = {
   studentsHelped: 75,
   workshopsConducted: 20,
   organizationsServed: 6,
-  yearsActive: 5
+  yearsActive: 5,
 };
 
 // Volunteering Categories
@@ -85,7 +101,7 @@ export const volunteeringCategories = [
   "Academic Support",
   "Leadership & Organization",
   "Education & Community Service",
-  "Environmental Conservation"
+  "Environmental Conservation",
 ];
 
 export default volunteeringData;
