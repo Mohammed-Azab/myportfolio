@@ -127,7 +127,7 @@ const Projects = () => {
       Python: "python",
       JavaScript: "javascript",
       TypeScript: "typescript",
-      Java: "java",
+      Java: "openjdk",
       CSS: "css3",
       MATLAB: "mathworks", // closest available
       VHDL: null,
@@ -149,7 +149,7 @@ const Projects = () => {
       python: "3572A5",
       javascript: "f1e05a",
       typescript: "2b7489",
-      java: "b07219",
+      openjdk: "b07219",
       css3: "1572B6",
       mathworks: "e16737",
     };
@@ -613,10 +613,14 @@ const Projects = () => {
                               className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                             >
                               {icon ? (
-                                <img src={icon.url} alt={tech + ' logo'} className="w-4 h-4" />
+                                <img
+                                  src={icon.url}
+                                  alt={tech + " logo"}
+                                  className="w-4 h-4"
+                                />
                               ) : (
                                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
-                                  {tech.slice(0,3)}
+                                  {tech.slice(0, 3)}
                                 </span>
                               )}
                               {tech}
@@ -735,10 +739,14 @@ const Projects = () => {
                                 className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                               >
                                 {icon ? (
-                                  <img src={icon.url} alt={tech + ' logo'} className="w-4 h-4" />
+                                  <img
+                                    src={icon.url}
+                                    alt={tech + " logo"}
+                                    className="w-4 h-4"
+                                  />
                                 ) : (
                                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
-                                    {tech.slice(0,3)}
+                                    {tech.slice(0, 3)}
                                   </span>
                                 )}
                                 {tech}
