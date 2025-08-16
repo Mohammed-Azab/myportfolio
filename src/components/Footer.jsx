@@ -1,48 +1,48 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Heart, ArrowUp } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/Mohammed-Azab',
-      label: 'GitHub',
-      color: 'hover:text-gray-300'
+      href: "https://github.com/Mohammed-Azab",
+      label: "GitHub",
+      color: "hover:text-gray-300",
     },
     {
       icon: Linkedin,
-      href: 'https://www.linkedin.com/in/mohammed-azab/',
-      label: 'LinkedIn',
-      color: 'hover:text-blue-400'
+      href: "https://www.linkedin.com/in/mohammed-azab/",
+      label: "LinkedIn",
+      color: "hover:text-blue-400",
     },
     {
       icon: Mail,
-      href: 'mailto:Mohammed@azab.io',
-      label: 'Email',
-      color: 'hover:text-electric-blue'
-    }
-  ]
+      href: "mailto:Mohammed@azab.io",
+      label: "Email",
+      color: "hover:text-electric-blue",
+    },
+  ];
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Timeline', href: '#timeline' },
-    { name: 'Contact', href: '#contact' }
-  ]
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Timeline", href: "#timeline" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="relative bg-dark-surface border-t border-dark-border">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-circuit-pattern opacity-5"></div>
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -58,16 +58,21 @@ const Footer = () => {
                 Mohammed Abdelazim
               </h3>
               <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-                Mechatronics Engineering student passionate about robotics, control systems, 
-                and innovative technology solutions. Building the future through code and creativity.
+                Mechatronics Engineering student passionate about robotics,
+                control systems, and innovative technology solutions. Building
+                the future through code and creativity.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    target={social.href.startsWith('http') ? '_blank' : '_self'}
-                    rel={social.href.startsWith('http') ? 'noopener noreferrer' : ''}
+                    target={social.href.startsWith("http") ? "_blank" : "_self"}
+                    rel={
+                      social.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : ""
+                    }
                     className={`p-2 text-gray-400 ${social.color} transition-colors duration-200`}
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
@@ -88,7 +93,9 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Quick Links
+              </h4>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -113,11 +120,12 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold text-white mb-4">Get in Touch</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Get in Touch
+              </h4>
               <div className="space-y-2 text-gray-400">
                 <p>📧 Mohammed@azab.io</p>
                 <p>📍 Berlin, Germany</p>
-                <p>🚀 Available for Projects</p>
               </div>
             </motion.div>
           </div>
@@ -162,7 +170,7 @@ const Footer = () => {
 
       {/* Animated Background Elements */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-electric-blue via-neon-green to-purple-500"></div>
-      
+
       {/* Floating Particles */}
       {[...Array(3)].map((_, i) => (
         <motion.div
@@ -184,7 +192,7 @@ const Footer = () => {
         />
       ))}
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
