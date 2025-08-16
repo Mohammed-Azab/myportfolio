@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Github, ExternalLink, Star, GitFork, Calendar } from 'lucide-react'
-import { projectsData, projectCategories } from '../data/projects'
-import AnimatedLottie from './AnimatedLottie';
-import fireAnim from '../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json';
-import droneAnim from '../animation/drone/animations/6cb975bb-c16c-4507-81b2-8d2d7a61d935.json';
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Github, ExternalLink, Star, GitFork, Calendar } from "lucide-react";
+import { projectsData, projectCategories } from "../data/projects";
+import AnimatedLottie from "./AnimatedLottie";
+import fireAnim from "../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json";
+import droneAnim from "../animation/drone/animations/6cb975bb-c16c-4507-81b2-8d2d7a61d935.json";
 
 const Projects = () => {
   useEffect(() => {
@@ -39,15 +39,35 @@ const Projects = () => {
       },
     },
   };
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [loading, setLoading] = useState(false) // Set to false since we're using static data
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [loading, setLoading] = useState(false); // Set to false since we're using static data
   const [expandedId, setExpandedId] = useState(null);
-  const [lightbox, setLightbox] = useState({ open: false, src: null, scale: 1 });
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [lightbox, setLightbox] = useState({
+    open: false,
+    src: null,
+    scale: 1,
+  });
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Lightbox keyboard controls (Esc to close, +/- to zoom)
+  useEffect(() => {
+    if (!lightbox.open) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setLightbox({ open: false, src: null, scale: 1 });
+      } else if (e.key === '+') {
+        setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
+      } else if (e.key === '-') {
+        setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }));
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox.open]);
 
   // Transform projects data to match the expected format
-  const githubProjects = projectsData.map(project => ({
+  const githubProjects = projectsData.map((project) => ({
     id: project.id,
     name: project.title,
     description: project.description,
@@ -58,40 +78,38 @@ const Projects = () => {
     stars: Math.floor(Math.random() * 50) + 5, // Random stars for demo
     forks: Math.floor(Math.random() * 20) + 1, // Random forks for demo
     language: project.technologies[0], // Use first technology as primary language
-    updated: project.timeline.includes('Present') ? '2024-12-01' : '2024-06-01'
+    updated: project.timeline.includes("Present") ? "2024-12-01" : "2024-06-01",
   }));
 
   // Use imported categories instead of generating them
   const categories = projectCategories;
 
-  const expandedProject = expandedId ? githubProjects.find(p => p.id === expandedId) : null;
+  const expandedProject = expandedId
+    ? githubProjects.find((p) => p.id === expandedId)
+    : null;
 
   // Filter projects by category
-  const filteredProjects = selectedCategory === 'All'
-    ? githubProjects
-    : githubProjects.filter(project => project.category === selectedCategory);
-
-
-
-
-
-
+  const filteredProjects =
+    selectedCategory === "All"
+      ? githubProjects
+      : githubProjects.filter(
+          (project) => project.category === selectedCategory
+        );
 
   const getLanguageColor = (language) => {
     const colors = {
-      'C++': '#f34b7d',
-      'Python': '#3572A5',
-      'JavaScript': '#f1e05a',
-      'MATLAB': '#e16737',
-      'C': '#555555',
-      'TypeScript': '#2b7489'
+      "C++": "#f34b7d",
+      Python: "#3572A5",
+      JavaScript: "#f1e05a",
+      MATLAB: "#e16737",
+      C: "#555555",
+      TypeScript: "#2b7489",
     };
-    return colors[language] || '#8b5cf6';
+    return colors[language] || "#8b5cf6";
   };
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
-
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-surface via-dark-bg to-dark-surface opacity-50"></div>
 
@@ -119,9 +137,10 @@ const Projects = () => {
             variants={itemVariants}
             className="text-xl text-gray-400 max-w-3xl mx-auto"
           >
-            A showcase of my engineering projects, from embedded systems and robotics
-            to control algorithms and IoT solutions. Each project represents a step forward
-            in my journey of innovation and technical excellence.
+            A showcase of my engineering projects, from embedded systems and
+            robotics to control algorithms and IoT solutions. Each project
+            represents a step forward in my journey of innovation and technical
+            excellence.
           </motion.p>
         </motion.div>
 
@@ -142,34 +161,42 @@ const Projects = () => {
               }}
               className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 ${
                 selectedCategory === category
-                  ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg'
-                  : 'bg-dark-surface border border-dark-border text-gray-300 hover:border-electric-blue hover:text-electric-blue'
+                  ? "bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg"
+                  : "bg-dark-surface border border-dark-border text-gray-300 hover:border-electric-blue hover:text-electric-blue"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>{category}</span>
-              <span className={`text-xs px-2 py-1 rounded-full ${
-                selectedCategory === category
-                  ? 'bg-dark-bg/20 text-dark-bg'
-                  : 'bg-electric-blue/20 text-electric-blue'
-              }`}>
-                {category === 'All' ? githubProjects.length : githubProjects.filter(p => p.category === category).length}
+              <span
+                className={`text-xs px-2 py-1 rounded-full ${
+                  selectedCategory === category
+                    ? "bg-dark-bg/20 text-dark-bg"
+                    : "bg-electric-blue/20 text-electric-blue"
+                }`}
+              >
+                {category === "All"
+                  ? githubProjects.length
+                  : githubProjects.filter((p) => p.category === category)
+                      .length}
               </span>
             </motion.button>
           ))}
         </motion.div>
 
         {/* Filter Status */}
-        {selectedCategory !== 'All' && (
+        {selectedCategory !== "All" && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
             <span className="text-gray-400 text-sm">
-              Showing {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} in{' '}
-              <span className="text-electric-blue font-medium">{selectedCategory}</span>
+              Showing {filteredProjects.length} project
+              {filteredProjects.length !== 1 ? "s" : ""} in{" "}
+              <span className="text-electric-blue font-medium">
+                {selectedCategory}
+              </span>
             </span>
           </motion.div>
         )}
@@ -216,22 +243,43 @@ const Projects = () => {
                     {/* Header */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">{expandedProject.name}</h3>
-                        <p className="text-gray-400 mt-2 max-w-3xl">{expandedProject.description}</p>
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          {expandedProject.name}
+                        </h3>
+                        <p className="text-gray-400 mt-2 max-w-3xl">
+                          {expandedProject.description}
+                        </p>
                       </div>
                       <div className="flex items-center gap-4 text-sm text-gray-300">
                         {expandedProject.language && (
                           <div className="flex items-center gap-2">
                             <span
                               className="w-3 h-3 rounded-full"
-                              style={{ backgroundColor: getLanguageColor(expandedProject.language) }}
+                              style={{
+                                backgroundColor: getLanguageColor(
+                                  expandedProject.language
+                                ),
+                              }}
                             ></span>
                             <span>{expandedProject.language}</span>
                           </div>
                         )}
-                        <div className="flex items-center gap-1"><Star size={16} /><span>{expandedProject.stars}</span></div>
-                        <div className="flex items-center gap-1"><GitFork size={16} /><span>{expandedProject.forks}</span></div>
-                        <div className="flex items-center gap-1"><Calendar size={16} /><span>{new Date(expandedProject.updated).toLocaleDateString()}</span></div>
+                        <div className="flex items-center gap-1">
+                          <Star size={16} />
+                          <span>{expandedProject.stars}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <GitFork size={16} />
+                          <span>{expandedProject.forks}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar size={16} />
+                          <span>
+                            {new Date(
+                              expandedProject.updated
+                            ).toLocaleDateString()}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
@@ -239,95 +287,117 @@ const Projects = () => {
                     <div>
                       {/* Sections */}
                       <div className="space-y-6">
-                          <section>
-                            <h4 className="text-neon-green font-semibold mb-2">Overview</h4>
-                            <p className="text-gray-300 leading-relaxed">
-                              {expandedProject.description}
-                            </p>
-                          </section>
+                        <section>
+                          <h4 className="text-neon-green font-semibold mb-2">
+                            Overview
+                          </h4>
+                          <p className="text-gray-300 leading-relaxed">
+                            {expandedProject.description}
+                          </p>
+                        </section>
 
-                          <section>
-                            <h4 className="text-neon-green font-semibold mb-2">Technologies</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {expandedProject.technologies.map((tech) => (
-                                <span key={tech} className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono">
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </section>
+                        <section>
+                          <h4 className="text-neon-green font-semibold mb-2">
+                            Technologies
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {expandedProject.technologies.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </section>
 
-                          <section>
-                            <h4 className="text-neon-green font-semibold mb-2">Highlights</h4>
-                            <ul className="list-disc list-inside text-gray-300 space-y-1">
-                              <li>Key feature or achievement 1</li>
-                              <li>Key feature or achievement 2</li>
-                              <li>Key feature or achievement 3</li>
-                            </ul>
-                          </section>
+                        <section>
+                          <h4 className="text-neon-green font-semibold mb-2">
+                            Highlights
+                          </h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Key feature or achievement 1</li>
+                            <li>Key feature or achievement 2</li>
+                            <li>Key feature or achievement 3</li>
+                          </ul>
+                        </section>
 
-                          <section>
-                            <h4 className="text-neon-green font-semibold mb-2">Responsibilities</h4>
-                            <ul className="list-disc list-inside text-gray-300 space-y-1">
-                              <li>Designed and implemented core modules</li>
-                              <li>Integrated hardware/software components</li>
-                              <li>Developed CI/testing for reliability</li>
-                            </ul>
-                          </section>
+                        <section>
+                          <h4 className="text-neon-green font-semibold mb-2">
+                            Responsibilities
+                          </h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Designed and implemented core modules</li>
+                            <li>Integrated hardware/software components</li>
+                            <li>Developed CI/testing for reliability</li>
+                          </ul>
+                        </section>
 
-                          {/* Photos at the end */}
-                          <section>
-                            <h4 className="text-neon-green font-semibold mb-2">Photos</h4>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                              {((expandedProject.images || []).length ? expandedProject.images : [
-                                '/images/projects/project-placeholder.svg',
-                                '/images/projects/project-placeholder.svg',
-                                '/images/projects/project-placeholder.svg',
-                              ]).map((src, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={() => setLightbox({ open: true, src, scale: 1 })}
-                                  className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-gray-800/60"
-                                  aria-label="Open photo"
-                                >
-                                  <img src={src} alt={`Project photo ${idx+1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                                </button>
-                              ))}
-                            </div>
-                          </section>
+                        {/* Photos at the end */}
+                        <section>
+                          <h4 className="text-neon-green font-semibold mb-2">
+                            Photos
+                          </h4>
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            {((expandedProject.images || []).length
+                              ? expandedProject.images
+                              : [
+                                  "/images/projects/project-placeholder.svg",
+                                  "/images/projects/project-placeholder.svg",
+                                  "/images/projects/project-placeholder.svg",
+                                ]
+                            ).map((src, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() =>
+                                  setLightbox({ open: true, src, scale: 1 })
+                                }
+                                className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-gray-800/60"
+                                aria-label="Open photo"
+                              >
+                                <img
+                                  src={src}
+                                  alt={`Project photo ${idx + 1}`}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                              </button>
+                            ))}
+                          </div>
+                        </section>
 
-                          <div className="flex flex-wrap gap-3 pt-2">
+                        <div className="flex flex-wrap gap-3 pt-2">
+                          <motion.a
+                            href={expandedProject.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Github size={16} />
+                            Code
+                          </motion.a>
+                          {expandedProject.demo && (
                             <motion.a
-                              href={expandedProject.github}
+                              href={expandedProject.demo}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                              className="flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg text-sm font-medium hover:scale-105 transition-transform"
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                             >
-                              <Github size={16} />
-                              Code
+                              <ExternalLink size={16} />
+                              Demo
                             </motion.a>
-                            {expandedProject.demo && (
-                              <motion.a
-                                href={expandedProject.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg text-sm font-medium hover:scale-105 transition-transform"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                              >
-                                <ExternalLink size={16} />
-                                Demo
-                              </motion.a>
-                            )}
-                            <button
-                              onClick={() => setExpandedId(null)}
-                              className="ml-auto py-2 px-4 bg-gray-700/60 hover:bg-gray-600 text-white rounded-lg text-sm font-medium border border-dark-border"
-                            >
-                              Show Less
-                            </button>
-                          </div>
+                          )}
+                          <button
+                            onClick={() => setExpandedId(null)}
+                            className="ml-auto py-2 px-4 bg-gray-700/60 hover:bg-gray-600 text-white rounded-lg text-sm font-medium border border-dark-border"
+                          >
+                            Show Less
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -339,24 +409,56 @@ const Projects = () => {
             <AnimatePresence>
               {lightbox.open && (
                 <motion.div
-                  className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
+                  className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
+                  onClick={(e) => { if (e.target === e.currentTarget) setLightbox({ open:false, src:null, scale:1 }); }}
                 >
                   <div className="absolute top-4 right-4 flex gap-2">
-                    <button onClick={() => setLightbox((s)=>({ ...s, scale: Math.min(4, s.scale + 0.2) }))} className="px-3 py-1 bg-gray-700 text-white rounded">+
+                    <button
+                      onClick={() =>
+                        setLightbox((s) => ({
+                          ...s,
+                          scale: Math.min(4, s.scale + 0.2),
+                        }))
+                      }
+                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                    >
+                      +
                     </button>
-                    <button onClick={() => setLightbox((s)=>({ ...s, scale: Math.max(1, s.scale - 0.2) }))} className="px-3 py-1 bg-gray-700 text-white rounded">-
+                    <button
+                      onClick={() =>
+                        setLightbox((s) => ({
+                          ...s,
+                          scale: Math.max(1, s.scale - 0.2),
+                        }))
+                      }
+                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                    >
+                      -
                     </button>
-                    <button onClick={() => setLightbox({ open:false, src:null, scale:1 })} className="px-3 py-1 bg-gray-700 text-white rounded">Close</button>
+                    <button
+                      onClick={() =>
+                        setLightbox({ open: false, src: null, scale: 1 })
+                      }
+                      className="px-3 py-1 bg-gray-700 text-white rounded"
+                    >
+                      Close
+                    </button>
                   </div>
                   <motion.img
                     key={lightbox.src}
                     src={lightbox.src}
                     alt="Project"
                     style={{ transform: `scale(${lightbox.scale})` }}
-                    className="max-h-[85vh] max-w-[90vw] object-contain rounded"
+                    className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
+                    onWheel={(e) => {
+                      setLightbox((s) => ({
+                        ...s,
+                        scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1)))
+                      }));
+                    }}
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
@@ -366,135 +468,14 @@ const Projects = () => {
             </AnimatePresence>
 
             {/* Grid view (default) */}
-          {expandedId === null && (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  className="bg-dark-surface border border-dark-border rounded-lg overflow-hidden card-hover group"
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="relative p-6">
-                    {/* Project Animation - minimized and in outer frame */}
-                    {(project.name === "TriFlameX Rocket" || project.name === "SkyMindOS") && (
-                      <div className="absolute top-4 right-4 flex items-center justify-center z-10">
-                        {project.name === "TriFlameX Rocket" && (
-                          <AnimatedLottie animationData={fireAnim} className="w-10 h-10" />
-                        )}
-                        {project.name === "SkyMindOS" && (
-                          <AnimatedLottie animationData={droneAnim} className="w-8 h-8" />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Project Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-bold text-white group-hover:text-electric-blue transition-colors">
-                        {project.name}
-                      </h3>
-                      <div className="flex items-center gap-2">
-                        {project.language && (
-                          <div
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: getLanguageColor(project.language) }}
-                          ></div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="px-3 py-1 bg-dark-bg border border-gray-600 rounded-full text-xs text-gray-400 font-mono">
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Stats */}
-                    <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Star size={14} />
-                        <span>{project.stars}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <GitFork size={14} />
-                        <span>{project.forks}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        <span>{new Date(project.updated).toLocaleDateString()}</span>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex gap-3">
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Github size={16} />
-                        Code
-                      </motion.a>
-
-                      {project.demo && (
-                        <motion.a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg text-sm font-medium hover:scale-105 transition-transform"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <ExternalLink size={16} />
-                          Demo
-                        </motion.a>
-                      )}
-                    </div>
-                    {/* Expand Button */}
-                    <button
-                      className="mt-4 w-full py-2 px-4 bg-electric-blue text-dark-bg rounded-lg font-semibold hover:bg-neon-green transition-colors"
-                      onClick={() => setExpandedId(project.id)}
-                    >
-                      Show Details
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-            {/* Other projects below expanded (when expanded) */}
-            {expandedId !== null && (
+            {expandedId === null && (
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                {filteredProjects.filter(p => p.id !== expandedId).map((project) => (
+                {filteredProjects.map((project) => (
                   <motion.div
                     key={project.id}
                     variants={itemVariants}
@@ -502,6 +483,26 @@ const Projects = () => {
                     whileHover={{ y: -5 }}
                   >
                     <div className="relative p-6">
+                      {/* Project Animation - minimized and in outer frame */}
+                      {(project.name === "TriFlameX Rocket" ||
+                        project.name === "SkyMindOS") && (
+                        <div className="absolute top-4 right-4 flex items-center justify-center z-10">
+                          {project.name === "TriFlameX Rocket" && (
+                            <AnimatedLottie
+                              animationData={fireAnim}
+                              className="w-10 h-10"
+                            />
+                          )}
+                          {project.name === "SkyMindOS" && (
+                            <AnimatedLottie
+                              animationData={droneAnim}
+                              className="w-8 h-8"
+                            />
+                          )}
+                        </div>
+                      )}
+
+                      {/* Project Header */}
                       <div className="flex items-start justify-between mb-4">
                         <h3 className="text-xl font-bold text-white group-hover:text-electric-blue transition-colors">
                           {project.name}
@@ -510,21 +511,57 @@ const Projects = () => {
                           {project.language && (
                             <div
                               className="w-3 h-3 rounded-full"
-                              style={{ backgroundColor: getLanguageColor(project.language) }}
+                              style={{
+                                backgroundColor: getLanguageColor(
+                                  project.language
+                                ),
+                              }}
                             ></div>
                           )}
                         </div>
                       </div>
+
+                      {/* Description */}
                       <p className="text-gray-400 text-sm mb-6 leading-relaxed">
                         {project.description}
                       </p>
+
+                      {/* Technologies */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {project.technologies.slice(0, 4).map((tech) => (
-                          <span key={tech} className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono">
+                          <span
+                            key={tech}
+                            className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
+                          >
                             {tech}
                           </span>
                         ))}
+                        {project.technologies.length > 4 && (
+                          <span className="px-3 py-1 bg-dark-bg border border-gray-600 rounded-full text-xs text-gray-400 font-mono">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
                       </div>
+
+                      {/* Stats */}
+                      <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Star size={14} />
+                          <span>{project.stars}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <GitFork size={14} />
+                          <span>{project.forks}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Calendar size={14} />
+                          <span>
+                            {new Date(project.updated).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
                       <div className="flex gap-3">
                         <motion.a
                           href={project.github}
@@ -537,6 +574,7 @@ const Projects = () => {
                           <Github size={16} />
                           Code
                         </motion.a>
+
                         {project.demo && (
                           <motion.a
                             href={project.demo}
@@ -551,40 +589,125 @@ const Projects = () => {
                           </motion.a>
                         )}
                       </div>
+                      {/* Expand Button */}
+                      <button
+                        className="mt-4 w-full py-2 px-4 bg-electric-blue text-dark-bg rounded-lg font-semibold hover:bg-neon-green transition-colors"
+                        onClick={() => setExpandedId(project.id)}
+                      >
+                        Show Details
+                      </button>
                     </div>
                   </motion.div>
                 ))}
               </motion.div>
             )}
-            </div>
-          )}
+            {/* Other projects below expanded (when expanded) */}
+            {expandedId !== null && (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {filteredProjects
+                  .filter((p) => p.id !== expandedId)
+                  .map((project) => (
+                    <motion.div
+                      key={project.id}
+                      variants={itemVariants}
+                      className="bg-dark-surface border border-dark-border rounded-lg overflow-hidden card-hover group"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="relative p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-xl font-bold text-white group-hover:text-electric-blue transition-colors">
+                            {project.name}
+                          </h3>
+                          <div className="flex items-center gap-2">
+                            {project.language && (
+                              <div
+                                className="w-3 h-3 rounded-full"
+                                style={{
+                                  backgroundColor: getLanguageColor(
+                                    project.language
+                                  ),
+                                }}
+                              ></div>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.slice(0, 4).map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex gap-3">
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Github size={16} />
+                            Code
+                          </motion.a>
+                          {project.demo && (
+                            <motion.a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg text-sm font-medium hover:scale-105 transition-transform"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <ExternalLink size={16} />
+                              Demo
+                            </motion.a>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+              </motion.div>
+            )}
+          </div>
+        )}
 
-          {/* GitHub CTA */}
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="text-center mt-16"
+        {/* GitHub CTA */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mt-16"
+        >
+          <motion.a
+            href="https://github.com/Mohammed-Azab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg font-bold text-lg hover:scale-105 transition-transform"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <motion.a
-              href="https://github.com/Mohammed-Azab"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg rounded-lg font-bold text-lg hover:scale-105 transition-transform"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Github size={24} />
-              View All Projects on GitHub
-            </motion.a>
-          </motion.div>
-        </div>
+            <Github size={24} />
+            View All Projects on GitHub
+          </motion.a>
+        </motion.div>
+      </div>
 
-        {/* Section Divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
-      </section>
-    )
-  }
+      {/* Section Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
+    </section>
+  );
+};
 
-  export default Projects
-
+export default Projects;
