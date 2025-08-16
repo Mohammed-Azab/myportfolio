@@ -32,7 +32,7 @@ export const projectsData = [
     timeline: "Jan 2024 - Jun 2024",
     teamSize: "Team Project",
     achievement:
-      "3rd place in 25th RoboRacer Autonomous Racing Competition, Romania",
+      "🏆 3rd place in 25th RoboRacer Autonomous Racing Competition, Romania",
   },
   {
     id: 2,
@@ -166,7 +166,7 @@ export const projectsData = [
       "Build Systems",
       "Cryptographic Algorithms",
       "Low-Level Programming",
-      "Teamwork"
+      "Teamwork",
     ],
     category: "Digital Systems",
     status: "Completed",
@@ -183,14 +183,14 @@ export const projectsData = [
       "Python build automation and file integration tools",
       "Modular macro-based architecture for maintainability",
       "Memory-efficient register usage and stack management",
-      "Comprehensive testing suite with known test vectors"
+      "Comprehensive testing suite with known test vectors",
     ],
     timeline: "May 2024",
     teamSize: "Team Project (3 members)",
     images: [
       "/images/projects/project-placeholder.svg",
       "/images/projects/project-placeholder.svg",
-      "/images/projects/project-placeholder.svg"
+      "/images/projects/project-placeholder.svg",
     ],
   },
 ];
