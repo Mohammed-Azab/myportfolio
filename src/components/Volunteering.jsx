@@ -244,11 +244,11 @@ const Volunteering = () => {
                       {/* Timeline Dot / Organization Logo */}
                       <div className="flex-shrink-0">
                         {volunteer.image ? (
-                          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center ring-2 ring-white/10 p-2">
+                          <div className="w-24 h-14 flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white p-2">
                             <img
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
-                              className="w-full h-full object-contain rounded-full"
+                              className="max-w-full max-h-full object-contain"
                               onError={(e) => {
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
@@ -256,7 +256,9 @@ const Volunteering = () => {
                             />
                             <div className="hidden w-16 h-16 bg-gradient-to-r from-electric-blue to-neon-green rounded-full items-center justify-center ring-2 ring-white/10">
                               {(() => {
-                                const { Icon } = getCategoryMeta(volunteer.type);
+                                const { Icon } = getCategoryMeta(
+                                  volunteer.type
+                                );
                                 const IconComp = Icon;
                                 return (
                                   <IconComp
@@ -436,7 +438,9 @@ const Volunteering = () => {
                                       setLightbox({
                                         open: true,
                                         src: photo.url,
-                                        alt: photo.caption || `${volunteer.role} photo ${idx + 1}`,
+                                        alt:
+                                          photo.caption ||
+                                          `${volunteer.role} photo ${idx + 1}`,
                                         scale: 1,
                                       })
                                     }
