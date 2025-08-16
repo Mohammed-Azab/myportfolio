@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Calendar, MapPin, Users, ExternalLink, ChevronDown, ChevronUp, Clock, Target, Camera, Image } from 'lucide-react';
+import { Heart, Calendar, MapPin, Users, ExternalLink, ChevronDown, ChevronUp, Clock, Target, Camera, Image, Leaf, BookOpen, GraduationCap, Sparkles } from 'lucide-react';
 import { volunteeringData, volunteeringStats, volunteeringCategories } from '../data/volunteering';
 
 const Volunteering = () => {
@@ -14,6 +14,18 @@ const Volunteering = () => {
   const filteredVolunteering = selectedCategory === 'All'
     ? volunteeringData
     : volunteeringData.filter(volunteer => volunteer.type === selectedCategory);
+
+  const getCategoryMeta = (type) => {
+    const map = {
+      'Environmental Conservation': { Icon: Leaf, color: 'text-green-400', chip: 'border-green-400 bg-green-500/20' },
+      'Education & Community Service': { Icon: GraduationCap, color: 'text-blue-400', chip: 'border-blue-400 bg-blue-500/20' },
+      'Education & Mentoring': { Icon: BookOpen, color: 'text-sky-400', chip: 'border-sky-400 bg-sky-500/20' },
+      'Community Education': { Icon: Users, color: 'text-purple-400', chip: 'border-purple-400 bg-purple-500/20' },
+      'Academic Support': { Icon: Target, color: 'text-yellow-400', chip: 'border-yellow-400 bg-yellow-500/20' },
+      'Leadership & Organization': { Icon: Users, color: 'text-orange-400', chip: 'border-orange-400 bg-orange-500/20' },
+    };
+    return map[type] || { Icon: Heart, color: 'text-pink-400', chip: 'border-pink-400 bg-pink-500/20' };
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,22 +99,30 @@ const Volunteering = () => {
 
           {/* Category Filter */}
           <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 mb-12">
-            {volunteeringCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-electric-blue border border-gray-700'
-                }`}
-              >
-                {category}
-                <span className="ml-2 text-xs opacity-75">
-                  ({category === 'All' ? volunteeringData.length : volunteeringData.filter(v => v.type === category).length})
-                </span>
-              </button>
-            ))}
+            {volunteeringCategories.map((category) => {
+              const meta = category === 'All' ? { Icon: Sparkles } : getCategoryMeta(category);
+              const IconComp = meta.Icon || Sparkles;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-electric-blue border border-gray-700'
+                  }`}
+                  aria-label={`Filter by ${category}`}
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <IconComp className="w-4 h-4" />
+                    {category}
+                  </span>
+                  <span className="ml-2 text-xs opacity-75">
+                    ({category === 'All' ? volunteeringData.length : volunteeringData.filter(v => v.type === category).length})
+                  </span>
+                </button>
+              );
+            })}
           </motion.div>
 
           {/* Volunteering Timeline */}
@@ -121,7 +141,7 @@ const Volunteering = () => {
                       {/* Timeline Dot */}
                       <div className="flex-shrink-0">
                         <div className="w-16 h-16 bg-gradient-to-r from-electric-blue to-neon-green rounded-full flex items-center justify-center">
-                          <Heart className="w-8 h-8 text-white" />
+                          {(() => { const { Icon, color } = getCategoryMeta(volunteer.type); const IconComp = Icon; return (<IconComp className={`w-8 h-8 ${color}`} />); })()}
                         </div>
                       </div>
 
@@ -154,9 +174,9 @@ const Volunteering = () => {
                               <MapPin className="w-4 h-4 mr-2" />
                               <span>{volunteer.location}</span>
                             </div>
-                            <div className="flex items-center text-red-400">
-                              <Users className="w-4 h-4 mr-2" />
-                              <span>{volunteer.type}</span>
+                            <div className="flex items-center">
+                              {(() => { const { Icon, color } = getCategoryMeta(volunteer.type); const IconComp = Icon; return (<IconComp className={`w-4 h-4 mr-2 ${color}`} />); })()}
+                              <span className="text-gray-300">{volunteer.type}</span>
                             </div>
                           </div>
                         </div>
