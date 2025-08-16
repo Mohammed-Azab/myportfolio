@@ -70,11 +70,13 @@ const Projects = () => {
   const githubProjects = projectsData.map((project) => ({
     id: project.id,
     name: project.title,
-    description: project.description,
+    description: project.longDescription || project.description,
     technologies: project.technologies,
     category: project.category,
     github: project.github,
     demo: project.demo,
+    features: project.features || [],
+    images: project.images || [],
     stars: Math.floor(Math.random() * 50) + 5, // Random stars for demo
     forks: Math.floor(Math.random() * 20) + 1, // Random forks for demo
     language: project.technologies[0], // Use first technology as primary language
@@ -317,9 +319,16 @@ const Projects = () => {
                             Highlights
                           </h4>
                           <ul className="list-disc list-inside text-gray-300 space-y-1">
-                            <li>Key feature or achievement 1</li>
-                            <li>Key feature or achievement 2</li>
-                            <li>Key feature or achievement 3</li>
+                            {(expandedProject.features && expandedProject.features.length > 0
+                              ? expandedProject.features
+                              : [
+                                  'Clear objectives and measurable outcomes',
+                                  'Robust architecture and reliability',
+                                  'Demonstrated end-to-end validation',
+                                ]
+                            ).map((f, i) => (
+                              <li key={i}>{f}</li>
+                            ))}
                           </ul>
                         </section>
 
