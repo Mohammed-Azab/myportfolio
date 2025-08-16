@@ -120,8 +120,8 @@ const Projects = () => {
   };
 
   const languageIconData = (tech) => {
-    // Map common technologies to shields.io params (logo slug + color)
-    const logoMap = {
+    // Map common technologies to simple-icons slugs (logo-only)
+    const slugMap = {
       "C++": "cplusplus",
       C: "c",
       Python: "python",
@@ -129,25 +129,23 @@ const Projects = () => {
       TypeScript: "typescript",
       Java: "openjdk",
       CSS: "css3",
-      MATLAB: "mathworks", // close enough
-      VHDL: "verilog", // approximate
+      MATLAB: "mathworks",
+      VHDL: null,
     };
     const colorMap = {
-      cplusplus: "00599C",
-      c: "00599C",
-      python: "3670A0",
-      javascript: "323330",
-      typescript: "2B7489",
-      openjdk: "ED8B00",
+      cplusplus: "f34b7d",
+      c: "555555",
+      python: "3572A5",
+      javascript: "f1e05a",
+      typescript: "2b7489",
+      openjdk: "b07219",
       css3: "1572B6",
-      mathworks: "0076A8",
-      verilog: "A5915F",
+      mathworks: "e16737",
     };
-    const logo = logoMap[tech];
-    if (!logo) return null;
-    const color = colorMap[logo] || "444444";
-    const label = encodeURIComponent(tech);
-    const url = `https://img.shields.io/badge/${label}-${color}.svg?style=flat&logo=${logo}&logoColor=white`;
+    const slug = slugMap[tech] || null;
+    if (!slug) return null;
+    const color = colorMap[slug] || "8b5cf6";
+    const url = `https://cdn.simpleicons.org/${slug}/${color}`;
     return { url };
   };
 
@@ -604,7 +602,11 @@ const Projects = () => {
                               className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                             >
                               {icon ? (
-                                <img src={icon.url} alt={tech + " logo"} className="h-4" />
+                                <img
+                                  src={icon.url}
+                                  alt={tech + " logo"}
+                                  className="h-4"
+                                />
                               ) : (
                                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
                                   {tech.slice(0, 3)}
@@ -725,7 +727,11 @@ const Projects = () => {
                                 className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                               >
                                 {icon ? (
-                                  <img src={icon.url} alt={tech + " logo"} className="h-4" />
+                                  <img
+                                    src={icon.url}
+                                    alt={tech + " logo"}
+                                    className="h-4"
+                                  />
                                 ) : (
                                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-sm bg-electric-blue/20 text-[10px] font-bold text-electric-blue">
                                     {tech.slice(0, 3)}
