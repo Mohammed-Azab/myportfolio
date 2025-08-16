@@ -6,8 +6,6 @@ import { useRef } from "react";
 import {
   Github,
   ExternalLink,
-  Star,
-  GitFork,
   Calendar,
   Crown,
   X,
@@ -347,6 +345,17 @@ const Projects = () => {
                         <h3 className="text-2xl md:text-3xl font-bold text-white">
                           {expandedProject.name}
                         </h3>
+                        {/* Achievement */}
+                        {expandedProject.achievement && (
+                          <div className="mt-3 mb-2">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-electric-blue/10 to-neon-green/10 border border-electric-blue/20 rounded-lg">
+                              <Crown className="w-4 h-4 text-yellow-400" />
+                              <span className="text-sm text-electric-blue font-medium">
+                                {expandedProject.achievement}
+                              </span>
+                            </div>
+                          </div>
+                        )}
                         <p className="text-gray-400 mt-2 max-w-3xl">
                           {expandedProject.description}
                         </p>
@@ -365,25 +374,8 @@ const Projects = () => {
                             <span>{expandedProject.language}</span>
                           </div>
                         )}
-                        {expandedProject.achievement &&
-                          expandedProject.achievement
-                            .toLowerCase()
-                            .includes("3rd place") && (
-                            <div className="flex items-center gap-1 text-yellow-300">
-                              <Crown size={16} />
-                              <span className="whitespace-nowrap">
-                                {expandedProject.achievement}
-                              </span>
-                            </div>
-                          )}
-                        <div className="flex items-center gap-1">
-                          <Star size={16} />
-                          <span>{expandedProject.stars}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <GitFork size={16} />
-                          <span>{expandedProject.forks}</span>
-                        </div>
+
+
                         <div className="flex items-center gap-1">
                           <Calendar size={16} />
                           <span>
@@ -454,17 +446,6 @@ const Projects = () => {
                             ).map((f, i) => (
                               <li key={i}>{f}</li>
                             ))}
-                          </ul>
-                        </section>
-
-                        <section>
-                          <h4 className="text-neon-green font-semibold mb-2">
-                            Responsibilities
-                          </h4>
-                          <ul className="list-disc list-inside text-gray-300 space-y-1">
-                            <li>Designed and implemented core modules</li>
-                            <li>Integrated hardware/software components</li>
-                            <li>Developed CI/testing for reliability</li>
                           </ul>
                         </section>
 
