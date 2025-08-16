@@ -38,9 +38,9 @@ export const projectsData = [
     id: 2,
     title: "TriFlameX: Swarm of Fire-Fighting Robots",
     description:
-      "TriFlameX is a swarm of three autonomous fire‑fighting robots that collaboratively detect, locate, and suppress small‑scale fires in indoor or controlled outdoor environments.",
+      "Swarm of three autonomous robots that cooperatively detect, localize, and suppress small fires.",
     longDescription:
-      "Each robot combines mobility, real‑time sensing, wireless communication, and on‑board decision‑making.\n\nCommunication (📡):\n• UART for intra‑car data transfer\n• MQTT over Wi‑Fi for inter‑device communication\n\nSystem Architecture (three‑layer):\nI. Laptop (Central Controller) 💻 – Runs high‑level Python algorithms, communicates with ESP32 via MQTT/Wi‑Fi, integrates ROS2 for manual control using the /joy topic.\nII. ESP32 (Communication Hub) 📡 – Reads ToF sensor data via UART1 and publishes/subscribes via MQTT (C++); forwards commands to STM32 over UART2 using a custom 6‑byte binary protocol.\nIII. STM32 (Low‑Level Controller) ⚙️ – Validates and executes commands; controls motors/servos using PWM and PD control with safety checks (Embedded C, bare‑metal).\n\nKey Technical Highlights (🔧):\n• Custom real‑time GUI for data visualization.\n• Custom Thermal LiDAR built from ToF sensor + stepper motor + flame sensor.\n• ‘Azab Protocol’: a fast, reliable, lightweight 6‑byte binary protocol using interrupts + FreeRTOS at 500k baud for ESP32↔STM32 communication.",
+      "Overview\nTriFlameX is a swarm of three robots that work together to find and suppress small fires in indoor or controlled outdoor spaces. Each robot combines mobility, real‑time sensing, wireless communication, and on‑board decision making.\n\nCommunication\n- UART for intra‑car data transfer\n- MQTT over Wi‑Fi for inter‑device messaging\n\nSystem architecture (three layers)\n1) Laptop (central controller): runs Python algorithms, talks to ESP32 via MQTT/Wi‑Fi, integrates ROS2 for manual control using the /joy topic.\n2) ESP32 (communication hub): reads ToF sensor data over UART1, uses MQTT (C++), forwards commands to STM32 over UART2 using a custom 6‑byte binary protocol.\n3) STM32 (low‑level controller): validates and executes commands; controls motors and servos using PWM and PD control with safety checks (Embedded C, bare metal).",
     image: "/images/projects/project-placeholder.svg",
     technologies: [
       "ESP32",
@@ -56,11 +56,13 @@ export const projectsData = [
     github: "https://github.com/Mohammed-Azab/TriFlameX",
     demo: "https://youtube.com/watch?v=triflamex-demo",
     features: [
-      "Multi-layer architecture (Laptop–ESP32–STM32)",
-      "Interrupt-driven Azab Protocol for binary communication",
-      "Custom thermal LiDAR system for fire localization",
-      "ROS2, MQTT, and UART integration",
-      "Coordinated swarm behavior",
+      "Three‑layer architecture (laptop, ESP32, STM32)",
+      "Custom 6‑byte binary protocol (Azab Protocol) with interrupts + FreeRTOS at 500k baud",
+      "Thermal LiDAR built from ToF sensor + stepper motor + flame sensor",
+      "Real‑time GUI for data visualization",
+      "ROS2 manual control via /joy, MQTT messaging, UART links",
+      "Coordinated detection and suppression behavior",
+      "Safety checks and PD control on STM32 low‑level layer"
     ],
     timeline: "Sep 2023 - Feb 2024",
     teamSize: "Team of 3",
