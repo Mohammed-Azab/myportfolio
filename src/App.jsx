@@ -34,9 +34,9 @@ function App() {
           <About />
           <Timeline />
           <Education />
+          <Skills />
           <Projects />
           <Courses />
-          <Skills />
           <Volunteering />
           <Awards />
           <Contact />

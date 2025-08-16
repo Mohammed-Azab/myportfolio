@@ -12,7 +12,7 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50)
 
       // Get all sections
-      const sections = ['home', 'about', 'experience', 'education', 'projects', 'courses', 'skills', 'volunteering', 'awards', 'contact']
+      const sections = ['home', 'about', 'experience', 'education', 'skills', 'projects', 'courses', 'volunteering', 'awards', 'contact']
       const scrollPosition = window.scrollY + 100 // Offset for navbar height
 
       // Find which section is currently in view
@@ -35,9 +35,9 @@ const Navbar = () => {
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'Education', href: '#education', id: 'education' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Courses', href: '#courses', id: 'courses' },
-    { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Volunteering', href: '#volunteering', id: 'volunteering' },
     { name: 'Awards', href: '#awards', id: 'awards' },
     { name: 'Contact', href: '#contact', id: 'contact' },
