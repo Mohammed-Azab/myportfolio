@@ -122,49 +122,80 @@ const Projects = () => {
   const getTechBadge = (tech) => {
     const techBadges = {
       // Languages
-      "Python": "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54",
-      "Java": "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white",
-      "JavaScript": "https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E",
-      "CSS": "https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white",
-      "C++": "https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white",
-      "C": "https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white",
-      "VHDL": "https://img.shields.io/badge/VHDL-%23A5915F.svg?style=for-the-badge&logo=verilog&logoColor=white",
-      "x86 Assembly": "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
-      
+      Python:
+        "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54",
+      Java: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white",
+      JavaScript:
+        "https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E",
+      CSS: "https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white",
+      "C++":
+        "https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white",
+      C: "https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white",
+      VHDL: "https://img.shields.io/badge/VHDL-%23A5915F.svg?style=for-the-badge&logo=verilog&logoColor=white",
+      "x86 Assembly":
+        "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
+
       // Frameworks & Tools
-      "ROS2": "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
-      "JavaFX": "https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white",
-      "FreeRTOS": "https://img.shields.io/badge/freertos-%23000000.svg?style=for-the-badge&logo=freertos&logoColor=white",
-      
+      ROS2: "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+      JavaFX:
+        "https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white",
+      FreeRTOS:
+        "https://img.shields.io/badge/freertos-%23000000.svg?style=for-the-badge&logo=freertos&logoColor=white",
+
       // Hardware
-      "NVIDIA Jetson": "https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white",
-      "ESP32": "https://img.shields.io/badge/ESP32-%23000000.svg?style=for-the-badge&logo=espressif&logoColor=white",
-      "STM32": "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white",
-      "FPGA": "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
-      "Arduino": "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
-      
+      "NVIDIA Jetson":
+        "https://img.shields.io/badge/nVIDIA_Jetson-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white",
+      ESP32:
+        "https://img.shields.io/badge/ESP32-%23000000.svg?style=for-the-badge&logo=espressif&logoColor=white",
+      STM32:
+        "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white",
+      FPGA: "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+      Arduino:
+        "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white",
+
       // Software & Tools
-      "MATLAB": "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge",
-      "Simulink": "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge",
-      "Git": "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white",
-      "GitHub": "https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white",
-      "Altera Quartus": "https://img.shields.io/badge/Quartus-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
-      
+      MATLAB: "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge",
+      Simulink:
+        "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge",
+      Git: "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white",
+      GitHub:
+        "https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white",
+      "Altera Quartus":
+        "https://img.shields.io/badge/Quartus-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white",
+
       // Control Systems
-      "PID": "https://img.shields.io/badge/PID-orange?style=for-the-badge",
-      "Lead–Lag": "https://img.shields.io/badge/Lead--Lag-green?style=for-the-badge",
-      "MPC": "https://img.shields.io/badge/MPC-violet?style=for-the-badge",
-      
+      PID: "https://img.shields.io/badge/PID-orange?style=for-the-badge",
+      "Lead–Lag":
+        "https://img.shields.io/badge/Lead--Lag-green?style=for-the-badge",
+      MPC: "https://img.shields.io/badge/MPC-violet?style=for-the-badge",
+
       // AI/ML
-      "AI": "https://img.shields.io/badge/AI-%23FF6F00.svg?style=for-the-badge&logo=tensorflow&logoColor=white",
-      "OpenCV": "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white",
-      
-      // Specialized
-      "SLAM": "https://img.shields.io/badge/SLAM-blue?style=for-the-badge",
-      "AES‑128": "https://img.shields.io/badge/AES--128-red?style=for-the-badge",
-      "NLP": "https://img.shields.io/badge/NLP-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white",
-      "RViz": "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
-      "Gazebo": "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
+      AI: "https://img.shields.io/badge/AI-%23FF6F00.svg?style=for-the-badge&logo=tensorflow&logoColor=white",
+      OpenCV:
+        "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white",
+
+              // Specialized
+        SLAM: "https://img.shields.io/badge/SLAM-blue?style=for-the-badge",
+        "AES‑128":
+          "https://img.shields.io/badge/AES--128-red?style=for-the-badge",
+        NLP: "https://img.shields.io/badge/NLP-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white",
+        RViz: "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+        Gazebo:
+          "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
+        
+        // Technical/Algorithms
+        "Extended Kalman Filter": "https://img.shields.io/badge/Extended_Kalman_Filter-purple?style=for-the-badge",
+        "Matrix Theory": "https://img.shields.io/badge/Matrix_Theory-darkblue?style=for-the-badge",
+        "Digital Signal Processing": "https://img.shields.io/badge/DSP-darkgreen?style=for-the-badge",
+        
+        // Communication/Protocols
+        MQTT: "https://img.shields.io/badge/MQTT-3C5280?style=for-the-badge&logo=eclipsemosquitto&logoColor=white",
+        UART: "https://img.shields.io/badge/UART-orange?style=for-the-badge",
+        
+        // Hardware/Sensors
+        "Thermal LiDAR": "https://img.shields.io/badge/Thermal_LiDAR-red?style=for-the-badge",
+        Servo: "https://img.shields.io/badge/Servo-blue?style=for-the-badge",
+        Ultrasonic: "https://img.shields.io/badge/Ultrasonic-lightblue?style=for-the-badge",
     };
 
     return techBadges[tech] || null;
@@ -377,7 +408,10 @@ const Projects = () => {
                             {expandedProject.technologies.map((tech) => {
                               const badgeUrl = getTechBadge(tech);
                               return (
-                                <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                                <div
+                                  key={tech}
+                                  className="hover:scale-105 transition-transform duration-200"
+                                >
                                   {badgeUrl ? (
                                     <img
                                       src={badgeUrl}
@@ -629,7 +663,10 @@ const Projects = () => {
                         {project.technologies.slice(0, 4).map((tech) => {
                           const badgeUrl = getTechBadge(tech);
                           return (
-                            <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                            <div
+                              key={tech}
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
                               {badgeUrl ? (
                                 <img
                                   src={badgeUrl}
@@ -752,7 +789,10 @@ const Projects = () => {
                           {project.technologies.slice(0, 4).map((tech) => {
                             const badgeUrl = getTechBadge(tech);
                             return (
-                              <div key={tech} className="hover:scale-105 transition-transform duration-200">
+                              <div
+                                key={tech}
+                                className="hover:scale-105 transition-transform duration-200"
+                              >
                                 {badgeUrl ? (
                                   <img
                                     src={badgeUrl}
