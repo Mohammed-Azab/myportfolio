@@ -1,4 +1,4 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mohammed Azab monogram">
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MA monogram">
   <defs>
     <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#00D4FF"/>
@@ -9,12 +9,15 @@
       <stop offset="100%" stop-color="#39FF14"/>
     </linearGradient>
   </defs>
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#g1)" opacity="0.1"/>
   <!-- Outer ring -->
-  <circle cx="256" cy="256" r="228" stroke="url(#g1)" stroke-width="20" fill="transparent"/>
-  <!-- Stylized M -->
-  <path d="M120 352 L120 170 L176 250 L256 170 L336 250 L392 170 L392 352" stroke="url(#g1)" stroke-width="28" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-  <!-- Stylized A (inner) -->
-  <path d="M170 352 L256 200 L342 352" stroke="url(#g2)" stroke-width="26" stroke-linecap="round" fill="none"/>
-  <line x1="210" y1="300" x2="302" y2="300" stroke="#00E5A8" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="228" stroke="url(#g1)" stroke-width="16" fill="transparent"/>
+  <!-- Letter M -->
+  <path d="M130 360 L130 180 L180 260 L256 180 L332 260 L382 180 L382 360" stroke="url(#g1)" stroke-width="32" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+  <!-- Letter A -->
+  <path d="M180 360 L256 210 L332 360" stroke="url(#g2)" stroke-width="28" stroke-linecap="round" fill="none"/>
+  <line x1="218" y1="310" x2="294" y2="310" stroke="#00E5A8" stroke-width="20" stroke-linecap="round"/>
 </svg>
+
 
