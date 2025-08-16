@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Award, Clock, Calendar, ExternalLink, Filter, Star } from 'lucide-react';
+import { BookOpen, Award, Clock, Calendar, ExternalLink, Filter, Star, BadgeCheck } from 'lucide-react';
 import { coursesData, courseCategories, learningStats } from '../data/courses';
 
 const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLevel, setSelectedLevel] = useState('All');
 
-  const levels = ['All', 'Beginner', 'Intermediate', 'Advanced', 'Professional'];
+  const levels = ['All', 'Intermediate', 'Advanced', 'Professional'];
 
   const filteredCourses = coursesData.filter(course => {
     const categoryMatch = selectedCategory === 'All' || course.category === selectedCategory;
@@ -79,31 +79,23 @@ const Courses = () => {
             </p>
           </motion.div>
 
-          {/* Learning Statistics */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12">
+          {/* Key Stats */}
+          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
-              <div className="text-2xl font-bold text-blue-400 mb-1">{learningStats.totalCourses}</div>
-              <div className="text-gray-300 text-sm">Total Courses</div>
+              <div className="text-2xl font-bold text-blue-400 mb-1">{learningStats.completedCourses}</div>
+              <div className="text-gray-300 text-sm">Completed Courses</div>
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
-              <div className="text-2xl font-bold text-green-400 mb-1">{learningStats.completedCourses}</div>
-              <div className="text-gray-300 text-sm">Completed</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
-              <div className="text-2xl font-bold text-orange-400 mb-1">{learningStats.certificatesEarned}</div>
+              <div className="text-2xl font-bold text-green-400 mb-1">{learningStats.certificatesEarned}</div>
               <div className="text-gray-300 text-sm">Certificates</div>
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
               <div className="text-2xl font-bold text-purple-400 mb-1">{learningStats.totalLearningHours}</div>
-              <div className="text-gray-300 text-sm">Learning Hours</div>
+              <div className="text-gray-300 text-sm">Hours of Learning</div>
             </div>
             <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
-              <div className="text-2xl font-bold text-pink-400 mb-1">{learningStats.skillsAcquired}</div>
-              <div className="text-gray-300 text-sm">Skills Acquired</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-4 text-center border border-gray-700">
-              <div className="text-2xl font-bold text-yellow-400 mb-1">{learningStats.averageGrade}</div>
-              <div className="text-gray-300 text-sm">Avg. Grade</div>
+              <div className="text-2xl font-bold text-yellow-400 mb-1">{learningStats.skillsAcquired}</div>
+              <div className="text-gray-300 text-sm">Distinct Skills</div>
             </div>
           </motion.div>
 
@@ -113,16 +105,16 @@ const Courses = () => {
               <Filter className="w-5 h-5 mr-2" />
               Course Categories
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6">
               {courseCategories.map((category) => (
-                <div
+                <button
                   key={category.name}
-                  className="bg-gray-800 rounded-lg p-3 text-center border border-gray-700 hover:border-blue-400 transition-colors"
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`px-3 py-1.5 rounded-full text-sm border ${selectedCategory === category.name ? 'border-blue-400 text-blue-300 bg-blue-400/10' : 'border-gray-700 text-gray-300 hover:border-blue-400'}`}
                 >
-                  <div className="text-2xl mb-1">{category.icon}</div>
-                  <div className="text-sm font-medium text-white">{category.name}</div>
-                  <div className="text-xs text-gray-400">{category.count} courses</div>
-                </div>
+                  {category.name}
+                  <span className="ml-2 text-xs text-gray-400">{category.count}</span>
+                </button>
               ))}
             </div>
           </motion.div>
@@ -203,7 +195,7 @@ const Courses = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-4">
                     {course.description}
                   </p>
 
@@ -228,8 +220,8 @@ const Courses = () => {
                   <div className="flex items-center justify-between">
                     {course.certificate.issued ? (
                       <div className="flex items-center text-green-400 text-sm">
-                        <Award className="w-4 h-4 mr-2" />
-                        <span>Certified</span>
+                        <BadgeCheck className="w-4 h-4 mr-2" />
+                        <span>Verified Certificate</span>
                       </div>
                     ) : (
                       <div className="flex items-center text-gray-400 text-sm">

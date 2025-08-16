@@ -232,52 +232,8 @@ export const coursesData = [
       "Real-time Spectrum Analyzer"
     ]
   },
-  {
-    id: 7,
-    title: "3D Printing and Additive Manufacturing",
-    provider: "FutureLearn - University of Sheffield",
-    category: "Manufacturing",
-    level: "Beginner",
-    duration: "4 weeks",
-    period: "Aug 2022 - Sep 2022",
-    status: "Completed",
-    grade: "Distinction",
-    description: "Introduction to 3D printing technologies, materials, and design for additive manufacturing.",
-    skills: ["3D Printing", "CAD Design", "Materials Science", "Rapid Prototyping"],
-    certificate: {
-      issued: true,
-      url: "https://futurelearn.com/certificates/...",
-      credentialId: "FL-3DP-2022-321"
-    },
-    projects: [
-      "Custom Robot Chassis Design",
-      "Functional Prototype Parts",
-      "Multi-material Printing"
-    ]
-  },
-  {
-    id: 8,
-    title: "Renewable Energy Systems",
-    provider: "Online Learning Platform",
-    category: "Energy",
-    level: "Intermediate",
-    duration: "8 weeks",
-    period: "May 2024 - Jul 2024",
-    status: "In Progress",
-    grade: null,
-    description: "Comprehensive study of renewable energy technologies including solar, wind, and energy storage systems.",
-    skills: ["Solar Energy", "Wind Power", "Energy Storage", "Power Electronics", "Grid Integration"],
-    certificate: {
-      issued: false,
-      url: null,
-      credentialId: null
-    },
-    projects: [
-      "Solar Panel Efficiency Analysis",
-      "Wind Turbine Control System",
-      "Battery Management System"
-    ]
-  }
+  // Removed beginner-level 3D Printing to keep section concise and professional
+  // Removed generic in-progress renewable energy course to focus on core mechatronics/robotics
 ];
 
 // Course Categories
