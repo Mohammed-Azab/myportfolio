@@ -86,10 +86,9 @@ const Projects = () => {
     achievement: project.achievement,
     features: project.features || [],
     images: project.images || [],
-    stars: Math.floor(Math.random() * 50) + 5, // Random stars for demo
-    forks: Math.floor(Math.random() * 20) + 1, // Random forks for demo
+
     language: project.technologies[0], // Use first technology as primary language
-    updated: project.timeline.includes("Present") ? "2024-12-01" : "2024-06-01",
+    timeline: project.timeline,
   }));
 
   // Use imported categories instead of generating them
@@ -174,28 +173,33 @@ const Projects = () => {
       OpenCV:
         "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white",
 
-              // Specialized
-        SLAM: "https://img.shields.io/badge/SLAM-blue?style=for-the-badge",
-        "AES‑128":
-          "https://img.shields.io/badge/AES--128-red?style=for-the-badge",
-        NLP: "https://img.shields.io/badge/NLP-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white",
-        RViz: "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
-        Gazebo:
-          "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
-        
-        // Technical/Algorithms
-        "Extended Kalman Filter": "https://img.shields.io/badge/Extended_Kalman_Filter-purple?style=for-the-badge",
-        "Matrix Theory": "https://img.shields.io/badge/Matrix_Theory-darkblue?style=for-the-badge",
-        "Digital Signal Processing": "https://img.shields.io/badge/DSP-darkgreen?style=for-the-badge",
-        
-        // Communication/Protocols
-        MQTT: "https://img.shields.io/badge/MQTT-3C5280?style=for-the-badge&logo=eclipsemosquitto&logoColor=white",
-        UART: "https://img.shields.io/badge/UART-orange?style=for-the-badge",
-        
-        // Hardware/Sensors
-        "Thermal LiDAR": "https://img.shields.io/badge/Thermal_LiDAR-red?style=for-the-badge",
-        Servo: "https://img.shields.io/badge/Servo-blue?style=for-the-badge",
-        Ultrasonic: "https://img.shields.io/badge/Ultrasonic-lightblue?style=for-the-badge",
+      // Specialized
+      SLAM: "https://img.shields.io/badge/SLAM-blue?style=for-the-badge",
+      "AES‑128":
+        "https://img.shields.io/badge/AES--128-red?style=for-the-badge",
+      NLP: "https://img.shields.io/badge/NLP-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white",
+      RViz: "https://img.shields.io/badge/RViz-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
+      Gazebo:
+        "https://img.shields.io/badge/Gazebo-%23FF6600.svg?style=for-the-badge&logo=gazebo&logoColor=white",
+
+      // Technical/Algorithms
+      "Extended Kalman Filter":
+        "https://img.shields.io/badge/Extended_Kalman_Filter-purple?style=for-the-badge",
+      "Matrix Theory":
+        "https://img.shields.io/badge/Matrix_Theory-darkblue?style=for-the-badge",
+      "Digital Signal Processing":
+        "https://img.shields.io/badge/DSP-darkgreen?style=for-the-badge",
+
+      // Communication/Protocols
+      MQTT: "https://img.shields.io/badge/MQTT-3C5280?style=for-the-badge&logo=eclipsemosquitto&logoColor=white",
+      UART: "https://img.shields.io/badge/UART-orange?style=for-the-badge",
+
+      // Hardware/Sensors
+      "Thermal LiDAR":
+        "https://img.shields.io/badge/Thermal_LiDAR-red?style=for-the-badge",
+      Servo: "https://img.shields.io/badge/Servo-blue?style=for-the-badge",
+      Ultrasonic:
+        "https://img.shields.io/badge/Ultrasonic-lightblue?style=for-the-badge",
     };
 
     return techBadges[tech] || null;
@@ -689,23 +693,20 @@ const Projects = () => {
                         )}
                       </div>
 
-                      {/* Stats */}
-                      <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
-                        <div className="flex items-center gap-1">
-                          <Star size={14} />
-                          <span>{project.stars}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <GitFork size={14} />
-                          <span>{project.forks}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar size={14} />
-                          <span>
-                            {new Date(project.updated).toLocaleDateString()}
-                          </span>
-                        </div>
+                      {/* Timeline */}
+                      <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
+                        <Calendar size={14} />
+                        <span>{project.timeline}</span>
                       </div>
+
+                      {/* Achievement */}
+                      {project.achievement && (
+                        <div className="mb-4 p-3 bg-gradient-to-r from-electric-blue/10 to-neon-green/10 border border-electric-blue/20 rounded-lg">
+                          <p className="text-sm text-electric-blue font-medium leading-relaxed">
+                            🏆 {project.achievement}
+                          </p>
+                        </div>
+                      )}
 
                       {/* Action Buttons */}
                       <div className="flex gap-3">
