@@ -3,7 +3,14 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Github, ExternalLink, Star, GitFork, Calendar, Crown } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Star,
+  GitFork,
+  Calendar,
+  Crown,
+} from "lucide-react";
 import { projectsData, projectCategories } from "../data/projects";
 import AnimatedLottie from "./AnimatedLottie";
 import fireAnim from "../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json";
@@ -113,17 +120,33 @@ const Projects = () => {
   };
 
   const languageIconData = (tech) => {
-    const map = {
-      'C++': { abbr: 'C++', color: '#f34b7d' },
-      'C': { abbr: 'C', color: '#555555' },
-      'Python': { abbr: 'Py', color: '#3572A5' },
-      'JavaScript': { abbr: 'JS', color: '#f1e05a', text: '#111' },
-      'TypeScript': { abbr: 'TS', color: '#2b7489' },
-      'MATLAB': { abbr: 'M', color: '#e16737' },
-      'Java': { abbr: 'J', color: '#b07219' },
-      'VHDL': { abbr: 'V', color: '#a074c4' },
+    // Map common technologies to simple-icons slugs
+    const slugMap = {
+      'C++': 'cplusplus',
+      'C': 'c',
+      'Python': 'python',
+      'JavaScript': 'javascript',
+      'TypeScript': 'typescript',
+      'Java': 'java',
+      'CSS': 'css3',
+      'MATLAB': 'mathworks', // closest available
+      'VHDL': null,
     };
-    return map[tech] || null;
+    const colorMap = {
+      'cplusplus': 'f34b7d',
+      'c': '555555',
+      'python': '3572A5',
+      'javascript': 'f1e05a',
+      'typescript': '2b7489',
+      'java': 'b07219',
+      'css3': '1572B6',
+      'mathworks': 'e16737',
+    };
+    const slug = slugMap[tech] || null;
+    if (!slug) return null;
+    const color = colorMap[slug] || '8b5cf6';
+    const url = `https://cdn.simpleicons.org/${slug}/${color}`;
+    return { url };
   };
 
   return (
@@ -282,12 +305,17 @@ const Projects = () => {
                             <span>{expandedProject.language}</span>
                           </div>
                         )}
-                        {expandedProject.achievement && expandedProject.achievement.toLowerCase().includes('3rd place') && (
-                          <div className="flex items-center gap-1 text-yellow-300">
-                            <Crown size={16} />
-                            <span className="whitespace-nowrap">{expandedProject.achievement}</span>
-                          </div>
-                        )}
+                        {expandedProject.achievement &&
+                          expandedProject.achievement
+                            .toLowerCase()
+                            .includes("3rd place") && (
+                            <div className="flex items-center gap-1 text-yellow-300">
+                              <Crown size={16} />
+                              <span className="whitespace-nowrap">
+                                {expandedProject.achievement}
+                              </span>
+                            </div>
+                          )}
                         <div className="flex items-center gap-1">
                           <Star size={16} />
                           <span>{expandedProject.stars}</span>
@@ -574,13 +602,7 @@ const Projects = () => {
                               className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
                             >
                               {icon ? (
-                                <span
-                                  className="inline-flex items-center justify-center w-5 h-5 rounded-sm text-[10px] font-bold"
-                                  style={{ backgroundColor: icon.color, color: icon.text || '#0a0a0a' }}
-                                  aria-hidden
-                                >
-                                  {icon.abbr}
-                                </span>
+                                <img src={icon.url} alt="" className="w-4 h-4" aria-hidden />
                               ) : null}
                               {tech}
                             </span>
@@ -690,14 +712,20 @@ const Projects = () => {
                           {project.description}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-6">
-                          {project.technologies.slice(0, 4).map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                          {project.technologies.slice(0, 4).map((tech) => {
+                            const icon = languageIconData(tech);
+                            return (
+                              <span
+                                key={tech}
+                                className="inline-flex items-center gap-2 px-3 py-1 bg-dark-bg border border-electric-blue/30 rounded-full text-xs text-electric-blue font-mono"
+                              >
+                                {icon ? (
+                                  <img src={icon.url} alt="" className="w-4 h-4" aria-hidden />
+                                ) : null}
+                                {tech}
+                              </span>
+                            );
+                          })}
                         </div>
                         <div className="flex gap-3">
                           <motion.a
