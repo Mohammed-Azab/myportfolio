@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Cpu, Wrench, Monitor, Globe2, Users } from "lucide-react";
 
 const Skills = () => {
   const ref = useRef(null);
@@ -10,77 +9,181 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: "Programming",
-      Icon: Code2,
+      title: "Languages",
       skills: [
-        "C++",
-        "Embedded C",
-        "Python",
-        "Java",
-        "VHDL",
-        "Assembly",
-        "CSS",
+        {
+          name: "C",
+          badge: "https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white"
+        },
+        {
+          name: "C++",
+          badge: "https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white"
+        },
+        {
+          name: "Java",
+          badge: "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"
+        },
+        {
+          name: "Python",
+          badge: "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+        },
+        {
+          name: "Assembly",
+          badge: "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white"
+        },
+        {
+          name: "VHDL",
+          badge: "https://img.shields.io/badge/VHDL-%23A5915F.svg?style=for-the-badge&logo=verilog&logoColor=white"
+        },
+        {
+          name: "JavaScript",
+          badge: "https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+        },
+        {
+          name: "CSS3",
+          badge: "https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"
+        }
       ],
     },
     {
-      title: "Tools & Frameworks",
-      Icon: Wrench,
+      title: "AI/ML",
       skills: [
-        "ROS2",
-        "RViz",
-        "Gazebo",
-        "CMake",
-        "Conan",
-        "Docker",
-        "Git",
-        "MATLAB",
-        "Simulink",
-        "Quartus",
-        "Bash",
-        "PowerShell",
+        {
+          name: "OpenCV",
+          badge: "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white"
+        },
+        {
+          name: "NumPy",
+          badge: "https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"
+        },
+        {
+          name: "Pandas",
+          badge: "https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"
+        }
       ],
     },
     {
-      title: "Hardware Platforms",
-      Icon: Cpu,
+      title: "Embedded Systems",
       skills: [
-        "NVIDIA Jetson",
-        "Raspberry Pi",
-        "STM32",
-        "ESP32",
-        "FPGA",
-        "Arduino",
+        {
+          name: "ROS2",
+          badge: "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white"
+        },
+        {
+          name: "Raspberry Pi",
+          badge: "https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi"
+        },
+        {
+          name: "NVIDIA",
+          badge: "https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white"
+        },
+        {
+          name: "STM32",
+          badge: "https://img.shields.io/badge/STM32-%230073C7.svg?style=for-the-badge&logo=stmicroelectronics&logoColor=white"
+        },
+        {
+          name: "Arduino",
+          badge: "https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white"
+        },
+        {
+          name: "FPGA",
+          badge: "https://img.shields.io/badge/FPGA-%230071C5.svg?style=for-the-badge&logo=intel&logoColor=white"
+        },
+        {
+          name: "CMake",
+          badge: "https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white"
+        }
       ],
     },
     {
       title: "Operating Systems",
-      Icon: Monitor,
-      skills: ["Ubuntu", "Arch Linux", "Windows"],
-    },
-    {
-      title: "Technical",
-      Icon: Wrench,
       skills: [
-        "System Optimization",
-        "Hardware-Software Integration",
-        "API Documentation",
+        {
+          name: "Ubuntu",
+          badge: "https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white"
+        },
+        {
+          name: "Arch Linux",
+          badge: "https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white"
+        },
+        {
+          name: "Windows",
+          badge: "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"
+        }
       ],
     },
     {
-      title: "Languages",
-      Icon: Globe2,
-      skills: ["English (C1)", "German (B2)", "Arabic (Native)"],
-    },
-    {
-      title: "Interpersonal",
-      Icon: Users,
+      title: "Control Systems",
       skills: [
-        "Leadership",
-        "Communication",
-        "Public Speaking",
-        "Time Management",
+        {
+          name: "MPC",
+          badge: "https://img.shields.io/badge/MPC-violet?style=for-the-badge"
+        },
+        {
+          name: "PID",
+          badge: "https://img.shields.io/badge/PID-orange?style=for-the-badge"
+        },
+        {
+          name: "Lead-Lag",
+          badge: "https://img.shields.io/badge/Lead--Lag-green?style=for-the-badge"
+        },
+        {
+          name: "MATLAB",
+          badge: "https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge"
+        },
+        {
+          name: "Simulink",
+          badge: "https://img.shields.io/badge/Simulink-0076A8?style=for-the-badge"
+        }
       ],
     },
+    {
+      title: "Version Control",
+      skills: [
+        {
+          name: "Git",
+          badge: "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"
+        },
+        {
+          name: "GitHub",
+          badge: "https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+        }
+      ],
+    },
+    {
+      title: "DevOps",
+      skills: [
+        {
+          name: "Docker",
+          badge: "https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"
+        },
+        {
+          name: "Jenkins",
+          badge: "https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white"
+        },
+        {
+          name: "AWS",
+          badge: "https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white"
+        },
+        {
+          name: "GitHub Actions",
+          badge: "https://img.shields.io/badge/GitHub_Actions-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+        }
+      ],
+    },
+    {
+      title: "Design & Video",
+      skills: [
+        {
+          name: "Figma",
+          badge: "https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white"
+        },
+        {
+          name: "Adobe Photoshop",
+          badge: "https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white"
+        }
+      ],
+    }
   ];
 
   const containerVariants = {
@@ -147,44 +250,41 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               variants={itemVariants}
-              className="bg-dark-surface border border-dark-border rounded-lg p-8 card-hover"
+              className="bg-dark-surface border border-dark-border rounded-lg p-6 card-hover"
             >
               {/* Category Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="text-3xl text-electric-blue">
-                  {category.Icon ? <category.Icon className="w-7 h-7" /> : null}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">
-                    {category.title}
-                  </h3>
-                  <div className="w-16 h-1 bg-gradient-to-r from-electric-blue to-neon-green mt-2"></div>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {category.title}
+                </h3>
+                <div className="w-12 h-1 bg-gradient-to-r from-electric-blue to-neon-green"></div>
               </div>
 
               {/* Skills List */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, idx) => (
-                  <motion.span
-                    key={typeof skill === "string" ? skill : skill.name}
-                    initial={{ opacity: 0, y: 6 }}
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={
-                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }
+                      isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
                     }
-                    transition={{ delay: categoryIndex * 0.05 + idx * 0.02 }}
-                    className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-3 py-1"
+                    transition={{ delay: categoryIndex * 0.1 + idx * 0.05 }}
+                    className="hover:scale-105 transition-transform duration-200"
                   >
-                    <span className="inline-block w-2 h-2 rounded-full bg-electric-blue" aria-hidden></span>
-                    <span className="text-gray-200 text-sm">
-                      {typeof skill === "string" ? skill : skill.name}
-                    </span>
-                  </motion.span>
+                    <img
+                      src={skill.badge}
+                      alt={skill.name}
+                      className="h-7 object-contain hover:shadow-lg transition-shadow duration-200"
+                      loading="lazy"
+                    />
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
