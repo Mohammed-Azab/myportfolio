@@ -15,7 +15,7 @@ export const portfolioConfig = {
     bio: "Passionate Mechatronics Engineering Student with expertise in robotics, automation, and control systems. Currently pursuing advanced studies in autonomous systems and AI integration in mechanical engineering.",
 
     // Profile Image
-    profileImage: "/src/assets/images/profile.jpg", // Add your profile image here
+    profileImage: "/images/profile-placeholder.svg", // Uses placeholder until a real photo is added
     
     // Resume
     resumeUrl: "/CV.pdf"
@@ -62,8 +62,8 @@ export const portfolioConfig = {
     description: "Portfolio of Mohammed Abdelazim, a Mechatronics Engineering Student specializing in robotics, automation, Robotics and control systems.",
     keywords: ["Mechatronics", "Engineer", "Robotics", "Automation", "Control Systems", "AI", "IoT"],
     author: "Mohammed Abdelazim",
-    image: "/src/assets/images/og-image.jpg", // Open Graph image
-    url: "https://mohammedazab.com/myportfolio"
+    image: "/images/og-image.jpg", // Open Graph image (place in public/images)
+    url: "https://mohammedazab.com"
   },
 
   // Contact Form Configuration

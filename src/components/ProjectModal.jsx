@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Image as ImageIcon } from 'lucide-react';
 import blackRobotAnim from '../animation/BlackMovingRobot/animations/3cb82fad-d42e-4ebe-9891-2e53a3e322cf.json';
 
 const modalVariants = {
@@ -50,7 +50,10 @@ const ProjectModal = ({ open, onClose, project }) => {
             <h3 className="text-xl font-semibold mb-2 text-neon-green">Images</h3>
             <div className="flex gap-4 flex-wrap">
               {/* Replace with actual images if available */}
-              <div className="w-32 h-20 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500">No images</div>
+              <div className="w-32 h-20 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500" aria-label="No project images available">
+                <ImageIcon className="w-5 h-5 mr-2" />
+                No images
+              </div>
             </div>
           </div>
           {/* Add more details, bullet points, etc. here as needed */}

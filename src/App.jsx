@@ -2,15 +2,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Education from './components/Education'
-import Volunteering from './components/Volunteering'
-import Awards from './components/Awards'
-import Courses from './components/Courses'
-import Timeline from './components/Timeline'
-import Contact from './components/Contact'
+const About = React.lazy(() => import('./components/About'))
+const Projects = React.lazy(() => import('./components/Projects'))
+const Skills = React.lazy(() => import('./components/Skills'))
+const Education = React.lazy(() => import('./components/Education'))
+const Volunteering = React.lazy(() => import('./components/Volunteering'))
+const Awards = React.lazy(() => import('./components/Awards'))
+const Courses = React.lazy(() => import('./components/Courses'))
+const Timeline = React.lazy(() => import('./components/Timeline'))
+const Contact = React.lazy(() => import('./components/Contact'))
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import AnimatedBackground from './components/AnimatedBackground'
@@ -30,15 +30,17 @@ function App() {
       {/* Main Content */}
       <main className="relative z-10">
         <Hero />
-        <About />
-        <Timeline />
-        <Education />
-        <Projects />
-        <Courses />
-        <Skills />
-        <Volunteering />
-        <Awards />
-        <Contact />
+        <React.Suspense fallback={<div className="text-center py-10 text-gray-400">Loading...</div>}>
+          <About />
+          <Timeline />
+          <Education />
+          <Projects />
+          <Courses />
+          <Skills />
+          <Volunteering />
+          <Awards />
+          <Contact />
+        </React.Suspense>
       </main>
       
       {/* Footer */}

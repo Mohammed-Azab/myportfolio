@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Sitemap: https://mohammedazab.com/sitemap.xml
 
 # Sitemap
 Sitemap: https://mohammedazab.com/myportfolio/sitemap.xml

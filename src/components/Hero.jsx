@@ -4,6 +4,7 @@ import { ChevronDown, ExternalLink } from 'lucide-react'
 import AnimatedLottie from './AnimatedLottie';
 import whiteRobotAnim from './animations/WhiteRobot';
 import CVDownload from './CVDownload';
+import { portfolioConfig } from '../config/config';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('')
@@ -156,7 +157,7 @@ const Hero = () => {
               Explore My Work
             </motion.a>
             
-            <CVDownload />
+            <CVDownload aria-label="Download resume as PDF" />
           </motion.div>
         </motion.div>
         
