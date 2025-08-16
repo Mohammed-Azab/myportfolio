@@ -36,11 +36,11 @@ export const projectsData = [
   },
   {
     id: 2,
-    title: "TriFlameX: Swarm of Fire-Fighting Robots",
+    title: "TriFlameX – Autonomous Cooperative Fire-Fighting Robots",
     description:
       "Swarm of three autonomous robots that cooperatively detect, localize, and suppress small fires.",
     longDescription:
-      "Overview\nTriFlameX is a swarm of three robots that work together to find and suppress small fires in indoor or controlled outdoor spaces. Each robot combines mobility, real‑time sensing, wireless communication, and on‑board decision making.\n\nCommunication\n- UART for intra‑car data transfer\n- MQTT over Wi‑Fi for inter‑device messaging\n\nSystem architecture (three layers)\n1) Laptop (central controller): runs Python algorithms, talks to ESP32 via MQTT/Wi‑Fi, integrates ROS2 for manual control using the /joy topic.\n2) ESP32 (communication hub): reads ToF sensor data over UART1, uses MQTT (C++), forwards commands to STM32 over UART2 using a custom 6‑byte binary protocol.\n3) STM32 (low‑level controller): validates and executes commands; controls motors and servos using PWM and PD control with safety checks (Embedded C, bare metal).",
+      "TriFlameX is a swarm of three robots that work together to find and suppress small fires in indoor or controlled outdoor spaces. Each robot combines mobility, real‑time sensing, wireless communication, and on‑board decision making.\n\nCommunication\n- UART for intra‑car data transfer\n- MQTT over Wi‑Fi for inter‑device messaging\n\nSystem architecture (three layers)\n1) Laptop (central controller): runs Python algorithms, talks to ESP32 via MQTT/Wi‑Fi, integrates ROS2 for manual control using the /joy topic.\n2) ESP32 (communication hub): reads ToF sensor data over UART1, uses MQTT (C++), forwards commands to STM32 over UART2 using a custom 6‑byte binary protocol.\n3) STM32 (low‑level controller): validates and executes commands; controls motors and servos using PWM and PD control with safety checks (Embedded C, bare metal).",
     image: "/images/projects/project-placeholder.svg",
     technologies: [
       "ESP32",
@@ -62,7 +62,7 @@ export const projectsData = [
       "Real‑time GUI for data visualization",
       "ROS2 manual control via /joy, MQTT messaging, UART links",
       "Coordinated detection and suppression behavior",
-      "Safety checks and PD control on STM32 low‑level layer"
+      "Safety checks and PD control on STM32 low‑level layer",
     ],
     timeline: "Sep 2023 - Feb 2024",
     teamSize: "Team of 3",
@@ -71,9 +71,9 @@ export const projectsData = [
     id: 3,
     title: "Dice Realms: Quest for the Elemental Crests",
     description:
-      "Strategic two‑player board game built from scratch in Java with OOP architecture and AI opponents.",
+      "Two‑player strategy board game built in Java with OOP architecture, AI opponents, and a JavaFX UI.",
     longDescription:
-      "Dice Realms is a competitive strategy game set in Eldoria where players cast spell dice to defeat elemental creatures and collect Crests. The design uses clean OOP, a finite‑state machine to manage phases, and a JavaFX UI. We implemented an AI module (ACE) to support multiple difficulty levels using a Monte‑Carlo style decision policy. Collaboration and version control were handled via Git/GitHub; styles were done with CSS.",
+      "Overview\nDice Realms is a competitive board game where two players act as wizards battling across the realms of Eldoria. Players roll and allocate magical dice to cast spells and defeat elemental creatures to earn points. The goal is to collect Elemental Crests and outsmart the opponent.\n\nCore mechanics\n- Forgotten Realm: unchosen dice become opportunities for the opponent on the next turn\n- Special abilities: Time Warp and Arcane Boost shift the course of battle\n- Scoring: defeat elemental creatures and secure Crests to win\n\nArchitecture and technology\n- Java OOP for the core game model (boards, realms, creatures, spells)\n- Finite‑state machine to manage phases, turns, actions, and validations\n- JavaFX UI with CSS styling for a responsive desktop experience\n- AI module (ACE) that supports multiple difficulty levels using a Monte Carlo style decision policy\n- Team workflow with Git and GitHub to coordinate development and reviews",
     image: "/images/projects/project-placeholder.svg",
     technologies: ["Java", "JavaFX", "CSS", "Git", "GitHub", "AI"],
     category: "Software Development",
@@ -81,15 +81,15 @@ export const projectsData = [
     github: "https://github.com/Mohammed-Azab/dice-realms",
     demo: "https://youtube.com/watch?v=dice-realms-demo",
     features: [
-      "Object-oriented programming (OOP) architecture",
-      "Finite state machine (FSM) for game flow",
-      "AI players using Monte Carlo decision-making",
-      "Multiple difficulty levels",
-      "Human vs AI and AI vs AI gameplay",
-      "Modern UI in JavaFX and CSS",
+      "OOP domain model for realms, spells, and creatures",
+      "Finite‑state machine for phases, turns, and actions",
+      "AI module (ACE) with Monte Carlo style decision policy",
+      "Multiple difficulty levels; Human vs AI and AI vs AI modes",
+      "JavaFX desktop UI styled with CSS",
+      "Collaborative development with Git and GitHub",
     ],
-    timeline: "Mar 2023 - Jul 2023",
-    teamSize: "Solo Project",
+    timeline: "Mar 2024 - Aug 2024",
+    teamSize: "Team Project",
   },
   {
     id: 4,
