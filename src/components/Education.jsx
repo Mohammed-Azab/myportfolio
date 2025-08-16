@@ -140,20 +140,16 @@ const Education = () => {
                       <div className="flex-shrink-0">
                         {education.logo ? (
                                                      <div
-                             className={`w-24 h-14 flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 ${
+                             className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
                                education.institution.includes("Berlin")
-                                 ? "bg-white p-1"
-                                 : "bg-white p-2"
+                                 ? "w-28 h-16 p-2"
+                                 : "w-24 h-14 p-2"
                              }`}
                            >
                              <img
                                src={education.logo}
                                alt={`${education.institution} logo`}
-                               className={`object-contain ${
-                                 education.institution.includes("Berlin")
-                                   ? "w-full h-full scale-150"
-                                   : "max-w-full max-h-full"
-                               }`}
+                               className="max-w-full max-h-full object-contain"
                                onError={(e) => {
                                  e.target.style.display = "none";
                                  e.target.nextSibling.style.display = "block";
