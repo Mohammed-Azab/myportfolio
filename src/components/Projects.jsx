@@ -43,6 +43,7 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [loading, setLoading] = useState(false) // Set to false since we're using static data
   const [expandedId, setExpandedId] = useState(null);
+  const [lightbox, setLightbox] = useState({ open: false, src: null, scale: 1 });
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Transform projects data to match the expected format
@@ -234,22 +235,10 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    {/* Main content two-column */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      {/* Gallery / Media placeholder */}
-                      <div className="lg:col-span-1">
-                        <div className="aspect-video w-full bg-gray-800/60 border border-dark-border rounded-xl flex items-center justify-center text-gray-500">Gallery / Photos</div>
-                        <div className="mt-3 grid grid-cols-3 gap-2">
-                          <div className="h-16 bg-gray-800/60 rounded" />
-                          <div className="h-16 bg-gray-800/60 rounded" />
-                          <div className="h-16 bg-gray-800/60 rounded" />
-                        </div>
-                      </div>
-
-                      {/* Details */}
-                      <div className="lg:col-span-2">
-                        {/* Sections */}
-                        <div className="space-y-6">
+                    {/* Main content: full description first */}
+                    <div>
+                      {/* Sections */}
+                      <div className="space-y-6">
                           <section>
                             <h4 className="text-neon-green font-semibold mb-2">Overview</h4>
                             <p className="text-gray-300 leading-relaxed">
@@ -286,6 +275,27 @@ const Projects = () => {
                             </ul>
                           </section>
 
+                          {/* Photos at the end */}
+                          <section>
+                            <h4 className="text-neon-green font-semibold mb-2">Photos</h4>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                              {((expandedProject.images || []).length ? expandedProject.images : [
+                                '/images/projects/project-placeholder.svg',
+                                '/images/projects/project-placeholder.svg',
+                                '/images/projects/project-placeholder.svg',
+                              ]).map((src, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setLightbox({ open: true, src, scale: 1 })}
+                                  className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-gray-800/60"
+                                  aria-label="Open photo"
+                                >
+                                  <img src={src} alt={`Project photo ${idx+1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                </button>
+                              ))}
+                            </div>
+                          </section>
+
                           <div className="flex flex-wrap gap-3 pt-2">
                             <motion.a
                               href={expandedProject.github}
@@ -318,10 +328,39 @@ const Projects = () => {
                               Show Less
                             </button>
                           </div>
-                        </div>
                       </div>
                     </div>
                   </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Lightbox for photos */}
+            <AnimatePresence>
+              {lightbox.open && (
+                <motion.div
+                  className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    <button onClick={() => setLightbox((s)=>({ ...s, scale: Math.min(4, s.scale + 0.2) }))} className="px-3 py-1 bg-gray-700 text-white rounded">+
+                    </button>
+                    <button onClick={() => setLightbox((s)=>({ ...s, scale: Math.max(1, s.scale - 0.2) }))} className="px-3 py-1 bg-gray-700 text-white rounded">-
+                    </button>
+                    <button onClick={() => setLightbox({ open:false, src:null, scale:1 })} className="px-3 py-1 bg-gray-700 text-white rounded">Close</button>
+                  </div>
+                  <motion.img
+                    key={lightbox.src}
+                    src={lightbox.src}
+                    alt="Project"
+                    style={{ transform: `scale(${lightbox.scale})` }}
+                    className="max-h-[85vh] max-w-[90vw] object-contain rounded"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
