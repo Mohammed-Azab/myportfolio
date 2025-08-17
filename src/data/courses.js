@@ -87,7 +87,7 @@ export const coursesData = [
   },
   {
     id: 4,
-    title: "CAD Design",
+    title: "Computer-Aided Design (CAD)",
     provider: "Multiple Providers",
     category: "Design",
     level: "Advanced",
@@ -225,12 +225,6 @@ export const courseCategories = [
       .length,
     color: "#32CD32",
     icon: "🔧",
-  },
-  {
-    name: "Energy",
-    count: coursesData.filter((course) => course.category === "Energy").length,
-    color: "#FFA500",
-    icon: "⚡",
   },
 ];
 

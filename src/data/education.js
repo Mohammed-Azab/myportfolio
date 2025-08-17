@@ -84,7 +84,7 @@ export const educationData = [
         "Control Systems I",
         "Digital Electronics",
         "Thermodynamics",
-        "CAD Design",
+        "Computer-Aided Design (CAD)",
       ],
       "Semester 4": [
         "Control Systems II",
