@@ -232,10 +232,7 @@ const Volunteering = () => {
           <motion.div variants={itemVariants} className="space-y-8">
             {filteredVolunteering.map((volunteer, index) => (
               <div key={volunteer.id} className="relative">
-                {/* Timeline Line */}
-                {index !== filteredVolunteering.length - 1 && (
-                  <div className="absolute left-8 top-20 w-0.5 h-32 bg-gradient-to-b from-red-400 to-pink-500"></div>
-                )}
+
 
                 <div className="bg-gray-800 rounded-2xl border border-gray-700 hover:border-electric-blue transition-all duration-300 overflow-hidden">
                   {/* Main Volunteering Card */}
@@ -244,11 +241,21 @@ const Volunteering = () => {
                       {/* Timeline Dot / Organization Logo */}
                       <div className="flex-shrink-0">
                         {volunteer.image ? (
-                          <div className="w-24 h-14 flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white p-2">
+                          <div
+                            className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
+                              volunteer.organization.includes("European Solidarity Corps")
+                                ? "w-28 h-16 p-1"
+                                : "w-24 h-14 p-2"
+                            }`}
+                          >
                             <img
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
-                              className="max-w-full max-h-full object-contain"
+                              className={`object-contain ${
+                                volunteer.organization.includes("European Solidarity Corps")
+                                  ? "w-full h-full scale-125"
+                                  : "max-w-full max-h-full"
+                              }`}
                               onError={(e) => {
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
