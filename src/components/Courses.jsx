@@ -21,8 +21,14 @@ import { coursesData, learningStats } from "../data/courses";
 const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const normalizeCategory = (value) =>
+    (value ?? "").toString().trim().toLowerCase();
+
+  const normalizedSelected = normalizeCategory(selectedCategory);
+
   const filteredCourses = coursesData.filter((course) => {
-    return selectedCategory === "All" || course.category === selectedCategory;
+    if (normalizedSelected === "all") return true;
+    return normalizeCategory(course.category) === normalizedSelected;
   });
 
   // Professional category icon mapping
@@ -43,10 +49,16 @@ const Courses = () => {
     return iconMap[categoryName] || BookOpen;
   };
 
-  // Derive categories automatically from courses data
-  const derivedCategories = Array.from(
-    new Set(coursesData.map((course) => course.category))
-  );
+  // Derive categories automatically from courses data (case-insensitive unique)
+  const derivedCategories = (() => {
+    const normalizedToDisplay = new Map();
+    for (const course of coursesData) {
+      const display = course.category ?? "Other";
+      const key = normalizeCategory(display);
+      if (!normalizedToDisplay.has(key)) normalizedToDisplay.set(key, display);
+    }
+    return Array.from(normalizedToDisplay.values());
+  })();
 
   // Tech badge function from Projects component
   const getTechBadge = (tech) => {
@@ -270,7 +282,8 @@ const Courses = () => {
                         : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                     }`}
                   >
-                    <Icon className="inline-block w-5 h-5 mr-2" /> {categoryName}
+                    <Icon className="inline-block w-5 h-5 mr-2" />{" "}
+                    {categoryName}
                   </button>
                 );
               })}
