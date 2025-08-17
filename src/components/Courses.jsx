@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen,
   Award,
@@ -25,7 +25,7 @@ import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
-  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0, scale: 1 });
+  const [lightbox, setLightbox] = useState({ open: false, src: null, alt: null, scale: 1 });
 
   const normalizeCategory = (value) =>
     (value ?? "").toString().trim().toLowerCase();
@@ -64,27 +64,17 @@ const Courses = () => {
     return Array.from(map.values());
   })();
 
-  const openLightbox = (images, startIndex = 0) => {
-    if (!Array.isArray(images) || images.length === 0) return;
-    setLightbox({ open: true, images, index: startIndex, scale: 1 });
+  const openLightbox = (src, alt = "Course Photo") => {
+    setLightbox({ open: true, src, alt, scale: 1 });
   };
 
   const closeLightbox = () => setLightbox((prev) => ({ ...prev, open: false }));
-  const zoomInHandler = () => setLightbox((prev) => ({ ...prev, scale: Math.min(prev.scale + 0.2, 3) }));
-  const zoomOutHandler = () => setLightbox((prev) => ({ ...prev, scale: Math.max(prev.scale - 0.2, 1) }));
+  const zoomInHandler = () =>
+    setLightbox((prev) => ({ ...prev, scale: Math.min(prev.scale + 0.2, 4) }));
+  const zoomOutHandler = () =>
+    setLightbox((prev) => ({ ...prev, scale: Math.max(prev.scale - 0.2, 1) }));
   const resetZoom = () => setLightbox((prev) => ({ ...prev, scale: 1 }));
-  const prevImage = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index - 1 + prev.images.length) % prev.images.length,
-      scale: 1,
-    }));
-  const nextImage = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index + 1) % prev.images.length,
-      scale: 1,
-    }));
+  // No prev/next navigation in courses lightbox (single-image like Projects)
 
   React.useEffect(() => {
     if (!lightbox.open) return;
@@ -93,8 +83,7 @@ const Courses = () => {
       if (e.key === "+" || e.key === "=") zoomInHandler();
       if (e.key === "-" || e.key === "_") zoomOutHandler();
       if (e.key === "0") resetZoom();
-      if (e.key === "ArrowLeft") prevImage();
-      if (e.key === "ArrowRight") nextImage();
+      // No arrow navigation for courses lightbox
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -405,7 +394,7 @@ const Courses = () => {
                           <button
                             key={idx}
                             type="button"
-                            onClick={() => openLightbox(course.photos, idx)}
+                            onClick={() => openLightbox(photo.url, photo.caption || `Course Photo ${idx + 1}`)}
                             className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors group cursor-zoom-in"
                             aria-label="Open photo"
                           >
@@ -426,54 +415,60 @@ const Courses = () => {
                     </div>
                   )}
 
-                  {/* Lightbox */}
-                  {lightbox.open && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-                      <button
-                        onClick={closeLightbox}
-                        className="absolute top-6 right-6 p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700"
-                        aria-label="Close"
+                  {/* Lightbox (Projects style) */}
+                  <AnimatePresence>
+                    {lightbox.open && (
+                      <motion.div
+                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={(e) => {
+                          if (e.target === e.currentTarget)
+                            setLightbox({ open: false, src: null, alt: null, scale: 1 });
+                        }}
                       >
-                        <X className="w-6 h-6" />
-                      </button>
-                      <div className="absolute inset-x-0 top-0 bottom-0 flex items-center justify-between px-6">
-                        <button onClick={prevImage} className="p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Previous">
-                          <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <button onClick={nextImage} className="p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Next">
-                          <ChevronRight className="w-6 h-6" />
-                        </button>
-                      </div>
-                      <div className="flex flex-col items-center gap-4">
-                        <div
-                          className="max-w-[90vw] max-h-[75vh] overflow-hidden"
-                          style={{ transform: `scale(${lightbox.scale})` }}
-                        >
-                          <img
-                            src={lightbox.images[lightbox.index]?.url}
-                            alt={lightbox.images[lightbox.index]?.caption || "Course Photo"}
-                            className="object-contain max-w-[90vw] max-h-[75vh]"
-                          />
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button onClick={zoomOutHandler} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Zoom out">
-                            <ZoomOut className="w-5 h-5" />
-                          </button>
-                          <button onClick={resetZoom} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Reset zoom">
-                            100%
-                          </button>
-                          <button onClick={zoomInHandler} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Zoom in">
+                        {/* Controls */}
+                        <div className="absolute top-4 right-4 flex gap-2 z-10">
+                          <button
+                            onClick={() => setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }))}
+                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                            aria-label="Zoom in"
+                          >
                             <ZoomIn className="w-5 h-5" />
                           </button>
+                          <button
+                            onClick={() => setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }))}
+                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                            aria-label="Zoom out"
+                          >
+                            <ZoomOut className="w-5 h-5" />
+                          </button>
+                          <button
+                            onClick={() => setLightbox({ open: false, src: null, alt: null, scale: 1 })}
+                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                            aria-label="Close"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
                         </div>
-                        {lightbox.images[lightbox.index]?.caption && (
-                          <div className="text-gray-300 text-sm text-center px-4">
-                            {lightbox.images[lightbox.index]?.caption}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+
+                        {/* Image */}
+                        <img
+                          src={lightbox.src}
+                          alt={lightbox.alt || "Course photo"}
+                          style={{ transform: `scale(${lightbox.scale})` }}
+                          className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
+                          onWheel={(e) => {
+                            setLightbox((s) => ({
+                              ...s,
+                              scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))),
+                            }));
+                          }}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   {/* Certificate */}
                   <div className="flex items-center justify-between pt-4 border-t border-gray-700">
