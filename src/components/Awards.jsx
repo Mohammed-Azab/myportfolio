@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Calendar, Award, Star, Download, ExternalLink, ChevronDown, ChevronUp, Medal, Crown, FileText, User } from 'lucide-react';
-import { awardsData, awardsStats, awardCategories, awardLevels } from '../data/awards';
+import { awardsData, awardCategories } from '../data/awards';
 
 const Awards = () => {
   const [expandedAward, setExpandedAward] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedLevel, setSelectedLevel] = useState('All');
+  
 
   const toggleAward = (id) => {
     setExpandedAward(expandedAward === id ? null : id);
@@ -14,8 +14,7 @@ const Awards = () => {
 
   const filteredAwards = awardsData.filter(award => {
     const categoryMatch = selectedCategory === 'All' || award.category === selectedCategory;
-    const levelMatch = selectedLevel === 'All' || award.level === selectedLevel;
-    return categoryMatch && levelMatch;
+    return categoryMatch;
   });
 
   const getLevelIcon = (level) => {
@@ -86,37 +85,11 @@ const Awards = () => {
             </p>
           </motion.div>
 
-          {/* Awards Stats */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-6 gap-6 mb-16">
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-electric-blue mb-2">{awardsStats.totalAwards}</div>
-              <div className="text-gray-300">Total Awards</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-blue-400 mb-2">{awardsStats.academicExcellence}</div>
-              <div className="text-gray-300">Academic</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-neon-green mb-2">{awardsStats.researchInnovation}</div>
-              <div className="text-gray-300">Research</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-purple-400 mb-2">{awardsStats.competitions}</div>
-              <div className="text-gray-300">Competitions</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-green-400 mb-2">{awardsStats.scholarships}</div>
-              <div className="text-gray-300">Scholarships</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-red-400 mb-2">{awardsStats.yearsSpan}</div>
-              <div className="text-gray-300">Years Span</div>
-            </div>
-          </motion.div>
+          {/* Awards Stats (removed) */}
 
           {/* Filters */}
           <motion.div variants={itemVariants} className="mb-12">
-            {/* Category Filter */}
+            {/* Category Filter (styled like previous Level filter) */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-white mb-3">Filter by Category:</h3>
               <div className="flex flex-wrap gap-3">
@@ -124,10 +97,10 @@ const Awards = () => {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
                       selectedCategory === category
-                        ? 'bg-yellow-500 text-white shadow-lg shadow-yellow-500/25'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+                        ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg border-transparent'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-electric-blue border-gray-700'
                     }`}
                   >
                     {category}
@@ -138,29 +111,7 @@ const Awards = () => {
                 ))}
               </div>
             </div>
-
-            {/* Level Filter */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">Filter by Level:</h3>
-              <div className="flex flex-wrap gap-3">
-                {awardLevels.map((level) => (
-                  <button
-                    key={level}
-                    onClick={() => setSelectedLevel(level)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      selectedLevel === level
-                        ? 'bg-gradient-to-r from-electric-blue to-neon-green text-dark-bg shadow-lg'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-electric-blue border border-gray-700'
-                    }`}
-                  >
-                    {level}
-                    <span className="ml-2 text-xs opacity-75">
-                      ({level === 'All' ? awardsData.length : awardsData.filter(a => a.level === level).length})
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* Level Filter (removed) */}
           </motion.div>
 
           {/* Awards Timeline */}
