@@ -79,7 +79,7 @@ export const volunteeringData = [
       "Cross-cultural Communication",
     ],
     website: null,
-    image: null,
+    image: "/images/education/guc_Logo.jpg",
     photos: null,
   },
 ];
