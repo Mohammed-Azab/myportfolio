@@ -20,6 +20,8 @@ import {
   ZoomOut,
   ChevronLeft,
   ChevronRight,
+  Camera,
+  Image,
 } from "lucide-react";
 import { coursesData, learningStats } from "../data/courses";
 
@@ -405,36 +407,51 @@ const Courses = () => {
                     </div>
                   </div>
 
-                  {/* Photos (if available) */}
+                  {/* Photos (Volunteering-style) */}
                   {Array.isArray(course.photos) && course.photos.length > 0 && (
                     <div className="mb-6">
-                      <h4 className="text-white font-semibold mb-3">Photos</h4>
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="flex items-center mb-3">
+                        <Camera className="w-5 h-5 text-electric-blue mr-2" />
+                        <h4 className="text-white font-semibold">Photos</h4>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {course.photos.map((photo, idx) => (
-                          <button
+                          <div
                             key={idx}
-                            type="button"
                             onClick={() =>
                               openLightbox(
                                 photo.url,
                                 photo.caption || `Course Photo ${idx + 1}`
                               )
                             }
-                            className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors group cursor-zoom-in"
-                            aria-label="Open photo"
+                            className="group relative overflow-hidden rounded-lg bg-gray-600 cursor-pointer hover:ring-2 hover:ring-electric-blue transition-all duration-300"
                           >
                             <img
                               src={photo.url}
                               alt={photo.caption || `Course Photo ${idx + 1}`}
-                              className="w-full h-28 object-cover"
-                              loading="lazy"
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'flex';
+                              }}
                             />
+                            {/* Fallback placeholder */}
+                            <div className="hidden w-full h-48 bg-gray-600 items-center justify-center">
+                              <Image className="w-12 h-12 text-gray-400" />
+                            </div>
+                            {/* Photo overlay with caption */}
                             {photo.caption && (
-                              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-xs text-gray-200 px-2 py-1">
-                                {photo.caption}
+                              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                <p className="text-white text-sm">{photo.caption}</p>
                               </div>
                             )}
-                          </button>
+                            {/* Hover overlay with zoom indicator */}
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <div className="bg-white/90 rounded-full p-2">
+                                <ZoomIn className="w-6 h-6 text-gray-800" />
+                              </div>
+                            </div>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -564,39 +581,68 @@ const Courses = () => {
                 exit={{ opacity: 0 }}
                 onClick={(e) => {
                   if (e.target === e.currentTarget)
-                    setLightbox({ open: false, src: null, alt: null, scale: 1 });
+                    setLightbox({
+                      open: false,
+                      src: null,
+                      alt: null,
+                      scale: 1,
+                    });
                 }}
               >
                 <div className="absolute top-4 right-4 flex gap-2 z-10">
                   <button
-                    onClick={() => setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }))}
+                    onClick={() =>
+                      setLightbox((s) => ({
+                        ...s,
+                        scale: Math.min(4, s.scale + 0.2),
+                      }))
+                    }
                     className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                   >
                     <ZoomIn className="w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }))}
+                    onClick={() =>
+                      setLightbox((s) => ({
+                        ...s,
+                        scale: Math.max(1, s.scale - 0.2),
+                      }))
+                    }
                     className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                   >
                     <ZoomOut className="w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => setLightbox({ open: false, src: null, alt: null, scale: 1 })}
+                    onClick={() =>
+                      setLightbox({
+                        open: false,
+                        src: null,
+                        alt: null,
+                        scale: 1,
+                      })
+                    }
                     className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
-                <img
+                <motion.img
+                  key={lightbox.src}
                   src={lightbox.src}
                   alt={lightbox.alt || "Course photo"}
                   style={{ transform: `scale(${lightbox.scale})` }}
                   className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: lightbox.scale, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
                   onWheel={(e) => {
                     setLightbox((s) => ({
                       ...s,
-                      scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))),
+                      scale: Math.max(
+                        1,
+                        Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))
+                      ),
                     }));
                   }}
                 />
