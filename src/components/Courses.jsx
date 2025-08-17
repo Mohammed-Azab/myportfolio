@@ -308,15 +308,29 @@ const Courses = () => {
                     <h4 className="text-white font-semibold mb-3">
                       Key Skills
                     </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {course.skills.map((skill, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                    <div className="flex flex-wrap gap-3">
+                      {course.skills.map((skill, idx) => {
+                        const badgeUrl = getTechBadge(skill);
+                        return (
+                          <div
+                            key={idx}
+                            className="hover:scale-105 transition-transform duration-200"
+                          >
+                            {badgeUrl ? (
+                              <img
+                                src={badgeUrl}
+                                alt={skill}
+                                className="h-6 object-contain hover:shadow-lg transition-shadow duration-200"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                                {skill}
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
