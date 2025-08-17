@@ -185,7 +185,20 @@ const Awards = () => {
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                         <div>
                           <h3 className="text-2xl font-bold text-white mb-2">{award.title}</h3>
-                          <p className="text-electric-blue text-lg font-medium mb-1">{award.organization}</p>
+                          <div className="flex items-center gap-2 mb-1">
+                            <p className="text-electric-blue text-lg font-medium">{award.organization}</p>
+                            {award.website && (
+                              <a
+                                href={award.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-electric-blue hover:text-neon-green transition-colors"
+                                title="Visit organization website"
+                              >
+                                <ExternalLink className="w-5 h-5" />
+                              </a>
+                            )}
+                          </div>
                         </div>
                         <div className="flex flex-col md:items-end">
                           <div className="text-neon-green font-semibold text-lg">{award.date}</div>
