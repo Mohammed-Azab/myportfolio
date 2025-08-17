@@ -82,14 +82,55 @@ export const volunteeringData = [
     image: "/images/education/guc_Logo.jpg",
     photos: null,
   },
+  {
+    id: 3,
+    role: "Competitive Programmer",
+    organization: "ICPC - International Collegiate Programming Contest",
+    location: "Global",
+    duration: "Mar 2024 - Present",
+    startDate: "2024-03",
+    endDate: "present",
+    type: "Academic Support",
+    description:
+      "Active participant in the International Collegiate Programming Contest, developing algorithmic problem-solving skills and competitive programming expertise.",
+    responsibilities: [
+      "Participate in ICPC regional and international competitions",
+      "Develop efficient algorithms for complex computational problems",
+      "Practice advanced data structures and algorithm optimization",
+      "Collaborate with team members in programming contests",
+      "Mentor junior programmers in competitive programming techniques",
+    ],
+    impact:
+      "Enhanced algorithmic thinking and problem-solving skills through competitive programming challenges",
+    skills: [
+      "Competitive Programming",
+      "Algorithm Design",
+      "Data Structures",
+      "Problem Solving",
+      "C++",
+      "Time Complexity Analysis",
+    ],
+    website: "https://icpc.global/",
+    image: "/images/volunteering/acm_international_collegiate_programming_contest_logo.jpeg",
+    photos: [
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "ICPC programming contest participation",
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg", 
+        caption: "Algorithmic problem-solving session",
+      },
+    ],
+  },
 ];
 
 // Volunteering Statistics
 export const volunteeringStats = {
-  totalHours: 600,
+  totalHours: 700,
   studentsHelped: 75,
-  workshopsConducted: 20,
-  organizationsServed: 6,
+  workshopsConducted: 25,
+  organizationsServed: 3,
   yearsActive: 5,
 };
 
