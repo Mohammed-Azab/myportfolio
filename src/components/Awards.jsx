@@ -167,10 +167,7 @@ const Awards = () => {
           <motion.div variants={itemVariants} className="space-y-8">
             {filteredAwards.map((award, index) => (
               <div key={award.id} className="relative">
-                {/* Timeline Line */}
-                {index !== filteredAwards.length - 1 && (
-                  <div className="absolute left-8 top-20 w-0.5 h-32 bg-gradient-to-b from-yellow-400 to-orange-500"></div>
-                )}
+
 
                 <div className={`bg-gray-900 rounded-2xl border-2 border-gray-700 hover:border-electric-blue hover:shadow-lg hover:shadow-electric-blue/20 transition-all duration-300 overflow-hidden`}>
                 {/* Award Card */}

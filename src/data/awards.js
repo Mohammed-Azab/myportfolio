@@ -12,7 +12,7 @@ export const awardsData = [
     description: "Achieved 3rd place in the 25th RoboRacer Autonomous Racing Competition in Romania with F1TENTH autonomous racing car.",
     criteria: "Best performing autonomous racing system",
     significance: "International recognition for autonomous systems excellence",
-    image: "/images/awards/f1tenth-racing.jpg",
+    image: "/images/awards/IEEE-IV-2025.png",
     certificate: "/documents/f1tenth-2024.pdf",
     recommendationLetters: [
       {
@@ -43,7 +43,7 @@ export const awardsData = [
     description: "Merit-based scholarship awarded for outstanding performance in Egyptian high school final examinations (Thanaweya Amma).",
     criteria: "Top performance in national examinations",
     significance: "Academic excellence recognition and financial support",
-    image: "/images/awards/guc-scholarship.jpg",
+    image: "/images/education/guc_Logo.jpg",
     certificate: "/documents/guc-scholarship-2022.pdf",
     recommendationLetters: [
       {
