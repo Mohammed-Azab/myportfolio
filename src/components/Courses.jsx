@@ -25,7 +25,12 @@ import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
-  const [lightbox, setLightbox] = useState({ open: false, src: null, alt: null, scale: 1 });
+  const [lightbox, setLightbox] = useState({
+    open: false,
+    src: null,
+    alt: null,
+    scale: 1,
+  });
 
   const normalizeCategory = (value) =>
     (value ?? "").toString().trim().toLowerCase();
@@ -63,6 +68,21 @@ const Courses = () => {
     }
     return Array.from(map.values());
   })();
+
+  // Preload course photos to make lightbox open instantly
+  React.useEffect(() => {
+    try {
+      const allPhotos = coursesData
+        .flatMap((c) => (Array.isArray(c.photos) ? c.photos : []))
+        .map((p) => p.url)
+        .filter(Boolean);
+      allPhotos.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        img.decoding = "async";
+      });
+    } catch (_) {}
+  }, []);
 
   const openLightbox = (src, alt = "Course Photo") => {
     setLightbox({ open: true, src, alt, scale: 1 });
@@ -394,7 +414,12 @@ const Courses = () => {
                           <button
                             key={idx}
                             type="button"
-                            onClick={() => openLightbox(photo.url, photo.caption || `Course Photo ${idx + 1}`)}
+                            onClick={() =>
+                              openLightbox(
+                                photo.url,
+                                photo.caption || `Course Photo ${idx + 1}`
+                              )
+                            }
                             className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors group cursor-zoom-in"
                             aria-label="Open photo"
                           >
@@ -425,27 +450,49 @@ const Courses = () => {
                         exit={{ opacity: 0 }}
                         onClick={(e) => {
                           if (e.target === e.currentTarget)
-                            setLightbox({ open: false, src: null, alt: null, scale: 1 });
+                            setLightbox({
+                              open: false,
+                              src: null,
+                              alt: null,
+                              scale: 1,
+                            });
                         }}
                       >
                         {/* Controls */}
                         <div className="absolute top-4 right-4 flex gap-2 z-10">
                           <button
-                            onClick={() => setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }))}
+                            onClick={() =>
+                              setLightbox((s) => ({
+                                ...s,
+                                scale: Math.min(4, s.scale + 0.2),
+                              }))
+                            }
                             className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                             aria-label="Zoom in"
                           >
                             <ZoomIn className="w-5 h-5" />
                           </button>
                           <button
-                            onClick={() => setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }))}
+                            onClick={() =>
+                              setLightbox((s) => ({
+                                ...s,
+                                scale: Math.max(1, s.scale - 0.2),
+                              }))
+                            }
                             className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                             aria-label="Zoom out"
                           >
                             <ZoomOut className="w-5 h-5" />
                           </button>
                           <button
-                            onClick={() => setLightbox({ open: false, src: null, alt: null, scale: 1 })}
+                            onClick={() =>
+                              setLightbox({
+                                open: false,
+                                src: null,
+                                alt: null,
+                                scale: 1,
+                              })
+                            }
                             className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
                             aria-label="Close"
                           >
@@ -462,7 +509,13 @@ const Courses = () => {
                           onWheel={(e) => {
                             setLightbox((s) => ({
                               ...s,
-                              scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))),
+                              scale: Math.max(
+                                1,
+                                Math.min(
+                                  4,
+                                  s.scale + (e.deltaY < 0 ? 0.1 : -0.1)
+                                )
+                              ),
                             }));
                           }}
                         />
@@ -500,6 +553,56 @@ const Courses = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Lightbox overlay at section level (match Projects) */}
+          <AnimatePresence>
+            {lightbox.open && (
+              <motion.div
+                className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={(e) => {
+                  if (e.target === e.currentTarget)
+                    setLightbox({ open: false, src: null, alt: null, scale: 1 });
+                }}
+              >
+                <div className="absolute top-4 right-4 flex gap-2 z-10">
+                  <button
+                    onClick={() => setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }))}
+                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                  >
+                    <ZoomIn className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }))}
+                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                  >
+                    <ZoomOut className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setLightbox({ open: false, src: null, alt: null, scale: 1 })}
+                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <img
+                  src={lightbox.src}
+                  alt={lightbox.alt || "Course photo"}
+                  style={{ transform: `scale(${lightbox.scale})` }}
+                  className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
+                  onWheel={(e) => {
+                    setLightbox((s) => ({
+                      ...s,
+                      scale: Math.max(1, Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))),
+                    }));
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {filteredCourses.length === 0 && (
             <div className="text-center py-12">
