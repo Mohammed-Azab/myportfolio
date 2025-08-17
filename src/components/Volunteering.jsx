@@ -152,41 +152,59 @@ const Volunteering = () => {
             </p>
           </motion.div>
 
-          {/* Volunteering Stats */}
+          {/* Volunteering Stats - professional cards */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16"
           >
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-electric-blue mb-2">
-                {volunteeringStats.totalHours}+
+            {[
+              {
+                label: "Hours Served",
+                value: `${volunteeringStats.totalHours}+`,
+                Icon: Clock,
+                accent: "from-electric-blue to-blue-500",
+              },
+              {
+                label: "Students Helped",
+                value: `${volunteeringStats.studentsHelped}+`,
+                Icon: Users,
+                accent: "from-neon-green to-green-500",
+              },
+              {
+                label: "Workshops",
+                value: `${volunteeringStats.workshopsConducted}+`,
+                Icon: GraduationCap,
+                accent: "from-purple-500 to-pink-500",
+              },
+              {
+                label: "Organizations",
+                value: `${volunteeringStats.organizationsServed}`,
+                Icon: Target,
+                accent: "from-yellow-400 to-orange-400",
+              },
+              {
+                label: "Years Active",
+                value: `${volunteeringStats.yearsActive}`,
+                Icon: Sparkles,
+                accent: "from-green-400 to-teal-400",
+              },
+            ].map(({ label, value, Icon, accent }) => (
+              <div
+                key={label}
+                className="relative overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg"
+              >
+                <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-r ${accent} opacity-20 blur-xl`} />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-gray-700/60 border border-gray-600 flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-extrabold text-white tracking-tight">{value}</div>
+                    <div className="text-gray-300 text-sm font-medium">{label}</div>
+                  </div>
+                </div>
               </div>
-              <div className="text-gray-300">Hours Served</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-neon-green mb-2">
-                {volunteeringStats.studentsHelped}+
-              </div>
-              <div className="text-gray-300">Students Helped</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-purple-400 mb-2">
-                {volunteeringStats.workshopsConducted}+
-              </div>
-              <div className="text-gray-300">Workshops</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">
-                {volunteeringStats.organizationsServed}
-              </div>
-              <div className="text-gray-300">Organizations</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-green-400 mb-2">
-                {volunteeringStats.yearsActive}
-              </div>
-              <div className="text-gray-300">Years Active</div>
-            </div>
+            ))}
           </motion.div>
 
           {/* Category Filter */}
