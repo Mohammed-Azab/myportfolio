@@ -355,6 +355,30 @@ const Courses = () => {
                     </div>
                   </div>
 
+                  {/* Photos (if available) */}
+                  {Array.isArray(course.photos) && course.photos.length > 0 && (
+                    <div className="mb-6">
+                      <h4 className="text-white font-semibold mb-3">Photos</h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {course.photos.map((photo, idx) => (
+                          <div key={idx} className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors">
+                            <img
+                              src={photo.url}
+                              alt={photo.caption || `Course Photo ${idx + 1}`}
+                              className="w-full h-28 object-cover"
+                              loading="lazy"
+                            />
+                            {photo.caption && (
+                              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-xs text-gray-200 px-2 py-1">
+                                {photo.caption}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Certificate */}
                   <div className="flex items-center justify-between pt-4 border-t border-gray-700">
                     {course.certificate.issued ? (

@@ -60,7 +60,7 @@ export const coursesData = [
     id: 3,
     title: "Digitalization in the Aerospace Industry",
     provider: "Technische Universität München",
-    category: "Engineering",
+    category: "Aerospace Engineering",
     level: "Advanced",
     duration: "6 weeks",
     period: "2024",
@@ -89,7 +89,7 @@ export const coursesData = [
     id: 4,
     title: "Computer-Aided Design (CAD)",
     provider: "Multiple Providers",
-    category: "Design",
+    category: "Engnieering Design",
     level: "Advanced",
     duration: "Ongoing",
     period: "2023-2024",
@@ -100,7 +100,7 @@ export const coursesData = [
     skills: ["Siemens NX", "Fusion 360", "SolidWorks", "AutoCAD"],
     certificate: {
       issued: true,
-      url: "https://certificates.design/...",
+      url: null,
       credentialId: "MECH-DESIGN-2024",
     },
     projects: [
@@ -130,7 +130,7 @@ export const coursesData = [
     ],
     certificate: {
       issued: true,
-      url: "https://manufacturing.cert/...",
+      url: null,
       credentialId: "CNC-5AXIS-2024",
     },
     projects: [
@@ -141,32 +141,6 @@ export const coursesData = [
   },
   {
     id: 6,
-    title: "Goethe-Zertifikat B2 (German)",
-    provider: "Goethe Institut Alexandria",
-    category: "Language",
-    level: "Intermediate",
-    duration: "6 months",
-    period: "2024",
-    status: "Completed",
-    grade: "B2 Certified",
-    description: "Official Goethe-Zertifikat B2 German language certification",
-    skills: [
-      "German Language",
-      "Communication",
-    ],
-    certificate: {
-      issued: true,
-      url: "https://goethe.de/certificates/...",
-      credentialId: "GOETHE-B2-2024",
-    },
-    projects: [
-      "Technical Documentation in German",
-      "Business Communication",
-      "Academic Writing",
-    ],
-  },
-  {
-    id: 7,
     title: "CNC Turning & Milling Programming",
     provider: "AOI Training Academy",
     category: "Manufacturing",
@@ -178,6 +152,16 @@ export const coursesData = [
     description:
       "Practical training on CNC turning and milling programming, toolpaths, and process planning using industry-standard workflows.",
     skills: ["CNC Programming", "G-Code", "CAM", "Manufacturing"],
+    photos: [
+      {
+        url: "/images/projects/project-placeholder.svg",
+        caption: "CNC turning setup and toolpath simulation",
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Milling program verification and setup sheets",
+      },
+    ],
     certificate: {
       issued: true,
       url: "",
@@ -186,6 +170,29 @@ export const coursesData = [
     projects: [
       "Turning and milling toolpath programming exercises",
       "Setup sheets and machining strategies",
+    ],
+  },
+  {
+    id: 7,
+    title: "Goethe-Zertifikat B2 (German)",
+    provider: "Goethe Institut Alexandria",
+    category: "Language",
+    level: "Intermediate",
+    duration: "6 months",
+    period: "2024",
+    status: "Completed",
+    grade: "B2 Certified",
+    description: "Official Goethe-Zertifikat B2 German language certification",
+    skills: ["German Language", "Communication"],
+    certificate: {
+      issued: true,
+      url: null,
+      credentialId: "GOETHE-B2-2024",
+    },
+    projects: [
+      "Technical Documentation in German",
+      "Business Communication",
+      "Academic Writing",
     ],
   },
 ];
