@@ -424,6 +424,13 @@ const Courses = () => {
                                 photo.caption || `Course Photo ${idx + 1}`
                               )
                             }
+                            onMouseEnter={() => {
+                              try {
+                                const img = new Image();
+                                img.decoding = "async";
+                                img.src = photo.url;
+                              } catch (_) {}
+                            }}
                             className="group relative overflow-hidden rounded-lg bg-gray-600 cursor-pointer hover:ring-2 hover:ring-electric-blue transition-all duration-300"
                           >
                             <img
@@ -431,8 +438,8 @@ const Courses = () => {
                               alt={photo.caption || `Course Photo ${idx + 1}`}
                               className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                               onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'flex';
+                                e.target.style.display = "none";
+                                e.target.nextSibling.style.display = "flex";
                               }}
                             />
                             {/* Fallback placeholder */}
@@ -442,7 +449,9 @@ const Courses = () => {
                             {/* Photo overlay with caption */}
                             {photo.caption && (
                               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                <p className="text-white text-sm">{photo.caption}</p>
+                                <p className="text-white text-sm">
+                                  {photo.caption}
+                                </p>
                               </div>
                             )}
                             {/* Hover overlay with zoom indicator */}
@@ -457,88 +466,7 @@ const Courses = () => {
                     </div>
                   )}
 
-                  {/* Lightbox (Projects style) */}
-                  <AnimatePresence>
-                    {lightbox.open && (
-                      <motion.div
-                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={(e) => {
-                          if (e.target === e.currentTarget)
-                            setLightbox({
-                              open: false,
-                              src: null,
-                              alt: null,
-                              scale: 1,
-                            });
-                        }}
-                      >
-                        {/* Controls */}
-                        <div className="absolute top-4 right-4 flex gap-2 z-10">
-                          <button
-                            onClick={() =>
-                              setLightbox((s) => ({
-                                ...s,
-                                scale: Math.min(4, s.scale + 0.2),
-                              }))
-                            }
-                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                            aria-label="Zoom in"
-                          >
-                            <ZoomIn className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={() =>
-                              setLightbox((s) => ({
-                                ...s,
-                                scale: Math.max(1, s.scale - 0.2),
-                              }))
-                            }
-                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                            aria-label="Zoom out"
-                          >
-                            <ZoomOut className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={() =>
-                              setLightbox({
-                                open: false,
-                                src: null,
-                                alt: null,
-                                scale: 1,
-                              })
-                            }
-                            className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                            aria-label="Close"
-                          >
-                            <X className="w-5 h-5" />
-                          </button>
-                        </div>
-
-                        {/* Image */}
-                        <img
-                          src={lightbox.src}
-                          alt={lightbox.alt || "Course photo"}
-                          style={{ transform: `scale(${lightbox.scale})` }}
-                          className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
-                          onWheel={(e) => {
-                            setLightbox((s) => ({
-                              ...s,
-                              scale: Math.max(
-                                1,
-                                Math.min(
-                                  4,
-                                  s.scale + (e.deltaY < 0 ? 0.1 : -0.1)
-                                )
-                              ),
-                            }));
-                          }}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Inline lightbox removed; section-level modal handles display */}
 
                   {/* Certificate */}
                   <div className="flex items-center justify-between pt-4 border-t border-gray-700">
@@ -575,7 +503,7 @@ const Courses = () => {
           <AnimatePresence>
             {lightbox.open && (
               <motion.div
-                className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+                className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[1px] flex items-center justify-center p-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -592,60 +520,30 @@ const Courses = () => {
                 <div className="absolute top-4 right-4 flex gap-2 z-10">
                   <button
                     onClick={() =>
-                      setLightbox((s) => ({
-                        ...s,
-                        scale: Math.min(4, s.scale + 0.2),
-                      }))
+                      setLightbox({ open: false, src: null, alt: null, scale: 1 })
                     }
-                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                  >
-                    <ZoomIn className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setLightbox((s) => ({
-                        ...s,
-                        scale: Math.max(1, s.scale - 0.2),
-                      }))
-                    }
-                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                  >
-                    <ZoomOut className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setLightbox({
-                        open: false,
-                        src: null,
-                        alt: null,
-                        scale: 1,
-                      })
-                    }
-                    className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
+                    className="p-2 bg-gray-800/80 hover:bg-gray-700/80 text-white rounded-full transition-colors"
+                    aria-label="Close"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
-                <motion.img
+                <motion.div
                   key={lightbox.src}
-                  src={lightbox.src}
-                  alt={lightbox.alt || "Course photo"}
-                  style={{ transform: `scale(${lightbox.scale})` }}
-                  className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: lightbox.scale, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  onWheel={(e) => {
-                    setLightbox((s) => ({
-                      ...s,
-                      scale: Math.max(
-                        1,
-                        Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))
-                      ),
-                    }));
-                  }}
-                />
+                  initial={{ scale: 0.98, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.98, opacity: 0 }}
+                  className="relative max-w-[90vw] md:max-w-[65vw] max-h-[72vh] bg-gray-900/85 rounded-xl border border-gray-700 shadow-2xl p-2"
+                >
+                  <img
+                    src={lightbox.src}
+                    alt={lightbox.alt || "Course photo"}
+                    decoding="async"
+                    fetchPriority="high"
+                    className="max-h-[68vh] max-w-full object-contain rounded"
+                  />
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
