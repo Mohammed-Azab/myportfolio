@@ -78,7 +78,7 @@ export const volunteeringData = [
       "Curriculum Development",
       "Cross-cultural Communication",
     ],
-    website: null,
+    website: "https://www.guc.edu.eg/",
     image: "/images/education/guc_Logo.jpg",
     photos: null,
   },
@@ -154,11 +154,11 @@ export const volunteeringData = [
       "Project Coordination",
     ],
     website: "https://www.guc.edu.eg/",
-    image: "/images/volunteering/GUCUshering.jpeg",
+    image: "/images/education/guc_Logo.jpg",
     photos: [
       {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Team leadership activities at GUC",
+        url: "/images/volunteering/GUCUshering.jpeg",
+        caption: "Certificate presentation at German University in Cairo",
       },
       {
         url: "/images/volunteering/placeholder-photo.svg",

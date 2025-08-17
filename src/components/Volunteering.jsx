@@ -243,7 +243,11 @@ const Volunteering = () => {
                             <img
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
-                              className="max-w-full max-h-full object-contain"
+                              className={`object-contain ${
+                                volunteer.organization.includes("ICPC")
+                                  ? "w-full h-full scale-90"
+                                  : "max-w-full max-h-full"
+                              }`}
                               onError={(e) => {
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
