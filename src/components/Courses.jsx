@@ -16,7 +16,7 @@ import {
   Settings,
   Battery,
 } from "lucide-react";
-import { coursesData, courseCategories, learningStats } from "../data/courses";
+import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -42,6 +42,11 @@ const Courses = () => {
     };
     return iconMap[categoryName] || BookOpen;
   };
+
+  // Derive categories automatically from courses data
+  const derivedCategories = Array.from(
+    new Set(coursesData.map((course) => course.category))
+  );
 
   // Tech badge function from Projects component
   const getTechBadge = (tech) => {
@@ -251,21 +256,24 @@ const Courses = () => {
                     : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                 }`}
               >
-                All Courses
+                <BookOpen className="inline-block w-5 h-5 mr-2" /> All
               </button>
-              {courseCategories.map((category) => (
-                <button
-                  key={category.name}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                    selectedCategory === category.name
-                      ? "bg-blue-500 text-white shadow-lg scale-105"
-                      : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
-                  }`}
-                >
-                  {category.icon} {category.name}
-                </button>
-              ))}
+              {derivedCategories.map((categoryName) => {
+                const Icon = getCategoryIcon(categoryName);
+                return (
+                  <button
+                    key={categoryName}
+                    onClick={() => setSelectedCategory(categoryName)}
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+                      selectedCategory === categoryName
+                        ? "bg-blue-500 text-white shadow-lg scale-105"
+                        : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
+                    }`}
+                  >
+                    <Icon className="inline-block w-5 h-5 mr-2" /> {categoryName}
+                  </button>
+                );
+              })}
             </div>
           </motion.div>
 
