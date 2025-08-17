@@ -19,16 +19,14 @@ import {
 import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
 
   const normalizeCategory = (value) =>
     (value ?? "").toString().trim().toLowerCase();
 
-  const normalizedSelected = normalizeCategory(selectedCategory);
-
   const filteredCourses = coursesData.filter((course) => {
-    if (normalizedSelected === "all") return true;
-    return normalizeCategory(course.category) === normalizedSelected;
+    if (selectedCategoryKey === "all") return true;
+    return normalizeCategory(course.category) === selectedCategoryKey;
   });
 
   // Professional category icon mapping
@@ -50,14 +48,14 @@ const Courses = () => {
   };
 
   // Derive categories automatically from courses data (case-insensitive unique)
-  const derivedCategories = (() => {
-    const normalizedToDisplay = new Map();
+  const categoryOptions = (() => {
+    const map = new Map();
     for (const course of coursesData) {
-      const display = course.category ?? "Other";
-      const key = normalizeCategory(display);
-      if (!normalizedToDisplay.has(key)) normalizedToDisplay.set(key, display);
+      const label = course.category ?? "Other";
+      const key = normalizeCategory(label);
+      if (!map.has(key)) map.set(key, { key, label });
     }
-    return Array.from(normalizedToDisplay.values());
+    return Array.from(map.values());
   })();
 
   // Tech badge function from Projects component
@@ -261,29 +259,28 @@ const Courses = () => {
           <motion.div variants={itemVariants} className="mb-8">
             <div className="flex flex-wrap gap-3 justify-center">
               <button
-                onClick={() => setSelectedCategory("All")}
+                onClick={() => setSelectedCategoryKey("all")}
                 className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === "All"
+                  selectedCategoryKey === "all"
                     ? "bg-blue-500 text-white shadow-lg scale-105"
                     : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                 }`}
               >
                 <BookOpen className="inline-block w-5 h-5 mr-2" /> All
               </button>
-              {derivedCategories.map((categoryName) => {
-                const Icon = getCategoryIcon(categoryName);
+              {categoryOptions.map(({ key, label }) => {
+                const Icon = getCategoryIcon(label);
                 return (
                   <button
-                    key={categoryName}
-                    onClick={() => setSelectedCategory(categoryName)}
+                    key={key}
+                    onClick={() => setSelectedCategoryKey(key)}
                     className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                      selectedCategory === categoryName
+                      selectedCategoryKey === key
                         ? "bg-blue-500 text-white shadow-lg scale-105"
                         : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                     }`}
                   >
-                    <Icon className="inline-block w-5 h-5 mr-2" />{" "}
-                    {categoryName}
+                    <Icon className="inline-block w-5 h-5 mr-2" /> {label}
                   </button>
                 );
               })}
