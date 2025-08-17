@@ -12,7 +12,8 @@ export const awardsData = [
     description:
       "Awarded the prestigious GUC Scholarship for studying mechatronics in Germany, a recognition given to the top 5 students out of a competitive pool of 981 candidates. This scholarship has enabled me to pursue a three-year mechatronics program in Germany.",
     criteria: "Top 5 out of 981 candidates for international program",
-    significance: "Prestigious scholarship for international study in mechatronics",
+    significance:
+      "Prestigious scholarship for international study in mechatronics",
     image: "/images/education/guc_Logo.jpg",
     certificate: "/documents/guc-international-scholarship-2023.pdf",
     website: "https://www.guc.edu.eg/",

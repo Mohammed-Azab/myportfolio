@@ -29,10 +29,10 @@ export const projectsData = [
       "Dual Extended Kalman Filter for state estimation",
       "IMU and odometry data fusion",
     ],
-    timeline: "Jan 2024 - Jun 2024",
+    timeline: "June 2025",
     teamSize: "Team Project",
     achievement:
-      "🏆 3rd place in 25th RoboRacer Autonomous Racing Competition, Romania",
+      "3rd place in 25th RoboRacer Autonomous Racing Competition, Romania",
   },
   {
     id: 2,

@@ -147,7 +147,7 @@ export const volunteeringData = [
       "Successfully led programs connecting students with international opportunities and design education initiatives",
     skills: [
       "Team Leadership",
-      "Program Management", 
+      "Program Management",
       "Student Mentoring",
       "Event Organization",
       "Cross-cultural Communication",

@@ -5,19 +5,19 @@ export const coursesData = [
   {
     id: 1,
     title: "Robotics & Automation: ROS 2 Humble",
-    provider: "The Construct",
+    provider: "Udemy",
     category: "Robotics",
     level: "Advanced",
-    duration: "8 weeks",
+    duration: "12 weeks",
     period: "2024",
     status: "Completed",
     grade: "Certified",
     description:
-      "Comprehensive course covering ROS 2 Humble framework for robotics development including navigation, SLAM, and robot control.",
+      "ROS 2 Humble framework for robotics development including navigation, SLAM, and robot control.",
     skills: ["ROS2", "Navigation", "SLAM", "Robot Control", "Gazebo"],
     certificate: {
       issued: true,
-      url: "https://certificates.theconstructsim.com/...",
+      url: "https://www.udemy.com/certificate/UC-00000000000000000000000000000000/",
       credentialId: "ROS2-HUMBLE-2024",
     },
     projects: [
@@ -37,7 +37,7 @@ export const coursesData = [
     status: "Completed",
     grade: "Certified",
     description:
-      "Comprehensive machine learning specialization covering supervised & unsupervised learning, recommenders, reinforcement learning, and advanced algorithms.",
+      "Supervised & unsupervised learning, recommenders, reinforcement learning, and advanced algorithms.",
     skills: [
       "Python",
       "Machine Learning",
@@ -87,7 +87,7 @@ export const coursesData = [
   },
   {
     id: 4,
-    title: "Mechanical Design Suite",
+    title: "CAD Design",
     provider: "Multiple Providers",
     category: "Design",
     level: "Advanced",
@@ -96,13 +96,12 @@ export const coursesData = [
     status: "Completed",
     grade: "Certified",
     description:
-      "Comprehensive mechanical design training covering multiple CAD platforms and design methodologies.",
+      "Mechanical design training covering multiple CAD platforms and design methodologies.",
     skills: [
       "Siemens NX",
       "Fusion 360",
       "SolidWorks",
       "AutoCAD",
-      "Mechanical Design",
     ],
     certificate: {
       issued: true,
@@ -118,7 +117,7 @@ export const coursesData = [
   {
     id: 5,
     title: "Programming & Operation of 5-Axis CNC Machines",
-    provider: "Industrial Training Center",
+    provider: "DMG Mori",
     category: "Manufacturing",
     level: "Advanced",
     duration: "4 weeks",
@@ -148,7 +147,7 @@ export const coursesData = [
   {
     id: 6,
     title: "Goethe-Zertifikat B2 (German)",
-    provider: "Goethe Institut",
+    provider: "Goethe Institut Alexandria",
     category: "Language",
     level: "Intermediate",
     duration: "6 months",
@@ -156,7 +155,7 @@ export const coursesData = [
     status: "Completed",
     grade: "B2 Certified",
     description:
-      "Official German language certification demonstrating upper-intermediate proficiency in German language skills.",
+      "Official Goethe-Zertifikat B2 German language certification",
     skills: [
       "German Language",
       "Communication",
@@ -174,123 +173,6 @@ export const coursesData = [
       "Academic Writing",
     ],
   },
-  {
-    id: 7,
-    title: "Industrial Automation with PLCs",
-    provider: "Siemens Digital Academy",
-    category: "Automation",
-    level: "Professional",
-    duration: "8 weeks",
-    period: "Jun 2023 - Aug 2023",
-    status: "Completed",
-    grade: "Excellent",
-    description:
-      "Professional certification course covering PLC programming, SCADA systems, and industrial communication protocols.",
-    skills: [
-      "Siemens PLC",
-      "SCADA",
-      "HMI Design",
-      "Industrial Networks",
-      "Ladder Logic",
-    ],
-    certificate: {
-      issued: true,
-      url: "https://siemens.com/certificates/...",
-      credentialId: "SIEM-AUTO-2023-789",
-    },
-    projects: [
-      "Conveyor Belt Control System",
-      "Temperature Monitoring SCADA",
-      "Motor Control Interface",
-    ],
-  },
-  {
-    id: 8,
-    title: "Embedded Systems Design",
-    provider: "Coursera - University of California",
-    category: "Electronics",
-    level: "Advanced",
-    duration: "14 weeks",
-    period: "Mar 2023 - Jun 2023",
-    status: "Completed",
-    grade: "A+",
-    description:
-      "Comprehensive course on embedded systems including microcontroller programming, real-time systems, and IoT applications.",
-    skills: [
-      "C/C++",
-      "Arduino",
-      "ESP32",
-      "Real-time Systems",
-      "IoT",
-      "Sensors",
-    ],
-    certificate: {
-      issued: true,
-      url: "https://coursera.org/verify/...",
-      credentialId: "UC-EMB-2023-123",
-    },
-    projects: [
-      "IoT Environmental Monitoring System",
-      "Real-time Data Acquisition",
-      "Wireless Sensor Network",
-    ],
-  },
-  {
-    id: 9,
-    title: "Computer Vision and Image Processing",
-    provider: "edX - Harvard University",
-    category: "Computer Vision",
-    level: "Advanced",
-    duration: "12 weeks",
-    period: "Jan 2023 - Apr 2023",
-    status: "Completed",
-    grade: "A",
-    description:
-      "Advanced course covering image processing algorithms, feature detection, object recognition, and deep learning for vision.",
-    skills: [
-      "OpenCV",
-      "Python",
-      "Deep Learning",
-      "Feature Detection",
-      "Object Recognition",
-    ],
-    certificate: {
-      issued: true,
-      url: "https://edx.org/certificates/...",
-      credentialId: "HARV-CV-2023-987",
-    },
-    projects: [
-      "Object Detection System",
-      "Facial Recognition Application",
-      "Autonomous Vehicle Vision",
-    ],
-  },
-  {
-    id: 10,
-    title: "Digital Signal Processing",
-    provider: "Udacity",
-    category: "Signal Processing",
-    level: "Intermediate",
-    duration: "6 weeks",
-    period: "Oct 2022 - Dec 2022",
-    status: "Completed",
-    grade: "A+",
-    description:
-      "Practical course on digital signal processing including filtering, FFT, and real-time signal analysis.",
-    skills: ["MATLAB", "Python", "Signal Processing", "FFT", "Digital Filters"],
-    certificate: {
-      issued: true,
-      url: "https://udacity.com/certificates/...",
-      credentialId: "UDA-DSP-2022-654",
-    },
-    projects: [
-      "Audio Signal Filter",
-      "Vibration Analysis System",
-      "Real-time Spectrum Analyzer",
-    ],
-  },
-  // Removed beginner-level 3D Printing to keep section concise and professional
-  // Removed generic in-progress renewable energy course to focus on core mechatronics/robotics
 ];
 
 // Course Categories
