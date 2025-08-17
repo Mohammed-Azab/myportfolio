@@ -13,8 +13,8 @@ export const skillsData = {
         { name: "Java", level: 80, icon: "☕" },
         { name: "VHDL", level: 75, icon: "🔧" },
         { name: "Assembly", level: 70, icon: "🔧" },
-        { name: "CSS", level: 65, icon: "🎨" }
-      ]
+        { name: "CSS", level: 65, icon: "🎨" },
+      ],
     },
     {
       category: "Robotics & Control",
@@ -24,8 +24,8 @@ export const skillsData = {
         { name: "Kinematics", level: 90, icon: "🔄" },
         { name: "Path Planning", level: 80, icon: "🗺️" },
         { name: "SLAM", level: 75, icon: "📍" },
-        { name: "Computer Vision", level: 82, icon: "👁️" }
-      ]
+        { name: "Computer Vision", level: 82, icon: "👁️" },
+      ],
     },
     {
       category: "Hardware Platforms",
@@ -35,8 +35,8 @@ export const skillsData = {
         { name: "NVIDIA Jetson", level: 85, icon: "🤖" },
         { name: "Raspberry Pi", level: 85, icon: "🥧" },
         { name: "Arduino", level: 82, icon: "🔌" },
-        { name: "FPGA", level: 75, icon: "🔲" }
-      ]
+        { name: "FPGA", level: 75, icon: "🔲" },
+      ],
     },
     {
       category: "Software & Tools",
@@ -47,8 +47,8 @@ export const skillsData = {
         { name: "Gazebo", level: 80, icon: "🌐" },
         { name: "Quartus", level: 75, icon: "🔧" },
         { name: "Bash", level: 82, icon: "💻" },
-        { name: "PowerShell", level: 70, icon: "💻" }
-      ]
+        { name: "PowerShell", level: 70, icon: "💻" },
+      ],
     },
     {
       category: "Operating Systems",
@@ -56,9 +56,9 @@ export const skillsData = {
         { name: "Ubuntu", level: 90, icon: "🐧" },
         { name: "Arch Linux", level: 85, icon: "🐧" },
         { name: "Windows", level: 80, icon: "🪟" },
-        { name: "FreeRTOS", level: 75, icon: "⚡" }
-      ]
-    }
+        { name: "FreeRTOS", level: 75, icon: "⚡" },
+      ],
+    },
   ],
 
   // Soft Skills
@@ -70,8 +70,8 @@ export const skillsData = {
     { name: "Critical Thinking", level: 92 },
     { name: "Adaptability", level: 87 },
     { name: "Time Management", level: 89 },
-    { name: "Creativity", level: 91 }
-  ]
+    { name: "Creativity", level: 91 },
+  ],
 };
 
 // Work Experience Timeline
@@ -83,19 +83,30 @@ export const experienceData = [
     period: "May 2025 - Present",
     location: "Berlin, Germany",
     type: "Working Student",
-    description: "Operating advanced test bench environments to measure and validate sensor data for Automated Driving Systems, developing test tools, and working with CI pipelines.",
+    description:
+      "Operating advanced test bench environments to measure and validate sensor data for Automated Driving Systems, developing test tools, and working with CI pipelines.",
     responsibilities: [
       "Operate advanced test bench environments to measure and validate sensor data (LiDAR, radar, camera)",
       "Develop, debug, and optimize test and measurement tools using C++ and Python on Ubuntu",
       "Work with CI pipelines, CMake, and Conan for scalable build automation and dependency management",
-      "Author comprehensive technical documentation, ensuring clarity and traceability of test procedures"
+      "Author comprehensive technical documentation, ensuring clarity and traceability of test procedures",
     ],
-    technologies: ["C++", "Python", "Ubuntu", "LiDAR", "Radar", "Camera", "CI/CD", "CMake", "Conan"],
+    technologies: [
+      "C++",
+      "Python",
+      "Ubuntu",
+      "LiDAR",
+      "Radar",
+      "Camera",
+      "CI/CD",
+      "CMake",
+      "Conan",
+    ],
     achievements: [
       "Improved test automation efficiency",
       "Enhanced sensor validation accuracy",
-      "Contributed to ADAS/AD system reliability"
-    ]
+      "Contributed to ADAS/AD system reliability",
+    ],
   },
   {
     id: 2,
@@ -104,41 +115,55 @@ export const experienceData = [
     period: "Aug 2024 - Oct 2024",
     location: "New Cairo, Egypt",
     type: "Internship",
-    description: "Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability with PID controller implementation.",
+    description:
+      "Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability with PID controller implementation.",
     responsibilities: [
       "Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability",
       "Designed and implemented a PID controller in MATLAB/Simulink for precise stabilization",
       "Reduced drone weight by 23% using SolidWorks, increasing flight time by 15%",
-      "Conducted flight tests and performance optimization"
+      "Conducted flight tests and performance optimization",
     ],
-    technologies: ["Embedded C", "MATLAB/Simulink", "SolidWorks", "PID Control", "Drone Systems"],
+    technologies: [
+      "Embedded C",
+      "MATLAB/Simulink",
+      "SolidWorks",
+      "PID Control",
+      "Drone Systems",
+    ],
     achievements: [
       "Reduced drone weight by 23%",
       "Increased flight time by 15%",
-      "Successfully implemented stable flight control"
-    ]
+      "Successfully implemented stable flight control",
+    ],
   },
   {
     id: 3,
-    company: "German University in Cairo",
+    company: "The German University in Cairo",
     position: "Junior Teaching Assistant",
-    period: "Jan 2020 - Jun 2021",
-    location: "New Cairo, Egypt",
+    period: "Oct 2023 - Jan 2024",
+    location: "New Cairo, Cairo, Egypt (On-site)",
     type: "Part-time",
-    description: "Tutored underprivileged students in mathematics and physics preparation for university entrance examinations.",
+    description:
+      "Worked as Junior TA with MET-Eng. Department for CSEN 102 / CSIS 102 courses. Assisted students in grasping programming concepts and essential Python language principles, and provided constructive feedback with optimized solutions.",
     responsibilities: [
-      "Provide individual and group tutoring sessions",
-      "Develop customized study plans for each student",
-      "Create practice tests and study materials",
-      "Track student progress and communicate with parents",
-      "Organize study groups and peer learning sessions"
+      "Assist in CSEN 102 / CSIS 102 labs and tutorial sessions",
+      "Explain Python fundamentals and core programming concepts",
+      "Support students with debugging and problem-solving during exercises",
+      "Review assignments and provide constructive, actionable feedback",
+      "Hold office hours to address questions and reinforce learning"
     ],
-    technologies: ["Mathematics", "Physics", "Tutoring", "Curriculum Development", "Communication"],
+    technologies: [
+      "Python",
+      "Algorithms",
+      "Data Structures",
+      "Code Review",
+      "Teaching & Mentoring"
+    ],
     achievements: [
-      "Helped 20+ students achieve 90%+ scores in entrance examinations",
-      "85% university acceptance rate"
+      "Improved student understanding of Python fundamentals through targeted guidance",
+      "Delivered optimized solution patterns and best practices across assignments"
     ]
-  }
+  },
 ];
 
 // Certifications
@@ -148,29 +173,29 @@ export const certificationsData = [
     issuer: "The Construct",
     date: "March 2024",
     credentialId: "ROSDevCert2024-MA",
-    url: "https://certificates.theconstructsim.com/..."
+    url: "https://certificates.theconstructsim.com/...",
   },
   {
     name: "Machine Learning Engineering",
     issuer: "Coursera - DeepLearning.AI",
     date: "January 2024",
     credentialId: "MLEng2024-001",
-    url: "https://coursera.org/verify/..."
+    url: "https://coursera.org/verify/...",
   },
   {
     name: "Siemens PLC Programming",
     issuer: "Siemens Digital Industries",
     date: "September 2023",
     credentialId: "SPPL2023-456",
-    url: "https://siemens.com/certificates/..."
+    url: "https://siemens.com/certificates/...",
   },
   {
     name: "Arduino IoT Cloud Specialist",
     issuer: "Arduino",
     date: "June 2023",
     credentialId: "AIOT2023-789",
-    url: "https://arduino.cc/certificates/..."
-  }
+    url: "https://arduino.cc/certificates/...",
+  },
 ];
 
 // Awards and Achievements
@@ -179,31 +204,35 @@ export const achievementsData = [
     title: "Best Engineering Project Award",
     organization: "University of Technology",
     date: "May 2024",
-    description: "Awarded for the Autonomous Robotic Arm project demonstrating exceptional innovation and technical execution."
+    description:
+      "Awarded for the Autonomous Robotic Arm project demonstrating exceptional innovation and technical execution.",
   },
   {
     title: "National Robotics Competition - 1st Place",
     organization: "National Engineering Society",
     date: "March 2024",
-    description: "Led team to victory in national university-level robotics competition with autonomous navigation challenge."
+    description:
+      "Led team to victory in national university-level robotics competition with autonomous navigation challenge.",
   },
   {
     title: "Innovation Challenge Winner",
     organization: "Tech Startup Incubator",
     date: "November 2023",
-    description: "Won startup pitch competition for IoT-based smart home automation solution."
+    description:
+      "Won startup pitch competition for IoT-based smart home automation solution.",
   },
   {
     title: "Research Excellence Award",
     organization: "University Research Department",
     date: "December 2023",
-    description: "Recognized for outstanding contribution to prosthetic device research and publication record."
-  }
+    description:
+      "Recognized for outstanding contribution to prosthetic device research and publication record.",
+  },
 ];
 
 export default {
   skills: skillsData,
   experience: experienceData,
   certifications: certificationsData,
-  achievements: achievementsData
+  achievements: achievementsData,
 };
