@@ -239,25 +239,11 @@ const Volunteering = () => {
                       {/* Timeline Dot / Organization Logo */}
                       <div className="flex-shrink-0">
                         {volunteer.image ? (
-                          <div
-                            className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
-                              volunteer.organization.includes("ESC4Y") ||
-                              volunteer.organization.includes("European Solidarity Corps") ||
-                              volunteer.organization.includes("ICPC")
-                                ? "w-32 h-20 p-2"
-                                : "w-24 h-14 p-2"
-                            }`}
-                          >
+                          <div className="w-24 h-14 flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white p-2">
                             <img
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
-                              className={`object-contain ${
-                                volunteer.organization.includes("ESC4Y") ||
-                                volunteer.organization.includes("European Solidarity Corps") ||
-                                volunteer.organization.includes("ICPC")
-                                  ? "w-full h-full"
-                                  : "max-w-full max-h-full"
-                              }`}
+                              className="max-w-full max-h-full object-contain"
                               onError={(e) => {
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
