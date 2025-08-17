@@ -117,6 +117,27 @@ export const experienceData = [
       "Increased flight time by 15%",
       "Successfully implemented stable flight control"
     ]
+  },
+  {
+    id: 3,
+    company: "German University in Cairo",
+    position: "Junior Teaching Assistant",
+    period: "Jan 2020 - Jun 2021",
+    location: "New Cairo, Egypt",
+    type: "Part-time",
+    description: "Tutored underprivileged students in mathematics and physics preparation for university entrance examinations.",
+    responsibilities: [
+      "Provide individual and group tutoring sessions",
+      "Develop customized study plans for each student",
+      "Create practice tests and study materials",
+      "Track student progress and communicate with parents",
+      "Organize study groups and peer learning sessions"
+    ],
+    technologies: ["Mathematics", "Physics", "Tutoring", "Curriculum Development", "Communication"],
+    achievements: [
+      "Helped 20+ students achieve 90%+ scores in entrance examinations",
+      "85% university acceptance rate"
+    ]
   }
 ];
 
