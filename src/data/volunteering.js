@@ -111,15 +111,62 @@ export const volunteeringData = [
       "Time Complexity Analysis",
     ],
     website: "https://icpc.global/",
-    image: "/images/volunteering/acm_international_collegiate_programming_contest_logo.jpeg",
+    image:
+      "/images/volunteering/acm_international_collegiate_programming_contest_logo.jpeg",
     photos: [
       {
         url: "/images/volunteering/placeholder-photo.svg",
         caption: "ICPC programming contest participation",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg", 
+        url: "/images/volunteering/placeholder-photo.svg",
         caption: "Algorithmic problem-solving session",
+      },
+    ],
+  },
+  {
+    id: 4,
+    role: "Team Leader",
+    organization: "The German University in Cairo",
+    location: "New Cairo, Egypt",
+    duration: "Mar 2023 - Feb 2024",
+    startDate: "2023-03",
+    endDate: "2024-02",
+    type: "Leadership & Organization",
+    description:
+      "Served as team leader for Berlin Exchange Program and Design Connects initiatives, facilitating student connections and educational opportunities.",
+    responsibilities: [
+      "Lead team coordination for Berlin Exchange Program",
+      "Organize and manage Design Connects events and activities",
+      "Facilitate student connections and networking opportunities",
+      "Coordinate with university administration and program stakeholders",
+      "Mentor and guide team members in program execution",
+      "Ensure successful delivery of educational and cultural programs",
+    ],
+    impact:
+      "Successfully led programs connecting students with international opportunities and design education initiatives",
+    skills: [
+      "Team Leadership",
+      "Program Management", 
+      "Student Mentoring",
+      "Event Organization",
+      "Cross-cultural Communication",
+      "Project Coordination",
+    ],
+    website: "https://www.guc.edu.eg/",
+    image: "/images/volunteering/GUCUshering.jpeg",
+    photos: [
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Team leadership activities at GUC",
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Berlin Exchange Program coordination",
+      },
+      {
+        url: "/images/volunteering/placeholder-photo.svg",
+        caption: "Design Connects event organization",
       },
     ],
   },
@@ -127,9 +174,9 @@ export const volunteeringData = [
 
 // Volunteering Statistics
 export const volunteeringStats = {
-  totalHours: 700,
-  studentsHelped: 75,
-  workshopsConducted: 25,
+  totalHours: 850,
+  studentsHelped: 120,
+  workshopsConducted: 35,
   organizationsServed: 3,
   yearsActive: 5,
 };

@@ -232,8 +232,6 @@ const Volunteering = () => {
           <motion.div variants={itemVariants} className="space-y-8">
             {filteredVolunteering.map((volunteer, index) => (
               <div key={volunteer.id} className="relative">
-
-
                 <div className="bg-gray-800 rounded-2xl border border-gray-700 hover:border-electric-blue transition-all duration-300 overflow-hidden">
                   {/* Main Volunteering Card */}
                   <div className="p-8">
@@ -243,8 +241,10 @@ const Volunteering = () => {
                         {volunteer.image ? (
                           <div
                             className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
-                              volunteer.organization.includes("European Solidarity Corps")
-                                ? "w-28 h-16 p-1"
+                              volunteer.organization.includes("ESC4Y") ||
+                              volunteer.organization.includes("European Solidarity Corps") ||
+                              volunteer.organization.includes("ICPC")
+                                ? "w-32 h-20 p-2"
                                 : "w-24 h-14 p-2"
                             }`}
                           >
@@ -252,8 +252,10 @@ const Volunteering = () => {
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
                               className={`object-contain ${
-                                volunteer.organization.includes("European Solidarity Corps")
-                                  ? "w-full h-full scale-125"
+                                volunteer.organization.includes("ESC4Y") ||
+                                volunteer.organization.includes("European Solidarity Corps") ||
+                                volunteer.organization.includes("ICPC")
+                                  ? "w-full h-full"
                                   : "max-w-full max-h-full"
                               }`}
                               onError={(e) => {
