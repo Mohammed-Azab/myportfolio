@@ -67,7 +67,7 @@ export const coursesData = [
     status: "Completed",
     grade: "Certified",
     description:
-      "Advanced course covering digital transformation in aerospace industry including Industry 4.0 concepts and digital manufacturing.",
+      "Digital transformation in aerospace industry including Industry 4.0 concepts and digital manufacturing.",
     skills: [
       "Digital Manufacturing",
       "Industry 4.0",
@@ -97,12 +97,7 @@ export const coursesData = [
     grade: "Certified",
     description:
       "Mechanical design training covering multiple CAD platforms and design methodologies.",
-    skills: [
-      "Siemens NX",
-      "Fusion 360",
-      "SolidWorks",
-      "AutoCAD",
-    ],
+    skills: ["Siemens NX", "Fusion 360", "SolidWorks", "AutoCAD"],
     certificate: {
       issued: true,
       url: "https://certificates.design/...",
@@ -154,13 +149,10 @@ export const coursesData = [
     period: "2024",
     status: "Completed",
     grade: "B2 Certified",
-    description:
-      "Official Goethe-Zertifikat B2 German language certification",
+    description: "Official Goethe-Zertifikat B2 German language certification",
     skills: [
       "German Language",
       "Communication",
-      "Technical German",
-      "Business German",
     ],
     certificate: {
       issued: true,
@@ -171,6 +163,29 @@ export const coursesData = [
       "Technical Documentation in German",
       "Business Communication",
       "Academic Writing",
+    ],
+  },
+  {
+    id: 7,
+    title: "CNC Turning & Milling Programming",
+    provider: "AOI Training Academy",
+    category: "Manufacturing",
+    level: "Intermediate",
+    duration: "4 weeks",
+    period: "Aug 2023",
+    status: "Completed",
+    grade: "Certified",
+    description:
+      "Practical training on CNC turning and milling programming, toolpaths, and process planning using industry-standard workflows.",
+    skills: ["CNC Programming", "G-Code", "CAM", "Manufacturing"],
+    certificate: {
+      issued: true,
+      url: "",
+      credentialId: "AOI-CNC-2023",
+    },
+    projects: [
+      "Turning and milling toolpath programming exercises",
+      "Setup sheets and machining strategies",
     ],
   },
 ];
