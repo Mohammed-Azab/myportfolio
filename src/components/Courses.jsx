@@ -289,6 +289,7 @@ const Courses = () => {
 
           {/* Courses Grid */}
           <motion.div
+            key={selectedCategoryKey}
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
@@ -296,6 +297,8 @@ const Courses = () => {
               <motion.div
                 key={course.id}
                 variants={itemVariants}
+                initial="hidden"
+                animate="visible"
                 className="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-400 transition-all duration-300 overflow-hidden group hover:shadow-xl"
               >
                 <div className="p-8">
