@@ -15,11 +15,17 @@ import {
   Bot,
   Settings,
   Battery,
+  X,
+  ZoomIn,
+  ZoomOut,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
+  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0, scale: 1 });
 
   const normalizeCategory = (value) =>
     (value ?? "").toString().trim().toLowerCase();
@@ -58,6 +64,41 @@ const Courses = () => {
     return Array.from(map.values());
   })();
 
+  const openLightbox = (images, startIndex = 0) => {
+    if (!Array.isArray(images) || images.length === 0) return;
+    setLightbox({ open: true, images, index: startIndex, scale: 1 });
+  };
+
+  const closeLightbox = () => setLightbox((prev) => ({ ...prev, open: false }));
+  const zoomInHandler = () => setLightbox((prev) => ({ ...prev, scale: Math.min(prev.scale + 0.2, 3) }));
+  const zoomOutHandler = () => setLightbox((prev) => ({ ...prev, scale: Math.max(prev.scale - 0.2, 1) }));
+  const resetZoom = () => setLightbox((prev) => ({ ...prev, scale: 1 }));
+  const prevImage = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index - 1 + prev.images.length) % prev.images.length,
+      scale: 1,
+    }));
+  const nextImage = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index + 1) % prev.images.length,
+      scale: 1,
+    }));
+
+  React.useEffect(() => {
+    if (!lightbox.open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "+" || e.key === "=") zoomInHandler();
+      if (e.key === "-" || e.key === "_") zoomOutHandler();
+      if (e.key === "0") resetZoom();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox.open]);
   // Tech badge function from Projects component
   const getTechBadge = (tech) => {
     const techBadges = {
@@ -361,7 +402,13 @@ const Courses = () => {
                       <h4 className="text-white font-semibold mb-3">Photos</h4>
                       <div className="grid grid-cols-2 gap-3">
                         {course.photos.map((photo, idx) => (
-                          <div key={idx} className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors">
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => openLightbox(course.photos, idx)}
+                            className="relative rounded-lg overflow-hidden border border-gray-700 hover:border-blue-400 transition-colors group cursor-zoom-in"
+                            aria-label="Open photo"
+                          >
                             <img
                               src={photo.url}
                               alt={photo.caption || `Course Photo ${idx + 1}`}
@@ -373,8 +420,57 @@ const Courses = () => {
                                 {photo.caption}
                               </div>
                             )}
-                          </div>
+                          </button>
                         ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Lightbox */}
+                  {lightbox.open && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+                      <button
+                        onClick={closeLightbox}
+                        className="absolute top-6 right-6 p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700"
+                        aria-label="Close"
+                      >
+                        <X className="w-6 h-6" />
+                      </button>
+                      <div className="absolute inset-x-0 top-0 bottom-0 flex items-center justify-between px-6">
+                        <button onClick={prevImage} className="p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Previous">
+                          <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button onClick={nextImage} className="p-2 rounded-full bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Next">
+                          <ChevronRight className="w-6 h-6" />
+                        </button>
+                      </div>
+                      <div className="flex flex-col items-center gap-4">
+                        <div
+                          className="max-w-[90vw] max-h-[75vh] overflow-hidden"
+                          style={{ transform: `scale(${lightbox.scale})` }}
+                        >
+                          <img
+                            src={lightbox.images[lightbox.index]?.url}
+                            alt={lightbox.images[lightbox.index]?.caption || "Course Photo"}
+                            className="object-contain max-w-[90vw] max-h-[75vh]"
+                          />
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button onClick={zoomOutHandler} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Zoom out">
+                            <ZoomOut className="w-5 h-5" />
+                          </button>
+                          <button onClick={resetZoom} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Reset zoom">
+                            100%
+                          </button>
+                          <button onClick={zoomInHandler} className="px-3 py-2 rounded bg-gray-800 text-gray-200 hover:bg-gray-700" aria-label="Zoom in">
+                            <ZoomIn className="w-5 h-5" />
+                          </button>
+                        </div>
+                        {lightbox.images[lightbox.index]?.caption && (
+                          <div className="text-gray-300 text-sm text-center px-4">
+                            {lightbox.images[lightbox.index]?.caption}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
