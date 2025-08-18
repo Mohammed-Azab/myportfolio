@@ -17,7 +17,7 @@ export const coursesData = [
     skills: ["ROS2", "Navigation", "SLAM", "Robot Control", "Gazebo"],
     certificate: {
       issued: true,
-      url: "https://www.udemy.com/certificate/UC-00000000000000000000000000000000/",
+      url: null,
       credentialId: "ROS2-HUMBLE-2024",
     },
     projects: [
@@ -89,7 +89,7 @@ export const coursesData = [
     id: 4,
     title: "Computer-Aided Design (CAD)",
     provider: "Multiple Providers",
-    category: "Engnieering Design",
+    category: "Engineering Design",
     level: "Advanced",
     duration: "Ongoing",
     period: "2023-2024",
@@ -196,60 +196,6 @@ export const coursesData = [
     ],
   },
 ];
-
-// Course Categories
-export const courseCategories = [
-  {
-    name: "Robotics",
-    count: coursesData.filter((course) => course.category === "Robotics")
-      .length,
-    color: "#00D4FF",
-    icon: "🤖",
-  },
-  {
-    name: "AI/ML",
-    count: coursesData.filter((course) => course.category === "AI/ML").length,
-    color: "#39FF14",
-    icon: "🧠",
-  },
-  {
-    name: "Automation",
-    count: coursesData.filter((course) => course.category === "Automation")
-      .length,
-    color: "#FF6B35",
-    icon: "⚙️",
-  },
-  {
-    name: "Electronics",
-    count: coursesData.filter((course) => course.category === "Electronics")
-      .length,
-    color: "#FFD700",
-    icon: "⚡",
-  },
-  {
-    name: "Computer Vision",
-    count: coursesData.filter((course) => course.category === "Computer Vision")
-      .length,
-    color: "#FF69B4",
-    icon: "👁️",
-  },
-  {
-    name: "Signal Processing",
-    count: coursesData.filter(
-      (course) => course.category === "Signal Processing"
-    ).length,
-    color: "#8A2BE2",
-    icon: "📊",
-  },
-  {
-    name: "Manufacturing",
-    count: coursesData.filter((course) => course.category === "Manufacturing")
-      .length,
-    color: "#32CD32",
-    icon: "🔧",
-  },
-];
-
 // Learning Statistics
 export const learningStats = {
   totalCourses: coursesData.length,
@@ -272,6 +218,5 @@ export const learningStats = {
 
 export default {
   courses: coursesData,
-  categories: courseCategories,
   stats: learningStats,
 };

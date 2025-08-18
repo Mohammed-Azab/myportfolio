@@ -1,23 +1,30 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Calendar, MapPin, Award, Briefcase, TrendingUp, ExternalLink } from 'lucide-react'
-import { experienceData } from '../data/resume'
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import {
+  Calendar,
+  MapPin,
+  Award,
+  Briefcase,
+  TrendingUp,
+  ExternalLink,
+} from "lucide-react";
+import { experienceData } from "../data/resume";
 
 const Timeline = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
-      }
-    }
-  }
+        staggerChildren: 0.3,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -26,32 +33,34 @@ const Timeline = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
+        ease: "easeOut",
+      },
+    },
+  };
 
   const getTypeIcon = (type) => {
     switch (type) {
-      case 'Internship':
-        return <TrendingUp className="w-6 h-6" />
-      case 'Part-time':
-        return <Briefcase className="w-6 h-6" />
+      case "Internship":
+        return <TrendingUp className="w-6 h-6" />;
+      case "Part-time":
+        return <Briefcase className="w-6 h-6" />;
       default:
-        return <Briefcase className="w-6 h-6" />
+        return <Briefcase className="w-6 h-6" />;
     }
-  }
+  };
 
   const getTypeColor = (type, index) => {
     switch (type) {
-      case 'Internship':
-        return "from-blue-500 to-cyan-500"
-      case 'Part-time':
-        return "from-green-500 to-emerald-500"
+      case "Internship":
+        return "from-blue-500 to-cyan-500";
+      case "Part-time":
+        return "from-green-500 to-emerald-500";
       default:
-        return index % 2 === 0 ? "from-purple-500 to-pink-500" : "from-orange-500 to-red-500"
+        return index % 2 === 0
+          ? "from-purple-500 to-pink-500"
+          : "from-orange-500 to-red-500";
     }
-  }
+  };
 
   return (
     <section id="experience" className="py-20 relative overflow-hidden">
@@ -74,7 +83,8 @@ const Timeline = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Professional journey and hands-on experience in robotics, automation, and engineering
+              Professional journey and hands-on experience in robotics,
+              automation, and engineering
             </p>
           </motion.div>
 
@@ -90,12 +100,17 @@ const Timeline = () => {
                   key={experience.id}
                   variants={itemVariants}
                   className={`relative flex items-center ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-16 h-16 z-10">
-                    <div className={`w-full h-full rounded-full bg-gradient-to-r ${getTypeColor(experience.type, index)} flex items-center justify-center shadow-lg border-4 border-gray-950`}>
+                    <div
+                      className={`w-full h-full rounded-full bg-gradient-to-r ${getTypeColor(
+                        experience.type,
+                        index
+                      )} flex items-center justify-center shadow-lg border-4 border-gray-950`}
+                    >
                       <div className="text-white">
                         {getTypeIcon(experience.type)}
                       </div>
@@ -103,9 +118,13 @@ const Timeline = () => {
                   </div>
 
                   {/* Content Card */}
-                  <div className={`w-full md:w-5/12 ${
-                    index % 2 === 0 ? 'md:mr-auto md:pr-16 ml-24 md:ml-0' : 'md:ml-auto md:pl-16 ml-24 md:ml-0'
-                  }`}>
+                  <div
+                    className={`w-full md:w-5/12 ${
+                      index % 2 === 0
+                        ? "md:mr-auto md:pr-16 ml-24 md:ml-0"
+                        : "md:ml-auto md:pl-16 ml-24 md:ml-0"
+                    }`}
+                  >
                     <motion.div
                       whileHover={{ scale: 1.02, y: -5 }}
                       transition={{ duration: 0.2 }}
@@ -114,7 +133,12 @@ const Timeline = () => {
                       {/* Header */}
                       <div className="mb-6">
                         <div className="flex items-center justify-between mb-3">
-                          <span className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${getTypeColor(experience.type, index)} text-white`}>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${getTypeColor(
+                              experience.type,
+                              index
+                            )} text-white`}
+                          >
                             {experience.type}
                           </span>
                           <div className="flex items-center text-gray-400 text-sm">
@@ -122,8 +146,12 @@ const Timeline = () => {
                             {experience.period}
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">{experience.position}</h3>
-                        <h4 className="text-xl text-electric-blue mb-2">{experience.company}</h4>
+                        <h3 className="text-2xl font-bold text-white mb-2">
+                          {experience.position}
+                        </h3>
+                        <h4 className="text-xl text-electric-blue mb-2">
+                          {experience.company}
+                        </h4>
                         <div className="flex items-center text-gray-300 mb-4">
                           <MapPin className="w-4 h-4 mr-2" />
                           {experience.location}
@@ -143,19 +171,28 @@ const Timeline = () => {
                             Key Responsibilities
                           </h5>
                           <ul className="space-y-2">
-                            {experience.responsibilities.map((responsibility, idx) => (
-                              <li key={idx} className="flex items-start text-gray-300">
-                                <div className="w-2 h-2 bg-electric-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                <span className="text-sm">{responsibility}</span>
-                              </li>
-                            ))}
+                            {experience.responsibilities.map(
+                              (responsibility, idx) => (
+                                <li
+                                  key={idx}
+                                  className="flex items-start text-gray-300"
+                                >
+                                  <div className="w-2 h-2 bg-electric-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                  <span className="text-sm">
+                                    {responsibility}
+                                  </span>
+                                </li>
+                              )
+                            )}
                           </ul>
                         </div>
                       )}
 
                       {/* Technologies */}
                       <div className="mb-6">
-                        <h5 className="text-lg font-semibold text-white mb-3">Technologies Used</h5>
+                        <h5 className="text-lg font-semibold text-white mb-3">
+                          Technologies Used
+                        </h5>
                         <div className="flex flex-wrap gap-2">
                           {experience.technologies.map((tech, idx) => (
                             <span
@@ -177,7 +214,10 @@ const Timeline = () => {
                           </h5>
                           <ul className="space-y-2">
                             {experience.achievements.map((achievement, idx) => (
-                              <li key={idx} className="flex items-start text-gray-300">
+                              <li
+                                key={idx}
+                                className="flex items-start text-gray-300"
+                              >
                                 <div className="w-2 h-2 bg-neon-green rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                 <span className="text-sm">{achievement}</span>
                               </li>
@@ -193,15 +233,30 @@ const Timeline = () => {
           </div>
 
           {/* Call to Action */}
-          <motion.div
-            variants={itemVariants}
-            className="text-center mt-16"
-          >
+          <motion.div variants={itemVariants} className="text-center mt-16">
             <p className="text-gray-300 mb-6">
-              Interested in working together or learning more about my experience?
+              Interested in working together or learning more about my
+              experience?
             </p>
             <motion.a
               href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("contact");
+                if (el) {
+                  const offset = 80;
+                  const top =
+                    el.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    offset;
+                  window.scrollTo({ top, behavior: "smooth" });
+                }
+                window.history.replaceState(
+                  null,
+                  "",
+                  window.location.pathname + window.location.search
+                );
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-electric-blue to-purple-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg"
@@ -216,7 +271,7 @@ const Timeline = () => {
       {/* Section Divider */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
     </section>
-  )
-}
+  );
+};
 
-export default Timeline
+export default Timeline;

@@ -53,37 +53,6 @@ export const volunteeringData = [
   },
   {
     id: 2,
-    role: "Junior Teaching Assistant",
-    organization: "German University in Cairo",
-    location: "New Cairo, Egypt",
-    duration: "Jan 2020 - Jun 2021",
-    startDate: "2020-01",
-    endDate: "2021-06",
-    type: "Education & Community Service",
-    description:
-      "Tutored underprivileged students in mathematics and physics preparation for university entrance examinations.",
-    responsibilities: [
-      "Provide individual and group tutoring sessions",
-      "Develop customized study plans for each student",
-      "Create practice tests and study materials",
-      "Track student progress and communicate with parents",
-      "Organize study groups and peer learning sessions",
-    ],
-    impact:
-      "Helped 20+ students achieve 90%+ scores in entrance examinations, 85% university acceptance rate",
-    skills: [
-      "Mathematics",
-      "Physics",
-      "Tutoring",
-      "Curriculum Development",
-      "Cross-cultural Communication",
-    ],
-    website: "https://www.guc.edu.eg/",
-    image: "/images/education/guc_Logo.jpg",
-    photos: null,
-  },
-  {
-    id: 3,
     role: "Competitive Programmer",
     organization: "ICPC - International Collegiate Programming Contest",
     location: "Global",
@@ -98,10 +67,8 @@ export const volunteeringData = [
       "Develop efficient algorithms for complex computational problems",
       "Practice advanced data structures and algorithm optimization",
       "Collaborate with team members in programming contests",
-      "Mentor junior programmers in competitive programming techniques",
     ],
-    impact:
-      "Enhanced algorithmic thinking and problem-solving skills through competitive programming challenges",
+    impact: null,
     skills: [
       "Competitive Programming",
       "Algorithm Design",
@@ -113,20 +80,11 @@ export const volunteeringData = [
     website: "https://icpc.global/",
     image:
       "/images/volunteering/acm_international_collegiate_programming_contest_logo.jpeg",
-    photos: [
-      {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "ICPC programming contest participation",
-      },
-      {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Algorithmic problem-solving session",
-      },
-    ],
+    photos: null,
   },
   {
-    id: 4,
-    role: "Team Leader",
+    id: 3,
+    role: "Event Team Lead (Ushering)",
     organization: "The German University in Cairo",
     location: "New Cairo, Egypt",
     duration: "Mar 2023 - Feb 2024",
@@ -134,24 +92,20 @@ export const volunteeringData = [
     endDate: "2024-02",
     type: "Leadership & Organization",
     description:
-      "Served as team leader for Berlin Exchange Program and Design Connects initiatives, facilitating student connections and educational opportunities.",
+      "Led the ushering and logistics team for high‑traffic university events, coordinating schedules, entry flow, seating, and venue readiness. Worked closely with Student Affairs and security to ensure smooth attendee experience and on‑time program delivery.",
     responsibilities: [
-      "Lead team coordination for Berlin Exchange Program",
-      "Organize and manage Design Connects events and activities",
-      "Facilitate student connections and networking opportunities",
-      "Coordinate with university administration and program stakeholders",
-      "Mentor and guide team members in program execution",
-      "Ensure successful delivery of educational and cultural programs",
+      "Assign shifts and zones for 20+ ushers; brief teams on roles and contingency plans",
+      "Manage guest flow at entrances, ticket/ID checks, and seating guidance",
+      "Coordinate with Student Affairs, AV, and security for incident handling",
+      "Prepare venue maps, signage, and run‑of‑show checklists",
     ],
-    impact:
-      "Successfully led programs connecting students with international opportunities and design education initiatives",
+    impact: null,
     skills: [
       "Team Leadership",
-      "Program Management",
-      "Student Mentoring",
+      "Operations Management",
+      "Communication",
       "Event Organization",
-      "Cross-cultural Communication",
-      "Project Coordination",
+      "Cross-functional Coordination",
     ],
     website: "https://www.guc.edu.eg/",
     image: "/images/education/guc_Logo.jpg",
@@ -176,7 +130,6 @@ export const volunteeringData = [
 export const volunteeringStats = {
   totalHours: 850,
   studentsHelped: 120,
-  workshopsConducted: 35,
   organizationsServed: 3,
   yearsActive: 5,
 };
@@ -184,11 +137,8 @@ export const volunteeringStats = {
 // Volunteering Categories
 export const volunteeringCategories = [
   "All",
-  "Education & Mentoring",
-  "Community Education",
   "Academic Support",
   "Leadership & Organization",
-  "Education & Community Service",
   "Environmental Conservation",
 ];
 

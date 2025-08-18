@@ -1,51 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDown, ExternalLink } from 'lucide-react'
-import AnimatedLottie from './AnimatedLottie';
-import whiteRobotAnim from './animations/WhiteRobot';
-import CVDownload from './CVDownload';
-import { portfolioConfig } from '../config/config';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown, ExternalLink } from "lucide-react";
+import AnimatedLottie from "./AnimatedLottie";
+import whiteRobotAnim from "./animations/WhiteRobot";
+import CVDownload from "./CVDownload";
+import { portfolioConfig } from "../config/config";
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
-  
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const phrases = [
     "Mechatronics Engineering Student",
     "Working Student - Test & Measurement Engineer at CARIAD SE",
     "Autonomous Systems Developer",
     "Robotics & AI Researcher",
     "F1TENTH Racing Champion",
-  ]
+  ];
 
   useEffect(() => {
-    const currentPhrase = phrases[currentIndex]
-    const shouldDelete = displayText === currentPhrase && !isDeleting
-    const shouldStop = displayText === '' && isDeleting
+    const currentPhrase = phrases[currentIndex];
+    const shouldDelete = displayText === currentPhrase && !isDeleting;
+    const shouldStop = displayText === "" && isDeleting;
 
     if (shouldDelete) {
-      setTimeout(() => setIsDeleting(true), 2000)
-      return
+      setTimeout(() => setIsDeleting(true), 2000);
+      return;
     }
 
     if (shouldStop) {
-      setIsDeleting(false)
-      setCurrentIndex((prev) => (prev + 1) % phrases.length)
-      return
+      setIsDeleting(false);
+      setCurrentIndex((prev) => (prev + 1) % phrases.length);
+      return;
     }
 
-    const timeout = setTimeout(() => {
-      setDisplayText((prev) => {
-        if (isDeleting) {
-          return currentPhrase.substring(0, prev.length - 1)
-        }
-        return currentPhrase.substring(0, prev.length + 1)
-      })
-    }, isDeleting ? 50 : 100)
+    const timeout = setTimeout(
+      () => {
+        setDisplayText((prev) => {
+          if (isDeleting) {
+            return currentPhrase.substring(0, prev.length - 1);
+          }
+          return currentPhrase.substring(0, prev.length + 1);
+        });
+      },
+      isDeleting ? 50 : 100
+    );
 
-    return () => clearTimeout(timeout)
-  }, [displayText, currentIndex, isDeleting, phrases])
+    return () => clearTimeout(timeout);
+  }, [displayText, currentIndex, isDeleting, phrases]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,7 +59,7 @@ const Hero = () => {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -68,13 +71,16 @@ const Hero = () => {
         ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-surface via-dark-bg to-dark-surface opacity-50"></div>
-      
+
       {/* Floating background elements */}
       <div className="absolute inset-0">
         {[...Array(15)].map((_, i) => (
@@ -82,11 +88,11 @@ const Hero = () => {
             key={i}
             className="absolute rounded-full opacity-10"
             style={{
-              width: Math.random() * 4 + 2 + 'px',
-              height: Math.random() * 4 + 2 + 'px',
-              left: Math.random() * 100 + '%',
-              top: Math.random() * 100 + '%',
-              backgroundColor: i % 2 === 0 ? '#00D4FF' : '#39FF14'
+              width: Math.random() * 4 + 2 + "px",
+              height: Math.random() * 4 + 2 + "px",
+              left: Math.random() * 100 + "%",
+              top: Math.random() * 100 + "%",
+              backgroundColor: i % 2 === 0 ? "#00D4FF" : "#39FF14",
             }}
             animate={{
               y: [0, -100, 0],
@@ -100,7 +106,7 @@ const Hero = () => {
           />
         ))}
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 relative z-10">
         {/* Text Content */}
         <motion.div
@@ -110,9 +116,11 @@ const Hero = () => {
           className="text-center lg:text-left"
         >
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="text-electric-blue text-lg font-mono">Hey, I'm</span>
+            <span className="text-electric-blue text-lg font-mono">
+              Hey, I'm
+            </span>
           </motion.div>
-          
+
           <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-7xl font-futuristic font-bold mb-6"
@@ -121,7 +129,7 @@ const Hero = () => {
             <br />
             <span className="text-gradient">Abdelazim</span>
           </motion.h1>
-          
+
           <motion.div
             variants={itemVariants}
             className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 min-h-16 max-h-24 flex items-center justify-center lg:justify-start w-full"
@@ -133,22 +141,39 @@ const Hero = () => {
               </span>
             </div>
           </motion.div>
-          
+
           <motion.p
             variants={itemVariants}
             className="text-lg text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0"
           >
-            Passionate about building robotic systems, developing control algorithms, 
-            and creating innovative embedded software solutions that bridge the gap 
-            between digital and physical worlds.
+            Passionate about building robotic systems, developing control
+            algorithms, and creating innovative embedded software solutions that
+            bridge the gap between digital and physical worlds.
           </motion.p>
-          
+
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <motion.a
               href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("projects");
+                if (el) {
+                  const offset = 80;
+                  const top =
+                    el.getBoundingClientRect().top +
+                    window.pageYOffset -
+                    offset;
+                  window.scrollTo({ top, behavior: "smooth" });
+                }
+                window.history.replaceState(
+                  null,
+                  "",
+                  window.location.pathname + window.location.search
+                );
+              }}
               className="btn-primary inline-flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -156,11 +181,11 @@ const Hero = () => {
               <ExternalLink size={20} />
               Explore My Work
             </motion.a>
-            
+
             <CVDownload aria-label="Download resume as PDF" />
           </motion.div>
         </motion.div>
-        
+
         {/* 3D Robot Illustration */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -173,12 +198,12 @@ const Hero = () => {
             <AnimatedLottie
               animationData={whiteRobotAnim}
               className="w-80 h-80 md:w-96 md:h-96 mx-auto"
-              style={{ background: 'transparent' }}
+              style={{ background: "transparent" }}
             />
           </div>
         </motion.div>
       </div>
-      
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -199,7 +224,7 @@ const Hero = () => {
       {/* Section Divider */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

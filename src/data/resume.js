@@ -141,7 +141,7 @@ export const experienceData = [
     company: "The German University in Cairo",
     position: "Junior Teaching Assistant",
     period: "Oct 2023 - Jan 2024",
-    location: "New Cairo, Cairo, Egypt (On-site)",
+    location: "New Cairo, Egypt",
     type: "Part-time",
     description:
       "Worked as Junior TA with MET-Eng. Department for CSEN 102 / CSIS 102 courses. Assisted students in grasping programming concepts and essential Python language principles, and provided constructive feedback with optimized solutions.",
@@ -149,20 +149,16 @@ export const experienceData = [
       "Assist in CSEN 102 / CSIS 102 labs and tutorial sessions",
       "Explain Python fundamentals and core programming concepts",
       "Support students with debugging and problem-solving during exercises",
-      "Review assignments and provide constructive, actionable feedback",
-      "Hold office hours to address questions and reinforce learning"
+      "Review assignments and provide feedback",
     ],
     technologies: [
       "Python",
       "Algorithms",
       "Data Structures",
       "Code Review",
-      "Teaching & Mentoring"
+      "Teaching & Mentoring",
     ],
-    achievements: [
-      "Improved student understanding of Python fundamentals through targeted guidance",
-      "Delivered optimized solution patterns and best practices across assignments"
-    ]
+    achievements: null,
   },
 ];
 

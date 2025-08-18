@@ -152,55 +152,48 @@ const Volunteering = () => {
             </p>
           </motion.div>
 
-          {/* Volunteering Stats - professional cards */}
+          {/* Volunteering Stats - theme-aligned cards */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           >
             {[
               {
                 label: "Hours Served",
                 value: `${volunteeringStats.totalHours}+`,
                 Icon: Clock,
-                accent: "from-electric-blue to-blue-500",
               },
               {
                 label: "Students Helped",
                 value: `${volunteeringStats.studentsHelped}+`,
                 Icon: Users,
-                accent: "from-neon-green to-green-500",
-              },
-              {
-                label: "Workshops",
-                value: `${volunteeringStats.workshopsConducted}+`,
-                Icon: GraduationCap,
-                accent: "from-purple-500 to-pink-500",
               },
               {
                 label: "Organizations",
                 value: `${volunteeringStats.organizationsServed}`,
                 Icon: Target,
-                accent: "from-yellow-400 to-orange-400",
               },
               {
                 label: "Years Active",
                 value: `${volunteeringStats.yearsActive}`,
                 Icon: Sparkles,
-                accent: "from-green-400 to-teal-400",
               },
-            ].map(({ label, value, Icon, accent }) => (
+            ].map(({ label, value, Icon }) => (
               <div
                 key={label}
-                className="relative overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg"
+                className="relative overflow-hidden rounded-xl border border-dark-border bg-dark-surface p-6 shadow-lg"
               >
-                <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-r ${accent} opacity-20 blur-xl`} />
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-700/60 border border-gray-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg bg-gray-700/40 border border-dark-border flex items-center justify-center">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-2xl font-extrabold text-white tracking-tight">{value}</div>
-                    <div className="text-gray-300 text-sm font-medium">{label}</div>
+                    <div className="text-2xl font-extrabold text-gradient bg-gradient-to-r from-electric-blue to-neon-green bg-clip-text text-transparent tracking-tight">
+                      {value}
+                    </div>
+                    <div className="text-gray-300 text-sm font-medium">
+                      {label}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -229,17 +222,17 @@ const Volunteering = () => {
                   }`}
                   aria-label={`Filter by ${category}`}
                 >
-                  <span className="inline-flex items-center gap-2">
+                  <span className="inline-flex items-center gap-2 align-middle">
                     <IconComp className="w-4 h-4" />
-                    {category}
-                  </span>
-                  <span className="ml-2 text-xs opacity-75">
-                    (
-                    {category === "All"
-                      ? volunteeringData.length
-                      : volunteeringData.filter((v) => v.type === category)
-                          .length}
-                    )
+                    <span className="leading-none">{category}</span>
+                    <span className="text-sm opacity-75 leading-none">
+                      (
+                      {category === "All"
+                        ? volunteeringData.length
+                        : volunteeringData.filter((v) => v.type === category)
+                            .length}
+                      )
+                    </span>
                   </span>
                 </button>
               );
@@ -257,15 +250,17 @@ const Volunteering = () => {
                       {/* Timeline Dot / Organization Logo */}
                       <div className="flex-shrink-0">
                         {volunteer.image ? (
-                          <div className="w-24 h-14 flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white p-2">
+                          <div
+                            className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
+                              volunteer.organization.includes("ICPC")
+                                ? "w-24 h-14 p-1"
+                                : "w-24 h-14 p-2"
+                            }`}
+                          >
                             <img
                               src={volunteer.image}
                               alt={`${volunteer.organization} logo`}
-                              className={`object-contain ${
-                                volunteer.organization.includes("ICPC")
-                                  ? "w-full h-full scale-90"
-                                  : "max-w-full max-h-full"
-                              }`}
+                              className="max-w-full max-h-full object-contain"
                               onError={(e) => {
                                 e.target.style.display = "none";
                                 e.target.nextSibling.style.display = "flex";
@@ -371,18 +366,21 @@ const Volunteering = () => {
                           ))}
                         </div>
 
-                        {/* Impact Highlight */}
-                        <div className="bg-gray-600 rounded-lg p-4 mb-6">
-                          <div className="flex items-center mb-2">
-                            <Target className="w-5 h-5 text-green-400 mr-2" />
-                            <h5 className="text-lg font-semibold text-white">
-                              Impact
-                            </h5>
-                          </div>
-                          <p className="text-green-400 font-medium">
-                            {volunteer.impact}
-                          </p>
-                        </div>
+                        {/* Impact Highlight (only if provided) */}
+                        {volunteer.impact &&
+                          volunteer.impact.trim().length > 0 && (
+                            <div className="bg-gray-600 rounded-lg p-4 mb-6">
+                              <div className="flex items-center mb-2">
+                                <Target className="w-5 h-5 text-green-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">
+                                  Impact
+                                </h5>
+                              </div>
+                              <p className="text-green-400 font-medium">
+                                {volunteer.impact}
+                              </p>
+                            </div>
+                          )}
 
                         {/* Expand/Collapse Button */}
                         <button

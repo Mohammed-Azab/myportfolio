@@ -41,6 +41,46 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Smooth-scroll without leaving a hash fragment in the URL
+  const handleNav = (e, id) => {
+    if (e) e.preventDefault();
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      const offset = 80; // Approximate navbar height
+      const top =
+        targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+    // Remove any hash from URL while keeping current path/query
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+    setIsOpen(false);
+  };
+
+  // If page loads with a hash, scroll once then strip it
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        const offset = 80;
+        const top =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          offset;
+        window.scrollTo({ top, behavior: "smooth" });
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search
+        );
+      }
+    }
+  }, []);
+
   const navItems = [
     { name: "Home", href: "#home", id: "home" },
     { name: "About", href: "#about", id: "about" },
@@ -80,6 +120,7 @@ const Navbar = () => {
           <motion.div className="flex-shrink-0" whileHover={{ scale: 1.05 }}>
             <a
               href="#home"
+              onClick={(e) => handleNav(e, "home")}
               className="text-xl font-futuristic font-bold text-gradient"
             >
               MA
@@ -95,6 +136,7 @@ const Navbar = () => {
                   <motion.a
                     key={item.name}
                     href={item.href}
+                    onClick={(e) => handleNav(e, item.id)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                       isActive
                         ? "text-electric-blue bg-electric-blue/10 border border-electric-blue/30"
@@ -155,7 +197,7 @@ const Navbar = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNav(e, item.id)}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
                   isActive
                     ? "text-electric-blue bg-electric-blue/10 border border-electric-blue/30"

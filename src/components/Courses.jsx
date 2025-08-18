@@ -6,22 +6,17 @@ import {
   Calendar,
   ExternalLink,
   BadgeCheck,
+  X,
+  ZoomIn,
+  Camera,
+  Image,
+  Bot,
   Brain,
   Cpu,
-  Zap,
   Eye,
   BarChart3,
   Wrench,
-  Bot,
-  Settings,
-  Battery,
-  X,
-  ZoomIn,
-  ZoomOut,
-  ChevronLeft,
-  ChevronRight,
-  Camera,
-  Image,
+  Zap,
 } from "lucide-react";
 import { coursesData, learningStats } from "../data/courses";
 
@@ -34,42 +29,68 @@ const Courses = () => {
     scale: 1,
   });
 
-  const normalizeCategory = (value) =>
-    (value ?? "").toString().trim().toLowerCase();
+  // Normalize category to a canonical key
+  const toCategoryKey = (value) =>
+    (value ?? "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
-  const filteredCourses = coursesData.filter((course) => {
-    if (selectedCategoryKey === "all") return true;
-    return normalizeCategory(course.category) === selectedCategoryKey;
+  // Build category options and counts
+  const categoryMap = new Map();
+  for (const course of coursesData) {
+    const label = course.category ?? "Other";
+    const key = toCategoryKey(label);
+    if (!categoryMap.has(key)) categoryMap.set(key, { key, label, count: 0 });
+    categoryMap.get(key).count += 1;
+  }
+  const desiredOrder = [
+    "Robotics",
+    "AI/ML",
+    "Aerospace Engineering",
+    "Engineering Design",
+    "Manufacturing",
+    "Electronics",
+    "Computer Vision",
+    "Signal Processing",
+    "Language",
+  ];
+  const orderIndex = (label) => {
+    const i = desiredOrder.findIndex(
+      (n) => toCategoryKey(n) === toCategoryKey(label)
+    );
+    return i === -1 ? 999 : i;
+  };
+  const categoryOptions = Array.from(categoryMap.values()).sort((a, b) => {
+    const ai = orderIndex(a.label);
+    const bi = orderIndex(b.label);
+    if (ai !== bi) return ai - bi;
+    return a.label.localeCompare(b.label);
   });
 
-  // Professional category icon mapping
-  const getCategoryIcon = (categoryName) => {
+  const getCategoryIcon = (label) => {
     const iconMap = {
       Robotics: Bot,
       "AI/ML": Brain,
-      Automation: Settings,
       Electronics: Cpu,
       "Computer Vision": Eye,
       "Signal Processing": BarChart3,
       Manufacturing: Wrench,
-      Energy: Battery,
-      Engineering: Cpu,
-      Design: Zap,
+      "Aerospace Engineering": Cpu,
+      "Engineering Design": Zap,
       Language: BookOpen,
     };
-    return iconMap[categoryName] || BookOpen;
+    return iconMap[label] || BookOpen;
   };
 
-  // Derive categories automatically from courses data (case-insensitive unique)
-  const categoryOptions = (() => {
-    const map = new Map();
-    for (const course of coursesData) {
-      const label = course.category ?? "Other";
-      const key = normalizeCategory(label);
-      if (!map.has(key)) map.set(key, { key, label });
-    }
-    return Array.from(map.values());
-  })();
+  const filteredCourses =
+    selectedCategoryKey === "all"
+      ? coursesData
+      : coursesData.filter(
+          (c) => toCategoryKey(c.category) === selectedCategoryKey
+        );
 
   // Preload course photos to make lightbox open instantly
   React.useEffect(() => {
@@ -79,7 +100,7 @@ const Courses = () => {
         .map((p) => p.url)
         .filter(Boolean);
       allPhotos.forEach((src) => {
-        const img = new Image();
+        const img = new window.Image();
         img.src = src;
         img.decoding = "async";
       });
@@ -280,64 +301,50 @@ const Courses = () => {
             </p>
           </motion.div>
 
-          {/* Key Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12"
-          >
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700 hover:border-blue-400 transition-colors">
-              <div className="text-3xl font-bold text-blue-400 mb-2">
-                {learningStats.completedCourses}
-              </div>
-              <div className="text-gray-300 font-medium">Completed Courses</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700 hover:border-green-400 transition-colors">
-              <div className="text-3xl font-bold text-green-400 mb-2">
-                {learningStats.certificatesEarned}
-              </div>
-              <div className="text-gray-300 font-medium">
-                Certificates Earned
-              </div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-400 transition-colors">
-              <div className="text-3xl font-bold text-purple-400 mb-2">
-                {learningStats.skillsAcquired}
-              </div>
-              <div className="text-gray-300 font-medium">Skills Acquired</div>
-            </div>
-          </motion.div>
-
-          {/* Course Categories Filter */}
+          {/* Category Filter */}
           <motion.div variants={itemVariants} className="mb-8">
             <div className="flex flex-wrap gap-3 justify-center">
               <button
                 onClick={() => setSelectedCategoryKey("all")}
-                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 ${
                   selectedCategoryKey === "all"
                     ? "bg-blue-500 text-white shadow-lg scale-105"
                     : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                 }`}
               >
-                <BookOpen className="inline-block w-5 h-5 mr-2" /> All
+                <BookOpen className="w-5 h-5" />
+                <span>All</span>
+                <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-white/10 border border-white/20">
+                  {coursesData.length}
+                </span>
               </button>
-              {categoryOptions.map(({ key, label }) => {
+              {categoryOptions.map(({ key, label, count }) => {
                 const Icon = getCategoryIcon(label);
+                const isActive = selectedCategoryKey === key;
                 return (
                   <button
                     key={key}
-                    onClick={() => setSelectedCategoryKey(key)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                      selectedCategoryKey === key
+                    onClick={() =>
+                      setSelectedCategoryKey(isActive ? "all" : key)
+                    }
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 ${
+                      isActive
                         ? "bg-blue-500 text-white shadow-lg scale-105"
                         : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
                     }`}
                   >
-                    <Icon className="inline-block w-5 h-5 mr-2" /> {label}
+                    <Icon className="w-5 h-5" />
+                    <span>{label}</span>
+                    <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-white/10 border border-white/20">
+                      {count}
+                    </span>
                   </button>
                 );
               })}
             </div>
           </motion.div>
+
+          {/* Filter removed per request */}
 
           {/* Courses Grid */}
           <motion.div
@@ -426,7 +433,7 @@ const Courses = () => {
                             }
                             onMouseEnter={() => {
                               try {
-                                const img = new Image();
+                                const img = new window.Image();
                                 img.decoding = "async";
                                 img.src = photo.url;
                               } catch (_) {}
@@ -520,7 +527,12 @@ const Courses = () => {
                 <div className="absolute top-4 right-4 flex gap-2 z-10">
                   <button
                     onClick={() =>
-                      setLightbox({ open: false, src: null, alt: null, scale: 1 })
+                      setLightbox({
+                        open: false,
+                        src: null,
+                        alt: null,
+                        scale: 1,
+                      })
                     }
                     className="p-2 bg-gray-800/80 hover:bg-gray-700/80 text-white rounded-full transition-colors"
                     aria-label="Close"
@@ -548,7 +560,7 @@ const Courses = () => {
             )}
           </AnimatePresence>
 
-          {filteredCourses.length === 0 && (
+          {coursesData.length === 0 && (
             <div className="text-center py-12">
               <BookOpen className="w-16 h-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-400 mb-2">
