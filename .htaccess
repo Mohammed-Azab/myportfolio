@@ -98,7 +98,6 @@ RewriteRule . /index.html [L]
 
 # Security: Prevent directory browsing
 Options -Indexes
-
 # Security: Prevent access to hidden files
 <FilesMatch "^\.">
     Order Allow,Deny
@@ -120,3 +119,4 @@ RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [F,L]
 RewriteCond %{HTTP_USER_AGENT} (bot|crawler|spider|scraper) [NC]
 RewriteCond %{HTTP_USER_AGENT} !(googlebot|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator) [NC]
 RewriteRule .* - [F,L]
+
