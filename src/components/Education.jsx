@@ -73,54 +73,97 @@ const Education = () => {
             </p>
           </motion.div>
 
-          {/* Education Stats */}
+          {/* Academic Journey Overview */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
           >
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-blue-400 mb-2">
-                {educationStats.totalYearsStudied}
+            <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 rounded-xl p-6 border border-blue-700/50">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">Current Status</h3>
               </div>
-              <div className="text-gray-300">Years of Study</div>
+              <p className="text-blue-200 text-sm">
+                Actively pursuing B.Sc. in Mechatronics Engineering at German International University of Berlin
+              </p>
             </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-green-400 mb-2">
-                {educationStats.currentGPA}
+            
+            <div className="bg-gradient-to-br from-green-900/50 to-green-800/30 rounded-xl p-6 border border-green-700/50">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <Award className="w-6 h-6 text-green-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">Academic Focus</h3>
               </div>
-              <div className="text-gray-300">Current GPA</div>
+              <p className="text-green-200 text-sm">
+                Specializing in Autonomous Systems, Industrial Robotics, and AI Integration in Engineering
+              </p>
             </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-purple-400 mb-2">
-                {educationStats.researchProjects}
+            
+            <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 rounded-xl p-6 border border-purple-700/50">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <Microscope className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">Research Areas</h3>
               </div>
-              <div className="text-gray-300">Research Projects</div>
-            </div>
-            <div className="bg-gray-800 rounded-xl p-6 text-center border border-gray-700">
-              <div className="text-3xl font-bold text-orange-400 mb-2">
-                {educationStats.academicAwards}
-              </div>
-              <div className="text-gray-300">Academic Awards</div>
+              <p className="text-purple-200 text-sm">
+                Active research in AI-powered prosthetic devices and autonomous mobile robot navigation
+              </p>
             </div>
           </motion.div>
 
-          {/* Education Highlights */}
+          {/* Key Academic Achievements */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+            className="mb-16"
           >
-            {educationHighlights.map((highlight, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-400 transition-colors"
-              >
-                <div className="text-3xl mb-3">{highlight.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {highlight.title}
-                </h3>
-                <p className="text-gray-300 text-sm">{highlight.description}</p>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Key Academic Achievements</h3>
+              <p className="text-gray-300 max-w-2xl mx-auto">
+                Notable accomplishments and recognitions throughout my academic journey
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <Trophy className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-white">Dean's List Excellence</h4>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Maintained outstanding academic performance with GPA above 3.8 for 3 consecutive semesters
+                </p>
               </div>
-            ))}
+              
+              <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                    <Award className="w-5 h-5 text-green-400" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-white">Academic Scholarship</h4>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Merit-based scholarship covering 50% tuition fees for outstanding academic performance
+                </p>
+              </div>
+              
+              <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                    <Microscope className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-white">Research Recognition</h4>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Acknowledged for significant contributions to AI-powered prosthetic device research
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Education Timeline */}
