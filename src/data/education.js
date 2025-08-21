@@ -160,32 +160,6 @@ export const educationData = [
     // Volunteering Experience
     volunteering: [
       {
-        role: "STEM Mentor",
-        organization: "Berlin Youth Engineering Program",
-        duration: "Sep 2023 - Present",
-        description:
-          "Mentor high school students in robotics and programming, organizing weekly workshops and competition preparation",
-        impact:
-          "Mentored 15+ students, with 60% advancing to regional robotics competitions",
-      },
-      {
-        role: "Technical Workshop Leader",
-        organization: "Maker Space Berlin",
-        duration: "Jan 2023 - Aug 2023",
-        description:
-          "Led hands-on workshops on Arduino programming, 3D printing, and basic electronics for community members",
-        impact:
-          "Conducted 8+ workshops with 100+ participants from diverse backgrounds",
-      },
-      {
-        role: "Peer Tutor",
-        organization: "University Academic Support Center",
-        duration: "Oct 2022 - Dec 2022",
-        description:
-          "Provided tutoring in mathematics, physics, and programming fundamentals to first-year engineering students",
-        impact: "Helped 20+ students improve their grades by an average of 12%",
-      },
-      {
         role: "Robotics Club President",
         organization: "GIU Robotics Society",
         duration: "Sep 2022 - Jun 2023",
