@@ -83,84 +83,99 @@ const Education = () => {
                 <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">Current Status</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Current Status
+                </h3>
               </div>
               <p className="text-blue-200 text-sm">
-                Actively pursuing B.Sc. in Mechatronics Engineering at German International University of Berlin
+                Actively pursuing B.Sc. in Mechatronics Engineering at German
+                International University of Berlin
               </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-green-900/50 to-green-800/30 rounded-xl p-6 border border-green-700/50">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
                   <Award className="w-6 h-6 text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">Academic Focus</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Academic Focus
+                </h3>
               </div>
               <p className="text-green-200 text-sm">
-                Specializing in Autonomous Systems, Industrial Robotics, and AI Integration in Engineering
+                Specializing in Autonomous Systems, Industrial Robotics, and AI
+                Integration in Engineering
               </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 rounded-xl p-6 border border-purple-700/50">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
                   <Microscope className="w-6 h-6 text-purple-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">Research Areas</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Research Areas
+                </h3>
               </div>
               <p className="text-purple-200 text-sm">
-                Active research in AI-powered prosthetic devices and autonomous mobile robot navigation
+                Active research in AI-powered prosthetic devices and autonomous
+                mobile robot navigation
               </p>
             </div>
           </motion.div>
 
           {/* Key Academic Achievements */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-16"
-          >
+          <motion.div variants={itemVariants} className="mb-16">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Key Academic Achievements</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Key Academic Achievements
+              </h3>
               <p className="text-gray-300 max-w-2xl mx-auto">
-                Notable accomplishments and recognitions throughout my academic journey
+                Notable accomplishments and recognitions throughout my academic
+                journey
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-colors">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
                     <Trophy className="w-5 h-5 text-blue-400" />
                   </div>
-                  <h4 className="text-lg font-semibold text-white">Dean's List Excellence</h4>
+                  <h4 className="text-lg font-semibold text-white">
+                    Dean's List Excellence
+                  </h4>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  Maintained outstanding academic performance with GPA above 3.8 for 3 consecutive semesters
+                  Recognized for outstanding academic performance with GPA above 3.8 for 3 consecutive semesters at GIU Berlin
                 </p>
               </div>
-              
+
               <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-colors">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
                     <Award className="w-5 h-5 text-green-400" />
                   </div>
-                  <h4 className="text-lg font-semibold text-white">Academic Scholarship</h4>
+                  <h4 className="text-lg font-semibold text-white">
+                    Academic Excellence Scholarship
+                  </h4>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  Merit-based scholarship covering 50% tuition fees for outstanding academic performance
+                  Merit-based scholarship covering 50% tuition fees for outstanding academic performance at German International University
                 </p>
               </div>
-              
-              <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-colors">
+
+              <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700 hover:border-orange-500 transition-colors">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                    <Microscope className="w-5 h-5 text-purple-400" />
+                  <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                    <Award className="w-5 h-5 text-orange-400" />
                   </div>
-                  <h4 className="text-lg font-semibold text-white">Research Recognition</h4>
+                  <h4 className="text-lg font-semibold text-white">
+                    Best Final Year Project
+                  </h4>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  Acknowledged for significant contributions to AI-powered prosthetic device research
+                  Awarded for innovative AI-powered prosthetic device development project by Mechatronics Department
                 </p>
               </div>
             </div>
