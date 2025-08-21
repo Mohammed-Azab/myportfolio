@@ -1,14 +1,9 @@
 # Force HTTPS redirect for IONOS hosting with React SPA
 RewriteEngine On
 
-# Force HTTPS redirect with better compatibility
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# Simple HTTPS redirect - more compatible with IONOS
+RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Redirect www to non-www (optional - remove if you want to keep www)
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # SPA routing fallback for React app
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -18,20 +13,17 @@ RewriteRule . /index.html [L]
 # Security headers
 <IfModule mod_headers.c>
     # Force HTTPS
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     
     # Security Headers
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
     
     # Remove server information
     Header unset Server
     Header unset X-Powered-By
-    Header unset X-AspNet-Version
-    Header unset X-AspNetMvc-Version
 </IfModule>
 
 # Cache control for static assets
@@ -47,7 +39,6 @@ RewriteRule . /index.html [L]
     # CSS and JavaScript - long cache for performance
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType application/x-javascript "access plus 1 year"
     
     # Images - long cache for static assets
     ExpiresByType image/png "access plus 1 year"
@@ -56,83 +47,19 @@ RewriteRule . /index.html [L]
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType image/ico "access plus 1 year"
     
     # Fonts - long cache for performance
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-    ExpiresByType application/font-woff2 "access plus 1 year"
-    
-    # JSON and XML - moderate cache
-    ExpiresByType application/json "access plus 1 day"
-    ExpiresByType application/xml "access plus 1 day"
-    ExpiresByType text/xml "access plus 1 day"
 </IfModule>
 
 # Compress text files
 <IfModule mod_deflate.c>
-    # Active compression
-    SetOutputFilter DEFLATE
-    
-    # Force deflate for mangled headers
-    <IfModule mod_setenvif.c>
-        <IfModule mod_headers.c>
-            SetEnvIfNoCase ^(Accept-EncodingRg)$ ^(.*)gzip(.*)$ HAVE_Accept-Encoding
-            Header append Vary Accept-Encoding env=HAVE_Accept-Encoding
-        </IfModule>
-    </IfModule>
-    
-    # Compress all output labeled with one of the following MIME-types
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE text/javascript
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/json
-    AddOutputFilterByType DEFLATE application/xml+rss
     AddOutputFilterByType DEFLATE image/svg+xml
-    
-    # Remove browser bugs
-    BrowserMatch ^Mozilla/4 gzip-only-text/html
-    BrowserMatch ^Mozilla/4\.0[678] no-gzip
-    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
-    Header append Vary User-Agent
-</IfModule>
-
-# File Upload Limits (if needed)
-<IfModule mod_php.c>
-    php_value upload_max_filesize 10M
-    php_value post_max_size 10M
-    php_value max_execution_time 300
-    php_value max_input_time 300
-</IfModule>
-
-# Prevent access to sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Prevent access to backup files
-<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Enable Keep-Alive
-<IfModule mod_headers.c>
-    Header set Connection keep-alive
-</IfModule>
-
-# Gzip compression for better performance
-<IfModule mod_mime.c>
-    AddType application/javascript .js
-    AddType text/css .css
-    AddType image/svg+xml .svg
 </IfModule>
