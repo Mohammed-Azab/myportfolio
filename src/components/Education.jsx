@@ -118,8 +118,7 @@ const Education = () => {
                 </h3>
               </div>
               <p className="text-gray-200 text-sm">
-                Active research in AI-powered prosthetic devices and autonomous
-                mobile robot navigation
+                Active research in control systems, model-based controllers, and machine learning applications
               </p>
             </div>
           </motion.div>
