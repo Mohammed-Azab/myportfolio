@@ -41,7 +41,7 @@ export const educationData = [
 
     // Academic Achievements
     achievements: [
-      "Dean's List (6 consecutive semesters)",
+      "Dean's List (3 consecutive semesters)",
       "Outstanding Student in Robotics Department",
       "Research Assistant in AI Lab",
       "Academic Excellence Scholarship Recipient",
@@ -125,7 +125,7 @@ export const educationData = [
         organization: "German International University of Berlin",
         date: "2024",
         description:
-          "Recognized for outstanding academic performance with GPA above 3.8 for 6 consecutive semesters",
+          "Recognized for outstanding academic performance with GPA above 3.8 for 3 consecutive semesters",
       },
       {
         title: "Best Final Year Project Award",
@@ -137,7 +137,7 @@ export const educationData = [
       {
         title: "Academic Excellence Scholarship",
         organization: "German International University",
-        date: "2022-2025",
+        date: "2023-2025",
         description:
           "Merit-based scholarship covering 50% tuition fees for outstanding academic performance",
       },
@@ -166,7 +166,7 @@ export const educationData = [
         description:
           "Mentor high school students in robotics and programming, organizing weekly workshops and competition preparation",
         impact:
-          "Mentored 25+ students, with 80% advancing to regional robotics competitions",
+          "Mentored 15+ students, with 60% advancing to regional robotics competitions",
       },
       {
         role: "Technical Workshop Leader",
@@ -175,7 +175,7 @@ export const educationData = [
         description:
           "Led hands-on workshops on Arduino programming, 3D printing, and basic electronics for community members",
         impact:
-          "Conducted 15+ workshops with 200+ participants from diverse backgrounds",
+          "Conducted 8+ workshops with 100+ participants from diverse backgrounds",
       },
       {
         role: "Peer Tutor",
@@ -183,7 +183,7 @@ export const educationData = [
         duration: "Oct 2022 - Dec 2022",
         description:
           "Provided tutoring in mathematics, physics, and programming fundamentals to first-year engineering students",
-        impact: "Helped 30+ students improve their grades by an average of 15%",
+        impact: "Helped 20+ students improve their grades by an average of 12%",
       },
       {
         role: "Robotics Club President",
@@ -192,7 +192,7 @@ export const educationData = [
         description:
           "Led university robotics club, organized competitions, managed budget, and coordinated with industry partners",
         impact:
-          "Increased club membership by 150% and secured €5,000 in sponsorships",
+          "Increased club membership by 120% and secured €3,000 in sponsorships",
       },
     ],
   },
@@ -319,11 +319,11 @@ export const educationData = [
 
 // Education Statistics
 export const educationStats = {
-  totalYearsStudied: 8,
+  totalYearsStudied: 3,
   currentGPA: "3.8/4.0",
-  totalCourses: 45,
-  researchProjects: 4,
-  academicAwards: 11,
+  totalCourses: 32,
+  researchProjects: 2,
+  academicAwards: 6,
   institutions: 2,
 };
 
@@ -332,13 +332,13 @@ export const educationHighlights = [
   {
     title: "Academic Excellence",
     description:
-      "Consistent high performance with Dean's List recognition for 6 consecutive semesters",
+      "Consistent high performance with Dean's List recognition for 3 consecutive semesters",
     icon: "🏆",
   },
   {
     title: "Research Experience",
     description:
-      "Active participation in AI and robotics research with published findings",
+      "Active participation in AI and robotics research with ongoing projects",
     icon: "🔬",
   },
   {
