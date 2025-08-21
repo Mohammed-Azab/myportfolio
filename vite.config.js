@@ -9,6 +9,15 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    // Security headers for development
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';"
+    }
   },
   build: {
     outDir: "dist",
@@ -45,11 +54,23 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        // Additional security: remove function names and source info
+        keep_fnames: false,
+        keep_classnames: false,
+      },
+      mangle: {
+        // Mangle function names for security
+        keep_fnames: false,
+        keep_classnames: false,
       },
     },
   },
   // Optimize dependencies
   optimizeDeps: {
     include: ["react", "react-dom", "framer-motion", "lucide-react"],
+  },
+  // Security: disable source maps in production
+  define: {
+    __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
   },
 });

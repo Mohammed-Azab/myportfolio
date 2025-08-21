@@ -1,4 +1,4 @@
-# Force HTTPS redirect for IONOS hosting with React SPA
+# Enhanced Security .htaccess for IONOS hosting with React SPA
 RewriteEngine On
 
 # Simple HTTPS redirect - more compatible with IONOS
@@ -10,20 +10,33 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 
-# Security headers
+# Comprehensive Security Headers
 <IfModule mod_headers.c>
     # Force HTTPS
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
     # Security Headers
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+    
+    # Additional Security Headers
+    Header always set Cross-Origin-Embedder-Policy "require-corp"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-origin"
     
     # Remove server information
     Header unset Server
     Header unset X-Powered-By
+    Header unset X-AspNet-Version
+    Header unset X-AspNetMvc-Version
+    Header unset X-Runtime
+    Header unset X-Version
 </IfModule>
 
 # Cache control for static assets
@@ -63,3 +76,47 @@ RewriteRule . /index.html [L]
     AddOutputFilterByType DEFLATE application/json
     AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
+
+# Security: Prevent access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf|env|key|pem|crt|csr|p12|pfx)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security: Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp|temp|~)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security: Prevent access to source files
+<FilesMatch "\.(js|jsx|ts|tsx|css|scss|sass|less|map)$">
+    <IfModule mod_headers.c>
+        Header set X-Content-Type-Options nosniff
+    </IfModule>
+</FilesMatch>
+
+# Security: Prevent directory browsing
+Options -Indexes
+
+# Security: Prevent access to hidden files
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security: Limit HTTP methods
+<LimitExcept GET POST>
+    Deny from all
+</LimitExcept>
+
+# Security: Prevent hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mohammedazab\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?localhost [NC]
+RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [F,L]
+
+# Security: Block bad bots
+RewriteCond %{HTTP_USER_AGENT} (bot|crawler|spider|scraper) [NC]
+RewriteCond %{HTTP_USER_AGENT} !(googlebot|bingbot|slurp|duckduckbot|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator) [NC]
+RewriteRule .* - [F,L]

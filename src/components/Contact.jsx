@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Mail, Github, Linkedin, Send, MessageSquare, User, MapPin } from 'lucide-react'
+import { Mail, Github, Linkedin, Send, MessageSquare, User, MapPin, Shield, AlertTriangle } from 'lucide-react'
+import { SecurityUtils } from '../../security.config.js'
 
 const Contact = () => {
   const ref = useRef(null)
@@ -17,26 +18,136 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
+  const [errors, setErrors] = useState({})
+  const [attempts, setAttempts] = useState(0)
+  const [lastAttempt, setLastAttempt] = useState(0)
+
+  // Rate limiting: max 5 attempts per 15 minutes
+  const MAX_ATTEMPTS = 5
+  const RATE_LIMIT_WINDOW = 15 * 60 * 1000 // 15 minutes
+
+  const validateForm = () => {
+    const newErrors = {}
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required'
+    } else if (!SecurityUtils.validateLength(formData.name, 100)) {
+      newErrors.name = 'Name must be less than 100 characters'
+    }
+    
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!SecurityUtils.validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address'
+    }
+    
+    // Subject validation
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required'
+    } else if (!SecurityUtils.validateLength(formData.subject, 200)) {
+      newErrors.subject = 'Subject must be less than 200 characters'
+    }
+    
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+    } else if (!SecurityUtils.validateLength(formData.message, 1000)) {
+      newErrors.message = 'Message must be less than 1000 characters'
+    }
+    
+    // Check for potentially malicious content
+    const sanitizedMessage = SecurityUtils.sanitizeHTML(formData.message)
+    if (sanitizedMessage !== formData.message) {
+      newErrors.message = 'Message contains potentially unsafe content'
+      SecurityUtils.logSecurityEvent('XSS_ATTEMPT', { message: formData.message })
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const checkRateLimit = () => {
+    const now = Date.now()
+    
+    // Reset attempts if rate limit window has passed
+    if (now - lastAttempt > RATE_LIMIT_WINDOW) {
+      setAttempts(0)
+      setLastAttempt(now)
+      return true
+    }
+    
+    // Check if user has exceeded rate limit
+    if (attempts >= MAX_ATTEMPTS) {
+      const timeLeft = Math.ceil((RATE_LIMIT_WINDOW - (now - lastAttempt)) / 1000 / 60)
+      setErrors({ general: `Too many attempts. Please wait ${timeLeft} minutes before trying again.` })
+      SecurityUtils.logSecurityEvent('RATE_LIMIT_EXCEEDED', { attempts, ip: 'client-side' })
+      return false
+    }
+    
+    return true
+  }
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target
+    
+    // Sanitize input to prevent XSS
+    const sanitizedValue = SecurityUtils.sanitizeHTML(value)
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: sanitizedValue
     })
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Clear previous errors
+    setErrors({})
+    
+    // Validate form
+    if (!validateForm()) {
+      return
+    }
+    
+    // Check rate limiting
+    if (!checkRateLimit()) {
+      return
+    }
+    
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setSubmitStatus('success')
-    setIsSubmitting(false)
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    
-    setTimeout(() => setSubmitStatus(''), 3000)
+    try {
+      // Simulate form submission with security logging
+      SecurityUtils.logSecurityEvent('FORM_SUBMISSION', { 
+        email: formData.email, 
+        timestamp: new Date().toISOString() 
+      })
+      
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      setSubmitStatus('success')
+      setIsSubmitting(false)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      
+      // Increment attempts for rate limiting
+      setAttempts(prev => prev + 1)
+      setLastAttempt(Date.now())
+      
+      setTimeout(() => setSubmitStatus(''), 3000)
+      
+    } catch (error) {
+      SecurityUtils.logSecurityEvent('FORM_SUBMISSION_ERROR', { error: error.message })
+      setErrors({ general: 'An error occurred. Please try again later.' })
+      setIsSubmitting(false)
+    }
   }
 
   const contactMethods = [
@@ -234,6 +345,7 @@ const Contact = () => {
                       className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all"
                       placeholder="Janis Doe"
                     />
+                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                   </motion.div>
 
                   <motion.div variants={itemVariants}>
@@ -250,6 +362,7 @@ const Contact = () => {
                       className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all"
                       placeholder="Janis@example.com"
                     />
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                   </motion.div>
                 </div>
 
@@ -266,6 +379,7 @@ const Contact = () => {
                     className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all"
                     placeholder="Project Collaboration Opportunity"
                   />
+                  {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
                 </motion.div>
 
                 <motion.div variants={itemVariants}>
@@ -281,7 +395,20 @@ const Contact = () => {
                     className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 transition-all resize-none"
                     placeholder="Tell me about your project or opportunity..."
                   ></textarea>
+                  {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                 </motion.div>
+
+                {errors.general && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 text-center"
+                  >
+                    <p className="text-red-500 font-semibold">
+                      <Shield size={20} className="inline mr-2" /> {errors.general}
+                    </p>
+                  </motion.div>
+                )}
 
                 <motion.div variants={itemVariants}>
                   <motion.button
