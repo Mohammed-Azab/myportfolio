@@ -102,11 +102,7 @@ export const experienceData = [
       "CMake",
       "Conan",
     ],
-    achievements: [
-      "Improved test automation efficiency",
-      "Enhanced sensor validation accuracy",
-      "Contributed to ADAS/AD system reliability",
-    ],
+    achievements: null,
   },
   {
     id: 2,
@@ -130,11 +126,7 @@ export const experienceData = [
       "PID Control",
       "Drone Systems",
     ],
-    achievements: [
-      "Reduced drone weight by 23%",
-      "Increased flight time by 15%",
-      "Successfully implemented stable flight control",
-    ],
+    achievements: null,
   },
   {
     id: 3,
@@ -155,8 +147,6 @@ export const experienceData = [
       "Python",
       "Algorithms",
       "Data Structures",
-      "Code Review",
-      "Teaching & Mentoring",
     ],
     achievements: null,
   },

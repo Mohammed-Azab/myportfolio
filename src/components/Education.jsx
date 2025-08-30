@@ -69,7 +69,7 @@ const Education = () => {
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Academic journey and formal education background in Mechatronics
-              Engineering and STEM
+              Engineering
             </p>
           </motion.div>
 
@@ -103,8 +103,7 @@ const Education = () => {
                 </h3>
               </div>
               <p className="text-green-200 text-sm">
-                Specializing in Autonomous Systems, Industrial Robotics, and AI
-                Integration in Engineering
+                Specializing in Autonomous Systems, Industrial Robotics, Control Systems, and Software Engineering.
               </p>
             </div>
 

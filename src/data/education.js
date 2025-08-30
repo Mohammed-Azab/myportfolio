@@ -35,8 +35,9 @@ export const educationData = [
     // Specializations
     specializations: [
       "Autonomous Systems",
-      "Industrial Robotics",
-      "AI Integration in Engineering",
+      "Control Engineering",
+      "Robotics",
+      "Software Engineering",
     ],
 
     // Academic Achievements
@@ -49,72 +50,60 @@ export const educationData = [
     ],
 
     // Research & Projects
-    researchProjects: [
-      {
-        title: "AI-Powered Prosthetic Device Development",
-        supervisor: "Prof. Dr. Schmidt",
-        duration: "Jan 2024 - Present",
-        description:
-          "Research on EMG signal processing and machine learning for gesture recognition in prosthetic devices.",
-      },
-      {
-        title: "Autonomous Mobile Robot Navigation",
-        supervisor: "Dr. Weber",
-        duration: "Sep 2023 - Dec 2023",
-        description:
-          "Development of SLAM algorithms for indoor robot navigation using ROS2.",
-      },
-    ],
+    researchProjects: null,
 
     // Relevant Coursework by Semester
     courseworkBySemester: {
       "Semester 1": [
         "Mathematics I",
-        "Physics I",
-        "Engineering Mechanics",
-        "Programming Fundamentals",
+        "Physics II",
+        "Engineering Drawing and Design",
+        "Introduction to Computer Programming",
+        "Critical Thinking and Scientific Methodology",
       ],
       "Semester 2": [
         "Mathematics II",
-        "Physics II",
-        "Materials Science",
-        "Circuit Analysis",
+        "Mechanics I",
+        "Data Structures and Algorithms",
+        "Electrical Circuits I",
+        "Communication & Presentation Skills",
       ],
       "Semester 3": [
-        "Control Systems I",
-        "Digital Electronics",
-        "Thermodynamics",
-        "Computer-Aided Design (CAD)",
+        "Computer Programming Lab",
+        "Computer Organization & System Programming",
+        "Electrical Circuits II",
+        "Strength of Materials I",
+        "Introduction to Materials Engineering",
+        "Mechanics II",
+        "Research Paper Writing",
       ],
       "Semester 4": [
-        "Control Systems II",
-        "Microprocessors",
+        "Control Systems Engineering",
+        "Digital System Design",
+        "Thermodynamics",
         "Fluid Mechanics",
-        "Signal Processing",
+        "Engineering Design I",
+        "Computer-Aided Design (CAD)",
       ],
       "Semester 5": [
-        "Robotics I",
-        "Power Electronics",
-        "Manufacturing",
-        "Machine Learning",
+        "Mechatronics Engineering",
+        "Numerical Analysis",
+        "Electronic Circuits",
+        "Engineering Design II",
+        "Materials Manufacturing Technology",
+        "Introduction to Management",
       ],
       "Semester 6": [
-        "Robotics II",
-        "Automation Systems",
-        "Computer Vision",
-        "Industrial IoT",
+        "Robotics and Mechatronics Lab",
+        "Pneumatic and hydraulic control",
+        "Modern Control Engineering",
+        "Power Electronics",
+        "Machine Design",
+        "Electric Machines",
+        "Industrial Automation",
       ],
       "Semester 7": [
-        "Advanced Robotics",
-        "AI Applications",
-        "Project Management",
-        "Research Methods",
-      ],
-      "Semester 8": [
-        "Final Year Project",
-        "Professional Ethics",
-        "Entrepreneurship",
-        "Thesis Writing",
+        "Engineering Bachelor Thesis Writing",
       ],
     },
 
@@ -188,52 +177,28 @@ export const educationData = [
 
     // Advanced Courses
     coreCourses: [
+      "Introduction to Computer Science",
       "Advanced Calculus",
-      "Computer Science",
       "Digital Logic Design",
-      "Physics III",
-      "Engineering Mathematics",
-      "Programming Fundamentals",
-      "Technical Drawing",
-      "Electronics Basics",
-      "Engineering Mechanics",
-      "Materials Science",
+      "Linear Algebra",
+      "Physics II",
+      "Engineering Chemistry",
+      "Production Technology",
+      "Engineering Drawing",
+      "Academic English",
+      "Academic Study Skills",
     ],
 
     // Specializations
-    specializations: [
-      "Advanced Mathematics",
-      "Experimental Physics",
-      "Computer Programming",
-    ],
+    specializations: [],
 
     // Academic Achievements
     achievements: [
       "Valedictorian (Jahrgangsbester)",
-      "National Science Olympiad Winner",
-      "First Place in Regional Robotics Competition",
-      "Mathematics Excellence Award",
-      "Physics Department Recognition",
-      "Perfect Attendance Award",
     ],
 
     // Special Projects
-    researchProjects: [
-      {
-        title: "Automated Plant Watering System",
-        supervisor: "Dr. Mueller",
-        duration: "Sep 2020 - Jun 2021",
-        description:
-          "Final year project developing an IoT-based automated plant care system using Arduino and sensors.",
-      },
-      {
-        title: "Solar Panel Efficiency Analysis",
-        supervisor: "Prof. Fischer",
-        duration: "Jan 2020 - Jun 2020",
-        description:
-          "Research project analyzing factors affecting solar panel performance in different weather conditions.",
-      },
-    ],
+    researchProjects: null,
 
     // Extracurricular Activities
     extracurricular: [

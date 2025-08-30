@@ -12,7 +12,7 @@ export const portfolioConfig = {
     location: "Berlin, Germany",
     
     // Bio/Description
-    bio: "Passionate Mechatronics Engineering Student with expertise in robotics, automation, and control systems. Currently pursuing advanced studies in autonomous systems and AI integration in mechanical engineering.",
+    bio: "Passionate Mechatronics Engineering Student with expertise in robotics, automation, and control systems. Currently pursuing advanced studies in autonomous systems and control systems engineering.",
 
     // Profile Image
     profileImage: "/images/profile-placeholder.svg", // Uses placeholder until a real photo is added

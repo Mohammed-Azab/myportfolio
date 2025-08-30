@@ -33,16 +33,16 @@ export const volunteeringData = [
     image: "/images/volunteering/eucs.png",
     photos: [
       {
-        url: "/images/volunteering/placeholder-photo.svg",
+        url: "/images/volunteering/certificatede.jpeg",
         caption: "Peatland restoration work in Hunsrück-Hochwald National Park",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
+        url: "/images/volunteering/vol2.jpeg",
         caption:
-          "International volunteer team working on biodiversity conservation",
+          "International volunteer team",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
+        url: "/images/volunteering/vol2.jpeg",
         caption: "Ecosystem restoration activities supporting UN SDG 15",
       },
       {
