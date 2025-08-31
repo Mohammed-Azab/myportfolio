@@ -43,6 +43,14 @@ export default defineConfig({
           return `assets/[name]-[hash].${ext}`;
         },
       },
+      // Suppress build warnings for known safe eval usage in dependencies
+      onwarn(warning, warn) {
+        // Suppress eval warnings from lottie-web
+        if (warning.code === "EVAL" && warning.id?.includes("lottie")) {
+          return;
+        }
+        warn(warning);
+      },
     },
     // Enable minification with terser
     minify: "terser",
@@ -59,6 +67,8 @@ export default defineConfig({
         keep_fnames: false,
         keep_classnames: false,
       },
+      // Suppress eval warnings for lottie-web
+      warnings: false,
     },
   },
   // Optimize dependencies
