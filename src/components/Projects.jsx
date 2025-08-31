@@ -490,17 +490,24 @@ const Projects = () => {
                         </section>
 
                         <div className="flex flex-wrap gap-3 pt-2">
-                          <motion.a
-                            href={expandedProject.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <Github size={16} />
-                            Code
-                          </motion.a>
+                          {expandedProject.github ? (
+                            <motion.a
+                              href={expandedProject.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <Github size={16} />
+                              Code
+                            </motion.a>
+                          ) : (
+                            <div className="flex items-center justify-center gap-2 py-2 px-4 bg-gray-600 border border-gray-500 text-gray-400 rounded-lg text-sm font-medium cursor-not-allowed">
+                              <Github size={16} />
+                              Code - Private Project
+                            </div>
+                          )}
                           {expandedProject.demo && (
                             <motion.a
                               href={expandedProject.demo}
@@ -725,17 +732,24 @@ const Projects = () => {
 
                       {/* Action Buttons */}
                       <div className="flex gap-3">
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <Github size={16} />
-                          Code
-                        </motion.a>
+                        {project.github ? (
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Github size={16} />
+                            Code
+                          </motion.a>
+                        ) : (
+                          <div className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gray-600 border border-gray-500 text-gray-400 rounded-lg text-sm font-medium cursor-not-allowed">
+                            <Github size={16} />
+                            Code - Private Project
+                          </div>
+                        )}
 
                         {project.demo && (
                           <motion.a
@@ -826,17 +840,24 @@ const Projects = () => {
                           })}
                         </div>
                         <div className="flex gap-3 mb-4">
-                          <motion.a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <Github size={16} />
-                            Code
-                          </motion.a>
+                          {project.github ? (
+                            <motion.a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-dark-bg border border-electric-blue text-electric-blue rounded-lg text-sm font-medium hover:bg-electric-blue hover:text-dark-bg transition-colors"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <Github size={16} />
+                              Code
+                            </motion.a>
+                          ) : (
+                            <div className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-gray-600 border border-gray-500 text-gray-400 rounded-lg text-sm font-medium cursor-not-allowed">
+                              <Github size={16} />
+                              Code - Private Project
+                            </div>
+                          )}
                           {project.demo && (
                             <motion.a
                               href={project.demo}
