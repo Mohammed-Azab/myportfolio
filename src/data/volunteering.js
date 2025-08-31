@@ -117,11 +117,11 @@ export const volunteeringData = [
       },
       {
         url: "/images/volunteering/gucvol1.jpeg",
-        caption: "Berlin Exchange Program coordination",
+        caption: "Berlin Exchange Program",
       },
       {
         url: "/images/volunteering/gucvol2.jpeg",
-        caption: "Design Connects event organization",
+        caption: "Design Connects Event",
       },
     ],
   },
