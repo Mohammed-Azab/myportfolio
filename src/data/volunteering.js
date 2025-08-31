@@ -34,20 +34,21 @@ export const volunteeringData = [
     photos: [
       {
         url: "/images/volunteering/certificatede.jpeg",
-        caption: "Peatland restoration work in Hunsrück-Hochwald National Park",
       },
       {
         url: "/images/volunteering/vol2.jpeg",
-        caption:
-          "International volunteer team",
       },
       {
-        url: "/images/volunteering/vol2.jpeg",
-        caption: "Ecosystem restoration activities supporting UN SDG 15",
+        url: "/images/volunteering/vol3.jpeg",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Conservation tools and equipment used in restoration work",
+        url: "/images/volunteering/vol4.jpeg",
+      },
+      {
+        url: "/images/volunteering/vol5.jpeg",
+      },
+      {
+        url: "/images/volunteering/vol6.jpeg",
       },
     ],
   },
@@ -115,11 +116,11 @@ export const volunteeringData = [
         caption: "Certificate presentation at German University in Cairo",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
+        url: "/images/volunteering/gucvol1.jpeg",
         caption: "Berlin Exchange Program coordination",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
+        url: "/images/volunteering/gucvol2.jpeg",
         caption: "Design Connects event organization",
       },
     ],

@@ -11,20 +11,18 @@ export const awardsData = [
     level: "International",
     description:
       "Achieved 3rd place in the 25th RoboRacer Autonomous Racing Competition in Romania with F1TENTH autonomous racing car.",
-    criteria: "Best performing autonomous racing system",
-    significance: "International recognition for autonomous systems excellence",
+    criteria: null,
+    significance: null,
     image: "/images/awards/IEEE-IV-2025.png",
     certificate: "/documents/f1tenth-2024.pdf",
     website: "https://ieee-iv.org/2025/roboracer/",
     recommendationLetters: null,
     photos: [
       {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Team on track with F1TENTH autonomous car",
+        url: "/images/awards/f1t1.jpeg",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Race day pit and debugging session",
+        url: "/images/awards/f1t11.jpeg",
       },
     ],
   },
@@ -37,9 +35,7 @@ export const awardsData = [
     level: "University",
     description:
       "Awarded the prestigious GUC Scholarship for studying mechatronics in Germany, a recognition given to the top 5 students out of a competitive pool of 981 candidates. This scholarship has enabled me to pursue a three-year mechatronics program in Germany.",
-    criteria: "Top 5 out of 981 candidates for international program",
-    significance:
-      "Prestigious scholarship for international study in mechatronics",
+
     image: "/images/education/guc_Logo.jpg",
     certificate: "/documents/guc-international-scholarship-2023.pdf",
     website: "https://www.guc.edu.eg/",
