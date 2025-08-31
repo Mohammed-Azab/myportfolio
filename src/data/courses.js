@@ -138,6 +138,11 @@ export const coursesData = [
       "5-Axis Programming",
       "Manufacturing Optimization",
     ],
+    photos: [
+      {
+        url: "/images/courses/dmg3.jpeg",
+      },
+    ],
   },
   {
     id: 6,
@@ -154,12 +159,10 @@ export const coursesData = [
     skills: ["CNC Programming", "G-Code", "CAM", "Manufacturing"],
     photos: [
       {
-        url: "/images/projects/project-placeholder.svg",
-        caption: "CNC turning setup and toolpath simulation",
+        url: "/images/courses/dmg1.jpeg",
       },
       {
-        url: "/images/volunteering/placeholder-photo.svg",
-        caption: "Milling program verification and setup sheets",
+        url: "/images/courses/dmg2.jpeg",
       },
     ],
     certificate: {

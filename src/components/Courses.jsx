@@ -22,12 +22,24 @@ import { coursesData, learningStats } from "../data/courses";
 
 const Courses = () => {
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [lightbox, setLightbox] = useState({
     open: false,
     src: null,
     alt: null,
     scale: 1,
   });
+
+  // Handle category change with smooth transition
+  const handleCategoryChange = (newCategoryKey) => {
+    if (isTransitioning || newCategoryKey === selectedCategoryKey) return;
+    
+    setIsTransitioning(true);
+    setSelectedCategoryKey(newCategoryKey);
+    
+    // Reset transition state after animation completes
+    setTimeout(() => setIsTransitioning(false), 200);
+  };
 
   // Normalize category to a canonical key
   const toCategoryKey = (value) =>
@@ -305,12 +317,13 @@ const Courses = () => {
           <motion.div variants={itemVariants} className="mb-8">
             <div className="flex flex-wrap gap-3 justify-center">
               <button
-                onClick={() => setSelectedCategoryKey("all")}
+                onClick={() => handleCategoryChange("all")}
+                disabled={isTransitioning}
                 className={`px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 ${
                   selectedCategoryKey === "all"
-                    ? "bg-blue-500 text-white shadow-lg scale-105"
+                    ? "bg-blue-500 text-white shadow-lg transform scale-[1.02]"
                     : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
-                }`}
+                } ${isTransitioning ? "opacity-70 cursor-not-allowed" : ""}`}
               >
                 <BookOpen className="w-5 h-5" />
                 <span>All</span>
@@ -324,14 +337,13 @@ const Courses = () => {
                 return (
                   <button
                     key={key}
-                    onClick={() =>
-                      setSelectedCategoryKey(isActive ? "all" : key)
-                    }
+                    onClick={() => handleCategoryChange(key)}
+                    disabled={isTransitioning}
                     className={`px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 ${
                       isActive
-                        ? "bg-blue-500 text-white shadow-lg scale-105"
+                        ? "bg-blue-500 text-white shadow-lg transform scale-[1.02]"
                         : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
-                    }`}
+                    } ${isTransitioning ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
                     <Icon className="w-5 h-5" />
                     <span>{label}</span>
@@ -348,18 +360,20 @@ const Courses = () => {
 
           {/* Courses Grid */}
           <motion.div
-            key={selectedCategoryKey}
-            variants={itemVariants}
+            layout
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            {filteredCourses.map((course) => (
-              <motion.div
-                key={course.id}
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-                className="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-400 transition-all duration-300 overflow-hidden group hover:shadow-xl"
-              >
+            <AnimatePresence>
+              {filteredCourses.map((course) => (
+                <motion.div
+                  key={course.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-400 transition-all duration-300 overflow-hidden group hover:shadow-xl"
+                >
                 <div className="p-8">
                   {/* Course Header */}
                   <div className="mb-6">
@@ -504,6 +518,7 @@ const Courses = () => {
                 </div>
               </motion.div>
             ))}
+            </AnimatePresence>
           </motion.div>
 
           {/* Lightbox overlay at section level (match Projects) */}
@@ -560,14 +575,16 @@ const Courses = () => {
             )}
           </AnimatePresence>
 
-          {coursesData.length === 0 && (
+          {filteredCourses.length === 0 && (
             <div className="text-center py-12">
               <BookOpen className="w-16 h-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-400 mb-2">
                 No courses found
               </h3>
               <p className="text-gray-500">
-                Try adjusting your filters to see more courses.
+                {selectedCategoryKey === "all" 
+                  ? "No courses available at the moment." 
+                  : "No courses found in this category. Try selecting a different category."}
               </p>
             </div>
           )}
