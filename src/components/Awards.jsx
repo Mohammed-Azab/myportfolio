@@ -5,22 +5,17 @@ import {
   Calendar,
   Award,
   Star,
-  Download,
   ExternalLink,
-  ChevronDown,
-  ChevronUp,
   Medal,
   Crown,
   FileText,
-  User,
   X,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { awardsData, awardCategories } from "../data/awards";
+import { awardsData } from "../data/awards";
 
 const Awards = () => {
-  const [expandedAward, setExpandedAward] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightbox, setLightbox] = useState({
     open: false,
@@ -29,9 +24,15 @@ const Awards = () => {
     scale: 1,
   });
 
-  const toggleAward = (id) => {
-    setExpandedAward(expandedAward === id ? null : id);
+  // Dynamically generate categories from award data
+  const generateCategories = () => {
+    const categories = ["All"];
+    const uniqueCategories = [...new Set(awardsData.map(award => award.category))];
+    categories.push(...uniqueCategories.sort());
+    return categories;
   };
+
+  const awardCategories = generateCategories();
 
   const filteredAwards = awardsData.filter((award) => {
     const categoryMatch =
@@ -142,10 +143,7 @@ const Awards = () => {
           <motion.div variants={itemVariants} className="mb-12">
             {/* Category Filter (styled like previous Level filter) */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-white mb-3">
-                Filter by Category:
-              </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {awardCategories.map((category) => (
                   <button
                     key={category}
@@ -290,131 +288,39 @@ const Awards = () => {
                           </div>
                         )}
 
-                        {/* Expand/Collapse Button */}
-                        <button
-                          onClick={() => toggleAward(award.id)}
-                          className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
-                        >
-                          <span className="mr-2">
-                            {expandedAward === award.id
-                              ? "Show Less"
-                              : "Show More Details"}
-                          </span>
-                          {expandedAward === award.id ? (
-                            <ChevronUp className="w-4 h-4" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )}
-                        </button>
+                        {/* View Certificate Button */}
+                        {award.certificate && (
+                          <motion.a
+                            href={award.certificate}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center px-4 py-2 bg-yellow-500/10 border border-yellow-400/30 text-yellow-400 rounded-lg hover:bg-yellow-500/20 hover:border-yellow-400/50 hover:text-yellow-300 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20"
+                            whileHover={{ 
+                              scale: 1.05,
+                              boxShadow: "0 10px 25px rgba(250, 204, 21, 0.15)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              duration: 0.3,
+                              ease: "easeOut"
+                            }}
+                          >
+                            <motion.div
+                              whileHover={{ rotate: 5 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <FileText className="w-4 h-4 mr-2" />
+                            </motion.div>
+                            <span className="font-medium">View Certificate</span>
+                          </motion.a>
+                        )}
                       </div>
                     </div>
 
                     {/* Expanded Content */}
                     <AnimatePresence>
-                      {expandedAward === award.id && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-8 pt-8 border-t border-gray-700"
-                        >
-                          <div className="ml-22">
-                            {" "}
-                            {/* Align with content, not timeline dot */}
-                            <div className="space-y-4">
-                              <div>
-                                <h5 className="text-lg font-semibold text-white mb-2">
-                                  Selection Criteria
-                                </h5>
-                                <p className="text-gray-300 text-sm">
-                                  {award.criteria}
-                                </p>
-                              </div>
-                              <div>
-                                <h5 className="text-lg font-semibold text-white mb-2">
-                                  Significance
-                                </h5>
-                                <p className="text-gray-300 text-sm">
-                                  {award.significance}
-                                </p>
-                              </div>
-                              {award.certificate && (
-                                <div className="flex items-center gap-4 pt-4">
-                                  <a
-                                    href={award.certificate}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-400 rounded-lg hover:bg-yellow-500/30 transition-colors"
-                                  >
-                                    <Download className="w-4 h-4" />
-                                    <span>View Certificate</span>
-                                  </a>
-                                </div>
-                              )}
-
-                              {/* Recommendation Letters */}
-                              {award.recommendationLetters &&
-                                award.recommendationLetters.length > 0 && (
-                                  <div className="mt-6 pt-6 border-t border-gray-700">
-                                    <div className="flex items-center mb-4">
-                                      <FileText className="w-5 h-5 text-green-400 mr-2" />
-                                      <h5 className="text-lg font-semibold text-white">
-                                        Recommendation Letters
-                                      </h5>
-                                    </div>
-                                    <div className="space-y-4">
-                                      {award.recommendationLetters.map(
-                                        (letter, idx) => (
-                                          <div
-                                            key={idx}
-                                            className="bg-gray-700 rounded-lg p-4 border-l-4 border-green-400"
-                                          >
-                                            <div className="flex items-start justify-between mb-3">
-                                              <div className="flex items-center gap-3">
-                                                <User className="w-5 h-5 text-green-400" />
-                                                <div>
-                                                  <h6 className="font-semibold text-white">
-                                                    {letter.author}
-                                                  </h6>
-                                                  <p className="text-green-400 text-sm">
-                                                    {letter.position}
-                                                  </p>
-                                                  <p className="text-gray-400 text-sm">
-                                                    {letter.organization}
-                                                  </p>
-                                                </div>
-                                              </div>
-                                              <div className="text-right">
-                                                <p className="text-gray-400 text-sm">
-                                                  {letter.date}
-                                                </p>
-                                              </div>
-                                            </div>
-                                            <blockquote className="text-gray-300 text-sm italic mb-3 border-l-2 border-green-400 pl-4">
-                                              "{letter.excerpt}"
-                                            </blockquote>
-                                            {letter.url && (
-                                              <a
-                                                href={letter.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 px-3 py-2 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm"
-                                              >
-                                                <Download className="w-4 h-4" />
-                                                <span>View Full Letter</span>
-                                              </a>
-                                            )}
-                                          </div>
-                                        )
-                                      )}
-                                    </div>
-                                  </div>
-                                )}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
                     </AnimatePresence>
                   </div>
                 </div>
