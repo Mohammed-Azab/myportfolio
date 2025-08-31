@@ -825,7 +825,7 @@ const Projects = () => {
                             );
                           })}
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 mb-4">
                           <motion.a
                             href={project.github}
                             target="_blank"
@@ -851,6 +851,13 @@ const Projects = () => {
                             </motion.a>
                           )}
                         </div>
+                        {/* Show Details Button for Other Projects */}
+                        <button
+                          className="w-full py-2 px-4 bg-electric-blue text-dark-bg rounded-lg font-semibold hover:bg-neon-green transition-colors"
+                          onClick={() => setExpandedId(project.id)}
+                        >
+                          Show Details
+                        </button>
                       </div>
                     </motion.div>
                   ))}
