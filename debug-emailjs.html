@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EmailJS Debug Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+  </head>
+  <body>
+    <h1>EmailJS Debug Test</h1>
+    <button onclick="testEmailJS()" id="testBtn">Test EmailJS</button>
+    <button onclick="testAlternativeTemplates()" id="altTestBtn">
+      Test Alt Templates
+    </button>
+    <div id="results"></div>
+
+    <script>
+      // Initialize EmailJS
+      emailjs.init("yK6rOh_8CjuN9291T");
+
+      function log(message) {
+        const div = document.getElementById("results");
+        div.innerHTML += "<p>" + message + "</p>";
+        console.log(message);
+      }
+
+      async function testEmailJS() {
+        log("🧪 Testing main configuration...");
+
+        try {
+          const result = await emailjs.send(
+            "service_rfknbuc",
+            "template_gtmnj8h",
+            {
+              name: "Debug Test",
+              email: "test@example.com",
+              title: "Debug Test Email",
+              message: "This is a debug test email.",
+            }
+          );
+
+          log("✅ SUCCESS: " + JSON.stringify(result));
+        } catch (error) {
+          log(
+            "❌ ERROR: " +
+              JSON.stringify({
+                status: error.status,
+                text: error.text,
+                message: error.message,
+              })
+          );
+        }
+      }
+
+      async function testAlternativeTemplates() {
+        const templates = [
+          "template_basic",
+          "template_default",
+          "template_contact",
+          "template_simple",
+        ];
+
+        for (const templateId of templates) {
+          log(`🧪 Testing template: ${templateId}`);
+
+          try {
+            const result = await emailjs.send("service_rfknbuc", templateId, {
+              name: "Alt Test",
+              email: "test@example.com",
+              subject: "Alt Template Test",
+              message: "Testing alternative template.",
+            });
+
+            log(`✅ SUCCESS with ${templateId}: ` + JSON.stringify(result));
+            break; // Stop on first success
+          } catch (error) {
+            log(`❌ ${templateId} failed: ${error.status} - ${error.text}`);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
