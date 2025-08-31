@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import {
+  emailConfig,
+  fallbackEmailConfig,
+  templateVars,
+} from "../config/email.config.js";
 import {
   Mail,
   Github,
@@ -18,6 +24,11 @@ import { SecurityUtils } from "../../security.config.js";
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(emailConfig.publicKey);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -125,6 +136,34 @@ const Contact = () => {
     }
   };
 
+  // Alternative email sending using direct fetch
+  const sendEmailDirectFetch = async (templateData) => {
+    console.log("📧 Sending email using direct fetch...");
+
+    const response = await fetch(
+      "https://api.emailjs.com/api/v1.0/email/send",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          service_id: emailConfig.serviceId,
+          template_id: emailConfig.templateId,
+          user_id: emailConfig.publicKey,
+          template_params: templateData,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
+
+    return await response.text();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -144,13 +183,41 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission with security logging
-      SecurityUtils.logSecurityEvent("FORM_SUBMISSION", {
+      // Template data matching your EmailJS template variables
+      const templateData = {
+        name: formData.name, // matches {{name}} in template
+        email: formData.email, // matches {{email}} in template
+        title: formData.subject, // matches {{title}} in template
+        message: formData.message, // matches {{message}} in template
+      };
+
+      console.log("Sending email with data:", templateData);
+
+      // Try EmailJS SDK first, then fallback to direct fetch
+      let result;
+      try {
+        console.log("🔄 Attempting with EmailJS SDK...");
+        result = await emailjs.send(
+          emailConfig.serviceId,
+          emailConfig.templateId,
+          templateData,
+          emailConfig.publicKey
+        );
+        console.log("✅ EmailJS SDK success:", result);
+      } catch (sdkError) {
+        console.warn("❌ EmailJS SDK failed, trying direct fetch:", sdkError);
+
+        result = await sendEmailDirectFetch(templateData);
+        console.log("✅ Direct fetch success:", result);
+      }
+
+      console.log("Email sent successfully:", result);
+
+      // Log successful submission for security
+      SecurityUtils.logSecurityEvent("FORM_SUBMISSION_SUCCESS", {
         email: formData.email,
         timestamp: new Date().toISOString(),
       });
-
-      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setSubmitStatus("success");
       setIsSubmitting(false);
@@ -160,14 +227,209 @@ const Contact = () => {
       setAttempts((prev) => prev + 1);
       setLastAttempt(Date.now());
 
-      setTimeout(() => setSubmitStatus(""), 3000);
+      setTimeout(() => setSubmitStatus(""), 5000);
     } catch (error) {
-      SecurityUtils.logSecurityEvent("FORM_SUBMISSION_ERROR", {
-        error: error.message,
+      console.error("EmailJS Error:", error);
+      console.error("Error details:", {
+        message: error.message,
+        text: error.text,
+        status: error.status,
       });
-      setErrors({ general: "An error occurred. Please try again later." });
+
+      SecurityUtils.logSecurityEvent("FORM_SUBMISSION_ERROR", {
+        error: error.message || "EmailJS submission failed",
+        errorText: error.text,
+        errorStatus: error.status,
+      });
+
+      let errorMessage =
+        "Failed to send message. Please try again or contact me directly via email.";
+
+      // Provide more specific error messages based on the error type
+      if (error.status === 401) {
+        errorMessage =
+          "Authentication error. Please contact the site administrator.";
+      } else if (error.status === 400) {
+        if (error.text && error.text.includes("template ID not found")) {
+          errorMessage =
+            "Email template not configured. Please contact me directly at mohammed@azab.io.";
+        } else {
+          errorMessage =
+            "Invalid request. Please check your input and try again.";
+        }
+      } else if (error.text && error.text.includes("template")) {
+        errorMessage =
+          "Email template error. Please contact me directly at mohammed@azab.io.";
+      } else if (error.text && error.text.includes("service")) {
+        errorMessage =
+          "Email service error. Please contact me directly at mohammed@azab.io.";
+      }
+
+      setErrors({
+        general: errorMessage,
+      });
       setIsSubmitting(false);
+
+      setTimeout(() => setErrors({}), 5000);
     }
+  };
+
+  // Test function for EmailJS configuration
+  const testEmailJSConfig = async () => {
+    console.log("🧪 Testing EmailJS Configuration...");
+
+    try {
+      // Test data matching your EmailJS template variables
+      const testData = {
+        name: "Config Test",
+        email: "test@example.com",
+        title: "EmailJS Config Test",
+        message: "This is a test to verify EmailJS configuration.",
+      };
+
+      console.log("📧 Using config:", {
+        serviceId: emailConfig.serviceId,
+        templateId: emailConfig.templateId,
+        publicKey: emailConfig.publicKey.substring(0, 8) + "...",
+      });
+
+      const result = await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        testData,
+        emailConfig.publicKey
+      );
+
+      console.log("✅ SUCCESS: Test email sent!", result);
+      alert("✅ EmailJS configuration test successful! Check your email.");
+    } catch (error) {
+      console.error("❌ EmailJS Config Test Failed:", error);
+
+      let errorMsg = "❌ Test failed: ";
+      if (
+        error.status === 400 &&
+        error.text?.includes("template ID not found")
+      ) {
+        errorMsg += `Template '${emailConfig.templateId}' not found. Check your EmailJS dashboard.`;
+      } else if (error.status === 401) {
+        errorMsg += "Invalid public key. Check your EmailJS configuration.";
+      } else if (error.status === 403) {
+        errorMsg +=
+          "Forbidden. Check your EmailJS account limits or service configuration.";
+      } else {
+        errorMsg += error.message || "Unknown error occurred.";
+      }
+
+      alert(errorMsg);
+    }
+  };
+
+  // Comprehensive diagnostic function
+  const runComprehensiveDiagnostic = async () => {
+    console.log("🔍 Running comprehensive EmailJS diagnostic...");
+
+    // Test 1: EmailJS API connectivity (skip generic internet test)
+    console.log("1️⃣ Testing EmailJS API connectivity...");
+    let connectivityOK = false;
+
+    // Test 2: EmailJS API endpoint accessibility
+    try {
+      console.log("1️⃣ Testing EmailJS API endpoint...");
+      const apiResponse = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "OPTIONS",
+        }
+      );
+      console.log(
+        "✅ EmailJS API endpoint accessible, status:",
+        apiResponse.status
+      );
+      connectivityOK = true;
+    } catch (error) {
+      console.log("❌ EmailJS API endpoint error:", error.message);
+      console.log(
+        "⚠️  This might indicate connectivity issues or CORS problems"
+      );
+    }
+
+    // Test 3: Direct fetch to EmailJS API
+    try {
+      console.log("2️⃣ Testing direct fetch to EmailJS...");
+      const directResponse = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service_id: emailConfig.serviceId,
+            template_id: emailConfig.templateId,
+            user_id: emailConfig.publicKey,
+            template_params: {
+              name: "Direct Fetch Test",
+              email: "test@example.com",
+              title: "Direct Fetch Test",
+              message: "Testing direct fetch to EmailJS API.",
+            },
+          }),
+        }
+      );
+
+      const responseText = await directResponse.text();
+      console.log("Direct fetch response:", {
+        status: directResponse.status,
+        statusText: directResponse.statusText,
+        body: responseText,
+      });
+
+      if (directResponse.ok) {
+        console.log("✅ Direct fetch: SUCCESS");
+        alert(
+          "✅ Direct fetch to EmailJS API works! The issue is with the EmailJS SDK."
+        );
+      } else {
+        console.log(
+          `❌ Direct fetch failed: ${directResponse.status} - ${responseText}`
+        );
+      }
+    } catch (error) {
+      console.log("❌ Direct fetch error:", error.message);
+    }
+
+    // Test 3: EmailJS SDK test with different initialization
+    try {
+      console.log("3️⃣ Testing EmailJS SDK with re-initialization...");
+
+      // Re-initialize EmailJS
+      emailjs.init({
+        publicKey: emailConfig.publicKey,
+        blockHeadless: true,
+        limitRate: {
+          id: "app",
+          throttle: 10000,
+        },
+      });
+
+      const sdkResult = await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        {
+          name: "SDK Re-init Test",
+          email: "test@example.com",
+          title: "SDK Re-init Test",
+          message: "Testing EmailJS SDK with re-initialization.",
+        }
+      );
+
+      console.log("✅ EmailJS SDK with re-init: SUCCESS", sdkResult);
+      alert("✅ EmailJS SDK works with re-initialization!");
+    } catch (error) {
+      console.log("❌ EmailJS SDK re-init error:", error);
+    }
+
+    console.log("🔍 Diagnostic complete. Check console for detailed results.");
   };
 
   const contactMethods = [
@@ -491,6 +753,34 @@ const Contact = () => {
                       </>
                     )}
                   </motion.button>
+
+                  {/* Development Test Buttons (commented out for now)
+                  {process.env.NODE_ENV === "development" && (
+                    <>
+                      <motion.button
+                        type="button"
+                        onClick={testEmailJSConfig}
+                        className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 flex items-center justify-center gap-2 mt-2"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <AlertTriangle size={20} />
+                        Test EmailJS Config
+                      </motion.button>
+
+                      <motion.button
+                        type="button"
+                        onClick={runComprehensiveDiagnostic}
+                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2 mt-2"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Shield size={20} />
+                        Run Full Diagnostic
+                      </motion.button>
+                    </>
+                  )}
+                  */}
                 </motion.div>
 
                 {/* Submit Status */}
