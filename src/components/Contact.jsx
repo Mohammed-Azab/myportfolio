@@ -501,7 +501,7 @@ const Contact = () => {
                     className="bg-neon-green/20 border border-neon-green/30 rounded-lg p-4 text-center"
                   >
                     <p className="text-neon-green font-semibold">
-                      ✅ Message sent successfully! I'll get back to you soon.
+                      Message sent successfully! I'll get back to you soon.
                     </p>
                   </motion.div>
                 )}
