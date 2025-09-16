@@ -155,11 +155,11 @@ const ImageGallery = ({ images, open, onClose, initialIndex = 0 }) => {
 
         {/* Image caption */}
         {(currentImage.caption || currentImage.alt) && (
-          <div 
+          <div
             className={`absolute left-1/2 -translate-x-1/2 bg-gray-700/80 text-white px-4 py-2 rounded-lg text-sm max-w-md text-center z-10 ${
-              images.length > 1 && images.length <= 10 
-                ? 'bottom-16' // Move up when thumbnails are present
-                : 'bottom-4'  // Stay at bottom when no thumbnails
+              images.length > 1 && images.length <= 10
+                ? "bottom-16" // Move up when thumbnails are present
+                : "bottom-4" // Stay at bottom when no thumbnails
             }`}
           >
             {currentImage.caption || currentImage.alt}
