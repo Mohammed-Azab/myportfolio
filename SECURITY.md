@@ -15,13 +15,16 @@ This document outlines the comprehensive security measures implemented in Mohamm
 ### 2. **Content Security Policy (CSP)**
 
 ```http
-Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.emailjs.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';
 ```
 
 **CSP Directives:**
 
 - `default-src 'self'`: Only allow resources from same origin
 - `script-src 'self' 'unsafe-inline' 'unsafe-eval'`: Allow inline scripts and eval for React
+- `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`: Allow styles from self and Google Fonts
+- `font-src 'self' data: https://fonts.gstatic.com`: Allow fonts from self and Google Fonts
+- `connect-src 'self' https://api.emailjs.com https://fonts.googleapis.com https://fonts.gstatic.com`: Allow connections to EmailJS and Google Fonts
 - `frame-ancestors 'none'`: Prevent clickjacking attacks
 - `object-src 'none'`: Block potentially dangerous objects
 

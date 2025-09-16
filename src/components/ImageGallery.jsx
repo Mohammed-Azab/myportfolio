@@ -7,7 +7,7 @@ const ImageGallery = ({
   open,
   onClose,
   initialIndex = 0,
-  hideDescriptions = false,
+  hideDescriptions = true,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [scale, setScale] = useState(1);
@@ -165,7 +165,7 @@ const ImageGallery = ({
             className={`absolute left-1/2 -translate-x-1/2 bg-gray-700/80 text-white px-4 py-2 rounded-lg text-sm max-w-md text-center z-10 ${
               images.length > 1 && images.length <= 10
                 ? "bottom-16" // Move up when thumbnails are present
-                : "bottom-4" // Stay at bottom when no thumbnails
+                : "bottom-4" // Stay at bottom when no thumbnails   
             }`}
           >
             {currentImage.caption || currentImage.alt}

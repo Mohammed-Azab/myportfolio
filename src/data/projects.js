@@ -73,7 +73,7 @@ export const projectsData = [
       "Coordinated detection and suppression behavior",
       "Safety checks and PD control on STM32 low‑level layer",
     ],
-    timeline: "Sep 2023 - Feb 2024",
+    timeline: "March 2025",
     teamSize: "Team of 3",
     images: [
       "/images/projects/trif1.jpeg",

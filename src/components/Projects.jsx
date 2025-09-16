@@ -155,7 +155,7 @@ const Projects = () => {
       MPC: "https://img.shields.io/badge/MPC-violet?style=for-the-badge",
 
       // AI/ML
-      AI: "https://img.shields.io/badge/AI-%23FF6F00.svg?style=for-the-badge&logo=tensorflow&logoColor=white",
+      AI: "https://img.shields.io/badge/AI-%23FF6F00.svg?style=for-the-badge",
       OpenCV:
         "https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white",
 
@@ -539,7 +539,7 @@ const Projects = () => {
                 setGallery({ open: false, images: [], initialIndex: 0 })
               }
               initialIndex={gallery.initialIndex}
-              hideDescriptions={false} // Set to true to hide all photo descriptions
+              hideDescriptions={true} // Set to true to hide all photo descriptions
             />
 
             {/* Grid view (default) */}

@@ -47,7 +47,7 @@ export const coursesData = [
     ],
     certificate: {
       issued: true,
-      url: "https://coursera.org/verify/...",
+      url: null,
       credentialId: "DEEPLEARNING-ML-2024",
     },
     projects: [
@@ -76,7 +76,7 @@ export const coursesData = [
     ],
     certificate: {
       issued: true,
-      url: "https://tum.de/certificates/...",
+      url: null,
       credentialId: "TUM-AERO-2024",
     },
     projects: [

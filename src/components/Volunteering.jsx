@@ -507,7 +507,7 @@ const Volunteering = () => {
         open={gallery.open}
         onClose={() => setGallery({ open: false, images: [], initialIndex: 0 })}
         initialIndex={gallery.initialIndex}
-        hideDescriptions={false} // Set to true to hide all photo descriptions
+        hideDescriptions={true} // Set to true to hide all photo descriptions
       />
 
       {/* Section Divider */}
