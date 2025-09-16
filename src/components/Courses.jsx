@@ -518,6 +518,7 @@ const Courses = () => {
               setGallery({ open: false, images: [], initialIndex: 0 })
             }
             initialIndex={gallery.initialIndex}
+            hideDescriptions={false} // Set to true to hide all photo descriptions
           />
 
           {filteredCourses.length === 0 && (

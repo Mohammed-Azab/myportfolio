@@ -332,6 +332,7 @@ const Awards = () => {
         open={gallery.open}
         onClose={() => setGallery({ open: false, images: [], initialIndex: 0 })}
         initialIndex={gallery.initialIndex}
+        hideDescriptions={true} 
       />
 
       {/* Section Divider */}

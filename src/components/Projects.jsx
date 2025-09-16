@@ -539,6 +539,7 @@ const Projects = () => {
                 setGallery({ open: false, images: [], initialIndex: 0 })
               }
               initialIndex={gallery.initialIndex}
+              hideDescriptions={false} // Set to true to hide all photo descriptions
             />
 
             {/* Grid view (default) */}

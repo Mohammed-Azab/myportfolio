@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
 
-const ImageGallery = ({ images, open, onClose, initialIndex = 0 }) => {
+const ImageGallery = ({
+  images,
+  open,
+  onClose,
+  initialIndex = 0,
+  hideDescriptions = false,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [scale, setScale] = useState(1);
 
@@ -154,7 +160,7 @@ const ImageGallery = ({ images, open, onClose, initialIndex = 0 }) => {
         />
 
         {/* Image caption */}
-        {(currentImage.caption || currentImage.alt) && (
+        {!hideDescriptions && (currentImage.caption || currentImage.alt) && (
           <div
             className={`absolute left-1/2 -translate-x-1/2 bg-gray-700/80 text-white px-4 py-2 rounded-lg text-sm max-w-md text-center z-10 ${
               images.length > 1 && images.length <= 10
