@@ -24,6 +24,7 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--surface-color);
+    scroll-padding-top: 80px; /* Account for fixed navbar when scrolling to anchors */
   }
 
   body {

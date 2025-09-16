@@ -247,18 +247,20 @@ const Courses = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.2, // Increased from 0.1 to spread out animations
+        duration: 1.0, // Added longer duration for smoother fade in
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 10, opacity: 0 }, // Reduced movement from 20 to 10
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.8, // Increased from 0.5 for gentler animation
+        ease: "easeOut", // Added easing for smoother motion
       },
     },
   };
@@ -272,7 +274,7 @@ const Courses = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }} // Added amount to trigger only when 20% visible
           variants={containerVariants}
           className="max-w-7xl mx-auto"
         >

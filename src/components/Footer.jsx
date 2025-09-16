@@ -49,10 +49,10 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }} // Reduced movement from 20 to 10
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }} // Increased duration and added easing
+              viewport={{ once: true, amount: 0.3 }} // Only trigger when 30% visible
             >
               <h3 className="text-2xl font-futuristic font-bold text-gradient mb-4">
                 Mohammed Abdelazim
