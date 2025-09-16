@@ -33,10 +33,10 @@ const Courses = () => {
   // Handle category change with smooth transition
   const handleCategoryChange = (newCategoryKey) => {
     if (isTransitioning || newCategoryKey === selectedCategoryKey) return;
-    
+
     setIsTransitioning(true);
     setSelectedCategoryKey(newCategoryKey);
-    
+
     // Reset transition state after animation completes
     setTimeout(() => setIsTransitioning(false), 200);
   };
@@ -319,7 +319,9 @@ const Courses = () => {
                       isActive
                         ? "bg-blue-500 text-white shadow-lg transform scale-[1.02]"
                         : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-blue-400 hover:text-blue-300"
-                    } ${isTransitioning ? "opacity-70 cursor-not-allowed" : ""}`}
+                    } ${
+                      isTransitioning ? "opacity-70 cursor-not-allowed" : ""
+                    }`}
                   >
                     <Icon className="w-5 h-5" />
                     <span>{label}</span>
@@ -335,10 +337,7 @@ const Courses = () => {
           {/* Filter removed per request */}
 
           {/* Courses Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatePresence>
               {filteredCourses.map((course) => (
                 <motion.div
@@ -350,157 +349,164 @@ const Courses = () => {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-400 transition-all duration-300 overflow-hidden group hover:shadow-xl"
                 >
-                <div className="p-8">
-                  {/* Course Header */}
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                      {course.title}
-                    </h3>
-                    <div className="flex items-center gap-4 mb-2">
-                      <p className="text-blue-400 font-semibold">
-                        {course.provider}
-                      </p>
-                      <div className="flex items-center text-gray-300 text-sm">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{course.period}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-400">{course.category}</p>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {course.description}
-                  </p>
-
-                  {/* Key Skills */}
-                  <div className="mb-6">
-                    <h4 className="text-white font-semibold mb-3">
-                      Key Skills
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {course.skills.map((skill, idx) => {
-                        const badgeUrl = getTechBadge(skill);
-                        return (
-                          <div
-                            key={idx}
-                            className="hover:scale-105 transition-transform duration-200"
-                          >
-                            {badgeUrl ? (
-                              <img
-                                src={badgeUrl}
-                                alt={skill}
-                                className="h-6 object-contain hover:shadow-lg transition-shadow duration-200"
-                                loading="lazy"
-                              />
-                            ) : (
-                              <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
-                                {skill}
-                              </span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Photos (Volunteering-style) */}
-                  {Array.isArray(course.photos) && course.photos.length > 0 && (
+                  <div className="p-8">
+                    {/* Course Header */}
                     <div className="mb-6">
-                      <div className="flex items-center mb-3">
-                        <Camera className="w-5 h-5 text-electric-blue mr-2" />
-                        <h4 className="text-white font-semibold">Photos</h4>
+                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                        {course.title}
+                      </h3>
+                      <div className="flex items-center gap-4 mb-2">
+                        <p className="text-blue-400 font-semibold">
+                          {course.provider}
+                        </p>
+                        <div className="flex items-center text-gray-300 text-sm">
+                          <Calendar className="w-4 h-4 mr-1" />
+                          <span>{course.period}</span>
+                        </div>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {course.photos.map((photo, idx) => (
-                          <div
-                            key={idx}
-                            onClick={() => {
-                              const images = course.photos.map((coursePhoto, photoIdx) => ({
-                                url: coursePhoto.url,
-                                caption: coursePhoto.caption,
-                                alt: coursePhoto.caption || `Course Photo ${photoIdx + 1}`,
-                              }));
-                              
-                              setGallery({
-                                open: true,
-                                images,
-                                initialIndex: idx,
-                              });
-                            }}
-                            onMouseEnter={() => {
-                              try {
-                                const img = new window.Image();
-                                img.decoding = "async";
-                                img.src = photo.url;
-                              } catch (_) {}
-                            }}
-                            className="group relative overflow-hidden rounded-lg bg-gray-600 cursor-pointer hover:ring-2 hover:ring-electric-blue transition-all duration-300"
-                          >
-                            <img
-                              src={photo.url}
-                              alt={photo.caption || `Course Photo ${idx + 1}`}
-                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                              onError={(e) => {
-                                e.target.style.display = "none";
-                                e.target.nextSibling.style.display = "flex";
-                              }}
-                            />
-                            {/* Fallback placeholder */}
-                            <div className="hidden w-full h-48 bg-gray-600 items-center justify-center">
-                              <Image className="w-12 h-12 text-gray-400" />
+                      <p className="text-gray-400">{course.category}</p>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-300 mb-6 leading-relaxed">
+                      {course.description}
+                    </p>
+
+                    {/* Key Skills */}
+                    <div className="mb-6">
+                      <h4 className="text-white font-semibold mb-3">
+                        Key Skills
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {course.skills.map((skill, idx) => {
+                          const badgeUrl = getTechBadge(skill);
+                          return (
+                            <div
+                              key={idx}
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              {badgeUrl ? (
+                                <img
+                                  src={badgeUrl}
+                                  alt={skill}
+                                  className="h-6 object-contain hover:shadow-lg transition-shadow duration-200"
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                                  {skill}
+                                </span>
+                              )}
                             </div>
-                            {/* Photo overlay with caption */}
-                            {photo.caption && (
-                              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                <p className="text-white text-sm">
-                                  {photo.caption}
-                                </p>
-                              </div>
-                            )}
-                            {/* Hover overlay with zoom indicator */}
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <div className="bg-white/90 rounded-full p-2">
-                                <ZoomIn className="w-6 h-6 text-gray-800" />
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
-                  )}
 
-                  {/* Inline lightbox removed; section-level modal handles display */}
+                    {/* Photos (Volunteering-style) */}
+                    {Array.isArray(course.photos) &&
+                      course.photos.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex items-center mb-3">
+                            <Camera className="w-5 h-5 text-electric-blue mr-2" />
+                            <h4 className="text-white font-semibold">Photos</h4>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {course.photos.map((photo, idx) => (
+                              <div
+                                key={idx}
+                                onClick={() => {
+                                  const images = course.photos.map(
+                                    (coursePhoto, photoIdx) => ({
+                                      url: coursePhoto.url,
+                                      caption: coursePhoto.caption,
+                                      alt:
+                                        coursePhoto.caption ||
+                                        `Course Photo ${photoIdx + 1}`,
+                                    })
+                                  );
 
-                  {/* Certificate */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-700">
-                    {course.certificate.issued ? (
-                      <div className="flex items-center text-green-400 font-medium">
-                        <BadgeCheck className="w-5 h-5 mr-2" />
-                        <span>Certified</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center text-gray-400">
-                        <Award className="w-5 h-5 mr-2" />
-                        <span>In Progress</span>
-                      </div>
-                    )}
+                                  setGallery({
+                                    open: true,
+                                    images,
+                                    initialIndex: idx,
+                                  });
+                                }}
+                                onMouseEnter={() => {
+                                  try {
+                                    const img = new window.Image();
+                                    img.decoding = "async";
+                                    img.src = photo.url;
+                                  } catch (_) {}
+                                }}
+                                className="group relative overflow-hidden rounded-lg bg-gray-600 cursor-pointer hover:ring-2 hover:ring-electric-blue transition-all duration-300"
+                              >
+                                <img
+                                  src={photo.url}
+                                  alt={
+                                    photo.caption || `Course Photo ${idx + 1}`
+                                  }
+                                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                                  onError={(e) => {
+                                    e.target.style.display = "none";
+                                    e.target.nextSibling.style.display = "flex";
+                                  }}
+                                />
+                                {/* Fallback placeholder */}
+                                <div className="hidden w-full h-48 bg-gray-600 items-center justify-center">
+                                  <Image className="w-12 h-12 text-gray-400" />
+                                </div>
+                                {/* Photo overlay with caption */}
+                                {photo.caption && (
+                                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                    <p className="text-white text-sm">
+                                      {photo.caption}
+                                    </p>
+                                  </div>
+                                )}
+                                {/* Hover overlay with zoom indicator */}
+                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                  <div className="bg-white/90 rounded-full p-2">
+                                    <ZoomIn className="w-6 h-6 text-gray-800" />
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
-                    {course.certificate.url && (
-                      <a
-                        href={course.certificate.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        <span>View Certificate</span>
-                      </a>
-                    )}
+                    {/* Inline lightbox removed; section-level modal handles display */}
+
+                    {/* Certificate */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-700">
+                      {course.certificate.issued ? (
+                        <div className="flex items-center text-green-400 font-medium">
+                          <BadgeCheck className="w-5 h-5 mr-2" />
+                          <span>Certified</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center text-gray-400">
+                          <Award className="w-5 h-5 mr-2" />
+                          <span>In Progress</span>
+                        </div>
+                      )}
+
+                      {course.certificate.url && (
+                        <a
+                          href={course.certificate.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          <span>View Certificate</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
             </AnimatePresence>
           </motion.div>
 
@@ -508,7 +514,9 @@ const Courses = () => {
           <ImageGallery
             images={gallery.images}
             open={gallery.open}
-            onClose={() => setGallery({ open: false, images: [], initialIndex: 0 })}
+            onClose={() =>
+              setGallery({ open: false, images: [], initialIndex: 0 })
+            }
             initialIndex={gallery.initialIndex}
           />
 
@@ -519,8 +527,8 @@ const Courses = () => {
                 No courses found
               </h3>
               <p className="text-gray-500">
-                {selectedCategoryKey === "all" 
-                  ? "No courses available at the moment." 
+                {selectedCategoryKey === "all"
+                  ? "No courses available at the moment."
                   : "No courses found in this category. Try selecting a different category."}
               </p>
             </div>
