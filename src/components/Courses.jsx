@@ -19,15 +19,15 @@ import {
   Zap,
 } from "lucide-react";
 import { coursesData, learningStats } from "../data/courses";
+import ImageGallery from "./ImageGallery";
 
 const Courses = () => {
   const [selectedCategoryKey, setSelectedCategoryKey] = useState("all");
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [lightbox, setLightbox] = useState({
+  const [gallery, setGallery] = useState({
     open: false,
-    src: null,
-    alt: null,
-    scale: 1,
+    images: [],
+    initialIndex: 0,
   });
 
   // Handle category change with smooth transition
@@ -104,7 +104,7 @@ const Courses = () => {
           (c) => toCategoryKey(c.category) === selectedCategoryKey
         );
 
-  // Preload course photos to make lightbox open instantly
+  // Preload course photos to make gallery open instantly
   React.useEffect(() => {
     try {
       const allPhotos = coursesData
@@ -119,30 +119,6 @@ const Courses = () => {
     } catch (_) {}
   }, []);
 
-  const openLightbox = (src, alt = "Course Photo") => {
-    setLightbox({ open: true, src, alt, scale: 1 });
-  };
-
-  const closeLightbox = () => setLightbox((prev) => ({ ...prev, open: false }));
-  const zoomInHandler = () =>
-    setLightbox((prev) => ({ ...prev, scale: Math.min(prev.scale + 0.2, 4) }));
-  const zoomOutHandler = () =>
-    setLightbox((prev) => ({ ...prev, scale: Math.max(prev.scale - 0.2, 1) }));
-  const resetZoom = () => setLightbox((prev) => ({ ...prev, scale: 1 }));
-  // No prev/next navigation in courses lightbox (single-image like Projects)
-
-  React.useEffect(() => {
-    if (!lightbox.open) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "+" || e.key === "=") zoomInHandler();
-      if (e.key === "-" || e.key === "_") zoomOutHandler();
-      if (e.key === "0") resetZoom();
-      // No arrow navigation for courses lightbox
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox.open]);
   // Tech badge function from Projects component
   const getTechBadge = (tech) => {
     const techBadges = {
@@ -439,12 +415,19 @@ const Courses = () => {
                         {course.photos.map((photo, idx) => (
                           <div
                             key={idx}
-                            onClick={() =>
-                              openLightbox(
-                                photo.url,
-                                photo.caption || `Course Photo ${idx + 1}`
-                              )
-                            }
+                            onClick={() => {
+                              const images = course.photos.map((coursePhoto, photoIdx) => ({
+                                url: coursePhoto.url,
+                                caption: coursePhoto.caption,
+                                alt: coursePhoto.caption || `Course Photo ${photoIdx + 1}`,
+                              }));
+                              
+                              setGallery({
+                                open: true,
+                                images,
+                                initialIndex: idx,
+                              });
+                            }}
                             onMouseEnter={() => {
                               try {
                                 const img = new window.Image();
@@ -521,59 +504,13 @@ const Courses = () => {
             </AnimatePresence>
           </motion.div>
 
-          {/* Lightbox overlay at section level (match Projects) */}
-          <AnimatePresence>
-            {lightbox.open && (
-              <motion.div
-                className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[1px] flex items-center justify-center p-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={(e) => {
-                  if (e.target === e.currentTarget)
-                    setLightbox({
-                      open: false,
-                      src: null,
-                      alt: null,
-                      scale: 1,
-                    });
-                }}
-              >
-                <div className="absolute top-4 right-4 flex gap-2 z-10">
-                  <button
-                    onClick={() =>
-                      setLightbox({
-                        open: false,
-                        src: null,
-                        alt: null,
-                        scale: 1,
-                      })
-                    }
-                    className="p-2 bg-gray-800/80 hover:bg-gray-700/80 text-white rounded-full transition-colors"
-                    aria-label="Close"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <motion.div
-                  key={lightbox.src}
-                  initial={{ scale: 0.98, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.98, opacity: 0 }}
-                  className="relative max-w-[90vw] md:max-w-[65vw] max-h-[72vh] bg-gray-900/85 rounded-xl border border-gray-700 shadow-2xl p-2"
-                >
-                  <img
-                    src={lightbox.src}
-                    alt={lightbox.alt || "Course photo"}
-                    decoding="async"
-                    fetchPriority="high"
-                    className="max-h-[68vh] max-w-full object-contain rounded"
-                  />
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Image Gallery */}
+          <ImageGallery
+            images={gallery.images}
+            open={gallery.open}
+            onClose={() => setGallery({ open: false, images: [], initialIndex: 0 })}
+            initialIndex={gallery.initialIndex}
+          />
 
           {filteredCourses.length === 0 && (
             <div className="text-center py-12">
