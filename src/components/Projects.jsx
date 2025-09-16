@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { projectsData, projectCategories } from "../data/projects";
 import AnimatedLottie from "./AnimatedLottie";
+import ImageGallery from "./ImageGallery";
 import fireAnim from "../animation/Fire/animations/30949077-b689-4718-85ea-341dc646bc35.json";
 import droneAnim from "../animation/drone/animations/6cb975bb-c16c-4507-81b2-8d2d7a61d935.json";
 
@@ -51,29 +52,12 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [loading, setLoading] = useState(false); // Set to false since we're using static data
   const [expandedId, setExpandedId] = useState(null);
-  const [lightbox, setLightbox] = useState({
+  const [gallery, setGallery] = useState({
     open: false,
-    src: null,
-    alt: null,
-    scale: 1,
+    images: [],
+    initialIndex: 0,
   });
   const [selectedCategory, setSelectedCategory] = useState("All");
-
-  // Lightbox keyboard controls (Esc to close, +/- to zoom)
-  useEffect(() => {
-    if (!lightbox.open) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setLightbox({ open: false, src: null, alt: null, scale: 1 });
-      } else if (e.key === "+") {
-        setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
-      } else if (e.key === "-") {
-        setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }));
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox.open]);
 
   // Transform projects data to match the expected format
   const githubProjects = projectsData.map((project) => ({
@@ -460,16 +444,28 @@ const Projects = () => {
                             ).map((src, idx) => (
                               <button
                                 key={idx}
-                                onClick={() =>
-                                  setLightbox({
-                                    open: true,
-                                    src,
+                                onClick={() => {
+                                  const images = (
+                                    (expandedProject.images || []).length
+                                      ? expandedProject.images
+                                      : [
+                                          "/images/projects/project-placeholder.svg",
+                                          "/images/projects/project-placeholder.svg",
+                                          "/images/projects/project-placeholder.svg",
+                                        ]
+                                  ).map((imageSrc, imageIdx) => ({
+                                    url: imageSrc,
                                     alt: `${expandedProject.name} photo ${
-                                      idx + 1
+                                      imageIdx + 1
                                     }`,
-                                    scale: 1,
-                                  })
-                                }
+                                  }));
+
+                                  setGallery({
+                                    open: true,
+                                    images,
+                                    initialIndex: idx,
+                                  });
+                                }}
                                 className="relative group aspect-video overflow-hidden rounded-lg border border-dark-border bg-transparent hover:ring-2 hover:ring-electric-blue transition-all duration-300"
                                 aria-label="Open photo"
                               >
@@ -535,95 +531,15 @@ const Projects = () => {
               )}
             </AnimatePresence>
 
-            {/* Lightbox for photos */}
-            <AnimatePresence>
-              {lightbox.open && (
-                <motion.div
-                  className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={(e) => {
-                    if (e.target === e.currentTarget)
-                      setLightbox({
-                        open: false,
-                        src: null,
-                        alt: null,
-                        scale: 1,
-                      });
-                  }}
-                >
-                  {/* Control buttons */}
-                  <div className="absolute top-4 right-4 flex gap-2 z-10">
-                    <button
-                      onClick={() =>
-                        setLightbox((s) => ({
-                          ...s,
-                          scale: Math.min(4, s.scale + 0.2),
-                        }))
-                      }
-                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                      title="Zoom In (+)"
-                    >
-                      <ZoomIn className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() =>
-                        setLightbox((s) => ({
-                          ...s,
-                          scale: Math.max(1, s.scale - 0.2),
-                        }))
-                      }
-                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                      title="Zoom Out (-)"
-                    >
-                      <ZoomOut className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() =>
-                        setLightbox({
-                          open: false,
-                          src: null,
-                          alt: null,
-                          scale: 1,
-                        })
-                      }
-                      className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                      title="Close (Esc)"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                  <motion.img
-                    key={lightbox.src}
-                    src={lightbox.src}
-                    alt={lightbox.alt || "Project photo"}
-                    style={{ transform: `scale(${lightbox.scale})` }}
-                    className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
-                    onWheel={(e) => {
-                      setLightbox((s) => ({
-                        ...s,
-                        scale: Math.max(
-                          1,
-                          Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))
-                        ),
-                      }));
-                    }}
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
-                  />
-                  {/* Caption */}
-                  {lightbox.alt && (
-                    <div className="absolute bottom-4 left-4 right-4 text-center">
-                      <div className="bg-black/80 rounded-lg px-4 py-2 inline-block">
-                        <p className="text-white text-sm">{lightbox.alt}</p>
-                      </div>
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Image Gallery */}
+            <ImageGallery
+              images={gallery.images}
+              open={gallery.open}
+              onClose={() =>
+                setGallery({ open: false, images: [], initialIndex: 0 })
+              }
+              initialIndex={gallery.initialIndex}
+            />
 
             {/* Grid view (default) */}
             {expandedId === null && (

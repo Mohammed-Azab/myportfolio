@@ -14,20 +14,22 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { awardsData } from "../data/awards";
+import ImageGallery from "./ImageGallery";
 
 const Awards = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [lightbox, setLightbox] = useState({
+  const [gallery, setGallery] = useState({
     open: false,
-    src: null,
-    alt: null,
-    scale: 1,
+    images: [],
+    initialIndex: 0,
   });
 
   // Dynamically generate categories from award data
   const generateCategories = () => {
     const categories = ["All"];
-    const uniqueCategories = [...new Set(awardsData.map(award => award.category))];
+    const uniqueCategories = [
+      ...new Set(awardsData.map((award) => award.category)),
+    ];
     categories.push(...uniqueCategories.sort());
     return categories;
   };
@@ -39,22 +41,6 @@ const Awards = () => {
       selectedCategory === "All" || award.category === selectedCategory;
     return categoryMatch;
   });
-
-  // Lightbox keyboard controls (Esc close, +/- zoom)
-  useEffect(() => {
-    if (!lightbox.open) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setLightbox({ open: false, src: null, alt: null, scale: 1 });
-      } else if (e.key === "+") {
-        setLightbox((s) => ({ ...s, scale: Math.min(4, s.scale + 0.2) }));
-      } else if (e.key === "-") {
-        setLightbox((s) => ({ ...s, scale: Math.max(1, s.scale - 0.2) }));
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox.open]);
 
   const getLevelIcon = (level) => {
     switch (level) {
@@ -248,16 +234,25 @@ const Awards = () => {
                                 <button
                                   key={idx}
                                   type="button"
-                                  onClick={() =>
-                                    setLightbox({
+                                  onClick={() => {
+                                    const images = award.photos.map(
+                                      (photo, photoIdx) => ({
+                                        url: photo.url,
+                                        caption: photo.caption,
+                                        alt:
+                                          photo.caption ||
+                                          `${award.title} photo ${
+                                            photoIdx + 1
+                                          }`,
+                                      })
+                                    );
+
+                                    setGallery({
                                       open: true,
-                                      src: photo.url,
-                                      alt:
-                                        photo.caption ||
-                                        `${award.title} photo ${idx + 1}`,
-                                      scale: 1,
-                                    })
-                                  }
+                                      images,
+                                      initialIndex: idx,
+                                    });
+                                  }}
                                   className="group relative overflow-hidden rounded-lg bg-gray-700/60 border border-gray-700 cursor-zoom-in"
                                   aria-label="Open photo"
                                 >
@@ -295,16 +290,16 @@ const Awards = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center px-4 py-2 bg-yellow-500/10 border border-yellow-400/30 text-yellow-400 rounded-lg hover:bg-yellow-500/20 hover:border-yellow-400/50 hover:text-yellow-300 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20"
-                            whileHover={{ 
+                            whileHover={{
                               scale: 1.05,
-                              boxShadow: "0 10px 25px rgba(250, 204, 21, 0.15)"
+                              boxShadow: "0 10px 25px rgba(250, 204, 21, 0.15)",
                             }}
                             whileTap={{ scale: 0.95 }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
+                            transition={{
                               duration: 0.3,
-                              ease: "easeOut"
+                              ease: "easeOut",
                             }}
                           >
                             <motion.div
@@ -313,15 +308,16 @@ const Awards = () => {
                             >
                               <FileText className="w-4 h-4 mr-2" />
                             </motion.div>
-                            <span className="font-medium">View Certificate</span>
+                            <span className="font-medium">
+                              View Certificate
+                            </span>
                           </motion.a>
                         )}
                       </div>
                     </div>
 
                     {/* Expanded Content */}
-                    <AnimatePresence>
-                    </AnimatePresence>
+                    <AnimatePresence></AnimatePresence>
                   </div>
                 </div>
               </div>
@@ -330,77 +326,13 @@ const Awards = () => {
         </motion.div>
       </div>
 
-      {/* Lightbox for award photos */}
-      <AnimatePresence>
-        {lightbox.open && (
-          <motion.div
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={(e) => {
-              if (e.target === e.currentTarget)
-                setLightbox({ open: false, src: null, alt: null, scale: 1 });
-            }}
-          >
-            <div className="absolute top-4 right-4 flex gap-2 z-10">
-              <button
-                onClick={() =>
-                  setLightbox((s) => ({
-                    ...s,
-                    scale: Math.min(4, s.scale + 0.2),
-                  }))
-                }
-                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                title="Zoom In (+)"
-              >
-                <ZoomIn className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() =>
-                  setLightbox((s) => ({
-                    ...s,
-                    scale: Math.max(1, s.scale - 0.2),
-                  }))
-                }
-                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                title="Zoom Out (-)"
-              >
-                <ZoomOut className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() =>
-                  setLightbox({ open: false, src: null, alt: null, scale: 1 })
-                }
-                className="p-2 bg-gray-700/80 hover:bg-gray-600/80 text-white rounded-lg transition-colors"
-                title="Close (Esc)"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <motion.img
-              key={lightbox.src}
-              src={lightbox.src}
-              alt={lightbox.alt || "Award photo"}
-              style={{ transform: `scale(${lightbox.scale})` }}
-              className="max-h-[85vh] max-w-[90vw] object-contain rounded bg-transparent"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: lightbox.scale, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onWheel={(e) => {
-                setLightbox((s) => ({
-                  ...s,
-                  scale: Math.max(
-                    1,
-                    Math.min(4, s.scale + (e.deltaY < 0 ? 0.1 : -0.1))
-                  ),
-                }));
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Image Gallery */}
+      <ImageGallery
+        images={gallery.images}
+        open={gallery.open}
+        onClose={() => setGallery({ open: false, images: [], initialIndex: 0 })}
+        initialIndex={gallery.initialIndex}
+      />
 
       {/* Section Divider */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-50"></div>
