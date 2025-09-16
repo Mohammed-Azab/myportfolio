@@ -55,19 +55,19 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
+        staggerChildren: 0.2, // Reduced from 0.3
+        delayChildren: 0.1, // Reduced from 0.2
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 30, opacity: 0 }, // Reduced from y: 50
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.6, // Reduced from 0.8
         ease: "easeOut",
       },
     },

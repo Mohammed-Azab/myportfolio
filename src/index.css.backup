@@ -1,23 +1,38 @@
 /* Portfolio Styles - Enhanced TailwindCSS Configuration */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+    @apply transform transition-all duration-500 hover:scale-[1.01] hover:shadow-lg; /* Reduced from scale-105 and shadow-2xl */
+    @apply hover:border-blue-400/50;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer hover:bg-gray-800/50;
+  }
+
+  .card-glow {
+    @apply card;
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+  }
+
+  .card-glow:hover {
+  }
 
 /* Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 @layer base {
   /* CSS Variables for consistent theming */
   :root {
-    --primary-color: #00d4ff;
-    --secondary-color: #39ff14;
-    --accent-color: #ff6b35;
-    --background-color: #0a0a0a;
-    --surface-color: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
+    --primary-color: #00D4FF;
+    --secondary-color: #39FF14;
+    --accent-color: #FF6B35;
+    --background-color: #0A0A0A;
+    --surface-color: #1A1A1A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
     --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
-    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   html {
@@ -25,10 +40,10 @@
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) var(--surface-color);
   }
-
+  
   body {
-    font-family: "JetBrains Mono", monospace;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
@@ -36,9 +51,7 @@
 
   /* Respect reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
@@ -56,55 +69,57 @@
     background: var(--primary-color);
     color: var(--background-color);
   }
-
+  
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-
+  
   ::-webkit-scrollbar-track {
     background: var(--surface-color);
   }
-
+  
   ::-webkit-scrollbar-thumb {
     background: var(--primary-color);
     border-radius: 4px;
   }
-
+  
   ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
   }
 }
 
 @layer components {
-  /* Enhanced Button Styles */
+  /* Enhanced Button Styles - Reduced hover effects */
   .btn-primary {
     @apply bg-gradient-to-r from-blue-400 to-purple-500 text-white font-medium py-3 px-8 rounded-xl;
-    @apply transform transition-all duration-500 hover:scale-[1.02] hover:shadow-lg; /* Reduced scale from 1.05 to 1.02, shadow from xl to lg */
+    @apply transform transition-all duration-400 hover:scale-[1.02] hover:shadow-lg; /* Reduced from scale-105 and shadow-xl */
     @apply focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900;
     box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4); /* Reduced from 8px 25px and 0.5 opacity */
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4); /* Reduced from 8px and 0.5 opacity */
   }
-
+  
   .btn-secondary {
     @apply border-2 border-green-400 text-green-400 font-medium py-3 px-8 rounded-xl;
-    @apply transform transition-all duration-500 hover:bg-green-400 hover:text-gray-900 hover:scale-[1.02]; /* Reduced scale and increased duration */
+    @apply transform transition-all duration-400 hover:bg-green-400 hover:text-gray-900 hover:scale-[1.02]; /* Reduced from scale-105 */
     @apply focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900;
   }
 
   .btn-ghost {
     @apply text-white font-medium py-3 px-8 rounded-xl border border-gray-700;
-    @apply transform transition-all duration-500 hover:border-blue-400 hover:text-blue-400 hover:scale-[1.02]; /* Reduced scale and increased duration */
+    @apply transform transition-all duration-400 hover:border-blue-400 hover:text-blue-400 hover:scale-[1.02]; /* Reduced from scale-105 */
     @apply focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900;
   }
 
+
+  
   /* Card Styles */
   .card {
     @apply bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6;
-    @apply transform transition-all duration-500 hover:scale-[1.01] hover:shadow-lg; /* Reduced scale from 1.05 to 1.01, shadow from 2xl to lg */
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-2xl;
     @apply hover:border-blue-400/50;
   }
 
@@ -118,13 +133,13 @@
   }
 
   .card-glow:hover {
-    box-shadow: 0 6px 25px rgba(0, 212, 255, 0.15); /* Reduced shadow intensity */
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
   }
-
+  
   .card-hover {
-    @apply transition-all duration-500 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-400/20; /* Reduced scale and increased duration */
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-400/20;
   }
-
+  
   /* Text Styles */
   .text-gradient {
     @apply bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent;
@@ -136,7 +151,7 @@
 
   .heading-primary {
     @apply text-4xl md:text-6xl font-bold text-gradient;
-    font-family: "Orbitron", sans-serif;
+    font-family: 'Orbitron', sans-serif;
   }
 
   /* Typewriter text wrapping */
@@ -152,14 +167,14 @@
 
   .heading-secondary {
     @apply text-2xl md:text-4xl font-bold text-gradient;
-    font-family: "Orbitron", sans-serif;
+    font-family: 'Orbitron', sans-serif;
   }
 
   .heading-tertiary {
     @apply text-xl md:text-2xl font-semibold text-white;
-    font-family: "Orbitron", sans-serif;
+    font-family: 'Orbitron', sans-serif;
   }
-
+  
   /* Input Styles */
   .input-field {
     @apply w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3;
@@ -182,7 +197,7 @@
   }
 
   .nav-link::after {
-    content: "";
+    content: '';
     @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-400;
     @apply transition-all duration-300 transform -translate-x-1/2;
   }
@@ -230,7 +245,7 @@
   }
 
   .hover-lift {
-    @apply transform transition-transform duration-500 hover:-translate-y-1; /* Reduced lift from -2 to -1, increased duration */
+    @apply transform transition-transform duration-500 hover:-translate-y-1; /* Reduced from -translate-y-2 */
   }
 
   .hover-glow {
@@ -248,7 +263,7 @@
   .container-width {
     @apply max-w-7xl mx-auto;
   }
-
+  
   .border-gradient {
     @apply border-2 border-transparent bg-gradient-to-r from-blue-400 to-green-400 bg-clip-border;
   }
@@ -259,15 +274,15 @@
   .animation-delay-200 {
     animation-delay: 200ms;
   }
-
+  
   .animation-delay-400 {
     animation-delay: 400ms;
   }
-
+  
   .animation-delay-600 {
     animation-delay: 600ms;
   }
-
+  
   .animation-delay-800 {
     animation-delay: 800ms;
   }
@@ -308,22 +323,13 @@
 
 /* Keyframe Animations */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -349,12 +355,8 @@
 }
 
 @keyframes rotateSlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Responsive Design */
@@ -362,11 +364,11 @@
   .heading-primary {
     @apply text-3xl;
   }
-
+  
   .heading-secondary {
     @apply text-xl;
   }
-
+  
   .section-padding {
     @apply py-12 px-4;
   }
