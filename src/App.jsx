@@ -7,6 +7,7 @@ const Projects = React.lazy(() => import("./components/Projects"));
 const Skills = React.lazy(() => import("./components/Skills"));
 const Education = React.lazy(() => import("./components/Education"));
 const Volunteering = React.lazy(() => import("./components/Volunteering"));
+const Sports = React.lazy(() => import("./components/Sports"));
 const Awards = React.lazy(() => import("./components/Awards"));
 const Courses = React.lazy(() => import("./components/Courses"));
 const Timeline = React.lazy(() => import("./components/Timeline"));
@@ -42,6 +43,7 @@ function App() {
           <Projects />
           <Courses />
           <Volunteering />
+          <Sports />
           <Awards />
           <Contact />
         </React.Suspense>

@@ -21,6 +21,7 @@ const Navbar = () => {
         "projects",
         "courses",
         "volunteering",
+        "sports",
         "awards",
         "contact",
       ];
@@ -90,6 +91,7 @@ const Navbar = () => {
     { name: "Projects", href: "#projects", id: "projects" },
     { name: "Courses", href: "#courses", id: "courses" },
     { name: "Volunteering", href: "#volunteering", id: "volunteering" },
+    { name: "Sports", href: "#sports", id: "sports" },
     { name: "Awards", href: "#awards", id: "awards" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];
@@ -153,7 +155,7 @@ const Navbar = () => {
           </div>
 
           {/* Social Links */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 ml-8">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
