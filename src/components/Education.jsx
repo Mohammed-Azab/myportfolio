@@ -103,7 +103,8 @@ const Education = () => {
                 </h3>
               </div>
               <p className="text-green-200 text-sm">
-                Specializing in Autonomous Systems, Industrial Robotics, Control Systems, and Software Engineering.
+                Specializing in Autonomous Systems, Industrial Robotics, Control
+                Systems, and Software Engineering.
               </p>
             </div>
 
@@ -347,29 +348,31 @@ const Education = () => {
                           )}
 
                           {/* Achievements */}
-                          <div className="mt-8">
-                            <div className="flex items-center mb-4">
-                              <Award className="w-5 h-5 text-orange-400 mr-2" />
-                              <h5 className="text-lg font-semibold text-white">
-                                Achievements
-                              </h5>
+                          {education.achievements && (
+                            <div className="mt-8">
+                              <div className="flex items-center mb-4">
+                                <Award className="w-5 h-5 text-orange-400 mr-2" />
+                                <h5 className="text-lg font-semibold text-white">
+                                  Achievements
+                                </h5>
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {education.achievements.map(
+                                  (achievement, idx) => (
+                                    <div
+                                      key={idx}
+                                      className="flex items-center bg-gray-700 rounded-lg p-3"
+                                    >
+                                      <div className="w-2 h-2 bg-orange-400 rounded-full mr-3"></div>
+                                      <span className="text-gray-300 text-sm">
+                                        {achievement}
+                                      </span>
+                                    </div>
+                                  )
+                                )}
+                              </div>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {education.achievements.map(
-                                (achievement, idx) => (
-                                  <div
-                                    key={idx}
-                                    className="flex items-center bg-gray-700 rounded-lg p-3"
-                                  >
-                                    <div className="w-2 h-2 bg-orange-400 rounded-full mr-3"></div>
-                                    <span className="text-gray-300 text-sm">
-                                      {achievement}
-                                    </span>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          </div>
+                          )}
 
                           {/* Honors and Awards */}
                           {education.honorsAndAwards && (

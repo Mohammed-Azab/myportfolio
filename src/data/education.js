@@ -10,7 +10,7 @@ export const educationData = [
     period: "Oct 2023 - Present",
     startDate: "2023-10",
     endDate: "Present",
-    gpa: "0.81 (A+)",
+    gpa: "0.92 (A+)",
     location: "Berlin, Germany",
     status: "In Progress",
     description:
@@ -42,11 +42,8 @@ export const educationData = [
 
     // Academic Achievements
     achievements: [
-      "Dean's List (3 consecutive semesters)",
-      "Outstanding Student in Robotics Department",
-      "Research Assistant in AI Lab",
-      "Academic Excellence Scholarship Recipient",
-      "Best Final Year Project Award (2024)",
+      "Dean's List (5 consecutive semesters)",
+      "Best Embedded System's Project Award (2024)",
     ],
 
     // Research & Projects
@@ -102,9 +99,7 @@ export const educationData = [
         "Electric Machines",
         "Industrial Automation",
       ],
-      "Semester 7": [
-        "Engineering Bachelor Thesis Writing",
-      ],
+      "Semester 7": ["Engineering Bachelor Thesis Writing"],
     },
 
     // Honors and Awards
@@ -114,50 +109,12 @@ export const educationData = [
         organization: "German International University of Berlin",
         date: "2024",
         description:
-          "Recognized for outstanding academic performance with GPA above 3.8 for 3 consecutive semesters",
-      },
-      {
-        title: "Best Final Year Project Award",
-        organization: "Mechatronics Department",
-        date: "2024",
-        description:
-          "Awarded for innovative AI-powered prosthetic device development project",
-      },
-      {
-        title: "Academic Excellence Scholarship",
-        organization: "German International University",
-        date: "2023-2025",
-        description:
-          "Merit-based scholarship covering 50% tuition fees for outstanding academic performance",
-      },
-      {
-        title: "Outstanding Student in Robotics",
-        organization: "Robotics Department",
-        date: "2023",
-        description:
-          "Recognition for exceptional performance in robotics coursework and laboratory projects",
-      },
-      {
-        title: "Research Assistant Excellence Award",
-        organization: "AI Research Lab",
-        date: "2024",
-        description:
-          "Acknowledged for significant contributions to prosthetic device research project",
+          "Recognized for outstanding academic performance with GPA above 3.8 for 5 consecutive semesters",
       },
     ],
 
     // Volunteering Experience
-    volunteering: [
-      {
-        role: "Robotics Club President",
-        organization: "GIU Robotics Society",
-        duration: "Sep 2022 - Jun 2023",
-        description:
-          "Led university robotics club, organized competitions, managed budget, and coordinated with industry partners",
-        impact:
-          "Increased club membership by 120% and secured €3,000 in sponsorships",
-      },
-    ],
+    volunteering: null,
   },
   {
     id: 2,
@@ -193,66 +150,19 @@ export const educationData = [
     specializations: [],
 
     // Academic Achievements
-    achievements: [
-      "Valedictorian (Jahrgangsbester)",
-    ],
+    achievements: null,
 
     // Special Projects
     researchProjects: null,
 
     // Extracurricular Activities
-    extracurricular: [
-      "Robotics Club President (2019-2021)",
-      "Science Fair Organizer",
-      "Peer Tutoring Program - Mathematics",
-      "Student Council Technology Committee",
-      "STEM Outreach Volunteer",
-    ],
+    extracurricular: null,
 
     // Honors and Awards
-    honorsAndAwards: [
-      {
-        title: "Valedictorian Award",
-        organization: "German University in Cairo",
-        date: "2021",
-        description:
-          "Graduated as top student with highest GPA in the engineering preparatory program",
-      },
-      {
-        title: "Mathematics Excellence Award",
-        organization: "GUC Mathematics Department",
-        date: "2020",
-        description: "Outstanding performance in advanced mathematics courses",
-      },
-      {
-        title: "Science Fair First Place",
-        organization: "Cairo Regional Science Fair",
-        date: "2020",
-        description: "Won first place for innovative renewable energy project",
-      },
-    ],
+    honorsAndAwards: null,
 
     // Volunteering Experience
-    volunteering: [
-      {
-        role: "Math Tutor",
-        organization: "Community Learning Center",
-        duration: "Jan 2020 - Jun 2021",
-        description:
-          "Tutored underprivileged students in mathematics and physics preparation for university entrance exams",
-        impact:
-          "Helped 20+ students achieve 90%+ scores in entrance examinations",
-      },
-      {
-        role: "Science Club Vice President",
-        organization: "GUC Science Society",
-        duration: "Sep 2019 - Jun 2021",
-        description:
-          "Organized science exhibitions, coordinated guest lectures, and managed club activities",
-        impact:
-          "Increased club participation by 200% and organized 5 major science events",
-      },
-    ],
+    volunteering: null,
   },
 ];
 
