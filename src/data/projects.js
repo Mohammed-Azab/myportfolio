@@ -113,7 +113,6 @@ export const projectsData = [
       "/images/projects/ACE3.jpeg",
       "/images/projects/ACE4.jpeg",
       "/images/projects/ACE5.jpeg",
-      "/images/projects/ACE6.jpeg",
     ],
   },
   {
