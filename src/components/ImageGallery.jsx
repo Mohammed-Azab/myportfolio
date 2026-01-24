@@ -150,7 +150,7 @@ const ImageGallery = ({
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: scale, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.1 }}
           onWheel={(e) => {
             e.preventDefault();
             setScale((s) =>
@@ -165,7 +165,7 @@ const ImageGallery = ({
             className={`absolute left-1/2 -translate-x-1/2 bg-gray-700/80 text-white px-4 py-2 rounded-lg text-sm max-w-md text-center z-10 ${
               images.length > 1 && images.length <= 10
                 ? "bottom-16" // Move up when thumbnails are present
-                : "bottom-4" // Stay at bottom when no thumbnails   
+                : "bottom-4" // Stay at bottom when no thumbnails
             }`}
           >
             {currentImage.caption || currentImage.alt}
