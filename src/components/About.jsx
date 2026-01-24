@@ -183,9 +183,9 @@ const About = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
         >
           {[
-            { number: "20+", label: "Projects Completed" },
+            { number: "30+", label: "Projects Completed" },
             { number: "9+", label: "Programming Languages" },
-            { number: "2+", label: "Years Experience" },
+            { number: "3+", label: "Years Experience" },
             { number: "∞", label: "Passion for Innovation" },
           ].map((stat, index) => (
             <motion.div

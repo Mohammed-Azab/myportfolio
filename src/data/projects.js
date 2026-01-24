@@ -152,6 +152,46 @@ export const projectsData = [
   },
   {
     id: 5,
+    title: "Thyristor-Based Battery Charger Modeling and Rectifier Analysis",
+    description:
+      "MATLAB and Simulink toolkit for analyzing thyristor-controlled rectifiers and optimizing battery charging profiles.",
+    longDescription:
+      "Developed a comprehensive MATLAB and Simulink toolkit for analyzing thyristor-controlled rectifiers and optimizing battery charging profiles. Simulated models for half-wave, full-wave center-tapped, and bridge rectifiers with adjustable firing angle control. Performed waveform analysis, power loss evaluation, and state-of-charge tracking for R, RL, and highly inductive loads using Simscape Electrical.",
+    image: "/images/projects/project-placeholder.svg",
+    technologies: [
+      "MATLAB",
+      "Simulink",
+      "Simscape Electrical",
+      "Thyristor Control",
+      "Power Electronics",
+      "Battery Management",
+    ],
+    category: "Control Systems",
+    status: "Completed",
+    github: "https://github.com/Mohammed-Azab/thyristolab",
+    demo: null,
+    features: [
+      "Half-wave, full-wave center-tapped, and bridge rectifier models",
+      "Adjustable firing angle control for thyristors",
+      "Waveform analysis and visualization",
+      "Power loss evaluation across different load types",
+      "State-of-charge tracking for battery systems",
+      "Support for R, RL, and highly inductive loads",
+    ],
+    timeline: "Dec 2025",
+    teamSize: "Solo Project",
+    images: [
+      "/images/projects/thyrs1.jpg",
+      "/images/projects/thyrs2.png",
+      "/images/projects/thyrs3.png",
+      "/images/projects/thyrs4.png",
+      "/images/projects/thyrs5.jpeg",
+      "/images/projects/thyrs6.png",
+      "/images/projects/thyrs7.png",
+    ],
+  },
+  {
+    id: 6,
     title: "Precision Motion Control: Ball and Motor System",
     description:
       "PID and Lead–Lag control for a ball‑stabilizer system with MATLAB/Simulink design and Arduino hardware validation.",
@@ -181,7 +221,7 @@ export const projectsData = [
     images: ["/images/projects/pid1.jpeg", "/images/projects/pid2.jpeg"],
   },
   {
-    id: 6,
+    id: 7,
     title: "Intel 8086 AES-128 Cryptographic Engine",
     description:
       "Low-level AES-128 encryption engine implemented in pure 8086 assembly language with sophisticated modular architecture.",
@@ -231,7 +271,7 @@ export const projectCategories = [
 
 // Featured projects (subset for homepage)
 export const featuredProjects = projectsData.filter((project) =>
-  [1, 2, 3, 4].includes(project.id)
+  [1, 2, 3, 4, 5].includes(project.id)
 );
 
 export default projectsData;

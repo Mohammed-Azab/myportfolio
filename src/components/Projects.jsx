@@ -120,6 +120,20 @@ const Projects = () => {
       "x86 Assembly":
         "https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white",
 
+      // Cryptography & Security
+      "AES Algorithm":
+        "https://img.shields.io/badge/AES_Algorithm-DC143C?style=for-the-badge",
+      Encryption:
+        "https://img.shields.io/badge/Encryption-FF0000?style=for-the-badge&logo=letsencrypt&logoColor=white",
+      Decryption:
+        "https://img.shields.io/badge/Decryption-8B0000?style=for-the-badge",
+      "DOS Interrupts":
+        "https://img.shields.io/badge/DOS_Interrupts-808080?style=for-the-badge",
+      "8086 Architecture":
+        "https://img.shields.io/badge/8086_Architecture-4169E1?style=for-the-badge&logo=intel&logoColor=white",
+      "Low-Level Programming":
+        "https://img.shields.io/badge/Low--Level_Programming-2F4F4F?style=for-the-badge",
+
       // Frameworks & Tools
       ROS2: "https://img.shields.io/badge/ros2-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white",
       JavaFX:
@@ -175,6 +189,16 @@ const Projects = () => {
         "https://img.shields.io/badge/Matrix_Theory-darkblue?style=for-the-badge",
       "Digital Signal Processing":
         "https://img.shields.io/badge/DSP-darkgreen?style=for-the-badge",
+
+      // Power Electronics & Control
+      "Simscape Electrical":
+        "https://img.shields.io/badge/Simscape_Electrical-0076A8?style=for-the-badge",
+      "Thyristor Control":
+        "https://img.shields.io/badge/Thyristor_Control-8B4513?style=for-the-badge",
+      "Power Electronics":
+        "https://img.shields.io/badge/Power_Electronics-FF4500?style=for-the-badge",
+      "Battery Management":
+        "https://img.shields.io/badge/Battery_Management-32CD32?style=for-the-badge",
 
       // Communication/Protocols
       MQTT: "https://img.shields.io/badge/MQTT-3C5280?style=for-the-badge&logo=eclipsemosquitto&logoColor=white",
