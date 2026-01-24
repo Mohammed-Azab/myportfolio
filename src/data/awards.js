@@ -35,7 +35,7 @@ export const awardsData = [
     date: "2023",
     level: "University",
     description:
-      "Awarded the prestigious GUC Scholarship for studying mechatronics in Germany, a recognition given to the top 5 students out of a competitive pool of 981 candidates. This scholarship has enabled me to pursue a three-year mechatronics program in Germany.",
+      "Awarded the GUC Scholarship for studying mechatronics in Germany, a recognition given to the top 5 students out of a competitive pool of 981 candidates. This scholarship has enabled me to pursue a three-year mechatronics program in Germany.",
 
     image: "/images/education/guc_Logo.jpg",
     //certificate: "/documents/guc-international-scholarship-2023.pdf",

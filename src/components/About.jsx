@@ -48,7 +48,7 @@ const About = () => {
       icon: Code,
       title: "Software Development",
       description:
-        "Writing clean, maintainable code in C++, Python, and JavaScript for various platforms",
+        "Writing clean, maintainable code in C++, Python, and Java for various platforms",
     },
     {
       icon: Zap,
@@ -107,7 +107,7 @@ const About = () => {
                 at GIU Berlin and
                 <span className="text-electric-blue font-semibold">
                   {" "}
-                  Working Student – Test & Measurement Engineer
+                  Working Student – Software Engineer
                 </span>{" "}
                 at CARIAD SE. My passion lies in autonomous systems, robotics,
                 model-based control, and software engineering.
@@ -124,15 +124,18 @@ const About = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Autonomous driving sensor systems and test automation frameworks at CARIAD.
+                  Autonomous driving sensor systems and test automation
+                  frameworks at CARIAD.
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  F1TENTH autonomous racing vehicles for competitive events and research applications.
+                  F1TENTH autonomous racing vehicles for competitive events and
+                  research applications.
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
-                  Embedded firmware solutions for microcontrollers and IoT devices. 
+                  Embedded firmware solutions for microcontrollers and IoT
+                  devices.
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-electric-blue rounded-full"></div>

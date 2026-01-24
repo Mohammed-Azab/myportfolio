@@ -13,7 +13,7 @@ export const sportsData = [
     endDate: "2025-09",
     category: "Corporate Running",
     description:
-      "Participated in Germany's largest corporate running event with 18,000 runners from 896 companies at the iconic Berlin Olympiastadion, promoting team building, health awareness, and corporate social responsibility.",
+      "Participated in Germany's largest corporate running event with 18,000 runners from 896 companies at the iconic Berlin Olympiastadion",
     achievements: null,
     impact:
       "Contributed to Germany's largest corporate wellness initiative, promoting health awareness and team building across 896 participating companies",

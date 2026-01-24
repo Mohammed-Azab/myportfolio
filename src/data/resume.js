@@ -79,7 +79,7 @@ export const experienceData = [
   {
     id: 1,
     company: "CARIAD SE – A Volkswagen Group Company",
-    position: "Working Student – Test & Measurement Engineer (ADAS/AD)",
+    position: "Working Student – Software Engineer (ADAS/AD)",
     period: "May 2025 - Present",
     location: "Berlin, Germany",
     type: "Working Student",
@@ -143,11 +143,7 @@ export const experienceData = [
       "Support students with debugging and problem-solving during exercises",
       "Review assignments and provide feedback",
     ],
-    technologies: [
-      "Python",
-      "Algorithms",
-      "Data Structures",
-    ],
+    technologies: ["Python", "Algorithms", "Data Structures"],
     achievements: null,
   },
 ];

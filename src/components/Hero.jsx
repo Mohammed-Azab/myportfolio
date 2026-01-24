@@ -13,7 +13,7 @@ const Hero = () => {
 
   const phrases = [
     "Mechatronics Engineering Student",
-    "Working Student - Test & Measurement Engineer at CARIAD SE",
+    "Working Student - Software Engineer at CARIAD SE",
     "Autonomous Systems Developer",
     "Robotics & AI Researcher",
     "F1TENTH Racing Champion",
