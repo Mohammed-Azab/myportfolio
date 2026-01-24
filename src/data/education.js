@@ -4,6 +4,43 @@
 export const educationData = [
   {
     id: 1,
+    institution: "Technische Universität Berlin",
+    degree: "External Bachelor Thesis Student",
+    field: "Technical Informatics and Microelectronics",
+    period: "Mar 2026 - Aug 2026",
+    startDate: "2026-03",
+    endDate: "2026-08",
+    gpa: null,
+    location: "Berlin, Germany",
+    status: "In Progress",
+    description:
+      "Visiting student at the Institute of Technical Informatics and Microelectronics, conducting research in autonomous systems and embedded computing.",
+    website: "https://www.tu.berlin",
+    logo: "/images/education/tub_logo.jpg",
+
+    // Core Curriculum
+    coreCourses: null,
+
+    // Specializations
+    specializations: [],
+
+    // Academic Achievements
+    achievements: null,
+
+    // Research & Projects
+    researchProjects: null,
+
+    // Relevant Coursework by Semester
+    courseworkBySemester: null,
+
+    // Honors and Awards
+    honorsAndAwards: null,
+
+    // Volunteering Experience
+    volunteering: null,
+  },
+  {
+    id: 2,
     institution: "German International University of Berlin",
     degree: "B.Sc. in Mechatronics Engineering",
     field: "Mechatronics Engineering",
@@ -19,18 +56,7 @@ export const educationData = [
     logo: "/images/education/giu_logo.png",
 
     // Core Curriculum
-    coreCourses: [
-      "Autonomous Systems",
-      "Control Systems Engineering",
-      "Power Electronics",
-      "Embedded Systems",
-      "Numerical Analysis",
-      "Thermodynamics",
-      "Fluid Mechanics",
-      "Software Engineering",
-      "Robotics and Automation",
-      "Digital Signal Processing",
-    ],
+    coreCourses: null,
 
     // Specializations
     specializations: [
@@ -117,7 +143,7 @@ export const educationData = [
     volunteering: null,
   },
   {
-    id: 2,
+    id: 3,
     institution: "The German University in Cairo",
     degree: "B.Sc. in General Engineering",
     field: "General Engineering",
@@ -132,19 +158,27 @@ export const educationData = [
     logo: "/images/education/guc_Logo.jpg",
     website: "https://www.guc.edu.eg",
 
-    // Advanced Courses
-    coreCourses: [
-      "Introduction to Computer Science",
-      "Advanced Calculus",
-      "Digital Logic Design",
-      "Linear Algebra",
-      "Physics II",
-      "Engineering Chemistry",
-      "Production Technology",
-      "Engineering Drawing",
-      "Academic English",
-      "Academic Study Skills",
-    ],
+    coreCourses: null,
+
+    courseworkBySemester: {
+      "Semester 1": [
+        "Introduction to Computer Science",
+        "Mathematics I",
+        "Physics I",
+        "Engineering Drawing and Design",
+        "Academic English",
+        "German Language I",
+      ],
+      "Semester 2": [
+        "Introduction to Computer Programming",
+        "Mathematics II",
+        "Physics II",
+        "Digital Logic Design",
+        "Production Technology",
+        "Academic Study Skills",
+        "German Language II",
+      ],
+    },
 
     // Specializations
     specializations: [],
