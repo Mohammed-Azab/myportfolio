@@ -63,7 +63,7 @@ export const projectsData = [
     category: "Robotics",
     status: "Completed",
     github: "https://github.com/RoboMechanix/TriFlameX",
-    demo: "https://www.twitch.tv/videos/2493671198",
+    demo: "https://github.com/RoboMechanix/TriFlameX/blob/main/docs/videos/onSiteVideo.mp4",
     features: [
       "Three‑layer architecture (laptop, ESP32, STM32)",
       "Custom 6‑byte binary protocol (Azab Protocol) with interrupts + FreeRTOS at 500k baud",
@@ -92,7 +92,7 @@ export const projectsData = [
     longDescription:
       "Overview\nDice Realms is a competitive board game where two players act as wizards battling across the realms of Eldoria. Players roll and allocate magical dice to cast spells and defeat elemental creatures to earn points. The goal is to collect Elemental Crests and outsmart the opponent.\n\nCore mechanics\n- Forgotten Realm: unchosen dice become opportunities for the opponent on the next turn\n- Special abilities: Time Warp and Arcane Boost shift the course of battle\n- Scoring: defeat elemental creatures and secure Crests to win\n\nArchitecture and technology\n- Java OOP for the core game model (boards, realms, creatures, spells)\n- Finite‑state machine to manage phases, turns, actions, and validations\n- JavaFX UI with CSS styling for a responsive desktop experience\n- AI module (ACE) that supports multiple difficulty levels using a Monte Carlo style decision policy\n- Team workflow with Git and GitHub to coordinate development and reviews",
     image: "/images/projects/project-placeholder.svg",
-    technologies: ["Java", "JavaFX", "CSS", "Git", "GitHub", "AI"], 
+    technologies: ["Java", "JavaFX", "CSS", "Git", "GitHub", "AI"],
     category: "Software Development",
     status: "Completed",
     github: null,
@@ -178,10 +178,7 @@ export const projectsData = [
     ],
     timeline: "Oct 2024 - Jan 2025",
     teamSize: "Solo Project",
-    images: [
-      "/images/projects/pid1.jpeg",
-      "/images/projects/pid2.jpeg",
-    ],
+    images: ["/images/projects/pid1.jpeg", "/images/projects/pid2.jpeg"],
   },
   {
     id: 6,
