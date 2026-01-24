@@ -452,6 +452,50 @@ const Education = () => {
                                       <p className="text-gray-300 text-sm mb-2">
                                         {volunteer.description}
                                       </p>
+                                      {volunteer.id && (
+                                        <a
+                                          href={`#volunteering`}
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            const section =
+                                              document.getElementById(
+                                                "volunteering"
+                                              );
+                                            if (section) {
+                                              section.scrollIntoView({
+                                                behavior: "smooth",
+                                              });
+                                              // Highlight the specific volunteer card after scroll
+                                              setTimeout(() => {
+                                                const volunteerCard =
+                                                  document.querySelector(
+                                                    `[data-volunteer-id="${volunteer.id}"]`
+                                                  );
+                                                if (volunteerCard) {
+                                                  volunteerCard.scrollIntoView({
+                                                    behavior: "smooth",
+                                                    block: "center",
+                                                  });
+                                                  volunteerCard.classList.add(
+                                                    "ring-2",
+                                                    "ring-electric-blue"
+                                                  );
+                                                  setTimeout(() => {
+                                                    volunteerCard.classList.remove(
+                                                      "ring-2",
+                                                      "ring-electric-blue"
+                                                    );
+                                                  }, 2000);
+                                                }
+                                              }, 500);
+                                            }
+                                          }}
+                                          className="inline-flex items-center gap-2 text-electric-blue hover:text-blue-400 transition-colors duration-200 text-sm font-medium mt-2"
+                                        >
+                                          <ExternalLink className="w-4 h-4" />
+                                          View Full Details
+                                        </a>
+                                      )}
                                       {volunteer.impact && (
                                         <div className="bg-gray-600 rounded px-3 py-2 mt-2">
                                           <p className="text-green-400 text-sm font-medium">

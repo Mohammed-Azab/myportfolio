@@ -154,7 +154,7 @@ export const educationData = [
     location: "New Cairo, Egypt",
     status: "Completed",
     description:
-      "Comprehensive engineering foundation program covering advanced mathematics, computer science, digital logic design, and physics with focus on engineering fundamentals.",
+      "Studied for one year as a scholarship recipient, equivalent to Germany’s Studienkolleg, with coursework in advanced mathematics, computer science, digital logic design, and physics, satisfying the academic prerequisites for university admission in Germany.",
     logo: "/images/education/guc_Logo.jpg",
     website: "https://www.guc.edu.eg",
 
@@ -193,10 +193,34 @@ export const educationData = [
     extracurricular: null,
 
     // Honors and Awards
-    honorsAndAwards: null,
+    honorsAndAwards: [
+      {
+        title: "GUC Scholarship for Studying Abroad",
+        organization: "German University in Cairo",
+        date: "2023",
+        description:
+          "Awarded the GUC Scholarship for studying mechatronics in Germany, a recognition given to the top 5 students out of a competitive pool of 981 candidates.",
+      },
+      {
+        title: "GUC Scholarship for Outstanding Thanaweya Amma Achievement",
+        organization: "German University in Cairo",
+        date: "2022",
+        description:
+          "Merit-based scholarship awarded for outstanding performance in Egyptian high school final examinations (Thanaweya Amma).",
+      },
+    ],
 
     // Volunteering Experience
-    volunteering: null,
+    volunteering: [
+      {
+        id: 3, // References volunteering.js entry
+        role: "Event Team Lead (Ushering)",
+        organization: "The German University in Cairo",
+        duration: "Mar 2023 - Feb 2024",
+        description:
+          "Led the ushering and logistics team for high‑traffic university events, coordinating schedules, entry flow, seating, and venue readiness.",
+      },
+    ],
   },
 ];
 

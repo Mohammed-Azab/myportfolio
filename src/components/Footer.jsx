@@ -141,7 +141,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center gap-2 text-gray-400 text-sm"
             >
-              <span>© {currentYear} Mohammed Abdelazim. Made with</span>
+              <span>© 2025 Mohammed Abdelazim. Made with</span>
               <Heart size={16} className="text-red-500 animate-pulse" />
               <span>and lots of ☕</span>
             </motion.div>

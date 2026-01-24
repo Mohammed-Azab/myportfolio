@@ -228,7 +228,11 @@ const Volunteering = () => {
           {/* Volunteering Timeline */}
           <motion.div variants={itemVariants} className="space-y-8">
             {filteredVolunteering.map((volunteer, index) => (
-              <div key={volunteer.id} className="relative">
+              <div
+                key={volunteer.id}
+                data-volunteer-id={volunteer.id}
+                className="relative transition-all duration-300"
+              >
                 <div className="bg-gray-800 rounded-2xl border border-gray-700 hover:border-electric-blue transition-all duration-300 overflow-hidden">
                   {/* Main Volunteering Card */}
                   <div className="p-8">
