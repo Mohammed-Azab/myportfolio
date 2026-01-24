@@ -1,0 +1,202 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fontawesome}
+\usepackage[T1]{fontenc}
+
+% -----------------------
+% Links (clean look)
+% -----------------------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue!60!black,
+  linkcolor=blue!60!black
+}
+
+% -----------------------
+% Section styling + spacing
+% -----------------------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{blue!70!black}}{}{0em}{}
+\titleformat{\subsection}
+  {\normalfont\bfseries\color{blue!70!black}}{}{0em}{}
+
+% Tight, consistent spacing around headings
+\titlespacing*{\section}{0pt}{0.7em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0.25em}
+
+% -----------------------
+% Uniform bullet formatting (circle bullets everywhere)
+% -----------------------
+\setlist[itemize]{
+  label=\textbullet,
+  leftmargin=1.25em,
+  itemsep=0.15em,
+  topsep=0.25em,
+  parsep=0em,
+  partopsep=0em
+}
+% Nested itemize (slightly tighter + slightly smaller indent)
+\setlist[itemize,2]{
+  label=\textbullet,
+  leftmargin=1.35em,
+  itemsep=0.1em,
+  topsep=0.15em
+}
+
+% For smaller, gray URLs in header
+\newcommand{\printurl}[1]{\textcolor{gray}{\small \texttt{#1}}}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \bfseries Mohammed Abdelazim}\\[2pt]
+    Berlin, Germany \quad | \quad \href{mailto:Mohammed@azab.io}{Mohammed@azab.io} \quad | \quad +49 1523 8600805\\[5pt]
+    \href{https://linkedin.com/in/mohammed-azab}{LinkedIn:} \printurl{https://linkedin.com/in/mohammed-azab} \quad | \quad
+    \href{https://github.com/mohammed-azab}{GitHub:} \printurl{https://github.com/mohammed-azab} \\
+    \href{https://mohammedazab.com}{Portfolio:} \printurl{https://mohammedazab.com}
+\end{center}
+
+% -----------------------
+% Publications
+% -----------------------
+\section*{Publications}
+\begin{itemize}
+    \item \textbf{AROLA: A Modular Layered Architecture for Scaled Autonomous Racing}\\
+    \textit{IEEE Intelligent Vehicles Symposium (IV26), Detroit, Michigan, USA}
+    \begin{itemize}
+        \item developed A modular, layered autonomous-driving architecture using ROS 2 to support scalable, reusable racing systems.
+        \item Designed a full-stack driving pipeline integrating sensing, perception, localization, planning, behavior, control, and actuation layers.
+        \item Developed \textit{Race Monitor}, a real-time evaluation framework, was developed to benchmark controllers in simulation and real-world experiments.
+        \item The system facilitated rapid controller comparison, efficient parameter tuning, and reproducible experiments across diverse platforms.
+        \item The approach was validated by achieving \textbf{ a 3rd place} finish at RoboRacer IV25 in Cluj, Romania.
+    \end{itemize}
+\end{itemize}
+
+% -----------------------
+% Education
+% -----------------------
+\section*{Education}
+\textbf{Technische Universität Berlin} \hfill Berlin, Germany\\
+External / Visiting Student, Institute of Technical Informatics and Microelectronics \hfill Mar 2026 -- Aug 2026\\
+\textbf{Bachelor Thesis:} Comfort-aware preview speed planning and control over speed bumps using LiDAR-based wheel excitation sensing\\
+
+\textbf{German International University in Berlin} \hfill Berlin, Germany\\
+B.Sc. in Mechatronics Engineering \hfill Oct 2023 -- Present\\
+GPA: \textbf{0.92 (A+)}\\
+Relevant Coursework: Autonomous Systems, Control Systems Engineering, Power Electronics, Embedded Systems, Numerical Analysis, Thermodynamics, Fluid Mechanics, Software Engineering.\\
+
+\textbf{The German University in Cairo} \hfill New Cairo, Egypt\\
+B.Sc. in General Engineering \hfill Sep 2022 -- Aug 2023\\
+GPA: \textbf{0.79 (A+)}\\
+Relevant Coursework: Advanced Calculus, Computer Science, Digital Logic Design, Physics III.\\
+
+\subsection*{Honors \& Scholarships}
+\begin{itemize}
+    \item GUC Scholarship for Outstanding Thanaweya Amma Achievement (2022)
+    \item GUC Scholarship for Study Abroad in Germany (2023)
+\end{itemize}
+
+% -----------------------
+% Research Experience
+% -----------------------
+\section*{Research Experience}
+\textbf{Multi-Robot Systems (MRS) Research Group} \hfill New Cairo, Egypt\\
+Research Intern \hfill Aug 2024 -- Oct 2024
+\begin{itemize}
+    \item Developed a quadrant drone using Embedded C, focusing on control algorithms and flight stability.
+    \item Designed and implemented a PID controller in MATLAB/Simulink for precise stabilization.
+    \item Reduced drone weight by 23\% using SolidWorks, increasing flight time by 15\%.
+\end{itemize}
+
+% -----------------------
+% Professional Experience
+% -----------------------
+\section*{Professional Experience}
+\textbf{CARIAD SE -- A Volkswagen Group Company} \hfill Berlin, Germany\\
+Working Student -- Software Engineer (ADAS/AD) \hfill May 2025 -- Present
+\begin{itemize}
+    \item Operate advanced test bench environments to measure and validate sensor data (LiDAR, radar, camera) for Automated Driving Systems.
+    \item Develop, debug, and optimize test and measurement tools using C++ and Python on Ubuntu.
+    \item Work with CI pipelines, CMake, and Conan for scalable build automation and dependency management.
+    \item Author comprehensive technical documentation, ensuring clarity and traceability of test procedures.
+\end{itemize}
+
+% -----------------------
+% Projects
+% -----------------------
+\section*{Projects}
+\textbf{F1TENTH Autonomous Racing Car}
+\begin{itemize}
+    \item Built a 1/10th scale autonomous race car on the F1TENTH platform, running ROS2 on NVIDIA Jetson.
+    \item Implemented SLAM for real-time mapping and localization.
+    \item Developed a Bezier spline-based path optimizer and \textbf{hybrid MPC--LQR controller} for trajectory planning.
+    \item Implemented a dual Extended Kalman Filter (EKF) to fuse control inputs, IMU, and odometry data for accurate state estimation.
+    \item Achieved \textbf{3rd place} in the 25th RoboRacer Autonomous Racing Competition, Romania.
+\end{itemize}
+
+\textbf{TriFlameX: Swarm of Fire-Fighting Robots}
+\begin{itemize}
+    \item Developed 3 autonomous robots with multi-layer architecture (Laptop--ESP32--STM32) for coordinated detection and suppression of fires.
+    \item Invented the interrupt-driven Azab Protocol for high-speed reliable binary communication in FreeRTOS.
+    \item Designed a custom thermal LiDAR system for real-time fire localization.
+    \item Integrated ROS2, MQTT, and UART for inter-robot and intra-robot communication.
+\end{itemize}
+
+\textbf{Dice Realms: Quest for the Elemental Crests}
+\begin{itemize}
+    \item Developed a 2D board game in Java, with object-oriented programming (OOP) architecture.
+    \item Implemented a finite state machine (FSM) to manage structured game flow and modular code architecture.
+    \item Developed AI players using a Monte Carlo method for decision-making, supporting multiple difficulty levels and both human vs AI and AI vs AI gameplay.
+    \item Designed UI in JavaFX and CSS; implemented version control with Git and GitHub.
+\end{itemize}
+
+\textbf{Thyristor-Based Battery Charger Modeling and Rectifier Analysis}
+\begin{itemize}
+    \item Developed a MATLAB and Simulink toolkit for analyzing thyristor-controlled rectifiers and optimizing battery charging profiles.
+    \item Simulatied models for half-wave, full-wave center-tapped, and bridge rectifiers with adjustable firing angle control.
+    \item Performed waveform analysis, power loss evaluation, and state-of-charge tracking for R, RL, and highly inductive loads using Simscape Electrical.
+\end{itemize}
+
+% -----------------------
+% Skills
+% -----------------------
+\section*{Skills}
+\textbf{Technical:} System Optimization, Hardware-Software Integration, API Documentation\\
+\textbf{Programming:} Embedded C, C++, Java, Python, VHDL, Assembly, CSS\\
+\textbf{Operating Systems:} Ubuntu, Arch Linux, Windows\\
+\textbf{Tools:} ROS2, Git, MATLAB/Simulink, Quartus, Gazebo, Bash, PowerShell\\
+\textbf{Hardware Platforms:} Raspberry Pi, NVIDIA Jetson, STM32, ESP32, Arduino, FPGA\\
+\textbf{Languages:} English (C1), German (B2), Arabic (Native)\\
+\textbf{Interpersonal:} Public Speaking, Leadership, Communication, Time Management
+
+% -----------------------
+% Certifications
+% -----------------------
+\section*{Certifications \& Courses}
+\begin{itemize}
+    \item Robotics \& Automation: ROS 2 Humble
+    \item Machine Learning (DeepLearning.AI): Supervised \& Unsupervised Learning, Recommenders, Reinforcement Learning, Advanced Algorithms
+    \item Digitalization in the Aerospace Industry, Technische Universität München
+    \item Mechanical Design: Siemens NX, Fusion 360, SolidWorks, AutoCAD
+    \item Programming \& Operation of 5-Axis CNC Machines
+    \item Goethe-Zertifikat B2 (German)
+\end{itemize}
+
+% -----------------------
+% Leadership
+% -----------------------
+\section*{Leadership \& Activities}
+\textbf{European Solidarity Corps for Youth (ESC4Y)} \hfill Deuselbach, Germany\\
+Biodiversity and Climate Action Volunteer \hfill Sep 2024 -- Oct 2024
+\begin{itemize}
+    \item Collaborated with IBG and the Foundation for Nature and Environment to support biodiversity (UN SDG 15) and climate action (UN SDG 13).
+    \item Assisted park rangers in restoring peatlands in Hunsrück-Hochwald National Park.
+\end{itemize}
+
+\end{document}
