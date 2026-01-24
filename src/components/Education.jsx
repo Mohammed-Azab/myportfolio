@@ -142,7 +142,11 @@ const Education = () => {
                         {education.logo ? (
                           <div
                             className={`flex items-center justify-center border-2 border-gray-300 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 bg-white ${
-                              education.institution.includes("Berlin")
+                              education.institution.includes(
+                                "Technische Universität Berlin"
+                              )
+                                ? "w-20 h-20 p-2"
+                                : education.institution.includes("Berlin")
                                 ? "w-28 h-16 p-2"
                                 : "w-24 h-14 p-2"
                             }`}
@@ -226,21 +230,28 @@ const Education = () => {
                         </div>
 
                         {/* Expand/Collapse Button */}
-                        <button
-                          onClick={() => toggleEducation(education.id)}
-                          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          <span className="mr-2">
-                            {expandedEducation === education.id
-                              ? "Show Less"
-                              : "Show More Details"}
-                          </span>
-                          {expandedEducation === education.id ? (
-                            <ChevronUp className="w-4 h-4" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )}
-                        </button>
+                        {(education.coreCourses ||
+                          education.researchProjects ||
+                          education.courseworkBySemester ||
+                          education.achievements ||
+                          education.honorsAndAwards ||
+                          education.volunteering) && (
+                          <button
+                            onClick={() => toggleEducation(education.id)}
+                            className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                          >
+                            <span className="mr-2">
+                              {expandedEducation === education.id
+                                ? "Show Less"
+                                : "Show More Details"}
+                            </span>
+                            {expandedEducation === education.id ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </button>
+                        )}
                       </div>
                     </div>
 
@@ -256,24 +267,26 @@ const Education = () => {
                         >
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {/* Core Courses */}
-                            <div>
-                              <div className="flex items-center mb-4">
-                                <BookOpen className="w-5 h-5 text-green-400 mr-2" />
-                                <h5 className="text-lg font-semibold text-white">
-                                  Core Courses
-                                </h5>
+                            {education.coreCourses && (
+                              <div>
+                                <div className="flex items-center mb-4">
+                                  <BookOpen className="w-5 h-5 text-green-400 mr-2" />
+                                  <h5 className="text-lg font-semibold text-white">
+                                    Core Courses
+                                  </h5>
+                                </div>
+                                <div className="grid grid-cols-1 gap-2">
+                                  {education.coreCourses.map((course, idx) => (
+                                    <div
+                                      key={idx}
+                                      className="bg-gray-700 rounded-lg p-3 text-gray-300 text-sm"
+                                    >
+                                      {course}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                              <div className="grid grid-cols-1 gap-2">
-                                {education.coreCourses.map((course, idx) => (
-                                  <div
-                                    key={idx}
-                                    className="bg-gray-700 rounded-lg p-3 text-gray-300 text-sm"
-                                  >
-                                    {course}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                            )}
 
                             {/* Research Projects */}
                             {education.researchProjects && (
