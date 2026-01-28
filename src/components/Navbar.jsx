@@ -46,20 +46,26 @@ const Navbar = () => {
   // Smooth-scroll without leaving a hash fragment in the URL
   const handleNav = (e, id) => {
     if (e) e.preventDefault();
-    const targetElement = document.getElementById(id);
-    if (targetElement) {
-      const offset = 80; // Approximate navbar height
-      const top =
-        targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-    // Remove any hash from URL while keeping current path/query
-    window.history.replaceState(
-      null,
-      "",
-      window.location.pathname + window.location.search
-    );
+    
+    // Close menu first for better UX
     setIsOpen(false);
+    
+    // Small delay to allow menu to start closing, then scroll
+    setTimeout(() => {
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        const offset = 80; // Approximate navbar height
+        const top =
+          targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      // Remove any hash from URL while keeping current path/query
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }, 100);
   };
 
   // If page loads with a hash, scroll once then strip it
@@ -77,7 +83,7 @@ const Navbar = () => {
         window.history.replaceState(
           null,
           "",
-          window.location.pathname + window.location.search
+          window.location.pathname + window.location.search,
         );
       }
     }
@@ -118,10 +124,13 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center h-16 gap-4">
           {/* Logo */}
-          <motion.div className="flex-shrink-0" whileHover={{ scale: 1.05 }}>
+          <motion.div
+            className="flex-shrink-0 w-16"
+            whileHover={{ scale: 1.05 }}
+          >
             <a
               href="#home"
               onClick={(e) => handleNav(e, "home")}
@@ -131,9 +140,9 @@ const Navbar = () => {
             </a>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          {/* Desktop Navigation - Horizontal Scrollable */}
+          <div className="hidden xl:flex flex-1 justify-center items-center overflow-hidden">
+            <div className="flex items-baseline justify-center gap-2 2xl:gap-4 overflow-x-auto scrollbar-hide px-4 max-w-full">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -141,7 +150,7 @@ const Navbar = () => {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleNav(e, item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    className={`px-2 2xl:px-3 py-2 rounded-md text-xs 2xl:text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                       isActive
                         ? "text-electric-blue bg-electric-blue/10 border border-electric-blue/30"
                         : "text-gray-300 hover:text-electric-blue hover:bg-electric-blue/5"
@@ -157,7 +166,7 @@ const Navbar = () => {
           </div>
 
           {/* Social Links */}
-          <div className="hidden md:flex items-center space-x-4 ml-8">
+          <div className="hidden xl:flex items-center gap-3 2xl:gap-4 flex-shrink-0">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
@@ -173,8 +182,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile/Tablet menu button */}
+          <div className="xl:hidden ml-auto">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-400 hover:text-electric-blue"
@@ -186,13 +195,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile/Tablet Navigation */}
       <motion.div
         initial={false}
         animate={
           isOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
         }
-        className="md:hidden overflow-hidden bg-dark-surface/95 backdrop-blur-md border-b border-dark-border"
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="xl:hidden overflow-hidden bg-dark-surface/95 backdrop-blur-md border-b border-dark-border"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item, index) => {
@@ -202,14 +212,15 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNav(e, item.id)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
+                className={`block px-3 py-2 rounded-md text-base font-medium cursor-pointer ${
                   isActive
                     ? "text-electric-blue bg-electric-blue/10 border border-electric-blue/30"
                     : "text-gray-300 hover:text-electric-blue hover:bg-electric-blue/5"
                 }`}
-                initial={{ x: -50, opacity: 0 }}
-                animate={isOpen ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-                transition={{ delay: index * 0.1 }}
+                initial={false}
+                animate={isOpen ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                transition={{ delay: isOpen ? index * 0.05 : 0, duration: 0.2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {item.name}
               </motion.a>

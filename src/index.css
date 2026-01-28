@@ -193,6 +193,16 @@
     @apply w-full;
   }
 
+  /* Hide scrollbar for horizontal navigation */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
   /* Badge Styles */
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
