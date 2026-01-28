@@ -30,8 +30,8 @@ const Footer = () => {
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Timeline", href: "#timeline" },
-    { name: "Contact", href: "#contact" },
+    { name: "Experience", href: "#experience" },
+    { name: "Publications", href: "#publications" },
   ];
 
   const scrollToTop = () => {
