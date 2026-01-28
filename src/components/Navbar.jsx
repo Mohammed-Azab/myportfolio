@@ -46,17 +46,19 @@ const Navbar = () => {
   // Smooth-scroll without leaving a hash fragment in the URL
   const handleNav = (e, id) => {
     if (e) e.preventDefault();
-    
+
     // Close menu first for better UX
     setIsOpen(false);
-    
+
     // Small delay to allow menu to start closing, then scroll
     setTimeout(() => {
       const targetElement = document.getElementById(id);
       if (targetElement) {
         const offset = 80; // Approximate navbar height
         const top =
-          targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          offset;
         window.scrollTo({ top, behavior: "smooth" });
       }
       // Remove any hash from URL while keeping current path/query
