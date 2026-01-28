@@ -6,7 +6,7 @@ export const educationData = [
     id: 1,
     institution: "Technische Universität Berlin",
     degree: "External Bachelor Thesis Student",
-    field: "Technical Informatics and Microelectronics",
+    field: "Elektrotechnik und Informatik",
     period: "Mar 2026 - Aug 2026",
     startDate: "2026-03",
     endDate: "2026-08",
@@ -14,7 +14,7 @@ export const educationData = [
     location: "Berlin, Germany",
     status: "In Progress",
     description:
-      "Visiting student at the Institute of Technical Informatics and Microelectronics, conducting research in autonomous systems and embedded computing.",
+      "Visiting student at the Institute of Elektrotechnik und Informatik, conducting research in autonomous systems and embedded computing.",
     website: "https://www.tu.berlin",
     logo: "/images/education/tub_logo.jpg",
 
