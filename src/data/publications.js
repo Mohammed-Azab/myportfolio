@@ -28,7 +28,7 @@ export const publicationsData = [
       "Model Predictive Control",
     ],
     doi: null,
-    arxiv: null,
+    arxiv: "https://arxiv.org/abs/2602.02730",
     pdf: null,
     code: null,
     video: null,

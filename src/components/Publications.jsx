@@ -222,10 +222,13 @@ const Publications = () => {
                         href={publication.arxiv}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-400 rounded-lg border border-orange-500/30 hover:bg-orange-500/30 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-[#B31B1B] rounded-lg hover:bg-[#9a1717] transition-colors"
                       >
-                        <FileText className="w-4 h-4" />
-                        <span>arXiv</span>
+                        <img
+                          src="/images/publications/arxiv-logo.svg"
+                          alt="arXiv"
+                          className="w-19 h-8"
+                        />
                       </a>
                     )}
                     {publication.code && (
