@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -11,6 +11,8 @@ import {
 import { publicationsData, publicationStats } from "../data/publications";
 
 const Publications = () => {
+  const [hoveredLink, setHoveredLink] = useState(null);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -218,18 +220,30 @@ const Publications = () => {
                       </a>
                     )}
                     {publication.arxiv && (
-                      <a
-                        href={publication.arxiv}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-[#B31B1B] rounded-lg hover:bg-[#9a1717] transition-colors"
-                      >
-                        <img
-                          src="/images/publications/arxiv-logo.svg"
-                          alt="arXiv"
-                          className="w-19 h-8"
-                        />
-                      </a>
+                      <div className="relative group">
+                        <a
+                          href={publication.arxiv}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 bg-[#B31B1B] rounded-lg hover:bg-[#9a1717] transition-colors"
+                          onMouseEnter={() => setHoveredLink(publication.arxiv)}
+                          onMouseLeave={() => setHoveredLink(null)}
+                        >
+                          <img
+                            src="/images/publications/arxiv-logo.svg"
+                            alt="arXiv"
+                            className="w-19 h-8"
+                          />
+                        </a>
+                        {hoveredLink === publication.arxiv && (
+                          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-xl border border-purple-500/50 whitespace-nowrap z-50 animate-in slide-in-from-left-2 duration-200">
+                            <div className="text-sm font-mono text-purple-300">
+                              {publication.arxiv}
+                            </div>
+                            <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-gray-900"></div>
+                          </div>
+                        )}
+                      </div>
                     )}
                     {publication.code && (
                       <a
